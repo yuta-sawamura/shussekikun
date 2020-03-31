@@ -25,18 +25,18 @@ Shussekikunはジムや習い事教室の店舗オーナーが、会員の出席
 
 ## 使用技術
 
-■言語
+■言語<br>
 PHP | JavaScript  | HTML/CSS
 
-■フレームワーク・ライブラリ等
+■フレームワーク・ライブラリ等<br>
 Laravel | jQuery | Select2 |
 
-■RDB
+■RDB<br>
 MySQL
 
-■AWS
+■AWS<br>
 VPC | S3 | EC2 | ELB | IAM | RDS | Route53 |
 [参考](https://qiita.com/okoppe8/items/dc1de147a36797442e4c)
 
-■その他
+■その他<br>
 Docker | GitHub | Backlog |
