@@ -30,9 +30,11 @@ Shussekikunはジムや習い事教室の店舗オーナーが、会員の出席
 ### 画面遷移図
 
 ■ユーザー画面
+
 ![UML-ユーザー画面](https://user-images.githubusercontent.com/29622529/78363121-359b5b80-75f6-11ea-8436-213825f7db7b.jpg)
 
 ■管理画面
+
 ![UML-管理画面](https://user-images.githubusercontent.com/29622529/78363388-a0e52d80-75f6-11ea-9683-3ef80c214108.jpg)
 
 ### 機能一覧
