@@ -231,6 +231,10 @@ code {
   margin-bottom: 0;
   list-style: none; }
 
+.navbar-expand-sm .navbar-title {
+  margin-right: auto;
+}
+
 .header-container .sidebarCollapse {
   display: none; }
 
