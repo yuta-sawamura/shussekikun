@@ -187,7 +187,7 @@ code {
   max-width: 58.333333%;
   margin-left: 80px; }
 
-/* 
+/*
 =====================
     Navigation Bar
 =====================
@@ -571,7 +571,7 @@ code {
       color: #1b55e2;
       fill: rgba(0, 23, 55, 0.08); }
 
-/* 
+/*
 ===============
     Sidebar
 ===============
@@ -655,7 +655,7 @@ code {
   display: block; }
 
 #sidebar .theme-brand li.theme-text a {
-  font-size: 25px !important;
+  font-size: 18px !important;
   color: #e0e6ed !important;
   line-height: 2.75rem;
   padding: 0.39rem 0.8rem;
@@ -796,6 +796,7 @@ code {
     width: 20px;
     height: 20px;
     fill: rgba(0, 23, 55, 0.08); }
+
   #sidebar ul.menu-categories li.menu.active > .dropdown-toggle svg.feather-chevron-right {
     transform: rotate(90deg); }
   #sidebar ul.menu-categories li.menu > .dropdown-toggle[aria-expanded="true"] svg {
@@ -940,7 +941,7 @@ code {
   -webkit-animation-name: e-fadeInUp;
   animation-name: e-fadeInUp; }
 
-/*  
+/*
     ======================
         Footer-wrapper
     ======================
@@ -974,7 +975,7 @@ code {
   height: 15px;
   vertical-align: text-top; }
 
-/*  
+/*
     ======================
         MEDIA QUERIES
     ======================
