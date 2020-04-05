@@ -113,7 +113,7 @@ Shussekikunはジムや習い事教室の店舗オーナーが、会員の出席
 PHP | JavaScript  | HTML/CSS
 
 ■フレームワーク・ライブラリ等<br>
-Laravel | jQuery | Select2
+Laravel | jQuery | Select2 | ApexCharts(チャート用) | Bootstrap
 
 ■RDB<br>
 MySQL
