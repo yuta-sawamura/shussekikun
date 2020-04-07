@@ -56,7 +56,7 @@
                 <li class="nav-item align-self-center page-heading">
                     <div class="page-header">
                         <div class="page-title">
-                            <h3>ユーザー</h3>
+                            <h3>ランキング</h3>
                         </div>
                     </div>
                 </li>
@@ -215,58 +215,25 @@
         <!--  BEGIN CONTENT AREA  -->
         <div id="content" class="main-content">
             <div class="layout-px-spacing">
-
+                <ul class="nav nav-tabs  mb-3 mt-3" id="simpletab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">総合</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">一般</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">少年</a>
+                    </li>
+                </ul>
                 <div class="row layout-spacing">
-
                     <!-- Content -->
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 layout-top-spacing">
-
-                        <div class="user-profile layout-spacing">
-                            <div class="widget-content widget-content-area">
-                                <div class="d-flex justify-content-between">
-                                    <h3 class="">詳細</h3>
-                                </div>
-                                <div class="text-center user-info">
-                                    <img src="assets/img/90x90.jpg" alt="avatar">
-                                    <p class="">澤村 勇太(サワムラ ユウタ)</p>
-                                </div>
-                                <div class="user-info-list">
-
-                                    <div class="">
-                                        <ul class="contacts-block list-unstyled">
-                                            <li class="contacts-block__item">
-                                                <p>カテゴリー： 一般</p>
-                                            </li>
-                                            <li class="contacts-block__item">
-                                                <p>性別： 男</p>
-                                            </li>
-                                            <li class="contacts-block__item">
-                                                <p>登録日： 2020-01-01</p>
-                                            </li>
-                                            <li class="contacts-block__item">
-                                                <p>年間ランキング： 8位</p>
-                                            </li>
-                                            <li class="contacts-block__item">
-                                                <p>月間ランキング： 32位</p>
-                                            </li>
-                                            <li class="contacts-block__item">
-                                                <p>月間平均回数： 10回</p>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-
-                    <div id="chartBar" class="col-xl-12 layout-spacing">
                         <div class="statbox widget box box-shadow">
                             <div class="widget-header">
                                 <div class="row">
                                     <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                        <h4>出席回数</h4>
+                                        <h4>年間出席ランキング</h4>
                                     </div>
                                 </div>
                                 <div class="col-xl-12 col-md-12 col-sm-12 col-12">
@@ -276,6 +243,25 @@
                             </div>
                             <div class="widget-content widget-content-area">
                                 <div id="s-bar" class=""></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 layout-top-spacing">
+                        <div class="statbox widget box box-shadow">
+                            <div class="widget-header">
+                                <div class="row">
+                                    <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                                        <h4>月間出席ランキング</h4>
+                                    </div>
+                                </div>
+                                <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                                    <p>2020年12年</p>
+                                    <a class="bs-tooltip" href="" title="前月">&lt;</a> &emsp; <a class="bs-tooltip" href="" title="翌月">&gt;</a>
+                                </div>
+                            </div>
+                            <div class="widget-content widget-content-area">
+                                <div id="s-bar2" class=""></div>
                             </div>
                         </div>
                     </div>
@@ -308,23 +294,62 @@
             },
             plotOptions: {
                 bar: {
-                    horizontal: false,
+                    horizontal: true,
+                }
+            },
+            colors: ['#1b55e2'],
+            dataLabels: {
+                enabled: true
+            },
+            series: [{
+                name: '年間出席回数',
+                data: [30, 25, 24, 21, 20, 15, 11, 10, 9]
+            }],
+            xaxis: {
+                categories: ['1位 澤村 勇太', '2位 澤村 勇太', '4位 澤村 勇太', '4位 澤村 勇太', '5位 澤村 勇太', '6位 澤村 勇太', '7位 澤村 勇太', '8位 澤村 勇太', '9位 澤村 勇太', '10位 澤村 勇太'],
+                title: {
+                    text: '回数'
+                }
+            }
+        }
+
+        var chart = new ApexCharts(
+            document.querySelector("#s-bar"),
+            sBar
+        );
+
+        chart.render();
+
+        var sBar = {
+            chart: {
+                height: 350,
+                type: 'bar',
+                toolbar: {
+                    show: false,
+                }
+            },
+            plotOptions: {
+                bar: {
+                    horizontal: true,
                 }
             },
             dataLabels: {
                 enabled: true
             },
             series: [{
-                name: '年間出席回数',
-                data: [10, 13, 14, 7, 22, 0, 20, 15, 12]
+                name: '月間出席回数',
+                data: [30, 25, 24, 21, 20, 15, 11, 10, 9]
             }],
             xaxis: {
-                categories: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+                categories: ['1位 澤村 勇太', '2位 澤村 勇太', '4位 澤村 勇太', '4位 澤村 勇太', '5位 澤村 勇太', '6位 澤村 勇太', '7位 澤村 勇太', '8位 澤村 勇太', '9位 澤村 勇太', '10位 澤村 勇太'],
+                title: {
+                    text: '回数'
+                }
             }
         }
 
         var chart = new ApexCharts(
-            document.querySelector("#s-bar"),
+            document.querySelector("#s-bar2"),
             sBar
         );
 
