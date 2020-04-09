@@ -71,6 +71,13 @@ code {
   font-weight: 700;
   letter-spacing: 0px; }
 
+.page-heading .admin-header-title {
+  font-size: 18px;
+  color: #3b3f5c;
+  font-weight: 700;
+  letter-spacing: 0px;
+  vertical-align: middle; }
+
 .page-title span {
   display: block;
   font-size: 11px;
