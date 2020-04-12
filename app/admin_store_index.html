@@ -269,33 +269,30 @@
                                                         <table id="style-1" class="table style-1 table-hover non-hover dataTable no-footer" role="grid" aria-describedby="style-1_info" style="table-layout: fixed; width: 100%;">
                                                             <thead>
                                                                 <tr role="row">
-                                                                    <th tabindex="0" aria-controls="style-1" rowspan="1" colspan="1">店舗名</th>
-                                                                    <th tabindex="0" aria-controls="style-1" rowspan="1" colspan="1"></th>
+                                                                    <th tabindex="0" aria-controls="style-1" rowspan="1" colspan="1" style="width: 210px;">店舗名</th>
+                                                                    <th tabindex="0" aria-controls="style-1" rowspan="1" colspan="1" style="width: 210px;"></th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
                                                                 <tr role="row" class="odd">
                                                                     <td class="">新宿店</td>
                                                                     <td>
-                                                                        <button type="button" class="btn btn-outline-primary mb-2 mr-2" data-toggle="modal" data-target="#exampleModal">
-                                                                            編集
-                                                                        </button>
+                                                                        <button type="button" class="btn btn-outline-primary mb-2 mr-2" data-toggle="modal" data-target="#exampleModal">編集</button>
+                                                                        <button type="button" class="btn btn-outline-danger mb-2 mr-2" data-toggle="modal" data-target="#exampleModalDelete">削除</button>
                                                                     </td>
                                                                 </tr>
                                                                 <tr role="row" class="odd">
                                                                     <td class="">渋谷店</td>
                                                                     <td>
-                                                                        <button type="button" class="btn btn-outline-primary mb-2 mr-2" data-toggle="modal" data-target="#exampleModal">
-                                                                            編集
-                                                                        </button>
+                                                                        <button type="button" class="btn btn-outline-primary mb-2 mr-2" data-toggle="modal" data-target="#exampleModal">編集</button>
+                                                                        <button type="button" class="btn btn-outline-danger mb-2 mr-2" data-toggle="modal" data-target="#exampleModalDelete">削除</button>
                                                                     </td>
                                                                 </tr>
                                                                 <tr role="row" class="odd">
                                                                     <td class="">池袋店</td>
                                                                     <td>
-                                                                        <button type="button" class="btn btn-outline-primary mb-2 mr-2" data-toggle="modal" data-target="#exampleModal">
-                                                                            編集
-                                                                        </button>
+                                                                        <button type="button" class="btn btn-outline-primary mb-2 mr-2" data-toggle="modal" data-target="#exampleModal">編集</button>
+                                                                        <button type="button" class="btn btn-outline-danger mb-2 mr-2" data-toggle="modal" data-target="#exampleModalDelete">削除</button>
                                                                     </td>
                                                                 </tr>
                                                             </tbody>
@@ -355,6 +352,27 @@
                         <div class="modal-footer">
                             <button class="btn" data-dismiss="modal"><i class="flaticon-cancel-12"></i> キャンセル</button>
                             <button type="button" class="btn btn-primary">保存</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal 削除 -->
+            <div class="modal fade show" id="exampleModalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-modal="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">本当に削除してよろしいですか？</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn" data-dismiss="modal"><i class="flaticon-cancel-12"></i> いいえ</button>
+                            <button type="button" class="btn btn-primary">はい</button>
                         </div>
                     </div>
                 </div>
