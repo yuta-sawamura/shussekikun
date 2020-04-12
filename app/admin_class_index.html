@@ -18,7 +18,6 @@
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
     <link href="plugins/apex/apexcharts.css" rel="stylesheet" type="text/css">
     <link href="assets/css/dashboard/dash_1.css" rel="stylesheet" type="text/css" />
-    <link href="plugins/apex/apexcharts.css" rel="stylesheet" type="text/css">
     <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
 
     <!-- BEGIN PAGE LEVEL CUSTOM STYLES -->
@@ -26,10 +25,6 @@
     <link rel="stylesheet" type="text/css" href="plugins/table/datatable/dt-global_style.css">
     <link rel="stylesheet" type="text/css" href="plugins/table/datatable/custom_dt_custom.css">
     <!-- END PAGE LEVEL CUSTOM STYLES -->
-
-    <!--  BEGIN CUSTOM STYLE FILE  -->
-    <link href="assets/css/users/user-profile.css" rel="stylesheet" type="text/css" />
-    <!--  END CUSTOM STYLE FILE  -->
 
 </head>
 <body>
@@ -58,7 +53,7 @@
                         <circle cx="12" cy="12" r="3"></circle>
                         <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
                     </svg>
-                    <span class="admin-header-title">会員管理</span>
+                    <span class="admin-header-title">クラス管理</span>
                 </li>
             </ul>
             <ul class="navbar-item flex-row navbar-dropdown">
@@ -247,145 +242,99 @@
 
         <!--  BEGIN CONTENT AREA  -->
         <div id="content" class="main-content">
-            <div class="layout-px-spacing">
-
-                <div class="row layout-spacing">
-
-                    <!-- Content -->
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 layout-top-spacing">
-
-                        <div class="user-profile layout-spacing">
-                            <div class="widget-content widget-content-area">
-                                <div class="d-flex justify-content-between">
-                                    <h3 class="">詳細</h3>
-                                </div>
-                                <div class="col-md-12 text-right">
-                                    <a href="admin_user_index.html" class="btn btn-outline-primary">編集</a>
-                                </div>
-                                <div class="text-center user-info">
-                                    <img src="assets/img/90x90.jpg" alt="avatar">
-                                    <p class="">澤村 勇太(サワムラ ユウタ)</p>
-                                </div>
-                                <div class="user-info-list">
-
-                                    <div class="">
-                                        <ul class="contacts-block list-unstyled">
-                                            <li class="contacts-block__item">
-                                                <p>カテゴリー： 一般</p>
-                                            </li>
-                                            <li class="contacts-block__item">
-                                                <p>性別： 男</p>
-                                            </li>
-                                            <li class="contacts-block__item">
-                                                <p>登録日： 2020-01-01</p>
-                                            </li>
-                                            <li class="contacts-block__item">
-                                                <p>年間出席ランキング： 8位</p>
-                                            </li>
-                                            <li class="contacts-block__item">
-                                                <p>月間出席ランキング： 32位</p>
-                                            </li>
-                                            <li class="contacts-block__item">
-                                                <p>月間平均出席回数： 10回</p>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-
-                    <div id="chartBar" class="col-xl-12 layout-spacing">
-                        <div class="statbox widget box box-shadow">
-                            <div class="widget-header">
-                                <div class="row">
-                                    <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                        <h4>出席回数</h4>
-                                    </div>
-                                </div>
-                                <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                    <p>2020年</p>
-                                    <a class="bs-tooltip" href="" title="前年">&lt;</a> &emsp; <a class="bs-tooltip" href="" title="翌年">&gt;</a>
-                                </div>
-                            </div>
-                            <div class="widget-content widget-content-area">
-                                <div id="s-bar" class=""></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-12">
-                        <div class="statbox widget box box-shadow">
-                            <div class="widget-header">
-                                <div class="row">
-                                    <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                        <h4>出席クラス一覧</h4>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="widget-content widget-content-area">
-                                <div class="table-responsive mb-4 style-1">
-                                    <div id="style-1_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
-
+            <div class="layout-px-spacing mt-5">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 layout-top-spacing">
+                    <div class="row layout-top-spacing layout-spacing">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 layout-top-spacing">
+                            <div class="col-lg-12">
+                                <div class="statbox widget box box-shadow">
+                                    <div class="widget-header">
                                         <div class="row">
-                                            <div class="col-sm-12">
-                                                <table id="style-1" class="table style-1 table-hover non-hover dataTable no-footer" role="grid" aria-describedby="style-1_info" style="table-layout: fixed; width: 100%;">
-                                                    <thead>
-                                                        <tr role="row">
-                                                            <th tabindex="0" aria-controls="style-1" rowspan="1" colspan="1" style="width: 120px;">クラス</th>
-                                                            <th tabindex="0" aria-controls="style-1" rowspan="1" colspan="1" style="width: 120px;">出席日時</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td class="">一般クラス</td>
-                                                            <td>2020-01-01 17:19</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="">一般クラス</td>
-                                                            <td>2020-01-01 17:19</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="">一般クラス</td>
-                                                            <td>2020-01-01 17:19</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="">一般クラス</td>
-                                                            <td>2020-01-01 17:19</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="">一般クラス</td>
-                                                            <td>2020-01-01 17:19</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="">一般クラス</td>
-                                                            <td>2020-01-01 17:19</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
+                                            <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                                                <h4>クラス一覧</h4>
                                             </div>
-
                                         </div>
-                                        <div class="row">
-                                            <div class="col-sm-12 col-md-5">
-                                                <div class="dataTables_info" id="style-1_info" role="status" aria-live="polite">表示ページ 1 of 2</div>
-                                            </div>
-                                            <div class="col-sm-12 col-md-7">
-                                                <div class="dataTables_paginate paging_simple_numbers" id="style-1_paginate">
-                                                    <ul class="pagination">
-                                                        <li class="paginate_button page-item previous disabled" id="style-1_previous"><a href="#" aria-controls="style-1" data-dt-idx="0" tabindex="0" class="page-link"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left">
-                                                                    <line x1="19" y1="12" x2="5" y2="12"></line>
-                                                                    <polyline points="12 19 5 12 12 5"></polyline>
-                                                                </svg></a></li>
-                                                        <li class="paginate_button page-item active"><a href="#" aria-controls="style-1" data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
-                                                        <li class="paginate_button page-item "><a href="#" aria-controls="style-1" data-dt-idx="2" tabindex="0" class="page-link">2</a></li>
-                                                        <li class="paginate_button page-item next" id="style-1_next"><a href="#" aria-controls="style-1" data-dt-idx="3" tabindex="0" class="page-link"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right">
-                                                                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                                                                    <polyline points="12 5 19 12 12 19"></polyline>
-                                                                </svg></a></li>
-                                                    </ul>
+                                    </div>
+                                    <div class="widget-content widget-content-area">
+                                        <div class="col-md-12 text-right">
+                                            <button type="button" class="btn btn-outline-primary mb-2 mr-2" data-toggle="modal" data-target="#exampleModal">
+                                                追加
+                                            </button>
+                                        </div>
+                                        <div class="table-responsive mb-4 style-1">
+                                            <div id="style-1_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
+
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <table id="style-1" class="table style-1 table-hover non-hover dataTable no-footer" role="grid" aria-describedby="style-1_info" style="table-layout: fixed; width: 100%;">
+                                                            <thead>
+                                                                <tr role="row">
+                                                                    <th tabindex="0" aria-controls="style-1" rowspan="1" colspan="1" style="width: 120px;">クラス名</th>
+                                                                    <th tabindex="0" aria-controls="style-1" rowspan="1" colspan="1" style="width: 80px;">曜日</th>
+                                                                    <th tabindex="0" aria-controls="style-1" rowspan="1" colspan="1" style="width: 80px;">開始時間</th>
+                                                                    <th tabindex="0" aria-controls="style-1" rowspan="1" colspan="1" style="width: 80px;">終了時間</th>
+                                                                    <th tabindex="0" aria-controls="style-1" rowspan="1" colspan="1" style="width: 105px;"></th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr role="row" class="odd">
+                                                                    <td class="">一般</td>
+                                                                    <td>月曜日</td>
+                                                                    <td>13:00</td>
+                                                                    <td>14:00</td>
+                                                                    <td>
+                                                                        <button type="button" class="btn btn-outline-primary mb-2 mr-2" data-toggle="modal" data-target="#exampleModal">
+                                                                            編集
+                                                                        </button>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr role="row" class="odd">
+                                                                    <td class="">一般</td>
+                                                                    <td>月曜日</td>
+                                                                    <td>20:00</td>
+                                                                    <td>21:00</td>
+                                                                    <td>
+                                                                        <button type="button" class="btn btn-outline-primary mb-2 mr-2" data-toggle="modal" data-target="#exampleModal">
+                                                                            編集
+                                                                        </button>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr role="row" class="odd">
+                                                                    <td class="">少年</td>
+                                                                    <td>土曜日</td>
+                                                                    <td>13:00</td>
+                                                                    <td>14:00</td>
+                                                                    <td>
+                                                                        <button type="button" class="btn btn-outline-primary mb-2 mr-2" data-toggle="modal" data-target="#exampleModal">
+                                                                            編集
+                                                                        </button>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-5">
+                                                        <div class="dataTables_info" id="style-1_info" role="status" aria-live="polite">表示ページ 1 of 2</div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-7">
+                                                        <div class="dataTables_paginate paging_simple_numbers" id="style-1_paginate">
+                                                            <ul class="pagination">
+                                                                <li class="paginate_button page-item previous disabled" id="style-1_previous"><a href="#" aria-controls="style-1" data-dt-idx="0" tabindex="0" class="page-link"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left">
+                                                                            <line x1="19" y1="12" x2="5" y2="12"></line>
+                                                                            <polyline points="12 19 5 12 12 5"></polyline>
+                                                                        </svg></a></li>
+                                                                <li class="paginate_button page-item active"><a href="#" aria-controls="style-1" data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
+                                                                <li class="paginate_button page-item "><a href="#" aria-controls="style-1" data-dt-idx="2" tabindex="0" class="page-link">2</a></li>
+                                                                <li class="paginate_button page-item next" id="style-1_next"><a href="#" aria-controls="style-1" data-dt-idx="3" tabindex="0" class="page-link"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right">
+                                                                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                                                                            <polyline points="12 5 19 12 12 19"></polyline>
+                                                                        </svg></a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -393,63 +342,102 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
 
+
+                </div>
+                <!--  END CONTENT AREA  -->
+
+            </div>
+            <!-- END MAIN CONTAINER -->
+
+            <!-- Modal 出席 -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="">クラス名</label>
+                                    <input type="text" class="form-control mb-4" id="" placeholder="一般">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>曜日</label>
+                                    <div class="row">
+
+                                        <div class="col-md-12">
+                                            <select class="form-control mb-4" id="s-from1">
+                                                <option>月曜日</option>
+                                                <option>水曜日</option>
+                                                <option selected="selected">土曜日</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>開始時間</label>
+                                    <div class="row">
+
+                                        <div class="col-md-12">
+                                            <select class="form-control mb-4" id="s-from1">
+                                                <option>10:00</option>
+                                                <option>11:00</option>
+                                                <option selected="selected">12:00</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>終了時間</label>
+                                    <div class="row">
+
+                                        <div class="col-md-12">
+                                            <select class="form-control mb-4" id="s-from1">
+                                                <option>10:00</option>
+                                                <option>11:00</option>
+                                                <option selected="selected">12:00</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn" data-dismiss="modal"><i class="flaticon-cancel-12"></i> キャンセル</button>
+                            <button type="button" class="btn btn-primary">保存</button>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <!--  END CONTENT AREA  -->
 
-    </div>
-    <!-- END MAIN CONTAINER -->
+            <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
+            <script src="assets/js/libs/jquery-3.1.1.min.js"></script>
+            <script src="bootstrap/js/popper.min.js"></script>
+            <script src="bootstrap/js/bootstrap.min.js"></script>
+            <script src="plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+            <script src="assets/js/app.js"></script>
 
-    <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
-    <script src="assets/js/libs/jquery-3.1.1.min.js"></script>
-    <script src="bootstrap/js/popper.min.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
-    <script src="plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-    <script src="assets/js/app.js"></script>
-    <script src="plugins/apex/apexcharts.min.js"></script>
-    <script src="assets/js/custom.js"></script>
+            <script>
+                $(document).ready(function () {
+                    App.init();
+                });
+            </script>
+            <script src="assets/js/custom.js"></script>
+            <!-- END GLOBAL MANDATORY SCRIPTS -->
 
-    <script>
-        var sBar = {
-            chart: {
-                height: 450,
-                type: 'bar',
-                toolbar: {
-                    show: false,
-                }
-            },
-            plotOptions: {
-                bar: {
-                    horizontal: true,
-                }
-            },
-            dataLabels: {
-                enabled: true
-            },
-            series: [{
-                name: '年間出席回数',
-                data: [10, 13, 14, 7, 22, 0, 20, 15, 12]
-            }],
-            xaxis: {
-                categories: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
-            }
-        }
+            <!-- BEGIN PAGE LEVEL SCRIPTS -->
+            <script src="plugins/table/datatable/datatables.js"></script>
 
-        var chart = new ApexCharts(
-            document.querySelector("#s-bar"),
-            sBar
-        );
-
-        chart.render();
-    </script>
-    <!-- END GLOBAL MANDATORY SCRIPTS -->
-
-    <!-- BEGIN PAGE LEVEL SCRIPTS -->
-    <script src="plugins/table/datatable/datatables.js"></script>
-
-    <!-- END PAGE LEVEL SCRIPTS -->
+            <!-- END PAGE LEVEL SCRIPTS -->
 </body>
 </html>
