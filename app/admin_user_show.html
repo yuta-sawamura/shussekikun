@@ -271,6 +271,9 @@
                                     <div class="">
                                         <ul class="contacts-block list-unstyled">
                                             <li class="contacts-block__item">
+                                                <p>店舗： 新宿店</p>
+                                            </li>
+                                            <li class="contacts-block__item">
                                                 <p>カテゴリー： 一般</p>
                                             </li>
                                             <li class="contacts-block__item">
@@ -334,34 +337,59 @@
                                                 <table id="style-1" class="table style-1 table-hover non-hover dataTable no-footer" role="grid" aria-describedby="style-1_info" style="table-layout: fixed; width: 100%;">
                                                     <thead>
                                                         <tr role="row">
-                                                            <th tabindex="0" aria-controls="style-1" rowspan="1" colspan="1" style="width: 120px;">クラス</th>
-                                                            <th tabindex="0" aria-controls="style-1" rowspan="1" colspan="1" style="width: 120px;">出席日時</th>
+                                                            <th tabindex="0" aria-controls="style-1" rowspan="1" colspan="1" style="width: 100px;">クラス</th>
+                                                            <th tabindex="0" aria-controls="style-1" rowspan="1" colspan="1" style="width: 160px;">出席日時</th>
+                                                            <th tabindex="0" aria-controls="style-1" rowspan="1" colspan="1" style="width: 200px;"></th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         <tr>
                                                             <td class="">一般クラス</td>
                                                             <td>2020-01-01 17:19</td>
+                                                            <td>
+                                                                <button type="button" class="btn btn-outline-primary mb-2 mr-2" data-toggle="modal" data-target="#exampleModal">編集</button>
+                                                                <button type="button" class="btn btn-outline-danger mb-2 mr-2" data-toggle="modal" data-target="#exampleModalDelete">削除</button>
+                                                            </td>
                                                         </tr>
                                                         <tr>
                                                             <td class="">一般クラス</td>
                                                             <td>2020-01-01 17:19</td>
+                                                            <td>
+                                                                <button type="button" class="btn btn-outline-primary mb-2 mr-2" data-toggle="modal" data-target="#exampleModal">編集</button>
+                                                                <button type="button" class="btn btn-outline-danger mb-2 mr-2" data-toggle="modal" data-target="#exampleModalDelete">削除</button>
+                                                            </td>
                                                         </tr>
                                                         <tr>
                                                             <td class="">一般クラス</td>
                                                             <td>2020-01-01 17:19</td>
+                                                            <td>
+                                                                <button type="button" class="btn btn-outline-primary mb-2 mr-2" data-toggle="modal" data-target="#exampleModal">編集</button>
+                                                                <button type="button" class="btn btn-outline-danger mb-2 mr-2" data-toggle="modal" data-target="#exampleModalDelete">削除</button>
+                                                            </td>
                                                         </tr>
                                                         <tr>
                                                             <td class="">一般クラス</td>
                                                             <td>2020-01-01 17:19</td>
+                                                            <td>
+                                                                <button type="button" class="btn btn-outline-primary mb-2 mr-2" data-toggle="modal" data-target="#exampleModal">編集</button>
+                                                                <button type="button" class="btn btn-outline-danger mb-2 mr-2" data-toggle="modal" data-target="#exampleModalDelete">削除</button>
+                                                            </td>
                                                         </tr>
                                                         <tr>
                                                             <td class="">一般クラス</td>
                                                             <td>2020-01-01 17:19</td>
+                                                            <td>
+                                                                <button type="button" class="btn btn-outline-primary mb-2 mr-2" data-toggle="modal" data-target="#exampleModal">編集</button>
+                                                                <button type="button" class="btn btn-outline-danger mb-2 mr-2" data-toggle="modal" data-target="#exampleModalDelete">削除</button>
+                                                            </td>
                                                         </tr>
                                                         <tr>
                                                             <td class="">一般クラス</td>
                                                             <td>2020-01-01 17:19</td>
+                                                            <td>
+                                                                <button type="button" class="btn btn-outline-primary mb-2 mr-2" data-toggle="modal" data-target="#exampleModal">編集</button>
+                                                                <button type="button" class="btn btn-outline-danger mb-2 mr-2" data-toggle="modal" data-target="#exampleModalDelete">削除</button>
+                                                            </td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -402,6 +430,47 @@
 
     </div>
     <!-- END MAIN CONTAINER -->
+
+    <!-- Modal 出席 -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label for="">クラス名</label>
+                            <input type="text" class="form-control mb-4" id="" placeholder="一般">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn" data-dismiss="modal"><i class="flaticon-cancel-12"></i> キャンセル</button>
+                    <button type="button" class="btn btn-primary">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 削除 -->
+    <div class="modal fade show" id="exampleModalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-modal="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">本当に削除してよろしいですか？</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn" data-dismiss="modal"><i class="flaticon-cancel-12"></i> いいえ</button>
+                    <button type="button" class="btn btn-primary">はい</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
     <script src="assets/js/libs/jquery-3.1.1.min.js"></script>
