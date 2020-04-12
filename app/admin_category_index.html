@@ -53,7 +53,7 @@
                         <circle cx="12" cy="12" r="3"></circle>
                         <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
                     </svg>
-                    <span class="admin-header-title">会員管理</span>
+                    <span class="admin-header-title">カテゴリー管理</span>
                 </li>
             </ul>
             <ul class="navbar-item flex-row navbar-dropdown">
@@ -251,139 +251,43 @@
                                     <div class="widget-header">
                                         <div class="row">
                                             <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                                <h4>全店舗</h4>
+                                                <h4>カテゴリー一覧</h4>
                                             </div>
-                                        </div>
-                                        <div class="col-md-12 text-right">
-                                            <a href="admin_user_add.html" class="btn btn-outline-primary">追加</a>
                                         </div>
                                     </div>
                                     <div class="widget-content widget-content-area">
+                                        <div class="col-md-12 text-right">
+                                            <button type="button" class="btn btn-outline-primary mb-2 mr-2" data-toggle="modal" data-target="#exampleModal">
+                                                追加
+                                            </button>
+                                        </div>
                                         <div class="table-responsive mb-4 style-1">
                                             <div id="style-1_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
-                                                <div class="widget-content widget-content-area">
-                                                    <form>
-                                                        <div class="form-row">
-                                                            <div class="form-group col-md-4">
-                                                                <label for="name">名前</label>
-                                                                <input type="text" class="form-control" id="name" placeholder="キーワードを入力">
-                                                            </div>
-                                                            <div class="col-md-2">
-                                                                <label for="inputState">店舗</label>
-                                                                <select id="inputState" class="form-control">
-                                                                    <option selected="">全店舗</option>
-                                                                    <option>新宿店</option>
-                                                                    <option>渋谷店</option>
-                                                                    <option>池袋店</option>
-                                                                </select>
-                                                            </div>
-                                                            <div class="col-md-2">
-                                                                <label for="inputState">カテゴリー</label>
-                                                                <select id="inputState" class="form-control">
-                                                                    <option selected="">一般</option>
-                                                                    <option>少年</option>
-                                                                    <option>親子</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <button type="submit" class="btn btn-primary mt-3">検索する</button>
-                                                    </form>
-                                                </div>
 
                                                 <div class="row">
                                                     <div class="col-sm-12">
                                                         <table id="style-1" class="table style-1 table-hover non-hover dataTable no-footer" role="grid" aria-describedby="style-1_info" style="table-layout: fixed; width: 100%;">
                                                             <thead>
                                                                 <tr role="row">
-                                                                    <th tabindex="0" aria-controls="style-1" rowspan="1" colspan="1" style="width: 20px;">ID</th>
-                                                                    <th tabindex="0" aria-controls="style-1" rowspan="1" colspan="1" style="width: 150px;">名前</th>
-                                                                    <th tabindex="0" aria-controls="style-1" rowspan="1" colspan="1" style="width: 80px;">画像</th>
-                                                                    <th tabindex="0" aria-controls="style-1" rowspan="1" colspan="1" style="width: 80px;">店舗</th>
-                                                                    <th tabindex="0" aria-controls="style-1" rowspan="1" colspan="1" style="width: 110px;">カテゴリー</th>
-                                                                    <th tabindex="0" aria-controls="style-1" rowspan="1" colspan="1" style="width: 60px;">性別</th>
-                                                                    <th tabindex="0" aria-controls="style-1" rowspan="1" colspan="1" style="width: 80px;">登録日</th>
-                                                                    <th tabindex="0" aria-controls="style-1" rowspan="1" colspan="1" style="width: 105px;"></th>
+                                                                    <th tabindex="0" aria-controls="style-1" rowspan="1" colspan="1">カテゴリー名</th>
+                                                                    <th tabindex="0" aria-controls="style-1" rowspan="1" colspan="1"></th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
                                                                 <tr role="row" class="odd">
-                                                                    <td class="">1</td>
-                                                                    <td class="">澤村 勇太<br>サワムラ ユウタ</td>
-                                                                    <td class="">
-                                                                        <a class="profile-img" href="javascript: void(0);">
-                                                                            <img src="assets/img/90x90.jpg" alt="product">
-                                                                        </a>
-                                                                    </td>
-                                                                    <td>渋谷店</td>
-                                                                    <td>一般</td>
-                                                                    <td>男</td>
-                                                                    <td>2018-11-01</td>
-                                                                    <td class="text-center">
-                                                                        <a href="admin_user_show.html" class="btn btn-outline-primary">詳細</a>
+                                                                    <td class="">一般</td>
+                                                                    <td>
+                                                                        <button type="button" class="btn btn-outline-primary mb-2 mr-2" data-toggle="modal" data-target="#exampleModal">
+                                                                            編集
+                                                                        </button>
                                                                     </td>
                                                                 </tr>
                                                                 <tr role="row" class="odd">
-                                                                    <td class="">1</td>
-                                                                    <td class="">澤村 勇太<br>サワムラ ユウタ</td>
-                                                                    <td class="">
-                                                                        <a class="profile-img" href="javascript: void(0);">
-                                                                            <img src="assets/img/90x90.jpg" alt="product">
-                                                                        </a>
-                                                                    </td>
-                                                                    <td>渋谷店</td>
-                                                                    <td>一般</td>
-                                                                    <td>男</td>
-                                                                    <td>2018-11-01</td>
-                                                                    <td class="text-center">
-                                                                        <a href="admin_user_show.html" class="btn btn-outline-primary">詳細</a>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr role="row" class="odd">
-                                                                    <td class="">1</td>
-                                                                    <td class="">澤村 勇太<br>サワムラ ユウタ</td>
-                                                                    <td class="">
-                                                                        <a class="profile-img" href="javascript: void(0);">
-                                                                            <img src="assets/img/90x90.jpg" alt="product">
-                                                                        </a>
-                                                                    </td>
-                                                                    <td>渋谷店</td>
-                                                                    <td>一般</td>
-                                                                    <td>男</td>
-                                                                    <td>2018-11-01</td>
-                                                                    <td class="text-center">
-                                                                        <a href="admin_user_show.html" class="btn btn-outline-primary">詳細</a>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr role="row" class="odd">
-                                                                    <td class="">1</td>
-                                                                    <td class="">澤村 勇太<br>サワムラ ユウタ</td>
-                                                                    <td class="">
-                                                                        <a class="profile-img" href="javascript: void(0);">
-                                                                            <img src="assets/img/90x90.jpg" alt="product">
-                                                                        </a>
-                                                                    </td>
-                                                                    <td>渋谷店</td>
-                                                                    <td>一般</td>
-                                                                    <td>男</td>
-                                                                    <td>2018-11-01</td>
-                                                                    <td class="text-center">
-                                                                        <a href="admin_user_show.html" class="btn btn-outline-primary">詳細</a>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr role="row" class="odd">
-                                                                    <td class="">1</td>
-                                                                    <td class="">澤村 勇太<br>サワムラ ユウタ</td>
-                                                                    <td class="">
-                                                                        <a class="profile-img" href="javascript: void(0);">
-                                                                            <img src="assets/img/90x90.jpg" alt="product">
-                                                                        </a>
-                                                                    </td>
-                                                                    <td>渋谷店</td>
-                                                                    <td>一般</td>
-                                                                    <td>男</td>
-                                                                    <td>2018-11-01</td>
-                                                                    <td class="text-center">
-                                                                        <a href="admin_user_show.html" class="btn btn-outline-primary">詳細</a>
+                                                                    <td class="">少年</td>
+                                                                    <td>
+                                                                        <button type="button" class="btn btn-outline-primary mb-2 mr-2" data-toggle="modal" data-target="#exampleModal">
+                                                                            編集
+                                                                        </button>
                                                                     </td>
                                                                 </tr>
                                                             </tbody>
@@ -428,7 +332,25 @@
             </div>
             <!-- END MAIN CONTAINER -->
 
-
+            <!-- Modal 出席 -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="">カテゴリー名</label>
+                                    <input type="text" class="form-control mb-4" id="" placeholder="一般">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn" data-dismiss="modal"><i class="flaticon-cancel-12"></i> キャンセル</button>
+                            <button type="button" class="btn btn-primary">保存</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
             <script src="assets/js/libs/jquery-3.1.1.min.js"></script>
