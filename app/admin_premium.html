@@ -260,7 +260,10 @@
                                     <div class="widget-content widget-content-area">
                                         <div class="col-md-12 text-right">
                                             <button type="button" class="btn btn-outline-primary mb-2 mr-2" data-toggle="modal" data-target="#exampleModal">
-                                                プレミアム会員変更
+                                                カード情報変更
+                                            </button>
+                                            <button type="button" class="btn  btn-outline-danger mb-2 mr-2" data-toggle="modal" data-target="#cancellationModal">
+                                                プレミアム会員解約
                                             </button>
                                         </div>
                                         <div class="table-responsive mb-4 style-1">
@@ -339,26 +342,7 @@
             </div>
             <!-- END MAIN CONTAINER -->
 
-            <!-- Modal 出席 -->
-            <!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-body">
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <label for="">カテゴリー名</label>
-                                    <input type="text" class="form-control mb-4" id="" placeholder="一般">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn" data-dismiss="modal"><i class="flaticon-cancel-12"></i> キャンセル</button>
-                            <button type="button" class="btn btn-primary">保存</button>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-
+            <!-- Modal カード登録 -->
             <div class="modal fade show" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-modal="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -407,12 +391,12 @@
                 </div>
             </div>
 
-            <!-- Modal 削除 -->
-            <div class="modal fade show" id="exampleModalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-modal="true">
+            <!-- Modal 解約 -->
+            <div class="modal fade show" id="cancellationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-modal="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">本当に削除してよろしいですか？</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">本当に解約してよろしいですか？</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x">
                                     <line x1="18" y1="6" x2="6" y2="18"></line>
