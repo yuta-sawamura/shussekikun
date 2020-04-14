@@ -53,7 +53,7 @@
                         <circle cx="12" cy="12" r="3"></circle>
                         <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
                     </svg>
-                    <span class="admin-header-title">お知らせ管理</span>
+                    <span class="admin-header-title">プレミアム会員管理</span>
                 </li>
             </ul>
             <ul class="navbar-item flex-row navbar-dropdown">
@@ -253,13 +253,15 @@
                                     <div class="widget-header">
                                         <div class="row">
                                             <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                                <h4>お知らせ一覧</h4>
+                                                <h4>支払い履歴一覧</h4>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="widget-content widget-content-area">
                                         <div class="col-md-12 text-right">
-                                            <a href="admin_news_add.html" class="btn btn-outline-primary mb-2 mr-2">追加</a>
+                                            <button type="button" class="btn btn-outline-primary mb-2 mr-2" data-toggle="modal" data-target="#exampleModal">
+                                                プレミアム会員変更
+                                            </button>
                                         </div>
                                         <div class="table-responsive mb-4 style-1">
                                             <div id="style-1_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
@@ -269,28 +271,31 @@
                                                         <table id="style-1" class="table style-1 table-hover non-hover dataTable no-footer" role="grid" aria-describedby="style-1_info" style="table-layout: fixed; width: 100%;">
                                                             <thead>
                                                                 <tr role="row">
-                                                                    <th tabindex="0" aria-controls="style-1" rowspan="1" colspan="1" style="width: 150px;">タイトル</th>
-                                                                    <th tabindex="0" aria-controls="style-1" rowspan="1" colspan="1" style="width: 150px;">本文</th>
-                                                                    <th tabindex="0" aria-controls="style-1" rowspan="1" colspan="1" style="width: 200px;">投稿日時</th>
-                                                                    <th tabindex="0" aria-controls="style-1" rowspan="1" colspan="1" style="width: 110px;"></th>
+                                                                    <th tabindex="0" aria-controls="style-1" rowspan="1" colspan="1" style="width: 180px;">対象期間</th>
+                                                                    <th tabindex="0" aria-controls="style-1" rowspan="1" colspan="1" style="width: 80px;">金額</th>
+                                                                    <th tabindex="0" aria-controls="style-1" rowspan="1" colspan="1" style="width: 120px;">支払い情報</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
                                                                 <tr role="row" class="odd">
-                                                                    <td class="">4月のお休み</td>
-                                                                    <td class="">4月はコロナの影響で、緊急事態宣・・・</td>
-                                                                    <td>2020-01-01 13:00</td>
-                                                                    <td>
-                                                                        <a href="admin_news_show.html" class="btn btn-outline-primary mb-2 mr-2">詳細</a>
-                                                                    </td>
+                                                                    <td class="">2020年3月21日 - 2020年4月20日</td>
+                                                                    <td class="">1,080円</td>
+                                                                    <td class="">2020年2月15日 決済完了</td>
                                                                 </tr>
                                                                 <tr role="row" class="odd">
-                                                                    <td class="">5月のお休み</td>
-                                                                    <td class="">5月はコロナの影響で、緊急事態宣・・・</td>
-                                                                    <td>2020-01-01 13:00</td>
-                                                                    <td>
-                                                                        <a href="admin_news_show.html" class="btn btn-outline-primary mb-2 mr-2">詳細</a>
-                                                                    </td>
+                                                                    <td class="">2020年3月21日 - 2020年4月20日</td>
+                                                                    <td class="">1,080円</td>
+                                                                    <td class="">2020年2月15日 決済完了</td>
+                                                                </tr>
+                                                                <tr role="row" class="odd">
+                                                                    <td class="">2020年3月21日 - 2020年4月20日</td>
+                                                                    <td class="">1,080円</td>
+                                                                    <td class="">2020年2月15日 決済完了</td>
+                                                                </tr>
+                                                                <tr role="row" class="odd">
+                                                                    <td class="">2020年3月21日 - 2020年4月20日</td>
+                                                                    <td class="">1,080円</td>
+                                                                    <td class="">2020年2月15日 決済完了</td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
@@ -335,7 +340,7 @@
             <!-- END MAIN CONTAINER -->
 
             <!-- Modal 出席 -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-body">
@@ -349,6 +354,75 @@
                         <div class="modal-footer">
                             <button class="btn" data-dismiss="modal"><i class="flaticon-cancel-12"></i> キャンセル</button>
                             <button type="button" class="btn btn-primary">保存</button>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+
+            <div class="modal fade show" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-modal="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">カード情報</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="">カード番号</label>
+                                    <input type="number" class="form-control mb-4" id="" placeholder="1234123412341234">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="dob-input">有効期限</label>
+                                <div class="d-sm-flex d-block">
+                                    <div class="form-group mr-1">
+                                        <select class="form-control">
+                                            <option selected="">1月</option>
+                                            <option>2月</option>
+                                            <option>10月</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group mr-1">
+                                        <select class="form-control">
+                                            <option>2018年</option>
+                                            <option>2017年</option>
+                                            <option>2016年</option>
+                                            <option selected="">1989年</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn" data-dismiss="modal"><i class="flaticon-cancel-12"></i> キャンセル</button>
+                            <button type="button" class="btn btn-primary">登録</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal 削除 -->
+            <div class="modal fade show" id="exampleModalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-modal="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">本当に削除してよろしいですか？</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn" data-dismiss="modal"><i class="flaticon-cancel-12"></i> いいえ</button>
+                            <button type="button" class="btn btn-primary">はい</button>
                         </div>
                     </div>
                 </div>
