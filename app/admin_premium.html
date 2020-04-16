@@ -14,6 +14,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="assets/css/plugins.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/elements/breadcrumb.css" rel="stylesheet" type="text/css">
     <!-- END GLOBAL MANDATORY STYLES -->
 
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
@@ -248,6 +249,12 @@
             <div class="layout-px-spacing">
                 <div class="row layout-top-spacing layout-spacing">
                     <div class="col-lg-12">
+                        <div class="breadcrumb-five">
+                            <ul class="breadcrumb">
+                                <li class="mb-2"><a href="admin_user_aggregate.html">ホーム</a></li>
+                                <li class="active mb-2"><a href="">プレミアム会員</a></li>
+                            </ul>
+                        </div>
                         <div class="statbox widget box box-shadow">
                             <div class="widget-header">
                                 <div class="row">
@@ -335,12 +342,12 @@
         </div>
         <!-- END CONTENT AREA  -->
 
-        <!-- Modal カード登録 -->
+        <!-- Modal カード追加 -->
         <div class="modal fade show" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-modal="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">【プレミアム会員】カード情報登録</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">【プレミアム会員】カード情報追加</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x">
                                 <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -378,7 +385,7 @@
                     </div>
                     <div class="modal-footer">
                         <button class="btn" data-dismiss="modal"><i class="flaticon-cancel-12"></i> キャンセル</button>
-                        <button type="button" class="btn btn-primary">登録</button>
+                        <button type="button" class="btn btn-primary">追加</button>
                     </div>
                 </div>
             </div>
