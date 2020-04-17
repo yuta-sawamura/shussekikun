@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,17 +16,10 @@
     <link href="assets/css/plugins.css" rel="stylesheet" type="text/css" />
     <!-- END GLOBAL MANDATORY STYLES -->
 
-    <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
-    <link href="plugins/apex/apexcharts.css" rel="stylesheet" type="text/css">
-    <link href="assets/css/dashboard/dash_1.css" rel="stylesheet" type="text/css" />
-    <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
-
     <!-- BEGIN PAGE LEVEL CUSTOM STYLES -->
-    <link rel="stylesheet" type="text/css" href="assets/css/forms/theme-checkbox-radio.css">
     <link rel="stylesheet" type="text/css" href="plugins/table/datatable/dt-global_style.css">
     <link rel="stylesheet" type="text/css" href="plugins/table/datatable/custom_dt_custom.css">
     <!-- END PAGE LEVEL CUSTOM STYLES -->
-
 </head>
 <body>
     <!-- BEGIN LOADER -->
@@ -75,7 +68,7 @@
                                     </svg> マイページ</a>
                             </div>
                             <div class="dropdown-item">
-                                <a class="" href="auth_login.html"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-out">
+                                <a class="" href="login.html"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-out">
                                         <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
                                         <polyline points="16 17 21 12 16 7"></polyline>
                                         <line x1="21" y1="12" x2="9" y2="12"></line>
@@ -93,7 +86,6 @@
     <div class="main-container" id="container">
 
         <div class="overlay"></div>
-        <div class="search-overlay"></div>
 
         <!--  BEGIN SIDEBAR  -->
         <div class="sidebar-wrapper sidebar-theme">
@@ -133,7 +125,7 @@
                                 <a href="admin_user_show.html"> マイページ </a>
                             </li>
                             <li>
-                                <a href="index.html"> ログアウト </a>
+                                <a href="login.html"> ログアウト </a>
                             </li>
                         </ul>
                     </li>
@@ -371,10 +363,9 @@
         </div>
 
         <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
+        <script src="plugins/apex/apexcharts.min.js"></script>
         <script src="assets/js/libs/jquery-3.1.1.min.js"></script>
-        <script src="bootstrap/js/popper.min.js"></script>
         <script src="bootstrap/js/bootstrap.min.js"></script>
-        <script src="plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
         <script src="assets/js/app.js"></script>
 
         <script>
@@ -382,12 +373,6 @@
                 App.init();
             });
         </script>
-        <script src="assets/js/custom.js"></script>
         <!-- END GLOBAL MANDATORY SCRIPTS -->
-
-        <!-- BEGIN PAGE LEVEL SCRIPTS -->
-        <script src="plugins/table/datatable/datatables.js"></script>
-
-        <!-- END PAGE LEVEL SCRIPTS -->
 </body>
 </html>
