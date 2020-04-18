@@ -16,7 +16,7 @@
 .layout-spacing {
   padding-bottom: 25px; }
 
-/* 
+/*
 ===================
     User Profile
 ===================
@@ -53,7 +53,7 @@
       width: 55px;
       background: #1b55e2;
       border-radius: 50%;
-      bottom: 9px;
+      bottom: 0px;
       left: 15px; }
   .user-profile .widget-content-area .user-info {
     margin-top: 40px; }
@@ -72,7 +72,7 @@
     .user-profile .widget-content-area .user-info-list ul.contacts-block li {
       margin-bottom: 13px;
       font-weight: 600;
-      font-size: 13px; }
+      font-size: 16px; }
       .user-profile .widget-content-area .user-info-list ul.contacts-block li a {
         font-weight: 600;
         font-size: 15px;
@@ -102,7 +102,7 @@
         width: 19px;
         align-self: center; }
 
-/* 
+/*
 ==============
     Skills
 ==============
@@ -148,7 +148,7 @@
       .skills .widget-content-area .progress .progress-title span {
         align-self: center; }
 
-/* 
+/*
 ==============
     Bio
 ==============
@@ -198,7 +198,7 @@
     .bio .widget-content-area .b-skills p {
       font-size: 13px; }
 
-/* 
+/*
 ================
     Education
 ================
@@ -293,7 +293,7 @@
     .education .widget-content-area .timeline-alter .item-timeline .t-meta-date p, .education .widget-content-area .timeline-alter .item-timeline .t-usr-txt p {
       margin: 0 auto; } }
 
-/* 
+/*
 =======================
     Work Experience
 =======================
