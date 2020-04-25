@@ -47,6 +47,11 @@ Docker | GitHub | CircleCI
 |4. |master以外のブランチの命名規則。<br>「ブランンチ名/日付/内容」|
 |5. |コミットの命名規則。<br>[タイトル]概要<br><br>内容|
 
+## ER図
+
+![ER図](https://user-images.githubusercontent.com/29622529/80274937-09688b80-8719-11ea-93c9-a0cbf01010d0.jpg)
+
+
 ### 機能一覧
 
 - 会員機能
