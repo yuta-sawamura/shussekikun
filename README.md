@@ -49,7 +49,7 @@ Docker | GitHub | CircleCI
 
 ## ER図
 
-![ER図](https://user-images.githubusercontent.com/29622529/80274937-09688b80-8719-11ea-93c9-a0cbf01010d0.jpg)
+![ER図](https://user-images.githubusercontent.com/29622529/80276319-f8247c80-8722-11ea-8878-0479d9b52658.jpg)
 
 
 ### 機能一覧
