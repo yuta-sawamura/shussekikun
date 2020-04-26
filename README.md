@@ -47,10 +47,14 @@ Docker | GitHub | CircleCI
 |4. |master以外のブランチの命名規則。<br>「ブランンチ名/日付/内容」|
 |5. |コミットの命名規則。<br>[タイトル]概要<br><br>内容|
 
-## ER図
+## DB設計
 
-![ER図](https://user-images.githubusercontent.com/29622529/80276319-f8247c80-8722-11ea-8878-0479d9b52658.jpg)
+■ER図
 
+![ER図](https://user-images.githubusercontent.com/29622529/80296369-644fc080-87b5-11ea-948c-41104d2222ab.jpg)
+
+■DB定義書
+https://docs.google.com/spreadsheets/d/1wt3V8w0pTHa2evWwitPKhLXX5lrj0CnDgDHrJkFX_ks/edit?usp=sharing
 
 ### 機能一覧
 
