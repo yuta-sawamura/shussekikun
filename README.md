@@ -2,6 +2,12 @@
 
 SHUSSEKIKUN(しゅっせきくん)はジムや習い事教室の店舗オーナーが、会員の出席を管理できるWebシステムです。
 
+## デザイン
+
+<img width="1406" alt="スクリーンショット 2020-04-27 22 48 39" src="https://user-images.githubusercontent.com/29622529/80379657-58f5b580-88d9-11ea-843a-f15f211896f4.png">
+
+[デザインのURL](https://yuuta1988.github.io/shussekikun-design/index.html)
+
 ## 使用技術
 
 ■言語<br>
