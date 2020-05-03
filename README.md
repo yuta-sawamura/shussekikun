@@ -11,20 +11,20 @@ SHUSSEKIKUN(しゅっせきくん)はジムや習い事教室の店舗オーナ�
 ## 使用技術
 
 ■言語<br>
-PHP | JavaScript  | HTML/CSS
+PHP7.2 | JavaScript  | HTML/CSS
 
 ■フレームワーク・ライブラリ等<br>
-Laravel | jQuery | ApexCharts(チャート用) | Bootstrap
+Laravel6.1 | jQuery | ApexCharts(チャート用) | Bootstrap
 
 ■RDB<br>
-MySQL
+MySQL5.7
 
 ■AWS<br>
 ECS | VPC | S3 | EC2 | ELB | IAM | RDS | Route53
 [参考](https://qiita.com/okoppe8/items/dc1de147a36797442e4c)
 
 ■その他<br>
-Docker | GitHub | CircleCI
+Docker | Nginx | GitHub | CircleCI
 
 ## フェーズ分け公開タイミング
 
