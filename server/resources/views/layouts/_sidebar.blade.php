@@ -9,7 +9,7 @@
         </a>
       </li>
       <li class="nav-item theme-text">
-        <a href="index.html" class="nav-link"> SHUSSEKIKUN </a>
+        <a href="{{ url('/') }}" class="nav-link"> SHUSSEKIKUN </a>
       </li>
     </ul>
 
