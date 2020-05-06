@@ -31,7 +31,7 @@
       </div>
       <div class="modal-footer justify-content-center">
         <div class="forgot login-footer">
-          <span><a href="pass_recovery.html">パスワード再発行</a></span>
+          <span><a href="{{ url('user/reset_pass') }}">パスワード再発行</a></span>
         </div>
       </div>
     </div>

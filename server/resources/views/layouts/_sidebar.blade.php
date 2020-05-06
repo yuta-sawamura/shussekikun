@@ -1,7 +1,5 @@
 <div class="sidebar-wrapper sidebar-theme">
-
   <nav id="sidebar">
-
     <ul class="navbar-nav theme-brand flex-row  text-center">
       <li class="nav-item theme-logo">
         <a href="index.html">
@@ -12,7 +10,6 @@
         <a href="{{ url('/') }}" class="nav-link"> SHUSSEKIKUN </a>
       </li>
     </ul>
-
     <div class="shadow-bottom"></div>
     <ul class="list-unstyled menu-categories" id="accordionExample">
       <li class="menu active">
@@ -32,19 +29,18 @@
         </a>
         <ul class="collapse submenu recent-submenu mini-recent-submenu list-unstyled show" id="dashboard" data-parent="#accordionExample">
           <li>
-            <a href="login.html"> ログイン </a>
+            <a href="{{ url('user/login') }}"> ログイン </a>
           </li>
           <li>
-            <a href="user_show.html"> マイページ </a>
+            <a href="{{ url('user/show') }}"> マイページ </a>
           </li>
           <li>
-            <a href="login.html"> ログアウト </a>
+            <a href="{{ url('user/login') }}"> ログアウト </a>
           </li>
         </ul>
       </li>
-
       <li class="menu">
-        <a href="index.html" aria-expanded="false" class="dropdown-toggle">
+        <a href="{{ url('/') }}" aria-expanded="false" class="dropdown-toggle">
           <div class="">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check">
               <polyline points="20 6 9 17 4 12"></polyline>
@@ -53,9 +49,8 @@
           </div>
         </a>
       </li>
-
       <li class="menu">
-        <a href="rank.html" aria-expanded="false" class="dropdown-toggle">
+        <a href="{{ url('rank') }}" aria-expanded="false" class="dropdown-toggle">
           <div class="">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bar-chart-2">
               <line x1="18" y1="20" x2="18" y2="10"></line>
@@ -66,9 +61,8 @@
           </div>
         </a>
       </li>
-
       <li class="menu">
-        <a href="user_index.html" aria-expanded="false" class="dropdown-toggle">
+        <a href="{{ url('user/') }}" aria-expanded="false" class="dropdown-toggle">
           <div class="">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users">
               <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
@@ -80,9 +74,8 @@
           </div>
         </a>
       </li>
-
       <li class="menu">
-        <a href="news.html" aria-expanded="false" class="dropdown-toggle">
+        <a href="{{ url('news/') }}" aria-expanded="false" class="dropdown-toggle">
           <div class="">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell">
               <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
@@ -93,7 +86,6 @@
           </div>
         </a>
       </li>
-
       <li class="menu">
         <a href="admin_user_aggregate.html" aria-expanded="false" class="dropdown-toggle">
           <div class="">
@@ -106,9 +98,6 @@
           </div>
         </a>
       </li>
-
     </ul>
-
   </nav>
-
 </div>

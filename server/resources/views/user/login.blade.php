@@ -33,7 +33,7 @@
                 </div>
               </div>
               <p class="signup-link"><a href="{{ url('/') }}">トップ</a></p>
-              <p class="signup-link"><a href="{{ url('user/pass_reset') }}">パスワード再発行</a></p>
+              <p class="signup-link"><a href="{{ url('user/reset_pass') }}">パスワード再発行</a></p>
             </div>
           </form>
         </div>

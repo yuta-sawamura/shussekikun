@@ -22,6 +22,7 @@
   <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/table/datatable/dt-global_style.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/table/datatable/custom_dt_custom.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('/css/components/custom-modal.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('/css/users/user-profile.css') }}">
   <!-- END STYLES -->
 
 </head>
