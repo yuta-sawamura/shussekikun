@@ -2,7 +2,7 @@
   <nav id="sidebar">
     <ul class="navbar-nav theme-brand flex-row  text-center">
       <li class="nav-item theme-logo">
-        <a href="index.html">
+        <a href="{{ url('/') }}">
           <img class="navbar-logo" alt="logo" src="{{ asset('/img/logo.png') }}">
         </a>
       </li>
@@ -87,7 +87,7 @@
         </a>
       </li>
       <li class="menu">
-        <a href="admin_user_aggregate.html" aria-expanded="false" class="dropdown-toggle">
+        <a href="{{ url('admin/user/aggregate') }}" aria-expanded="false" class="dropdown-toggle">
           <div class="">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-settings">
               <circle cx="12" cy="12" r="3"></circle>
