@@ -50,7 +50,7 @@
         </a>
       </li>
       <li class="menu">
-        <a href="{{ url('admin/class/index') }}" aria-expanded="false" class="dropdown-toggle">
+        <a href="{{ url('admin/class') }}" aria-expanded="false" class="dropdown-toggle">
           <div class="">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-square">
               <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
@@ -63,7 +63,7 @@
         </a>
       </li>
       <li class="menu">
-        <a href="{{ url('admin/store/index') }}" aria-expanded="false" class="dropdown-toggle">
+        <a href="{{ url('admin/store') }}" aria-expanded="false" class="dropdown-toggle">
           <div class="">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home">
               <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
@@ -74,9 +74,8 @@
           </div>
         </a>
       </li>
-
       <li class="menu">
-        <a href="{{ url('admin/category/index') }}" aria-expanded="false" class="dropdown-toggle">
+        <a href="{{ url('admin/category') }}" aria-expanded="false" class="dropdown-toggle">
           <div class="">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-grid">
               <rect x="3" y="3" width="7" height="7"></rect>
@@ -90,7 +89,7 @@
         </a>
       </li>
       <li class="menu">
-        <a href="{{ url('admin/news/index') }}" aria-expanded="false" class="dropdown-toggle">
+        <a href="{{ url('admin/news/') }}" aria-expanded="false" class="dropdown-toggle">
           <div class="">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell">
               <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>

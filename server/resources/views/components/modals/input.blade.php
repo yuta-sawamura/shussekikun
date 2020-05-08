@@ -1,4 +1,4 @@
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="inputModal" tabindex="-1" role="dialog" aria-labelledby="inputModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <button type="button" class="close text-right px-2 py-2" data-dismiss="modal" aria-label="Close">
@@ -11,7 +11,7 @@
         <div class="col-sm-12">
           <div class="form-group">
             <label for="">{{ $name }}</label>
-            <input type="text" class="form-control" id="" placeholder="一般">
+            <input type="text" class="form-control" id="" placeholder="">
           </div>
         </div>
       </div>

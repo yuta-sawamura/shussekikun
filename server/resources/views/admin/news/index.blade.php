@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin.app')
 @section('content')
 
 <div id="content" class="main-content">
@@ -7,7 +7,7 @@
       <div class="col-lg-12">
         <div class="breadcrumb-five">
           <ul class="breadcrumb">
-            <li class="mb-2"><a href="{{ url('/') }}">ホーム</a></li>
+            <li class="mb-2"><a href="{{ url('/admin/user/aggregate') }}">ホーム</a></li>
             <li class="active mb-2"><a href="">お知らせ一覧</a></li>
           </ul>
         </div>
@@ -20,18 +20,12 @@
             </div>
           </div>
           <div class="widget-content widget-content-area">
+            <div class="col-md-12 text-right">
+              <a href="{{ url('/admin/news/add') }}" class="btn btn-outline-primary mb-2 mr-2">追加</a>
+            </div>
             <div class="table-responsive mb-4 style-1">
               <div id="style-1_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
-                <div class="widget-content widget-content-area">
-                  <form>
-                    <div class="form-row">
-                      <div class="form-group col-md-4">
-                        <input type="text" class="form-control" placeholder="キーワードを入力">
-                      </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary mt-3">検索する</button>
-                  </form>
-                </div>
+
                 <div class="row">
                   <div class="col-sm-12">
                     <table id="style-1" class="table style-1 table-hover non-hover dataTable no-footer" role="grid" aria-describedby="style-1_info" style="table-layout: fixed; width: 100%;">
@@ -50,7 +44,7 @@
                             <td class="">4月はコロナの影響で、緊急事態宣・・・</td>
                             <td>2020-01-01 13:00</td>
                             <td>
-                              <a href="{{ url('news/show') }}" class="btn btn-outline-primary mb-2 mr-2">詳細</a>
+                              <a href="{{ url('/admin/news/show') }}" class="btn btn-outline-primary mb-2 mr-2">詳細</a>
                             </td>
                           </tr>
                         @endfor
@@ -74,7 +68,8 @@
                         <li class="paginate_button page-item next" id="style-1_next"><a href="#" aria-controls="style-1" data-dt-idx="3" tabindex="0" class="page-link"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right">
                               <line x1="5" y1="12" x2="19" y2="12"></line>
                               <polyline points="12 5 19 12 12 19"></polyline>
-                            </svg></a></li>
+                            </svg></a>
+                        </li>
                       </ul>
                     </div>
                   </div>

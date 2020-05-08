@@ -25,6 +25,7 @@
   <link rel="stylesheet" type="text/css" href="{{ asset('/css/users/user-profile.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/dropify/dropify.min.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('/css/users/account-setting.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/editors/markdown/simplemde.min.css') }}">
   <!-- END STYLES -->
 
 </head>

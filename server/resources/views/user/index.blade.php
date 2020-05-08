@@ -56,20 +56,20 @@
                       </thead>
                       <tbody>
                         @for ($i = 1; $i <= 10; $i++)
-                        <tr role="row" class="odd">
-                          <td class="">澤村 勇太<br>サワムラ ユウタ</td>
-                          <td class="">
-                            <a class="profile-img" href="javascript: void(0);">
-                              <img src="{{ asset('/img/90x90.jpg') }}" alt="product">
-                            </a>
-                          </td>
-                          <td>一般</td>
-                          <td>男</td>
-                          <td>2020-01-01</td>
-                          <td class="text-center">
-                            <a href="{{ url('user/show') }}" class="btn btn-outline-primary">詳細</a>
-                          </td>
-                        </tr>
+                          <tr role="row" class="odd">
+                            <td class="">澤村 勇太<br>サワムラ ユウタ</td>
+                            <td class="">
+                              <a class="profile-img" href="javascript: void(0);">
+                                <img src="{{ asset('/img/90x90.jpg') }}" alt="product">
+                              </a>
+                            </td>
+                            <td>一般</td>
+                            <td>男</td>
+                            <td>2020-01-01</td>
+                            <td class="text-center">
+                              <a href="{{ url('user/show') }}" class="btn btn-outline-primary">詳細</a>
+                            </td>
+                          </tr>
                         @endfor
                       </tbody>
                     </table>
