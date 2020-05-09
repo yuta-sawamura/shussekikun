@@ -17,7 +17,7 @@
           <div class="widget-header">
             <div class="row">
               <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                <h4> お知らせ </h4>
+                <h4>お知らせ編集</h4>
               </div>
             </div>
           </div>
@@ -46,7 +46,7 @@
   </div>
 </div>
 
-@component('components.modals.attention')
+@component('components.modals.attention', ['name' => '削除'])
 @endcomponent
 
 @endsection

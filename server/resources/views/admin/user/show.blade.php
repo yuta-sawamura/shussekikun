@@ -15,7 +15,7 @@
         <div class="user-profile layout-spacing">
           <div class="widget-content widget-content-area">
             <div class="d-flex justify-content-between">
-              <h3 class="">詳細</h3>
+              <h3 class="">会員詳細</h3>
             </div>
             <div class="col-md-12 text-right">
               <a href="{{ url('/admin/user/edit') }}" class="btn btn-outline-primary">編集</a>
@@ -180,7 +180,7 @@
   </div>
 </div>
 
-@component('components.modals.attention')
+@component('components.modals.attention', ['name' => '削除'])
 @endcomponent
 @component('components.modals.input', ['name' => 'クラス名'])
 @endcomponent

@@ -181,7 +181,7 @@
   </div>
 </div>
 
-@component('components.modals.attention')
+@component('components.modals.attention', ['name' => '削除'])
 @endcomponent
 
 @endsection()

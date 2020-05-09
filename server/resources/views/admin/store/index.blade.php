@@ -95,7 +95,7 @@
 
 @component('components.modals.input', ['name' => '店舗名'])
 @endcomponent
-@component('components.modals.attention')
+@component('components.modals.attention', ['name' => '削除'])
 @endcomponent
 
 @endsection()

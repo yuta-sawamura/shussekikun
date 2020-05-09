@@ -7,22 +7,25 @@
       <div class="col-lg-12">
         <div class="breadcrumb-five">
           <ul class="breadcrumb">
-            <li class="mb-2"><a href="{{ url('/admin/user/aggregate') }}">ホーム</a></li>
-            <li class="active mb-2"><a href="">カテゴリー一覧</a></li>
+            <li class="mb-2"><a href="admin_user_aggregate.html">ホーム</a></li>
+            <li class="active mb-2"><a href="">プレミアム会員</a></li>
           </ul>
         </div>
         <div class="statbox widget box box-shadow">
           <div class="widget-header">
             <div class="row">
               <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                <h4>カテゴリー一覧</h4>
+                <h4>支払い履歴一覧</h4>
               </div>
             </div>
           </div>
           <div class="widget-content widget-content-area">
             <div class="col-md-12 text-right">
-              <button type="button" class="btn btn-outline-primary mb-2 mr-2" data-toggle="modal" data-target="#inputModal">
-                追加
+              <button type="button" class="btn btn-outline-primary px-2 mr-2" data-toggle="modal" data-target="#cardAddModal">
+                カード情報変更
+              </button>
+              <button type="button" class="btn  btn-outline-danger px-1" data-toggle="modal" data-target="#attentionModal">
+                プレミアム会員解約
               </button>
             </div>
             <div class="table-responsive mb-4 style-1">
@@ -33,28 +36,23 @@
                     <table id="style-1" class="table style-1 table-hover non-hover dataTable no-footer" role="grid" aria-describedby="style-1_info" style="table-layout: fixed; width: 100%;">
                       <thead>
                         <tr role="row">
-                          <th tabindex="0" aria-controls="style-1" rowspan="1" colspan="1" style="width: 120px;">カテゴリー名</th>
-                          <th tabindex="0" aria-controls="style-1" rowspan="1" colspan="1" style="width: 210px;"></th>
+                          <th tabindex="0" aria-controls="style-1" rowspan="1" colspan="1" style="width: 180px;">対象期間</th>
+                          <th tabindex="0" aria-controls="style-1" rowspan="1" colspan="1" style="width: 80px;">金額</th>
+                          <th tabindex="0" aria-controls="style-1" rowspan="1" colspan="1" style="width: 120px;">支払い情報</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr role="row" class="odd">
-                          <td class="">一般</td>
-                          <td>
-                            <button type="button" class="btn btn-outline-primary mb-2 mr-2" data-toggle="modal" data-target="#inputModal">編集</button>
-                            <button type="button" class="btn btn-outline-danger mb-2 mr-2" data-toggle="modal" data-target="#attentionModal">削除</button>
-                          </td>
-                        </tr>
-                        <tr role="row" class="odd">
-                          <td class="">少年</td>
-                          <td>
-                            <button type="button" class="btn btn-outline-primary mb-2 mr-2" data-toggle="modal" data-target="#inputModal">編集</button>
-                            <button type="button" class="btn btn-outline-danger mb-2 mr-2" data-toggle="modal" data-target="#attentionModal">削除</button>
-                          </td>
-                        </tr>
+                        @for ($i = 1; $i <= 10; $i++)
+                          <tr role="row" class="odd">
+                            <td class="">2020年3月21日 - 2020年4月20日</td>
+                            <td class="">1,080円</td>
+                            <td class="">2020年2月15日 決済完了</td>
+                          </tr>
+                        @endfor
                       </tbody>
                     </table>
                   </div>
+
                 </div>
                 <div class="row">
                   <div class="col-sm-12 col-md-5">
@@ -87,9 +85,9 @@
   </div>
 </div>
 
-@component('components.modals.input', ['name' => 'カテゴリー名'])
+@component('components.modals.card_add')
 @endcomponent
-@component('components.modals.attention', ['name' => '削除'])
+@component('components.modals.attention', ['name' => '解約'])
 @endcomponent
 
 @endsection()
