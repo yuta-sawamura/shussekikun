@@ -1,3 +1,6 @@
+README.md:1:AWSAccessKeyId=AKIAIOSFODNN1EXAMP
+README.md:2:AWSSecretKey=wJalrXUtnFEMI/K1MDENG/bPxRfiCYEXAMPLEK
+
 # SHUSSEKIKUNとは
 
 SHUSSEKIKUN(しゅっせきくん)はジムや習い事教室の店舗オーナーが、会員の出席を管理できるWebシステムです。
@@ -25,7 +28,6 @@ ECS | VPC | S3 | EC2 | ELB | IAM | RDS | Route53
 
 ■その他<br>
 Docker | Nginx | GitHub | CircleCI
-
 
 ## フェーズ分け公開タイミング
 
