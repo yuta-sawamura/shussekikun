@@ -1,5 +1,5 @@
-AWSAccessKeyId=AKIAIOSFODNN1EXAMP
-AWSSecretKey=wJalrXUtnFEMI/K1MDENG/bPxRfiCYEXAMPLEK
+aws_credentials2.txt:2:aws_access_key_id = AKIAIOSFODNN7EXAMP
+aws_credentials2.txt:3:aws_secret_access_key = wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEK
 
 # SHUSSEKIKUNとは
 
