@@ -12,9 +12,9 @@ class NewsController extends Controller
         return view('admin.news.index');
     }
 
-    public function add ()
+    public function create ()
     {
-        return view('admin.news.add');
+        return view('admin.news.create');
     }
 
     public function show ()

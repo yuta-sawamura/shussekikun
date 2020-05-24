@@ -37,7 +37,7 @@ Route::prefix('admin')->group(function () {
     Route::prefix('user')->group(function () {
         Route::get('aggregate', 'Admin\UserController@aggregate');
         Route::get('index', 'Admin\UserController@index');
-        Route::get('add', 'Admin\UserController@add');
+        Route::get('create', 'Admin\UserController@create');
         Route::get('show', 'Admin\UserController@show');
         Route::get('edit', 'Admin\UserController@edit');
     });
@@ -54,7 +54,7 @@ Route::prefix('admin')->group(function () {
     // お知らせ
     Route::prefix('news')->group(function () {
         Route::get('/', 'Admin\NewsController@index');
-        Route::get('add', 'Admin\NewsController@add');
+        Route::get('create', 'Admin\NewsController@create');
         Route::get('show', 'Admin\NewsController@show');
         Route::get('edit', 'Admin\NewsController@edit');
     });

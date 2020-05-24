@@ -33,7 +33,7 @@
               </div>
             </div>
             <div class="col-md-12 text-right">
-              <a href="{{ url('/admin/user/add') }}" class="btn btn-outline-primary">追加</a>
+              <a href="{{ url('/admin/user/create') }}" class="btn btn-outline-primary">追加</a>
             </div>
           </div>
           <div class="widget-content widget-content-area">

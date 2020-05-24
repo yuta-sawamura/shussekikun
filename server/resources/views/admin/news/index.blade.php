@@ -21,7 +21,7 @@
           </div>
           <div class="widget-content widget-content-area">
             <div class="col-md-12 text-right">
-              <a href="{{ url('/admin/news/add') }}" class="btn btn-outline-primary mb-2 mr-2">追加</a>
+              <a href="{{ url('/admin/news/create') }}" class="btn btn-outline-primary mb-2 mr-2">追加</a>
             </div>
             <div class="table-responsive mb-4 style-1">
               <div id="style-1_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
