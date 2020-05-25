@@ -1,7 +1,7 @@
 # SHUSSEKIKUNとは
 
-SHUSSEKIKUN(しゅっせきくん)は、店舗オーナーが会員の出席を管理できるWebシステムです。
-会員は店舗に置かれた端末(PC、タブレット、スマートフォン)から、共通アカウントを用いて出席します。店舗オーナーは管理者アカントを用いて管理画面から会員の出席情報を閲覧することができます。
+SHUSSEKIKUN(しゅっせきくん)は、店舗オーナーが会員の出席を管理できるWebシステムです。<br/>
+会員は店舗に置かれた端末(PC、タブレット、スマートフォン)から、共通アカウントを用いて出席します。店舗オーナーは管理者アカントを用いて会員の出席情報を集計・閲覧できます。
 
 ## デザイン
 
@@ -9,24 +9,8 @@ SHUSSEKIKUN(しゅっせきくん)は、店舗オーナーが会員の出席を�
 
 [デザインのURL](https://yuuta1988.github.io/shussekikun-design/index.html)
 
-■想定する店舗
-- 塾
-- 習い事教室
-- クラス参加型のフィットネスジム
-
-■会員が使用できる機能
-- 出席機能
-- 出席ランキング閲覧機能
-- お知らせ閲覧機能
-
-■店舗オーナーが使用できる機能
-- 店舗CRUD機能
-- クラスCRUD機能
-- カテゴリーCRUD機能
-- 会員CRUD機能
-- お知らせCRUD
-- プレミアム会員機能
-* CRUDとは「生成」「読み取り」「更新」「削除」機能のこと
+## 作成の背景
+私は以前、責任者として空手道場を運営していました。道場生の出席を紙ベースで管理しており、集計に苦労した経験があります。そんな背景から店舗オーナーは、特別な機材を導入することなく出席の管理ができ、会員は子どもでも直感的に出席できるWebシステムを作成することにしました。
 
 ## 使用技術
 
@@ -46,34 +30,7 @@ ECS | VPC | S3 | EC2 | ELB | IAM | RDS | Route53
 ■その他<br>
 Docker | Nginx | GitHub | CircleCI
 
-## Git flow
-
-|ブランチ名 |概要 |
-|---|---|
-|master |デプロイ用ブランチ |
-|release |確認用ブランチ |
-|develop |開発用ブランチ |
-|feature |機能別開発用ブランチ |
-
-|No. |ルール |
-|---|---|
-|1. |masterは常にデプロイ可能である。 |
-|2. |developはreleaseで動作確認してからmasterにマージする。 |
-|3. |masterにマージ後デプロイを行う。 |
-|4. |master以外のブランチの命名規則。<br>「ブランンチ名/日付/内容」|
-|5. |コミットの命名規則。<br>[タイトル]概要<br><br>内容|
-
-## DB設計
-
-■ER図
-
-![ER図](https://user-images.githubusercontent.com/29622529/80296369-644fc080-87b5-11ea-948c-41104d2222ab.jpg)
-
-■DB定義書
-
-https://docs.google.com/spreadsheets/d/1wt3V8w0pTHa2evWwitPKhLXX5lrj0CnDgDHrJkFX_ks/edit?usp=sharing
-
-### 機能一覧
+## 機能一覧
 
 - 会員機能
   - 管理画面
@@ -115,3 +72,30 @@ https://docs.google.com/spreadsheets/d/1wt3V8w0pTHa2evWwitPKhLXX5lrj0CnDgDHrJkFX
     - 月額追加
     - カード情報変更
     - 解約
+
+## DB設計
+
+■ER図
+
+![ER図](https://user-images.githubusercontent.com/29622529/80296369-644fc080-87b5-11ea-948c-41104d2222ab.jpg)
+
+■DB定義書
+
+https://docs.google.com/spreadsheets/d/1wt3V8w0pTHa2evWwitPKhLXX5lrj0CnDgDHrJkFX_ks/edit?usp=sharing
+
+## Git flow
+
+|ブランチ名 |概要 |
+|---|---|
+|master |デプロイ用ブランチ |
+|release |確認用ブランチ |
+|develop |開発用ブランチ |
+|feature |機能別開発用ブランチ |
+
+|No. |ルール |
+|---|---|
+|1. |masterは常にデプロイ可能である。 |
+|2. |developはreleaseで動作確認してからmasterにマージする。 |
+|3. |masterにマージ後デプロイを行う。 |
+|4. |master以外のブランチの命名規則。<br>「ブランンチ名/日付/内容」|
+|5. |コミットの命名規則。<br>[タイトル]概要<br><br>内容|
