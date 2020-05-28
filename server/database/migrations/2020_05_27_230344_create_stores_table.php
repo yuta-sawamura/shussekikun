@@ -16,7 +16,7 @@ class CreateStoresTable extends Migration
         Schema::create('stores', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('organization_id')->comment('組織ID');
-            $table->foreign('organization_id')->references('id')->on('organizations')->comment('組織ID');
+            $table->foreign('organization_id')->references('id')->on('organizations')->onDelete('cascade');
             $table->string('name', 50)->comment('店舗名');
             $table->timestamps();
         });
