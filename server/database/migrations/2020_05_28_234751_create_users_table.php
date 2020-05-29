@@ -28,7 +28,7 @@ class CreateUsersTable extends Migration
             $table->string('img')->nullable()->comment('画像のS3パス');
             $table->tinyInteger('gender')->nullable()->comment('性別(1:男 2:女)');
             $table->date('birth')->nullable()->comment('誕生日');
-            $table->tinyInteger('role')->comment('権限(1:システム管理者  3:管理者　5:共有アカウント)');
+            $table->tinyInteger('role')->comment('権限(1:システム管理者  3:管理者 5:共有アカウント)');
             $table->string('password', 255)->nullable()->comment('パスワード');
             $table->tinyInteger('status')->comment('状態(1:会員 2:退会)');
             $table->timestamp('email_verified_at')->nullable();
