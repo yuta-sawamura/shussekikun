@@ -26,6 +26,7 @@
   <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/dropify/dropify.min.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('/css/users/account-setting.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/editors/markdown/simplemde.min.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('/bootstrap/css/bootstrap-datepicker.min.css') }}">
   <!-- END STYLES -->
 
 </head>
@@ -59,6 +60,8 @@
   <script src="{{ asset('/js/app.js') }}"></script>
   <script src="{{ asset('/plugins/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
   <script src="{{ asset('/bootstrap/js/popper.min.js') }}"></script>
+  <script src="{{ asset('/bootstrap/js/bootstrap-datepicker.min.js') }}"></script>
+  <script src="{{ asset('/bootstrap/js/bootstrap-datepicker.ja.min.js') }}"></script>
   @yield('js')
   <!-- END SCRIPTS -->
 
@@ -67,6 +70,10 @@
       App.init();
     });
   </script>
-
+  <script>
+    $('.datepicker').datepicker({
+      language:'ja'
+    });
+  </script>
 </body>
 </html>
