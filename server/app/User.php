@@ -40,15 +40,15 @@ class User extends Authenticatable
     const GENDER_MAN = 1;
     const GENDER_WOMAN = 2;
     const GENDER_LIST = [
-        slef::GENDER_MAN => '男',
-        slef::GENDER_WOMAN => '女',
+        self::GENDER_MAN => '男',
+        self::GENDER_WOMAN => '女',
     ];
 
     const ROLE_ORGANIZATION_ADMIN = 3;
     const ROLE_SHARE = 5;
     const ROLE_LIST = [
-        slef::ROLE_ORGANIZATION_ADMIN => '組織管理者',
-        slef::ROLE_SHARE => '共有アカウント',
+        self::ROLE_ORGANIZATION_ADMIN => '組織管理者',
+        self::ROLE_SHARE => '共有アカウント',
     ];
 
     const STATUS_CONTINUE = 1;
