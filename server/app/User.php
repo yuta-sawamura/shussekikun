@@ -16,25 +16,20 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
-    ];
-
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
-
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
+        'organization_id',
+        'store_id',
+        'category_id',
+        'sei',
+        'mei',
+        'sei_kana',
+        'mei_kana',
+        'img',
+        'gender',
+        'mail',
+        'birth',
+        'role',
+        'password',
+        'status'
     ];
 
     const GENDER_MAN = 1;
@@ -58,4 +53,25 @@ class User extends Authenticatable
         self::STATUS_CANCEL => '退会',
     ];
 
+    protected $attributes = [
+        'status' => self::STATUS_CONTINUE,
+    ];
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
 }

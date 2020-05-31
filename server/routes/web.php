@@ -38,6 +38,7 @@ Route::prefix('admin')->group(function () {
         Route::get('aggregate', 'Admin\UserController@aggregate');
         Route::get('index', 'Admin\UserController@index');
         Route::get('create', 'Admin\UserController@create');
+        Route::post('store', 'Admin\UserController@store');
         Route::get('show', 'Admin\UserController@show');
         Route::get('edit', 'Admin\UserController@edit');
     });
