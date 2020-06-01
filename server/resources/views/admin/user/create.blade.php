@@ -88,7 +88,7 @@
                                   <label>性別</label>
                                   <div class="row">
                                     <div class="col-md-6">
-                                      {{ Form::select('gender', App\User::GENDER_LIST, old('gender'), ['class' => 'form-control', 'placeholder' => '選択してください']) }}
+                                      {{ Form::select('gender', \App\Enums\User\Gender::List, old('gender'), ['class' => 'form-control', 'placeholder' => '選択してください']) }}
                                     </div>
                                   </div>
                                 </div>
@@ -104,7 +104,7 @@
                                   <label>アカウント権限</label>
                                   <div class="row">
                                     <div class="col-md-6">
-                                      {{ Form::select('role', App\User::ROLE_LIST, old('role'), ['class' => 'form-control', 'placeholder' => '選択してください']) }}
+                                      {{ Form::select('role', \App\Enums\User\Role::List_for_organization_admin, old('role'), ['class' => 'form-control', 'placeholder' => '選択してください']) }}
                                     </div>
                                   </div>
                                 </div>
