@@ -34,3 +34,10 @@ services:
     - ./docker/db/sql:/docker-entrypoint-initdb.d
     ports:
     - 3306:3306
+
+  node:
+    image: node:12.14-alpine
+    tty: true
+    volumes:
+    - ./server:/var/www
+    working_dir: /var/www
