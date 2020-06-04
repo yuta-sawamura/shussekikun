@@ -55,24 +55,13 @@
   <!-- END MAIN CONTAINER -->
 
   <!-- BEGIN SCRIPTS -->
-  <script src="{{ asset('/js/libs/jquery-3.1.1.min.js') }}"></script>
-  <script src="{{ asset('/bootstrap/js/bootstrap.min.js') }}"></script>
   <script src="{{ asset('/js/app.js') }}"></script>
-  <script src="{{ asset('/plugins/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
-  <script src="{{ asset('/bootstrap/js/popper.min.js') }}"></script>
-  <script src="{{ asset('/bootstrap/js/bootstrap-datepicker.min.js') }}"></script>
-  <script src="{{ asset('/bootstrap/js/bootstrap-datepicker.ja.min.js') }}"></script>
   @yield('js')
   <!-- END SCRIPTS -->
 
   <script>
     $(document).ready(function () {
       App.init();
-    });
-  </script>
-  <script>
-    $('.datepicker').datepicker({
-      language:'ja'
     });
   </script>
 </body>
