@@ -12146,7 +12146,7 @@ jQuery.extend( {
 										return;
 									}
 
-									// returned = handler.apply( that, args );
+									returned = handler.apply( that, args );
 
 									// Support: Promises/A+ section 2.3.1
 									// https://promisesaplus.com/#point-48

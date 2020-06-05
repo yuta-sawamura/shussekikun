@@ -33,7 +33,7 @@ class User extends Authenticatable
     ];
 
     protected $attributes = [
-        'status' => self::STATUS_CONTINUE,
+        'status' => \App\Enums\User\Status::Continue,
     ];
 
     /**

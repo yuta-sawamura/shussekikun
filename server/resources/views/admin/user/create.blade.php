@@ -68,7 +68,14 @@
                                   <label>店舗</label>
                                   <div class="row">
                                     <div class="col-md-6">
-                                      {{ Form::select('store_id', App\Models\Store::pluck('name', 'id'), old('store_id'), ['class' => 'form-control', 'placeholder' => '選択してください']) }}
+                                      <select class="form-control" name="store_id">
+                                        <option selected="selected" value="">選択してください</option>
+                                        @foreach(App\Models\Store::pluck('name', 'id') as $k => $v)
+                                          <option value="{{ $k }}" @if(old('store_id')==$k) selected @endif>
+                                            {{ $v }}
+                                          </option>
+                                        @endforeach
+                                      </select>
                                     </div>
                                   </div>
                                 </div>
@@ -78,7 +85,17 @@
                                   <label>カテゴリー</label>
                                   <div class="row">
                                     <div class="col-md-6">
-                                      {{ Form::select('category_id', App\Models\Category::pluck('name', 'id'), old('category_id'), ['class' => 'form-control', 'placeholder' => '選択してください']) }}
+                                    <select class="form-control" name="category_id">
+                                      <option selected="selected" value="">選択してください</option>
+                                      @foreach(App\Models\Category::pluck('name', 'id') as $k => $v)
+                                        <option
+                                          value="{{ $k }}"
+                                          @if(old('category_id') == $k) selected @endif
+                                        >
+                                          {{ $v }}
+                                        </option>
+                                      @endforeach
+                                    </select>
                                     </div>
                                   </div>
                                 </div>
@@ -88,7 +105,17 @@
                                   <label>性別</label>
                                   <div class="row">
                                     <div class="col-md-6">
-                                      {{ Form::select('gender', \App\Enums\User\Gender::List, old('gender'), ['class' => 'form-control', 'placeholder' => '選択してください']) }}
+                                      <select class="form-control" name="gender">
+                                        <option selected="selected" value="">選択してください</option>
+                                        @foreach(App\Enums\User\Gender::List as $k => $v)
+                                          <option
+                                            value="{{ $k }}"
+                                            @if(old('gender') == $k) selected @endif
+                                          >
+                                            {{ $v }}
+                                          </option>
+                                        @endforeach
+                                      </select>
                                     </div>
                                   </div>
                                 </div>
@@ -104,7 +131,14 @@
                                   <label>アカウント権限</label>
                                   <div class="row">
                                     <div class="col-md-6">
-                                      {{ Form::select('role', \App\Enums\User\Role::List_for_organization_admin, old('role'), ['class' => 'form-control', 'placeholder' => '選択してください']) }}
+                                      <select class="form-control" name="role">
+                                        <option selected="selected" value="">選択してください</option>
+                                        @foreach(App\Enums\User\Role::List_for_organization_admin as $k => $v)
+                                          <option value="{{ $k }}" @if(old('role')==$k) selected @endif>
+                                            {{ $v }}
+                                          </option>
+                                        @endforeach
+                                      </select>
                                     </div>
                                   </div>
                                 </div>
