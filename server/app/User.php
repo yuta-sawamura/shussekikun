@@ -16,7 +16,24 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'organization_id',
+        'store_id',
+        'category_id',
+        'sei',
+        'mei',
+        'sei_kana',
+        'mei_kana',
+        'img',
+        'gender',
+        'mail',
+        'birth',
+        'role',
+        'password',
+        'status'
+    ];
+
+    protected $attributes = [
+        'status' => \App\Enums\User\Status::Continue,
     ];
 
     /**

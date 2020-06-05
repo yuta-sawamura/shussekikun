@@ -1,6 +1,5 @@
 @extends('layouts.admin.app')
 @section('content')
-
 <div id="content" class="main-content">
   <div class="layout-px-spacing">
     <div class="account-settings-container layout-top-spacing">
@@ -15,7 +14,8 @@
         <div class="scrollspy-example" data-spy="scroll" data-target="#account-settings-scroll" data-offset="-100">
           <div class="row">
             <div class="col-xl-12 col-lg-12 col-md-12 layout-spacing">
-              <form id="general-info" class="section general-info">
+              <form action="/admin/user/store" method="post" class="section general-info">
+                @csrf
                 <div class="info">
                   <h6 class="">会員追加</h6>
                   <div class="row">
@@ -23,17 +23,29 @@
                       <div class="row">
                         <div class="col-xl-2 col-lg-12 col-md-4">
                           <div class="upload mt-4 pr-md-4">
-                            <input type="file" id="input-file-max-fs" class="dropify" data-default-file="" data-max-file-size="2M" />
+                            <input type="file" name="img" id="input-file-max-fs" class="dropify" data-default-file="" data-max-file-size="2M" />
                             <p class="mt-2"><i class="flaticon-cloud-upload mr-1"></i>画像アップロード</p>
                           </div>
                         </div>
                         <div class="col-xl-10 col-lg-12 col-md-8 mt-md-0 mt-4">
                           <div class="form">
                             <div class="row">
-                              <div class="col-sm-6">
+                              <div class="col-md-6">
+                                <div class="form-group">
+                                  <label for="">姓</label>
+                                <input type="text" name="sei" class="form-control" id="" placeholder="山田" value="">
+                                </div>
+                              </div>
+                              <div class="col-md-6">
+                                <div class="form-group">
+                                  <label for="">名</label>
+                                  <input type="text" name="mei" class="form-control" id="" placeholder="太郎">
+                                </div>
+                              </div>
+                              <div class="col-md-6">
                                 <div class="form-group">
                                   <label for="">姓(カタカナ)</label>
-                                  <input type="text" class="form-control" id="" placeholder="ヤマダ">
+                                  <input type="text" name="sei_kana" class="form-control" id="" placeholder="ヤマダ">
                                   <div class="invalid-feedback" style="display: block;">
                                     姓(カタカナ)を入力してください。
                                   </div>
@@ -42,25 +54,13 @@
                               <div class="col-md-6">
                                 <div class="form-group">
                                   <label for="">名(カタカナ)</label>
-                                  <input type="text" class="form-control" id="" placeholder="タロウ">
-                                </div>
-                              </div>
-                              <div class="col-sm-6">
-                                <div class="form-group">
-                                  <label for="">姓</label>
-                                  <input type="text" class="form-control" id="" placeholder="山田">
-                                </div>
-                              </div>
-                              <div class="col-md-6">
-                                <div class="form-group">
-                                  <label for="">名</label>
-                                  <input type="text" class="form-control" id="" placeholder="太郎">
+                                  <input type="text" name="mei_kana" class="form-control" id="" placeholder="タロウ">
                                 </div>
                               </div>
                               <div class="col-md-6">
                                 <div class="form-group">
                                   <label for="">メールアドレス</label>
-                                  <input type="text" class="form-control" id="email" placeholder="yamada@gmail.com">
+                                  <input type="text" name="mail" class="form-control" id="email" placeholder="yamada@gmail.com">
                                 </div>
                               </div>
                               <div class="col-md-6">
@@ -68,10 +68,13 @@
                                   <label>店舗</label>
                                   <div class="row">
                                     <div class="col-md-6">
-                                      <select class="form-control" id="s-from1">
-                                        <option>新宿店</option>
-                                        <option>渋谷店</option>
-                                        <option selected="selected">池袋店</option>
+                                      <select class="form-control" name="store_id">
+                                        <option selected="selected" value="">選択してください</option>
+                                        @foreach(App\Models\Store::pluck('name', 'id') as $k => $v)
+                                          <option value="{{ $k }}" @if(old('store_id')==$k) selected @endif>
+                                            {{ $v }}
+                                          </option>
+                                        @endforeach
                                       </select>
                                     </div>
                                   </div>
@@ -82,10 +85,17 @@
                                   <label>カテゴリー</label>
                                   <div class="row">
                                     <div class="col-md-6">
-                                      <select class="form-control" id="s-from1">
-                                        <option>一般</option>
-                                        <option selected="selected">少年</option>
-                                      </select>
+                                    <select class="form-control" name="category_id">
+                                      <option selected="selected" value="">選択してください</option>
+                                      @foreach(App\Models\Category::pluck('name', 'id') as $k => $v)
+                                        <option
+                                          value="{{ $k }}"
+                                          @if(old('category_id') == $k) selected @endif
+                                        >
+                                          {{ $v }}
+                                        </option>
+                                      @endforeach
+                                    </select>
                                     </div>
                                   </div>
                                 </div>
@@ -95,49 +105,39 @@
                                   <label>性別</label>
                                   <div class="row">
                                     <div class="col-md-6">
-                                      <select class="form-control" id="s-from1">
-                                        <option>男</option>
-                                        <option selected="selected">女</option>
+                                      <select class="form-control" name="gender">
+                                        <option selected="selected" value="">選択してください</option>
+                                        @foreach(App\Enums\User\Gender::List as $k => $v)
+                                          <option
+                                            value="{{ $k }}"
+                                            @if(old('gender') == $k) selected @endif
+                                          >
+                                            {{ $v }}
+                                          </option>
+                                        @endforeach
                                       </select>
                                     </div>
                                   </div>
                                 </div>
                               </div>
-                              <div class="col-sm-6">
-                                <label class="dob-input">生年月日</label>
-                                <div class="d-sm-flex d-block">
-                                  <div class="form-group mr-1">
-                                    <select class="form-control" id="year">
-                                      <option>2018年</option>
-                                      <option>2017年</option>
-                                      <option>2016年</option>
-                                      <option selected="">1989年</option>
-                                    </select>
-                                  </div>
-                                  <div class="form-group mr-1">
-                                    <select class="form-control" id="month">
-                                      <option selected="">1月</option>
-                                      <option>2月</option>
-                                      <option>10月</option>
-                                    </select>
-                                  </div>
-                                  <div class="form-group mr-1">
-                                    <select class="form-control" id="exampleFormControlSelect1">
-                                      <option>1日</option>
-                                      <option selected="">2日</option>
-                                      <option>30日</option>
-                                    </select>
-                                  </div>
+                              <div class="col-md-6">
+                                <div class="form-group">
+                                  <label>生年月日</label>
+                                  <input type="text" name="birth" class="form-control datepicker">
                                 </div>
                               </div>
                               <div class="col-md-6">
                                 <div class="form-group">
-                                  <label>アカウント種別</label>
+                                  <label>アカウント権限</label>
                                   <div class="row">
                                     <div class="col-md-6">
-                                      <select class="form-control" id="s-from1">
-                                        <option>共有アカウント</option>
-                                        <option selected="selected">一般アカウント</option>
+                                      <select class="form-control" name="role">
+                                        <option selected="selected" value="">選択してください</option>
+                                        @foreach(App\Enums\User\Role::List_for_organization_admin as $k => $v)
+                                          <option value="{{ $k }}" @if(old('role')==$k) selected @endif>
+                                            {{ $v }}
+                                          </option>
+                                        @endforeach
                                       </select>
                                     </div>
                                   </div>
@@ -145,7 +145,7 @@
                               </div>
                               <div class="col-sm-6">
                                 <label for="profession">パスワード(8文字以上)</label>
-                                <input type="password" class="form-control" id="profession" placeholder="パスワード" value="">
+                                <input type="password" name="password" class="form-control" id="profession" placeholder="パスワード" value="">
                               </div>
                             </div>
                             <div class="col-lg-12 text-right">
