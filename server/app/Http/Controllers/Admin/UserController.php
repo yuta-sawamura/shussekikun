@@ -7,6 +7,7 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Storage;
 
 class UserController extends Controller
 {
@@ -27,10 +28,14 @@ class UserController extends Controller
 
     public function store (Request $request)
     {
-        $user = new User;
         $request['organization_id'] = 1; // ログイン機能を実装したら書き換える
         $request['password'] = Hash::make($request->password);
         $form = $request->all();
+        if ($request->has('img')) {
+            $path = Storage::disk('s3')->put('avatar', $request->file('img'), 'public');
+            $form['img'] = $path;
+        }
+        $user = new User;
         $user->fill($form)->save();
         return redirect('/admin/user/index')->with('message', '会員を追加しました。');
     }

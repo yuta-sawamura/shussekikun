@@ -14,7 +14,7 @@
         <div class="scrollspy-example" data-spy="scroll" data-target="#account-settings-scroll" data-offset="-100">
           <div class="row">
             <div class="col-xl-12 col-lg-12 col-md-12 layout-spacing">
-              <form action="/admin/user/store" method="post" class="section general-info">
+              <form action="/admin/user/store" method="post" enctype="multipart/form-data" class="section general-info">
                 @csrf
                 <div class="info">
                   <h6 class="">会員追加</h6>
@@ -71,7 +71,7 @@
                                       <select class="form-control" name="store_id">
                                         <option selected="selected" value="">選択してください</option>
                                         @foreach(App\Models\Store::pluck('name', 'id') as $k => $v)
-                                          <option value="{{ $k }}" @if(old('store_id')==$k) selected @endif>
+                                          <option value="{{ $k }}" @if(old('store_id') == $k) selected @endif>
                                             {{ $v }}
                                           </option>
                                         @endforeach
