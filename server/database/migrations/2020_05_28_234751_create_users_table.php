@@ -15,7 +15,7 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('organization_id')->comment('組織ID');
+            $table->unsignedBigInteger('organization_id')->nullable()->comment('組織ID');
             $table->foreign('organization_id')->references('id')->on('organizations')->onDelete('cascade');
             $table->unsignedBigInteger('store_id')->nullable()->comment('店舗ID');
             $table->foreign('store_id')->references('id')->on('stores')->onDelete('cascade');
@@ -23,8 +23,8 @@ class CreateUsersTable extends Migration
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->string('sei', 50)->comment('姓');
             $table->string('mei', 50)->comment('名');
-            $table->string('sei_kana', 100)->comment('セイ');
-            $table->string('mei_kana', 100)->comment('メイ');
+            $table->string('sei_kana', 100)->nullable()->comment('セイ');
+            $table->string('mei_kana', 100)->nullable()->comment('メイ');
             $table->string('img')->nullable()->comment('画像のS3パス');
             $table->unsignedSmallInteger('gender')->nullable()->comment('性別(1:男 2:女)');
             $table->string('mail', 100)->nullable()->comment('メールアドレス');
