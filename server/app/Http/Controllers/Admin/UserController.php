@@ -6,6 +6,7 @@ use App\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\Admin\UserRequest;
 use Illuminate\Support\Facades\Hash;
 use Storage;
 
@@ -26,7 +27,7 @@ class UserController extends Controller
         return view('admin.user.create');
     }
 
-    public function store (Request $request)
+    public function store (UserRequest $request)
     {
         $request['organization_id'] = 1; // ログイン機能を実装したら書き換える
         $request['password'] = Hash::make($request->password);

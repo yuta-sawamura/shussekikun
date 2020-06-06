@@ -15,7 +15,7 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('organization_id')->comment('組織ID');
+            $table->unsignedBigInteger('organization_id')->nullable()->comment('組織ID');
             $table->foreign('organization_id')->references('id')->on('organizations')->onDelete('cascade');
             $table->unsignedBigInteger('store_id')->nullable()->comment('店舗ID');
             $table->foreign('store_id')->references('id')->on('stores')->onDelete('cascade');

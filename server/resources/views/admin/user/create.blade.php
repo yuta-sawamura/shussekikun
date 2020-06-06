@@ -25,6 +25,8 @@
                           <div class="upload mt-4 pr-md-4">
                             <input type="file" name="img" id="input-file-max-fs" class="dropify" data-default-file="" data-max-file-size="2M" />
                             <p class="mt-2"><i class="flaticon-cloud-upload mr-1"></i>画像アップロード</p>
+                            @component('components.validations.feedback', ['message' => 'img'])
+                            @endcomponent
                           </div>
                         </div>
                         <div class="col-xl-10 col-lg-12 col-md-8 mt-md-0 mt-4">
@@ -33,34 +35,41 @@
                               <div class="col-md-6">
                                 <div class="form-group">
                                   <label for="">姓</label>
-                                <input type="text" name="sei" class="form-control" id="" placeholder="山田" value="">
+                                  <input type="text" name="sei" class="form-control" id="" placeholder="山田" value="">
+                                  @component('components.validations.feedback', ['message' => 'sei'])
+                                  @endcomponent
                                 </div>
                               </div>
                               <div class="col-md-6">
                                 <div class="form-group">
                                   <label for="">名</label>
                                   <input type="text" name="mei" class="form-control" id="" placeholder="太郎">
+                                  @component('components.validations.feedback', ['message' => 'mei'])
+                                  @endcomponent
                                 </div>
                               </div>
                               <div class="col-md-6">
                                 <div class="form-group">
                                   <label for="">姓(カタカナ)</label>
                                   <input type="text" name="sei_kana" class="form-control" id="" placeholder="ヤマダ">
-                                  <div class="invalid-feedback" style="display: block;">
-                                    姓(カタカナ)を入力してください。
-                                  </div>
+                                  @component('components.validations.feedback', ['message' => 'sei_kana'])
+                                  @endcomponent
                                 </div>
                               </div>
                               <div class="col-md-6">
                                 <div class="form-group">
                                   <label for="">名(カタカナ)</label>
                                   <input type="text" name="mei_kana" class="form-control" id="" placeholder="タロウ">
+                                  @component('components.validations.feedback', ['message' => 'mei_kana'])
+                                  @endcomponent
                                 </div>
                               </div>
                               <div class="col-md-6">
                                 <div class="form-group">
                                   <label for="">メールアドレス</label>
-                                  <input type="text" name="mail" class="form-control" id="email" placeholder="yamada@gmail.com">
+                                  <input type="text" name="mail" class="form-control" placeholder="yamada@gmail.com">
+                                  @component('components.validations.feedback', ['message' => 'mail'])
+                                  @endcomponent
                                 </div>
                               </div>
                               <div class="col-md-6">
@@ -76,6 +85,8 @@
                                           </option>
                                         @endforeach
                                       </select>
+                                      @component('components.validations.feedback', ['message' => 'store_id'])
+                                      @endcomponent
                                     </div>
                                   </div>
                                 </div>
@@ -96,6 +107,8 @@
                                         </option>
                                       @endforeach
                                     </select>
+                                    @component('components.validations.feedback', ['message' => 'category_id'])
+                                    @endcomponent
                                     </div>
                                   </div>
                                 </div>
@@ -116,6 +129,8 @@
                                           </option>
                                         @endforeach
                                       </select>
+                                      @component('components.validations.feedback', ['message' => 'gender'])
+                                      @endcomponent
                                     </div>
                                   </div>
                                 </div>
@@ -139,6 +154,8 @@
                                           </option>
                                         @endforeach
                                       </select>
+                                      @component('components.validations.feedback', ['message' => 'role'])
+                                      @endcomponent
                                     </div>
                                   </div>
                                 </div>
@@ -146,6 +163,8 @@
                               <div class="col-sm-6">
                                 <label for="profession">パスワード(8文字以上)</label>
                                 <input type="password" name="password" class="form-control" id="profession" placeholder="パスワード" value="">
+                                @component('components.validations.feedback', ['message' => 'password'])
+                                @endcomponent
                               </div>
                             </div>
                             <div class="col-lg-12 text-right">
