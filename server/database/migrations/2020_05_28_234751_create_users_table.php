@@ -29,7 +29,7 @@ class CreateUsersTable extends Migration
             $table->unsignedSmallInteger('gender')->nullable()->comment('性別(1:男 2:女)');
             $table->string('mail', 100)->nullable()->comment('メールアドレス');
             $table->date('birth')->nullable()->comment('誕生日');
-            $table->unsignedTinyInteger('role')->comment('権限(1:システム管理者  3:組織管理者 5:共有アカウント)');
+            $table->unsignedTinyInteger('role')->comment('権限(1:システム管理者  3:組織管理者 5:共有アカウント 9:一般アカウント)');
             $table->string('password', 255)->nullable()->comment('パスワード');
             $table->unsignedSmallInteger('status')->comment('状態(1:継続 2:退会)');
             $table->timestamp('email_verified_at')->nullable();

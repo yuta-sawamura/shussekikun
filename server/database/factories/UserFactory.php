@@ -28,7 +28,7 @@ $factory->define(User::class, function (Faker $faker) {
         'mail' => $faker->unique()->safeEmail(),
         'email_verified_at' => now(),
         'birth' => $faker->dateTimeThisCentury()->format('Y-m-d'),
-        'role' => 5,
+        'role' => 9,
         'status' => $faker->numberBetween($min = 1, $max = 2),
         'remember_token' => Str::random(10),
         'created_at' => $faker->dateTime(),
