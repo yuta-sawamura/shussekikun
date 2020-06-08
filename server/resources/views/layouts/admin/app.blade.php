@@ -4,6 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
+  <!-- CSRF Token -->
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>SHUSSEKIKUN | 管理画面</title>
   <link rel="icon" type="image/x-icon" href="{{ asset('/img/logo.png') }}">
   <link rel="stylesheet" href="{{ asset('/css/loader.css') }}">
@@ -55,7 +57,7 @@
   <!-- END MAIN CONTAINER -->
 
   <!-- BEGIN SCRIPTS -->
-  <script src="{{ asset('/js/app.js') }}"></script>
+  <script src="{{ asset('js/app.js') }}"></script>
   @yield('js')
   <!-- END SCRIPTS -->
 

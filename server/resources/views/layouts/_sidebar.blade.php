@@ -35,7 +35,11 @@
             <a href="{{ url('user/show') }}"> マイページ </a>
           </li>
           <li>
-            <a href="{{ url('user/login') }}"> ログアウト </a>
+            <form method="post" name="sidebar_logout" action="{{ route('logout') }}">
+              @csrf
+              <input type="hidden" name="logout" value="">
+              <a href="javascript:sidebar_logout.submit()"> ログアウト </a>
+            </form>
           </li>
         </ul>
       </li>
