@@ -25,7 +25,7 @@ $factory->define(User::class, function (Faker $faker) {
         'sei' => $faker->lastName(),
         'mei' => $faker->firstName(),
         'gender' => $faker->numberBetween($min = 1, $max = 2),
-        'mail' => $faker->unique()->safeEmail(),
+        'email' => $faker->unique()->safeEmail(),
         'email_verified_at' => now(),
         'birth' => $faker->dateTimeThisCentury()->format('Y-m-d'),
         'role' => 9,
