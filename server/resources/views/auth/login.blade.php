@@ -7,7 +7,8 @@
       <div class="form-container">
         <div class="form-content">
           <h1 class="">ログイン</h1>
-          <form class="text-left">
+          <form method="POST" action="{{ route('login') }}" class="text-left">
+            @csrf
             <div class="form">
               <div id="username-field" class="field-wrapper input">
                 <label for="username">メールアドレス</label>
@@ -15,7 +16,7 @@
                   <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
                   <polyline points="22,6 12,13 2,6"></polyline>
                 </svg>
-                <input id="username" name="username" type="text" class="form-control" placeholder="text@gmail.com">
+                <input id="email" name="email" type="email" class="form-control" placeholder="text@gmail.com" value="{{ old('email') }}" autocomplete="email" autofocus required>
               </div>
               <div id="password-field" class="field-wrapper input mb-2">
                 <div class="d-flex justify-content-between">
@@ -25,7 +26,17 @@
                   <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
                   <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                 </svg>
-                <input id="password" name="password" type="password" class="form-control" placeholder="">
+                <input id="password" name="password" type="password" class="form-control" autocomplete="current-password" required>
+              </div>
+              <div class="form-group row">
+                <div class="col-md-6 offset-md-4">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                    <label class="form-check-label" for="remember">
+                      入力情報を保持する
+                    </label>
+                  </div>
+                </div>
               </div>
               <div class="d-sm-flex justify-content-between">
                 <div class="field-wrapper">
