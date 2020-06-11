@@ -35,7 +35,7 @@
                               <div class="col-md-6">
                                 <div class="form-group">
                                   <label for="">姓</label>
-                                  <input type="text" name="sei" class="form-control" id="" placeholder="山田" value="">
+                                  <input type="text" name="sei" class="form-control" id="" placeholder="山田" value="{{ old('sei') }}">
                                   @component('components.validations.feedback', ['message' => 'sei'])
                                   @endcomponent
                                 </div>
@@ -43,7 +43,7 @@
                               <div class="col-md-6">
                                 <div class="form-group">
                                   <label for="">名</label>
-                                  <input type="text" name="mei" class="form-control" id="" placeholder="太郎">
+                                  <input type="text" name="mei" class="form-control" id="" placeholder="太郎" value="{{ old('mei') }}">
                                   @component('components.validations.feedback', ['message' => 'mei'])
                                   @endcomponent
                                 </div>
@@ -51,7 +51,7 @@
                               <div class="col-md-6">
                                 <div class="form-group">
                                   <label for="">姓(カタカナ)</label>
-                                  <input type="text" name="sei_kana" class="form-control" id="" placeholder="ヤマダ">
+                                  <input type="text" name="sei_kana" class="form-control" id="" placeholder="ヤマダ" value="{{ old('sei_kana') }}">
                                   @component('components.validations.feedback', ['message' => 'sei_kana'])
                                   @endcomponent
                                 </div>
@@ -59,7 +59,7 @@
                               <div class="col-md-6">
                                 <div class="form-group">
                                   <label for="">名(カタカナ)</label>
-                                  <input type="text" name="mei_kana" class="form-control" id="" placeholder="タロウ">
+                                  <input type="text" name="mei_kana" class="form-control" id="" placeholder="タロウ" value="{{ old('mei_kana') }}">
                                   @component('components.validations.feedback', ['message' => 'mei_kana'])
                                   @endcomponent
                                 </div>
@@ -67,8 +67,8 @@
                               <div class="col-md-6">
                                 <div class="form-group">
                                   <label for="">メールアドレス</label>
-                                  <input type="text" name="mail" class="form-control" placeholder="yamada@gmail.com">
-                                  @component('components.validations.feedback', ['message' => 'mail'])
+                                  <input type="text" name="email" class="form-control" placeholder="yamada@gmail.com" value="{{ old('email') }}">
+                                  @component('components.validations.feedback', ['message' => 'email'])
                                   @endcomponent
                                 </div>
                               </div>
@@ -138,7 +138,9 @@
                               <div class="col-md-6">
                                 <div class="form-group">
                                   <label>生年月日</label>
-                                  <input type="text" name="birth" class="form-control datepicker">
+                                  <input type="text" name="birth" value="{{ old('birth') }}" class="form-control datepicker">
+                                    @component('components.validations.feedback', ['message' => 'birth'])
+                                    @endcomponent
                                 </div>
                               </div>
                               <div class="col-md-6">
@@ -162,7 +164,7 @@
                               </div>
                               <div class="col-sm-6">
                                 <label for="profession">パスワード(8文字以上)</label>
-                                <input type="password" name="password" class="form-control" id="profession" placeholder="パスワード" value="">
+                                <input type="password" name="password" class="form-control" id="profession" placeholder="パスワード" value="{{ old('password') }}">
                                 @component('components.validations.feedback', ['message' => 'password'])
                                 @endcomponent
                               </div>

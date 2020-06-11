@@ -3,6 +3,8 @@
 namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class UserRequest extends FormRequest
 {
@@ -31,11 +33,11 @@ class UserRequest extends FormRequest
             'mei' => 'required|string|max:50',
             'sei_kana' => 'required|string|max:100',
             'mei_kana' => 'required|string|max:100',
-            'img' => 'nullable|string|max:100',
+            'img' => 'nullable|image',
             'gender' => 'nullable|integer',
-            'mail' => 'nullable|unique:users|email|max:100',
-            'birth' =>'nullable|date' ,
-            'role' => 'required|nteger',
+            'email' => 'nullable|unique:users|email|max:100',
+            'birth' =>'required|date' ,
+            'role' => 'required|integer',
             'password' => 'nullable|string|min:8',
             'status' => 'nullable|integer',
         ];
@@ -47,8 +49,21 @@ class UserRequest extends FormRequest
      */
     public function messages()
     {
-      return [
-        'role.required' => 'アカウント権限を選択してください。',
-      ];
+        return [
+            'role.required' => 'アカウント権限を選択してください。',
+            'email.email' => 'メールアドレスを正しく設定してください。'
+        ];
+    }
+
+    public function validated(): array
+    {
+        $validated = parent::validated();
+        $validated['organization_id'] = 1;
+        $validated['password'] = Hash::make($validated['password']);
+        if ($this->has('img')) {
+            $path = Storage::disk('s3')->put('avatar', $this->file('img'), 'public');
+            $validated['img'] = $path;
+        }
+        return $validated;
     }
 }

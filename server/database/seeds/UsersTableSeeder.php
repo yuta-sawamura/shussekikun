@@ -22,7 +22,7 @@ class UsersTableSeeder extends Seeder
                 'sei_kana' => 'サワムラ',
                 'mei_kana' => 'ユウタ',
                 'gender' => 1,
-                'mail' => 'sawammura1009@gmail.com',
+                'email' => 'sawammura1009@gmail.com',
                 'birth' => '1988-10-09',
                 'role' => 1,
                 'status' => 1,
