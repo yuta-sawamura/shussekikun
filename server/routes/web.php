@@ -19,12 +19,12 @@ Route::group(['middleware' => 'auth'], function() {
     Route::prefix('user')->group(function() {
         Route::get('/', 'UserController@index');
         Route::get('show', 'UserController@show');
-        Route::view('login', 'user.login');
         Route::view('reset_pass', 'user.reset_pass');
     });
 
     // ランキング
     Route::get('rank', 'UserController@rank');
+
     // お知らせ
     Route::prefix('news')->group(function() {
         Route::get('/', 'NewsController@index');
