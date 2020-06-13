@@ -16,7 +16,6 @@
   <link rel="stylesheet" type="text/css" href="{{ asset('/bootstrap/css/bootstrap.min.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('/css/plugins.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('/css/elements/breadcrumb.css') }}">
-  <link rel="stylesheet" type="text/css" href="{{ asset('/css/elements/alert.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/apex/apexcharts.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('/css/elements/alert.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('/css/dashboard/dash_1.css') }}">

@@ -29,7 +29,7 @@ class UserController extends Controller
     {
         $user = new User;
         $user->fill($request->validated())->save();
-        return redirect('/admin/user/index')->with('message', '会員を追加しました。');
+        return redirect('/admin/user/index')->with('success_message', '会員を追加しました。');
     }
 
     public function show ()

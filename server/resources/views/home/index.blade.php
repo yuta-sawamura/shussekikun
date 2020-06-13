@@ -2,9 +2,7 @@
 @section('content')
 
 <div id="content" class="main-content">
-  @component('components.alerts.success', ['message' => '出席しました。'])
-  @endcomponent
-  @component('components.alerts.error', ['message' => '出席に失敗しました。'])
+  @component('components.alerts.app')
   @endcomponent
   <div class="layout-px-spacing">
     <div class="row layout-top-spacing layout-spacing">

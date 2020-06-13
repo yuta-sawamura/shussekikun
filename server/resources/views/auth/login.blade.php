@@ -2,6 +2,8 @@
 @section('content')
 
 <div class="form-container outer">
+  @component('components.alerts.app')
+  @endcomponent
   <div class="form-form">
     <div class="form-form-wrap">
       <div class="form-container">

@@ -11,10 +11,15 @@
   <link rel="stylesheet" type="text/css" href="{{ asset('/bootstrap/css/bootstrap.min.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('/css/plugins.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('/css/authentication/form-2.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('/css/elements/alert.css') }}">
   <!-- END STYLES -->
 </head>
 
 <body class="form">
   @yield('content')
+
+  <!-- BEGIN SCRIPTS -->
+  <script src="{{ asset('js/app.js') }}"></script>
+  <!-- END SCRIPTS -->
 </body>
 </html>
