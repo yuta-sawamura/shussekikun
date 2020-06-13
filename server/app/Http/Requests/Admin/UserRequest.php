@@ -5,6 +5,7 @@ namespace App\Http\Requests\Admin;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Auth;
 
 class UserRequest extends FormRequest
 {
@@ -58,7 +59,9 @@ class UserRequest extends FormRequest
     public function validated(): array
     {
         $validated = parent::validated();
-        $validated['organization_id'] = 1;
+        if (!isset($validated['organization_id'])) {
+            $validated['organization_id'] = Auth::user()->organization_id;
+        }
         $validated['password'] = Hash::make($validated['password']);
         if ($this->has('img')) {
             $path = Storage::disk('s3')->put('avatar', $this->file('img'), 'public');
