@@ -29,7 +29,10 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/', 'NewsController@index');
         Route::get('show', 'NewsController@show');
     });
+});
 
+// 組織管理者以上
+Route::group(['middleware' => ['auth', 'can:admin-higher']], function () {
     // 管理画面
     Route::prefix('admin')->group(function () {
         // 会員
@@ -62,6 +65,8 @@ Route::group(['middleware' => 'auth'], function() {
         // プレミアム会員
         Route::get('premium', 'Admin\UserController@premium');
     });
+  // ユーザ一覧
+  Route::get('/account', 'AccountController@index')->name('account.index');
 });
 
 Auth::routes([
