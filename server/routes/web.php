@@ -19,7 +19,6 @@ Route::group(['middleware' => 'auth'], function() {
     Route::prefix('user')->group(function() {
         Route::get('/', 'UserController@index');
         Route::get('show', 'UserController@show');
-        Route::view('reset_pass', 'user.reset_pass');
     });
 
     // ランキング
@@ -64,4 +63,9 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('premium', 'Admin\UserController@premium');
     });
 });
-Auth::routes();
+
+Auth::routes([
+    'register' => false,
+    'verify' => false,
+    'confirm' => false
+]);
