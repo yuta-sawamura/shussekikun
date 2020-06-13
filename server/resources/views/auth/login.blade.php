@@ -18,7 +18,7 @@
                   <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
                   <polyline points="22,6 12,13 2,6"></polyline>
                 </svg>
-                <input id="email" name="email" type="email" class="form-control" placeholder="text@gmail.com" value="{{ old('email') }}" autocomplete="email" autofocus required>
+                <input id="email" name="email" type="email" class="form-control @error('email') is-invalid @enderror" placeholder="text@gmail.com" value="{{ old('email') }}" autocomplete="email" autofocus required>
                 @component('components.validations.feedback', ['message' => 'email'])
                 @endcomponent
               </div>
@@ -30,7 +30,7 @@
                   <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
                   <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                 </svg>
-                <input id="password" name="password" type="password" class="form-control" autocomplete="current-password" required>
+                <input id="password" name="password" type="password" class="form-control @error('password') is-invalid @enderror" autocomplete="current-password" required>
                 @component('components.validations.feedback', ['message' => 'password'])
                 @endcomponent
               </div>
@@ -46,11 +46,11 @@
               </div>
               <div class="d-sm-flex justify-content-between">
                 <div class="field-wrapper">
-                  <button type="submit" class="btn btn-primary" value="">ログイン</button>
+                  <button type="submit" class="btn btn-primary">ログイン</button>
                 </div>
               </div>
               <p class="signup-link"><a href="{{ url('/') }}">トップ</a></p>
-              <p class="signup-link"><a href="{{ url('user/reset_pass') }}">パスワード再発行</a></p>
+              <p class="signup-link"><a href="{{ url('password/reset') }}">パスワードリセット</a></p>
             </div>
           </form>
         </div>
