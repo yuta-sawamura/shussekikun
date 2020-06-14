@@ -26,7 +26,7 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        // システム管理者
+        // システム管理者のみ
         Gate::define('system-only', function ($user) {
             return ($user->role === Role::System);
         });
@@ -34,9 +34,13 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('organization-admin-higher', function ($user) {
             return ($user->role > 0 && $user->role <= Role::Organization_admin);
         });
-        // 共有アカウント以上
+        // 組織管理者のみ
+        Gate::define('organization-admin-only', function ($user) {
+            return ($user->role === Role::Organization_admin);
+        });
+        // 店舗別共有アカウント以上
         Gate::define('share-higher', function ($user) {
-            return ($user->role > 0 && $user->role <= Role::Share);
+            return ($user->role > 0 && $user->role <= Role::Store_Share);
         });
     }
 }
