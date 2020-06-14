@@ -6,11 +6,11 @@ use BenSampo\Enum\Enum;
 
 final class Role extends Enum
 {
-    const Root_admin = 1;
+    const System = 1;
     const Organization_admin = 3;
     const Share = 5;
-    const List_for_root_admin = [
-        self::Root_admin => 'システム管理者',
+    const List_for_System = [
+        self::System => 'システム管理者',
         self::Organization_admin => '組織管理者',
         self::Share => '共有アカウント',
     ];
@@ -22,7 +22,7 @@ final class Role extends Enum
     public static function getDescription($value): string
     {
         switch ($value){
-            case self::Root_admin:
+            case self::System:
                 return 'システム管理者';
                 brake;
             case self::Organization_admin:

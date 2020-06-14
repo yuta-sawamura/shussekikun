@@ -32,7 +32,7 @@ Route::group(['middleware' => 'auth'], function() {
 });
 
 // 組織管理者以上
-Route::group(['middleware' => ['auth', 'can:admin-higher']], function () {
+Route::group(['middleware' => ['auth', 'can:organization-admin-higher']], function () {
     // 管理画面
     Route::prefix('admin')->group(function () {
         // 会員
