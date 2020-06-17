@@ -17,7 +17,7 @@
               <form action="/admin/user/store" method="post" enctype="multipart/form-data" class="section general-info">
                 @csrf
                 <div class="info">
-                  <h6 class="">会員追加</h6>
+                  <h6>会員追加</h6>
                   <div class="row">
                     <div class="col-lg-11 mx-auto">
                       <div class="row">
@@ -32,18 +32,118 @@
                         <div class="col-xl-10 col-lg-12 col-md-8 mt-md-0 mt-4">
                           <div class="form">
                             <div class="row">
+                              @can('system-only')
+                                <div class="col-md-12">
+                                  <div class="form-group">
+                                    <label>組織*</label>
+                                    <div class="row">
+                                      <div class="col-md-6">
+                                        <select name="organization_id" class="form-control @error('organization_id') is-invalid @enderror" >
+                                          <option selected="selected" value="">選択してください</option>
+                                          @foreach(App\Models\Organization::pluck('name', 'id') as $k => $v)
+                                            <option value="{{ $k }}" @if (old('organization_id') == $k) selected @endif>
+                                              {{ $v }}
+                                            </option>
+                                          @endforeach
+                                        </select>
+                                        @component('components.validations.feedback', ['message' => 'organization_id'])
+                                        @endcomponent
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              @endcan
+                              <div class="col-md-12">
+                                <div class="form-group">
+                                  <label>アカウント権限*</label>
+                                  <div class="row">
+                                    <div class="col-md-6">
+                                      <select name="role" class="form-control @error('role') is-invalid @enderror" >
+                                        <option selected="selected" value="">選択してください</option>
+                                        @can('system-only')
+                                          @foreach(App\Enums\User\Role::List_for_System as $k => $v)
+                                            <option value="{{ $k }}" @if(old('role')==$k) selected @endif>
+                                              {{ $v }}
+                                            </option>
+                                          @endforeach
+                                        @elsecan('organization-admin-only')
+                                          @foreach(App\Enums\User\Role::List_for_organization_admin as $k => $v)
+                                            <option value="{{ $k }}" @if(old('role')==$k) selected @endif>
+                                              {{ $v }}
+                                            </option>
+                                          @endforeach
+                                        @endcan
+                                      </select>
+                                      @component('components.validations.feedback', ['message' => 'role'])
+                                      @endcomponent
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-6" id="email">
+                                <div class="form-group">
+                                  <label for="">メールアドレス*</label>
+                                  <input type="text" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="yamada@gmail.com" value="{{ old('email') }}" >
+                                  @component('components.validations.feedback', ['message' => 'email'])
+                                  @endcomponent
+                                </div>
+                              </div>
+                              <div class="col-sm-6" id="password">
+                                <label for="profession">パスワード(8文字以上)*</label>
+                                <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" id="profession" placeholder="パスワード" value="{{ old('password') }}" >
+                                @component('components.validations.feedback', ['message' => 'password'])
+                                @endcomponent
+                              </div>
+                              <div class="col-md-6" id="store">
+                                <div class="form-group">
+                                  <label>店舗*</label>
+                                  <div class="row">
+                                    <div class="col-md-12">
+                                      <select class="form-control @error('store_id') is-invalid @enderror" name="store_id" >
+                                        <option selected="selected" value="">選択してください</option>
+                                        @foreach(App\Models\Store::pluck('name', 'id') as $k => $v)
+                                        <option value="{{ $k }}" @if(old('store_id')==$k) selected @endif>
+                                          {{ $v }}
+                                        </option>
+                                        @endforeach
+                                      </select>
+                                      @component('components.validations.feedback', ['message' => 'store_id'])
+                                      @endcomponent
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-6" id="category">
+                                <div class="form-group">
+                                  <label>カテゴリー*</label>
+                                  <div class="row">
+                                    <div class="col-md-12">
+                                      <select class="form-control @error('category_id') is-invalid @enderror" name="category_id" >
+                                        <option selected="selected" value="">選択してください</option>
+                                        @foreach(App\Models\Category::pluck('name', 'id') as $k => $v)
+                                        <option value="{{ $k }}" @if(old('category_id')==$k) selected @endif>
+                                          {{ $v }}
+                                        </option>
+                                        @endforeach
+                                      </select>
+                                      @component('components.validations.feedback', ['message' => 'category_id'])
+                                      @endcomponent
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
                               <div class="col-md-6">
                                 <div class="form-group">
-                                  <label for="">姓</label>
-                                  <input type="text" name="sei" class="form-control @error('sei') is-invalid @enderror" placeholder="山田" value="{{ old('sei') }}">
+                                  <label for="">姓*</label>
+                                  <input type="text" name="sei" class="form-control @error('sei') is-invalid @enderror" placeholder="山田" value="{{ old('sei') }}" >
                                   @component('components.validations.feedback', ['message' => 'sei'])
                                   @endcomponent
                                 </div>
                               </div>
                               <div class="col-md-6">
                                 <div class="form-group">
-                                  <label for="">名</label>
-                                  <input type="text" name="mei" class="form-control @error('mei') is-invalid @enderror" placeholder="太郎" value="{{ old('mei') }}">
+                                  <label for="">名*</label>
+                                  <input type="text" name="mei" class="form-control @error('mei') is-invalid @enderror" placeholder="太郎" value="{{ old('mei') }}" >
                                   @component('components.validations.feedback', ['message' => 'mei'])
                                   @endcomponent
                                 </div>
@@ -66,59 +166,10 @@
                               </div>
                               <div class="col-md-6">
                                 <div class="form-group">
-                                  <label for="">メールアドレス</label>
-                                  <input type="text" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="yamada@gmail.com" value="{{ old('email') }}">
-                                  @component('components.validations.feedback', ['message' => 'email'])
-                                  @endcomponent
-                                </div>
-                              </div>
-                              <div class="col-md-6">
-                                <div class="form-group">
-                                  <label>店舗</label>
+                                  <label>性別*</label>
                                   <div class="row">
-                                    <div class="col-md-6">
-                                      <select class="form-control @error('store_id') is-invalid @enderror" name="store_id">
-                                        <option selected="selected" value="">選択してください</option>
-                                        @foreach(App\Models\Store::pluck('name', 'id') as $k => $v)
-                                          <option value="{{ $k }}" @if(old('store_id') == $k) selected @endif>
-                                            {{ $v }}
-                                          </option>
-                                        @endforeach
-                                      </select>
-                                      @component('components.validations.feedback', ['message' => 'store_id'])
-                                      @endcomponent
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="col-md-6">
-                                <div class="form-group">
-                                  <label>カテゴリー</label>
-                                  <div class="row">
-                                    <div class="col-md-6">
-                                    <select class="form-control @error('category_id') is-invalid @enderror" name="category_id">
-                                      <option selected="selected" value="">選択してください</option>
-                                      @foreach(App\Models\Category::pluck('name', 'id') as $k => $v)
-                                        <option
-                                          value="{{ $k }}"
-                                          @if(old('category_id') == $k) selected @endif
-                                        >
-                                          {{ $v }}
-                                        </option>
-                                      @endforeach
-                                    </select>
-                                    @component('components.validations.feedback', ['message' => 'category_id'])
-                                    @endcomponent
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="col-md-6">
-                                <div class="form-group">
-                                  <label>性別</label>
-                                  <div class="row">
-                                    <div class="col-md-6">
-                                      <select name="gender" class="form-control @error('gender') is-invalid @enderror">
+                                    <div class="col-md-12">
+                                      <select name="gender" class="form-control @error('gender') is-invalid @enderror" >
                                         <option selected="selected" value="">選択してください</option>
                                         @foreach(App\Enums\User\Gender::List as $k => $v)
                                           <option
@@ -137,36 +188,11 @@
                               </div>
                               <div class="col-md-6">
                                 <div class="form-group">
-                                  <label>生年月日</label>
-                                  <input type="text" name="birth" value="{{ old('birth') }}" class="form-control datepicker @error('birth') is-invalid @enderror">
+                                  <label>生年月日*</label>
+                                  <input type="text" name="birth" value="{{ old('birth') }}" class="form-control datepicker @error('birth') is-invalid @enderror" >
                                     @component('components.validations.feedback', ['message' => 'birth'])
                                     @endcomponent
                                 </div>
-                              </div>
-                              <div class="col-md-6">
-                                <div class="form-group">
-                                  <label>アカウント権限</label>
-                                  <div class="row">
-                                    <div class="col-md-6">
-                                      <select name="role" class="form-control @error('role') is-invalid @enderror">
-                                        <option selected="selected" value="">選択してください</option>
-                                        @foreach(App\Enums\User\Role::List_for_organization_admin as $k => $v)
-                                          <option value="{{ $k }}" @if(old('role')==$k) selected @endif>
-                                            {{ $v }}
-                                          </option>
-                                        @endforeach
-                                      </select>
-                                      @component('components.validations.feedback', ['message' => 'role'])
-                                      @endcomponent
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="col-sm-6">
-                                <label for="profession">パスワード(8文字以上)</label>
-                                <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" id="profession" placeholder="パスワード" value="{{ old('password') }}">
-                                @component('components.validations.feedback', ['message' => 'password'])
-                                @endcomponent
                               </div>
                             </div>
                             <div class="col-lg-12 text-right">
@@ -190,6 +216,27 @@
 @endsection()
 
 @section('js')
+<script>
+  $('[name=role]').change(function() {
+    const val = $('[name=role]').val();
+    if (val == 1 || val == 3) {
+      $('#email, #password').show();
+      $('#email, #password').find($('input')).prop('required', true);
+      $('#store, #category').hide();
+      $('#store, #category').find($('select')).prop('required', false).val('');
+    } else if (val == 5) {
+      $('#email, #password, #store').show();
+      $('#email, #password, #store').find($('input, select')).prop('required', true);
+      $('#category').hide();
+      $('#category').find($('select')).prop('required', false).val('');
+    } else if (val == 9) {
+      $('#store, #category').show();
+      $('#store, #category').find($('select')).prop('required', true);
+      $('#email, #password').hide();
+      $('#email, #password').find($('input')).prop('required', false).val('');
+    }
+  });
+</script>
 <script src="{{ asset('/plugins/dropify/dropify.min.js') }}"></script>
 <script src="{{ asset('/js/users/account-settings.js') }}"></script>
 @endsection()
