@@ -40,7 +40,7 @@ class AuthServiceProvider extends ServiceProvider
         });
         // 店舗別共有アカウント以上
         Gate::define('share-higher', function ($user) {
-            return ($user->role > 0 && $user->role <= Role::Store_Share);
+            return ($user->role > 0 && $user->role <= Role::Store_share);
         });
     }
 }

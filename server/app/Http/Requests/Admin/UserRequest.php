@@ -30,7 +30,7 @@ class UserRequest extends FormRequest
         if (Auth::user()->role === Role::System) {
             return [
                 'organization_id' => 'required|integer',
-                'store_id' => 'nullable|integer|required_if:role,' . Role::Store_Share . ',' . Role::Nomal,
+                'store_id' => 'nullable|integer|required_if:role,' . Role::Store_share . ',' . Role::Nomal,
                 'category_id' => 'nullable|integer|required_if:role,' . Role::Nomal,
                 'sei' => 'required|string|max:50',
                 'mei' => 'required|string|max:50',
@@ -40,14 +40,14 @@ class UserRequest extends FormRequest
                 'gender' => 'required|integer',
                 'email' => 'nullable|unique:users|email|max:100|required_unless:role,' . Role::Nomal,
                 'birth' =>'required|date' ,
-                'role' => "required|in:" . Role::System . ',' . Role::Organization_admin . ',' . Role::Store_Share . ',' . Role::Nomal,
+                'role' => "required|in:" . Role::System . ',' . Role::Organization_admin . ',' . Role::Store_share . ',' . Role::Nomal,
                 'password' => 'nullable|string|min:8|required_unless:role,' . Role::Nomal,
                 'status' => 'nullable|integer',
             ];
         } elseif (Auth::user()->role === Role::Organization_admin) {
             return [
                 'organization_id' => 'nullable|integer',
-                'store_id' => 'nullable|integer|required_if:role,' . Role::Store_Share . ',' . Role::Nomal,
+                'store_id' => 'nullable|integer|required_if:role,' . Role::Store_share . ',' . Role::Nomal,
                 'category_id' => 'nullable|integer|required_if:role,' . Role::Nomal,
                 'sei' => 'required|string|max:50',
                 'mei' => 'required|string|max:50',
@@ -55,10 +55,10 @@ class UserRequest extends FormRequest
                 'mei_kana' => 'nullable|string|max:100',
                 'img' => 'nullable|image',
                 'gender' => 'required|integer',
-                'email' => 'nullable|unique:users|email|max:100|required_if:role,' . Role::Organization_admin . ',' . Role::Store_Share,
+                'email' => 'nullable|unique:users|email|max:100|required_if:role,' . Role::Organization_admin . ',' . Role::Store_share,
                 'birth' =>'required|date' ,
-                'role' => "required|in:" . Role::Organization_admin . ',' . Role::Store_Share . ',' . Role::Nomal,
-                'password' => 'nullable|string|min:8|required_if:role,' . Role::Organization_admin . ',' . Role::Store_Share,
+                'role' => "required|in:" . Role::Organization_admin . ',' . Role::Store_share . ',' . Role::Nomal,
+                'password' => 'nullable|string|min:8|required_if:role,' . Role::Organization_admin . ',' . Role::Store_share,
                 'status' => 'nullable|integer',
             ];
         }
