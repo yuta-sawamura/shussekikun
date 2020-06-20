@@ -15,27 +15,11 @@ final class Status extends Enum
 
     public static function getDescription($value): string
     {
-        switch ($value){
-            case self::Continue:
-                return '継続';
-                brake;
-            case self::Cancel:
-                return '退会';
-                brake;
-            default:
-                return self::getKey($value);
+        foreach(Status::getValues() as $v) {
+            if ($value === $v) {
+                return __('enum.user.status.' . strtolower(Status::getKey($v)));
+            }
         }
-    }
-
-    public static function getValue(string $key)
-    {
-        switch ($key){
-            case '継続':
-                return 1;
-            case '退会':
-                return 3;
-            default:
-                return self::getValue($key);
-        }
+        return self::getKey($value);
     }
 }
