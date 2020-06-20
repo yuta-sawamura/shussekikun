@@ -15,8 +15,8 @@ class CreateCategoriesTable extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('organization_id')->comment('組織ID');
-            $table->foreign('organization_id')->references('id')->on('organizations')->onDelete('cascade');
+            $table->unsignedBigInteger('store_id')->comment('店舗ID');
+            $table->foreign('store_id')->references('id')->on('stores')->onDelete('cascade');
             $table->string('name', 50)->comment('カテゴリー名');
             $table->timestamps();
         });
