@@ -61,15 +61,15 @@
                                       <select name="role" class="form-control @error('role') is-invalid @enderror" required>
                                         <option selected="selected" value="">選択してください</option>
                                         @can('system-only')
-                                          @foreach(App\Enums\User\Role::List_for_System as $k => $v)
-                                            <option value="{{ $k }}" @if(old('role')==$k) selected @endif>
-                                              {{ $v }}
+                                          @foreach(App\Enums\User\Role::getInstances() as $role)
+                                            <option value="{{ $role->value }}" @if (old('role')==$role->value) selected @endif>
+                                              {{ $role->description }}
                                             </option>
                                           @endforeach
                                         @elsecan('organization-admin-only')
-                                          @foreach(App\Enums\User\Role::List_for_organization_admin as $k => $v)
-                                            <option value="{{ $k }}" @if(old('role')==$k) selected @endif>
-                                              {{ $v }}
+                                          @foreach(App\Enums\User\Role::getListByOrganizationAdmin() as $k => $value)
+                                            <option value="{{ $k }}" @if (old('role')==$k) selected @endif>
+                                              {{ $value }}
                                             </option>
                                           @endforeach
                                         @endcan
@@ -230,7 +230,7 @@
   const system_user = @json(App\Enums\User\Role::System);
   const organization_admin_user = @json(App\Enums\User\Role::Organization_admin);
   const store_share_user = @json(App\Enums\User\Role::Store_share);
-  const nomal_user = @json(App\Enums\User\Role::Nomal);
+  const normal_user = @json(App\Enums\User\Role::Normal);
 
   function shoWHideByRole(val) {
     if (val == system_user || val == organization_admin_user) {
@@ -243,7 +243,7 @@
       $('#email, #password, #store').find($('input, select')).prop('required', true);
       $('#category').hide();
       $('#category').find($('select')).prop('required', false).val('');
-    } else if (val == nomal_user) {
+    } else if (val == normal_user) {
       $('#store, #category').show();
       $('#store, #category').find($('select')).prop('required', true);
       $('#email, #password').hide();

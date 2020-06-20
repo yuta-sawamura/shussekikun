@@ -9,47 +9,24 @@ final class Role extends Enum
     const System = 1;
     const Organization_admin = 3;
     const Store_share = 5;
-    const Nomal = 9;
-    const List_for_System = [
-        self::System => 'システム管理者',
-        self::Organization_admin => '組織管理者',
-        self::Store_share => '店舗別共有アカウント',
-        self::Nomal => '一般アカウント',
-    ];
-    const List_for_organization_admin = [
-        self::Organization_admin => '組織管理者',
-        self::Store_share => '店舗別共有アカウント',
-        self::Nomal => '一般アカウント',
-    ];
+    const Normal = 9;
+
+    public static function getListByOrganizationAdmin(): array
+    {
+        return [
+            self::Organization_admin => __('enum.user.role.' . 'organization_admin'),
+            self::Store_share => __('enum.user.role.' . 'store_share'),
+            self::Normal => __('enum.user.role.' . 'normal')
+        ];
+    }
 
     public static function getDescription($value): string
     {
-        switch ($value){
-            case self::System:
-                return 'システム管理者';
-                brake;
-            case self::Organization_admin:
-                return '組織管理者';
-                brake;
-            case selfStore_share:
-                return '共有アカウント';
-                brake;
-            default:
-                return self::getKey($value);
+        foreach(Role::getValues() as $v) {
+            if ($value === $v) {
+                return __('enum.user.role.' . strtolower(Role::getKey($v)));
+            }
         }
-    }
-
-    public static function getValue(string $key)
-    {
-        switch ($key){
-            case 'システム管理者':
-                return 1;
-            case '組織管理者':
-                return 3;
-            case '共有アカウント':
-                return 5;
-            default:
-                return self::getValue($key);
-        }
+        return self::getKey($value);
     }
 }

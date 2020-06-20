@@ -28,41 +28,63 @@ class UserRequest extends FormRequest
     public function rules()
     {
         if (Auth::user()->role === Role::System) {
-            return [
-                'organization_id' => 'required|integer',
-                'store_id' => 'nullable|integer|required_if:role,' . Role::Store_share . ',' . Role::Nomal,
-                'category_id' => 'nullable|integer|required_if:role,' . Role::Nomal,
-                'sei' => 'required|string|max:50',
-                'mei' => 'required|string|max:50',
-                'sei_kana' => 'nullable|string|max:100',
-                'mei_kana' => 'nullable|string|max:100',
-                'img' => 'nullable|image',
-                'gender' => 'required|integer',
-                'email' => 'nullable|unique:users|email|max:100|required_unless:role,' . Role::Nomal,
-                'birth' =>'required|date' ,
-                'role' => "required|in:" . Role::System . ',' . Role::Organization_admin . ',' . Role::Store_share . ',' . Role::Nomal,
-                'password' => 'nullable|string|min:8|required_unless:role,' . Role::Nomal,
-                'status' => 'nullable|integer',
-            ];
+          return $this->systemRules();
         } elseif (Auth::user()->role === Role::Organization_admin) {
-            return [
-                'organization_id' => 'nullable|integer',
-                'store_id' => 'nullable|integer|required_if:role,' . Role::Store_share . ',' . Role::Nomal,
-                'category_id' => 'nullable|integer|required_if:role,' . Role::Nomal,
-                'sei' => 'required|string|max:50',
-                'mei' => 'required|string|max:50',
-                'sei_kana' => 'nullable|string|max:100',
-                'mei_kana' => 'nullable|string|max:100',
-                'img' => 'nullable|image',
-                'gender' => 'required|integer',
-                'email' => 'nullable|unique:users|email|max:100|required_if:role,' . Role::Organization_admin . ',' . Role::Store_share,
-                'birth' =>'required|date' ,
-                'role' => "required|in:" . Role::Organization_admin . ',' . Role::Store_share . ',' . Role::Nomal,
-                'password' => 'nullable|string|min:8|required_if:role,' . Role::Organization_admin . ',' . Role::Store_share,
-                'status' => 'nullable|integer',
-            ];
+          return $this->organizationAdminRules();
         }
     }
+
+    /**
+     * Get the validation rules that apply to the request.
+     * システム管理者
+     *
+     * @return array
+     */
+    private function systemRules()
+    {
+        return [
+            'organization_id' => 'required|integer',
+            'store_id' => 'nullable|integer|required_if:role,' . Role::Store_share . ',' . Role::Normal,
+            'category_id' => 'nullable|integer|required_if:role,' . Role::Normal,
+            'sei' => 'required|string|max:50',
+            'mei' => 'required|string|max:50',
+            'sei_kana' => 'nullable|string|max:100',
+            'mei_kana' => 'nullable|string|max:100',
+            'img' => 'nullable|image',
+            'gender' => 'required|integer',
+            'email' => 'nullable|unique:users|email|max:100|required_unless:role,' . Role::Normal,
+            'birth' =>'required|date' ,
+            'role' => "required|in:" . Role::System . ',' . Role::Organization_admin . ',' . Role::Store_share . ',' . Role::Normal,
+            'password' => 'nullable|string|min:8|required_unless:role,' . Role::Normal,
+            'status' => 'nullable|integer',
+        ];
+    }
+
+    /**
+     * Get the validation rules that apply to the request.
+     * 組織管理者
+     *
+     * @return array
+     */
+   private function organizationAdminRules()
+   {
+        return [
+            'organization_id' => 'nullable|integer',
+            'store_id' => 'nullable|integer|required_if:role,' . Role::Store_share . ',' . Role::Normal,
+            'category_id' => 'nullable|integer|required_if:role,' . Role::Normal,
+            'sei' => 'required|string|max:50',
+            'mei' => 'required|string|max:50',
+            'sei_kana' => 'nullable|string|max:100',
+            'mei_kana' => 'nullable|string|max:100',
+            'img' => 'nullable|image',
+            'gender' => 'required|integer',
+            'email' => 'nullable|unique:users|email|max:100|required_if:role,' . Role::Organization_admin . ',' . Role::Store_share,
+            'birth' =>'required|date' ,
+            'role' => "required|in:" . Role::Organization_admin . ',' . Role::Store_share . ',' . Role::Normal,
+            'password' => 'nullable|string|min:8|required_if:role,' . Role::Organization_admin . ',' . Role::Store_share,
+            'status' => 'nullable|integer',
+        ];
+  }
 
     /**
      * エラーメッセージのカスタマイズ
