@@ -25,7 +25,7 @@ class User extends Authenticatable
         'mei_kana',
         'img',
         'gender',
-        'mail',
+        'email',
         'birth',
         'role',
         'password',
