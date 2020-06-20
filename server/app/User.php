@@ -5,6 +5,8 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Store;
+use App\Models\Category;
 
 class User extends Authenticatable
 {
@@ -32,6 +34,16 @@ class User extends Authenticatable
         'status'
     ];
 
+    Public function store()
+    {
+        return $this->belongsTo(Store::class);
+    }
+
+    Public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
     protected $attributes = [
         'status' => \App\Enums\User\Status::Continue,
     ];
@@ -53,4 +65,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getFullNameAttribute()
+    {
+        return "{$this->sei} {$this->mei}";
+    }
+
+    public function getFullNameKanaAttribute()
+    {
+        return "{$this->sei_kana} {$this->mei_kana}";
+    }
 }
