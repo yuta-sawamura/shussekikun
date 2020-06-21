@@ -75,4 +75,9 @@ class User extends Authenticatable
     {
         return "{$this->sei_kana} {$this->mei_kana}";
     }
+    public function scopeStore($query, $id = null)
+    {
+        if ($id) $query->where('store_id', $id);
+        return  $query;
+    }
 }

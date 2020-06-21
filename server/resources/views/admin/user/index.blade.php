@@ -12,19 +12,15 @@
             <li class="active mb-2"><a href="">会員一覧</a></li>
           </ul>
         </div>
-        <ul class="nav nav-tabs  mb-3" id="simpletab" role="tablist">
+        <ul class="nav nav-tabs mb-3">
           <li class="nav-item">
-            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">全店舗</a>
+            <a class="nav-link {{ !isset($params['store']) ? 'active': null }}" href="{{ url("/admin/user/index") }}">全店舗</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">新宿店</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">渋谷店</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">池袋店</a>
-          </li>
+          @foreach($stores as $k => $v)
+            <li class="nav-item">
+              <a class="nav-link {{ isset($params['store']) && $params['store'] == $k ? 'active': null }}" href="{{ url("/admin/user/index?store={$k}") }}">{{ $v }}</a>
+            </li>
+          @endforeach
         </ul>
         <div class="statbox widget box box-shadow">
           <div class="widget-header">

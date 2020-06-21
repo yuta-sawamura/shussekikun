@@ -15,9 +15,23 @@ class UserController extends Controller
         return view('admin.user.aggregate');
     }
 
-    public function index ()
+    public function index (Request $request)
     {
-        return view('admin.user.index');
+        $params = $request->query();
+
+        $users = User::where('organization_id', Auth::user()->organization_id)
+            ->where('role', Role::Normal)
+            ->store($params['store'] ?? null)
+            ->orderBy('id', 'desc')
+            ->paginate(20);
+
+        $stores = Store::where('organization_id', Auth::user()->organization_id)->pluck('name', 'id');
+
+        return view('admin.user.index')->with([
+            'users' => $users,
+            'stores' => $stores,
+            'params' => $params,
+        ]);
     }
 
     public function create (Request $request)
