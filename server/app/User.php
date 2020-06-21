@@ -68,38 +68,90 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * 性・名のフルネーム
+     * @return stiring
+     */
     public function getFullNameAttribute()
     {
         return "{$this->sei} {$this->mei}";
     }
 
+    /**
+     * セイ・メイのフルネーム
+     * @return stiring
+     */
     public function getFullNameKanaAttribute()
     {
         return "{$this->sei_kana} {$this->mei_kana}";
     }
 
+    /**
+     * S3のファイルURL取得
+     * @return stiring
+     */
     public function getS3Url()
     {
         return $this->img ? Storage::disk('s3')->url($this->img): asset('/img/no-image.jpg');
     }
 
+    /**
+     * 組織絞り込み
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
     public function scopeOrganization($query)
     {
         return $query->where('organization_id', Auth::user()->organization_id);
     }
 
+    /**
+     * 店舗絞り込み
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param int|null $id
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
     public function scopeStoreFilter($query, $id = null)
     {
         if ($id) return $query->where('store_id', $id);
     }
 
+    /**
+     * カテゴリー絞り込み
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param int|null $id
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
     public function scopeCategoryFilter($query, $id = null)
     {
         if ($id) return $query->where('category_id', $id);
     }
 
+    /**
+     * 性別絞り込み
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param int|null $id
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
     public function scopeGenderFilter($query, $id = null)
     {
         if ($id) return $query->where('gender', $id);
+    }
+
+    /**
+     * 名前検索
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param string|null $keyword
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeSerachKeyword($query, $keyword = null)
+    {
+        if ($keyword) {
+            $query->where('sei', 'like', '%' . $keyword . '%');
+            $query->orWhere('mei', 'like', '%' . $keyword . '%');
+            $query->orWhere('sei_kana', 'like', '%' . $keyword . '%');
+            $query->orWhere('mei_kana', 'like', '%' . $keyword . '%');
+        }
+        return $query;
     }
 }

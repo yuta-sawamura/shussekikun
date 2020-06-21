@@ -29,9 +29,9 @@
                 <div class="widget-content widget-content-area">
                   <form action="{{url('/admin/user/index')}}">
                     <div class="form-row">
-                      <div class="mb-2 col-md-4">
-                        <label for="name">名前</label>
-                        <input type="text" class="form-control" placeholder="キーワードを入力">
+                      <div class="mb-2 col-md-3">
+                        <label for="keyword">名前</label>
+                        <input name="keyword" type="text" class="form-control" placeholder="キーワードを入力" value="{{ $params['keyword'] }}">
                       </div>
                       <div class="mb-2 col-md-3">
                         <label>店舗</label>

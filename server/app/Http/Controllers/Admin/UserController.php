@@ -25,6 +25,7 @@ class UserController extends Controller
 
         $users = User::organization()
             ->where('role', Role::Normal)
+            ->serachKeyword($params['keyword'] ?? null)
             ->storeFilter($params['store'] ?? null)
             ->categoryFilter($params['category'] ?? null)
             ->genderFilter($params['gender'] ?? null)
@@ -32,8 +33,7 @@ class UserController extends Controller
             ->paginate(20);
 
         $categories = Category::organization()->pluck('name', 'id');
-
-        $stores = Store::where('organization_id', Auth::user()->organization_id)->pluck('name', 'id');
+        $stores = Store::organization()->pluck('name', 'id');
 
         return view('admin.user.index')->with([
             'users' => $users,
