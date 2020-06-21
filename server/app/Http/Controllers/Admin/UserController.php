@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\User;
-
+use App\Models\Store;
+use App\Models\Category;
+use App\Models\Organization;
+use Auth;
+use App\Enums\User\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\Admin\UserRequest;
@@ -36,7 +40,15 @@ class UserController extends Controller
 
     public function create (Request $request)
     {
-        return view('admin.user.create');
+        $stores = Store::where('organization_id', Auth::user()->organization_id)->pluck('name', 'id');
+        $categories = Category::where('organization_id', Auth::user()->organization_id)->pluck('name', 'id');
+        $organizations = Organization::pluck('name', 'id');
+
+        return view('admin.user.create')->with([
+            'stores' => $stores,
+            'categories' => $categories,
+            'organizations' => $organizations
+        ]);
     }
 
     public function store (UserRequest $request)

@@ -70,46 +70,31 @@
                         </tr>
                       </thead>
                       <tbody>
-                        @for ($i = 1; $i <= 10; $i++)
+                        @foreach ($users as $user)
                           <tr role="row" class="odd">
-                            <td class="">澤村 勇太<br>サワムラ ユウタ</td>
-                            <td class="">
+                            <td>{{ $user->full_name }}<br>{{ $user->full_name_kana }}</td>
+                            <td>
                               <a class="profile-img" href="javascript: void(0);">
-                                <img alt="product" src="{{ asset('/img/logo.png') }}">
+                                <img alt="profile-img" src="{{ $user->getS3Url() }}">
                               </a>
                             </td>
-                            <td>渋谷店</td>
-                            <td>一般</td>
-                            <td>男</td>
-                            <td>2018-11-01</td>
+                            <td>{{ $user->store->name ?? null }}</td>
+                            <td>{{ $user->category->name ?? null }}</td>
+                            <td>{{ App\Enums\User\Gender::getDescription($user->gender) }}</td>
+                            <td>{{ $user->created_at->format('Y-m-d') }}</td>
                             <td class="text-center">
-                              <a href="{{ url('/admin/user/show') }}" class="btn btn-outline-primary">詳細</a>
+                              <a href="{{ url("/admin/user/show/{$user->id}") }}" class="btn btn-outline-primary">詳細</a>
                             </td>
                           </tr>
-                        @endfor
+                        @endforeach
                       </tbody>
                     </table>
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-sm-12 col-md-5">
-                    <div class="dataTables_info" id="style-1_info" role="status" aria-live="polite">表示ページ 1 of 2</div>
-                  </div>
                   <div class="col-sm-12 col-md-7">
-                    <div class="dataTables_paginate paging_simple_numbers" id="style-1_paginate">
-                      <ul class="pagination">
-                        <li class="paginate_button page-item previous disabled" id="style-1_previous"><a href="#" aria-controls="style-1" data-dt-idx="0" tabindex="0" class="page-link"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left">
-                              <line x1="19" y1="12" x2="5" y2="12"></line>
-                              <polyline points="12 19 5 12 12 5"></polyline>
-                            </svg></a></li>
-                        <li class="paginate_button page-item active"><a href="#" aria-controls="style-1" data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
-                        <li class="paginate_button page-item "><a href="#" aria-controls="style-1" data-dt-idx="2" tabindex="0" class="page-link">2</a></li>
-                        <li class="paginate_button page-item next" id="style-1_next"><a href="#" aria-controls="style-1" data-dt-idx="3" tabindex="0" class="page-link"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right">
-                              <line x1="5" y1="12" x2="19" y2="12"></line>
-                              <polyline points="12 5 19 12 12 19"></polyline>
-                            </svg></a>
-                        </li>
-                      </ul>
+                    <div class="dataTables_paginate paging_simple_numbers">
+                      {{ $users->links() }}
                     </div>
                   </div>
                 </div>

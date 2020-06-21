@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Store;
 use App\Models\Category;
+use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable
 {
@@ -75,6 +76,12 @@ class User extends Authenticatable
     {
         return "{$this->sei_kana} {$this->mei_kana}";
     }
+
+    public function getS3Url()
+    {
+        return $this->img ? Storage::disk('s3')->url($this->img): asset('/img/no-image.jpg');
+    }
+
     public function scopeStore($query, $id = null)
     {
         if ($id) $query->where('store_id', $id);
