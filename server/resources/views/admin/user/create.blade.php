@@ -40,7 +40,7 @@
                                       <div class="col-md-6">
                                         <select name="organization_id" class="form-control @error('organization_id') is-invalid @enderror" required>
                                           <option selected="selected" value="">選択してください</option>
-                                          @foreach(App\Models\Organization::pluck('name', 'id') as $k => $v)
+                                          @foreach($organizations as $k => $v)
                                             <option value="{{ $k }}" @if (old('organization_id') == $k) selected @endif>
                                               {{ $v }}
                                             </option>
@@ -101,10 +101,10 @@
                                     <div class="col-md-12">
                                       <select class="form-control @error('store_id') is-invalid @enderror" name="store_id" required>
                                         <option selected="selected" value="">選択してください</option>
-                                        @foreach(App\Models\Store::pluck('name', 'id') as $k => $v)
-                                        <option value="{{ $k }}" @if(old('store_id')==$k) selected @endif>
-                                          {{ $v }}
-                                        </option>
+                                        @foreach($stores as $k => $v)
+                                          <option value="{{ $k }}" @if(old('store_id')==$k) selected @endif>
+                                            {{ $v }}
+                                          </option>
                                         @endforeach
                                       </select>
                                       @component('components.validations.feedback', ['message' => 'store_id'])
@@ -120,10 +120,10 @@
                                     <div class="col-md-12">
                                       <select class="form-control @error('category_id') is-invalid @enderror" name="category_id" required>
                                         <option selected="selected" value="">選択してください</option>
-                                        @foreach(App\Models\Category::pluck('name', 'id') as $k => $v)
-                                        <option value="{{ $k }}" @if(old('category_id')==$k) selected @endif>
-                                          {{ $v }}
-                                        </option>
+                                        @foreach($categories as $k => $v)
+                                          <option value="{{ $k }}" @if(old('category_id')==$k) selected @endif>
+                                            {{ $v }}
+                                          </option>
                                         @endforeach
                                       </select>
                                       @component('components.validations.feedback', ['message' => 'category_id'])
