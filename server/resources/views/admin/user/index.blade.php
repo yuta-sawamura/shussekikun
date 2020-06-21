@@ -12,16 +12,6 @@
             <li class="active mb-2"><a href="">会員一覧</a></li>
           </ul>
         </div>
-        <ul class="nav nav-tabs mb-3">
-          <li class="nav-item">
-            <a class="nav-link {{ !isset($params['store']) ? 'active': null }}" href="{{ url("/admin/user/index") }}">全店舗</a>
-          </li>
-          @foreach($stores as $k => $v)
-            <li class="nav-item">
-              <a class="nav-link {{ isset($params['store']) && $params['store'] == $k ? 'active': null }}" href="{{ url("/admin/user/index?store={$k}") }}">{{ $v }}</a>
-            </li>
-          @endforeach
-        </ul>
         <div class="statbox widget box box-shadow">
           <div class="widget-header">
             <div class="row">
@@ -37,18 +27,43 @@
             <div class="table-responsive mb-4 style-1">
               <div id="style-1_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
                 <div class="widget-content widget-content-area">
-                  <form>
+                  <form action="{{url('/admin/user/index')}}">
                     <div class="form-row">
-                      <div class="form-group col-md-4">
+                      <div class="mb-2 col-md-4">
                         <label for="name">名前</label>
                         <input type="text" class="form-control" placeholder="キーワードを入力">
                       </div>
-                      <div class="col-md-2">
-                        <label for="inputState">カテゴリー</label>
-                        <select id="inputState" class="form-control">
-                          <option selected="">一般</option>
-                          <option>少年</option>
-                          <option>親子</option>
+                      <div class="mb-2 col-md-3">
+                        <label>店舗</label>
+                        <select class="form-control" name="store">
+                          <option selected="selected" value="">選択してください</option>
+                          @foreach($stores as $k => $v)
+                            <option value="{{ $k }}" {{ isset($params['store']) && $params['store'] == $k ? 'selected': null }}>
+                              {{ $v }}
+                            </option>
+                          @endforeach
+                        </select>
+                      </div>
+                      <div class="mb-2 col-md-3">
+                        <label>カテゴリー</label>
+                        <select class="form-control" name="category">
+                          <option selected="selected" value="">選択してください</option>
+                          @foreach($categories as $k => $v)
+                            <option value="{{ $k }}" {{ isset($params['category']) && $params['category'] == $k ? 'selected': null }}>
+                              {{ $v }}
+                            </option>
+                          @endforeach
+                        </select>
+                      </div>
+                      <div class="mb-2 col-md-3">
+                        <label>性別</label>
+                        <select class="form-control" name="gender">
+                          <option selected="selected" value="">選択してください</option>
+                          @foreach(App\Enums\User\Gender::getInstances() as $gender)
+                            <option value="{{ $gender->value }}" {{ isset($params['gender']) && $params['gender'] == $gender->value ? 'selected': null }}>
+                              {{ $gender->description }}
+                            </option>
+                          @endforeach
                         </select>
                       </div>
                     </div>

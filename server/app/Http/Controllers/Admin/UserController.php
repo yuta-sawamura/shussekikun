@@ -23,25 +23,30 @@ class UserController extends Controller
     {
         $params = $request->query();
 
-        $users = User::where('organization_id', Auth::user()->organization_id)
+        $users = User::organization()
             ->where('role', Role::Normal)
-            ->store($params['store'] ?? null)
+            ->storeFilter($params['store'] ?? null)
+            ->categoryFilter($params['category'] ?? null)
+            ->genderFilter($params['gender'] ?? null)
             ->orderBy('id', 'desc')
             ->paginate(20);
+
+        $categories = Category::organization()->pluck('name', 'id');
 
         $stores = Store::where('organization_id', Auth::user()->organization_id)->pluck('name', 'id');
 
         return view('admin.user.index')->with([
             'users' => $users,
             'stores' => $stores,
+            'categories' => $categories,
             'params' => $params,
         ]);
     }
 
     public function create (Request $request)
     {
-        $stores = Store::where('organization_id', Auth::user()->organization_id)->pluck('name', 'id');
-        $categories = Category::where('organization_id', Auth::user()->organization_id)->pluck('name', 'id');
+        $stores = Store::organization()->pluck('name', 'id');
+        $categories = Category::organization()->pluck('name', 'id');
         $organizations = Organization::pluck('name', 'id');
 
         return view('admin.user.create')->with([
