@@ -31,7 +31,7 @@
                     <div class="form-row">
                       <div class="mb-2 col-md-3">
                         <label for="keyword">名前</label>
-                        <input name="keyword" type="text" class="form-control" placeholder="キーワードを入力" value="{{ $params['keyword'] }}">
+                        <input name="keyword" type="text" class="form-control" placeholder="キーワードを入力" value="{{ $params['keyword'] ?? null }}">
                       </div>
                       <div class="mb-2 col-md-3">
                         <label>店舗</label>

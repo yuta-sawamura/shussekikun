@@ -63,9 +63,16 @@ class UserController extends Controller
         return redirect('/admin/user/index')->with('success_message', '会員を追加しました。');
     }
 
-    public function show ()
+    public function show ($id)
     {
-        return view('admin.user.show');
+        $user = User::where('id', $id)
+            ->where('role', Role::Normal)
+            ->organization()
+            ->firstOrFail();
+
+        return view('admin.user.show')->with([
+            'user' => $user
+        ]);
     }
 
     public function edit ()
