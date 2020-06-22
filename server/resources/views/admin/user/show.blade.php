@@ -28,6 +28,9 @@
               <div class="">
                 <ul class="contacts-block list-unstyled">
                   <li class="contacts-block__item">
+                    <p>権限： {{ App\Enums\User\Role::getDescription($user->role) }}</p>
+                  </li>
+                  <li class="contacts-block__item">
                     <p>店舗： {{ $user->store->name ?? null }}</p>
                   </li>
                   <li class="contacts-block__item">

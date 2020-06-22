@@ -76,11 +76,11 @@
                       <thead>
                         <tr role="row">
                           <th tabindex="0" aria-controls="style-1" rowspan="1" colspan="1" style="width: 150px;">名前</th>
-                          <th tabindex="0" aria-controls="style-1" rowspan="1" colspan="1" style="width: 80px;">画像</th>
+                          <th tabindex="0" aria-controls="style-1" rowspan="1" colspan="1" style="width: 60px;">画像</th>
+                          <th tabindex="0" aria-controls="style-1" rowspan="1" colspan="1" style="width: 130px;">権限</th>
                           <th tabindex="0" aria-controls="style-1" rowspan="1" colspan="1" style="width: 80px;">店舗</th>
-                          <th tabindex="0" aria-controls="style-1" rowspan="1" colspan="1" style="width: 110px;">カテゴリー</th>
+                          <th tabindex="0" aria-controls="style-1" rowspan="1" colspan="1" style="width: 100px;">カテゴリー</th>
                           <th tabindex="0" aria-controls="style-1" rowspan="1" colspan="1" style="width: 60px;">性別</th>
-                          <th tabindex="0" aria-controls="style-1" rowspan="1" colspan="1" style="width: 110px;">登録日</th>
                           <th tabindex="0" aria-controls="style-1" rowspan="1" colspan="1" style="width: 105px;"></th>
                         </tr>
                       </thead>
@@ -93,10 +93,10 @@
                                 <img alt="profile-img" src="{{ $user->getS3Url() }}">
                               </a>
                             </td>
+                            <td>{{ App\Enums\User\Role::getDescription($user->role) }}</td>
                             <td>{{ $user->store->name ?? null }}</td>
                             <td>{{ $user->category->name ?? null }}</td>
                             <td>{{ App\Enums\User\Gender::getDescription($user->gender) }}</td>
-                            <td>{{ $user->created_at->format('Y-m-d') }}</td>
                             <td class="text-center">
                               <a href="{{ url("/admin/user/show/{$user->id}") }}" class="btn btn-outline-primary">詳細</a>
                             </td>

@@ -24,7 +24,7 @@ class UserController extends Controller
         $params = $request->query();
 
         $users = User::organization()
-            ->where('role', Role::Normal)
+            ->where('role', '!=', Role::System)
             ->serachKeyword($params['keyword'] ?? null)
             ->storeFilter($params['store'] ?? null)
             ->categoryFilter($params['category'] ?? null)
@@ -66,7 +66,7 @@ class UserController extends Controller
     public function show ($id)
     {
         $user = User::where('id', $id)
-            ->where('role', Role::Normal)
+            ->where('role', '!=', Role::System)
             ->organization()
             ->firstOrFail();
 
