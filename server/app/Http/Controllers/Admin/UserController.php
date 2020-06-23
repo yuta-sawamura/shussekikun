@@ -23,7 +23,7 @@ class UserController extends Controller
     {
         $params = $request->query();
 
-        $users = User::organization()
+        $users = User::where('organization_id', Auth::user()->organization_id)
             ->where('role', '!=', Role::System)
             ->serachKeyword($params['keyword'] ?? null)
             ->storeFilter($params['store'] ?? null)
@@ -32,8 +32,8 @@ class UserController extends Controller
             ->orderBy('id', 'desc')
             ->paginate(20);
 
-        $categories = Category::organization()->pluck('name', 'id');
-        $stores = Store::organization()->pluck('name', 'id');
+        $categories = Category::where('organization_id', Auth::user()->organization_id)->pluck('name', 'id');
+        $stores = Store::where('organization_id', Auth::user()->organization_id)->pluck('name', 'id');
 
         return view('admin.user.index')->with([
             'users' => $users,
@@ -45,8 +45,8 @@ class UserController extends Controller
 
     public function create (Request $request)
     {
-        $stores = Store::organization()->pluck('name', 'id');
-        $categories = Category::organization()->pluck('name', 'id');
+        $stores = Store::where('organization_id', Auth::user()->organization_id)->pluck('name', 'id');
+        $categories = Category::where('organization_id', Auth::user()->organization_id)->pluck('name', 'id');
         $organizations = Organization::pluck('name', 'id');
 
         return view('admin.user.create')->with([
@@ -67,7 +67,7 @@ class UserController extends Controller
     {
         $user = User::where('id', $id)
             ->where('role', '!=', Role::System)
-            ->organization()
+            ->where('organization_id', Auth::user()->organization_id)
             ->firstOrFail();
 
         return view('admin.user.show')->with([

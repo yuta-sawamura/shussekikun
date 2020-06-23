@@ -8,7 +8,6 @@ use Illuminate\Notifications\Notifiable;
 use App\Models\Store;
 use App\Models\Category;
 use Illuminate\Support\Facades\Storage;
-use Auth;
 
 class User extends Authenticatable
 {
@@ -93,16 +92,6 @@ class User extends Authenticatable
     public function getS3Url()
     {
         return $this->img ? Storage::disk('s3')->url($this->img): asset('/img/no-image.jpg');
-    }
-
-    /**
-     * 組織絞り込み
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public function scopeOrganization($query)
-    {
-        return $query->where('organization_id', Auth::user()->organization_id);
     }
 
     /**
