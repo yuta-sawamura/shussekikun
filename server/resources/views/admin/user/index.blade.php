@@ -90,13 +90,13 @@
                             <td>{{ $user->full_name }}<br>{{ $user->full_name_kana }}</td>
                             <td>
                               <a class="profile-img" href="javascript: void(0);">
-                                <img alt="profile-img" src="{{ $user->getS3Url() }}">
+                                <img alt="profile-img" src="{{ $user->S3_url }}">
                               </a>
                             </td>
-                            <td>{{ App\Enums\User\Role::getDescription($user->role) }}</td>
+                            <td>{{ $user->role_name }}</td>
                             <td>{{ $user->store->name ?? null }}</td>
                             <td>{{ $user->category->name ?? null }}</td>
-                            <td>{{ App\Enums\User\Gender::getDescription($user->gender) }}</td>
+                            <td>{{ $user->gender_name }}</td>
                             <td class="text-center">
                               <a href="{{ url("/admin/user/show/{$user->id}") }}" class="btn btn-outline-primary">詳細</a>
                             </td>

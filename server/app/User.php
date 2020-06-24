@@ -8,6 +8,8 @@ use Illuminate\Notifications\Notifiable;
 use App\Models\Store;
 use App\Models\Category;
 use Illuminate\Support\Facades\Storage;
+use App\Enums\User\Role;
+use App\Enums\User\Gender;
 
 class User extends Authenticatable
 {
@@ -89,9 +91,27 @@ class User extends Authenticatable
      * S3のファイルURL取得
      * @return stiring
      */
-    public function getS3Url()
+    public function getS3UrlAttribute()
     {
         return $this->img ? Storage::disk('s3')->url($this->img): asset('/img/no-image.jpg');
+    }
+
+    /**
+     * 権限
+     * @return stiring
+     */
+    public function getRoleNameAttribute()
+    {
+        return Role::getDescription($this->role);
+    }
+
+    /**
+     * 性別
+     * @return stiring
+     */
+    public function getGenderNameAttribute()
+    {
+        return Gender::getDescription($this->gender);
     }
 
     /**

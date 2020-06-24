@@ -21,14 +21,14 @@
               <a href="{{ url("/admin/user/edit/{$user->id}") }}" class="btn btn-outline-primary">編集</a>
             </div>
             <div class="text-center user-info">
-              <img alt="profile-img" src="{{ $user->getS3Url() }}" style="height: 100px; width: 100px">
+              <img alt="profile-img" src="{{ $user->S3_url }}" style="height: 100px; width: 100px">
               <p>{{ $user->full_name }} ({{ $user->full_name_kana }})</p>
             </div>
             <div class="user-info-list">
               <div class="">
                 <ul class="contacts-block list-unstyled">
                   <li class="contacts-block__item">
-                    <p>権限： {{ App\Enums\User\Role::getDescription($user->role) }}</p>
+                    <p>権限： {{ $user->role_name }}</p>
                   </li>
                   <li class="contacts-block__item">
                     <p>店舗： {{ $user->store->name ?? null }}</p>
@@ -37,7 +37,7 @@
                     <p>カテゴリー： {{ $user->category->name ?? null }}</p>
                   </li>
                   <li class="contacts-block__item">
-                    <p>性別： {{ App\Enums\User\Gender::getDescription($user->gender) }}</p>
+                    <p>性別： {{ $user->gender_name }}</p>
                   </li>
                   <li class="contacts-block__item">
                     <p>追加日： {{ $user->created_at->format('Y-m-d') }}</p>
