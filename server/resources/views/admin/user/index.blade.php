@@ -59,7 +59,7 @@
                         <label>性別</label>
                         <select class="form-control" name="gender">
                           <option selected="selected" value="">選択してください</option>
-                          @foreach(App\Enums\User\Gender::getInstances() as $gender)
+                          @foreach($genders as $gender)
                             <option value="{{ $gender->value }}" {{ isset($params['gender']) && $params['gender'] == $gender->value ? 'selected': null }}>
                               {{ $gender->description }}
                             </option>

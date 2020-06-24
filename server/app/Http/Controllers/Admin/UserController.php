@@ -32,28 +32,15 @@ class UserController extends Controller
             ->orderBy('id', 'desc')
             ->paginate(20);
 
-        $categories = Category::where('organization_id', Auth::user()->organization_id)->pluck('name', 'id');
-        $stores = Store::where('organization_id', Auth::user()->organization_id)->pluck('name', 'id');
-
         return view('admin.user.index')->with([
             'users' => $users,
-            'stores' => $stores,
-            'categories' => $categories,
             'params' => $params,
         ]);
     }
 
     public function create (Request $request)
     {
-        $stores = Store::where('organization_id', Auth::user()->organization_id)->pluck('name', 'id');
-        $categories = Category::where('organization_id', Auth::user()->organization_id)->pluck('name', 'id');
-        $organizations = Organization::pluck('name', 'id');
-
-        return view('admin.user.create')->with([
-            'stores' => $stores,
-            'categories' => $categories,
-            'organizations' => $organizations
-        ]);
+        return view('admin.user.create');
     }
 
     public function store (UserRequest $request)

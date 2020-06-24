@@ -61,7 +61,7 @@
                                       <select name="role" class="form-control @error('role') is-invalid @enderror" required>
                                         <option selected="selected" value="">選択してください</option>
                                         @can('system-only')
-                                          @foreach(App\Enums\User\Role::getInstances() as $role)
+                                          @foreach($roles as $role)
                                             <option value="{{ $role->value }}" @if (old('role')==$role->value) selected @endif>
                                               {{ $role->description }}
                                             </option>
@@ -171,7 +171,7 @@
                                     <div class="col-md-12">
                                       <select name="gender" class="form-control @error('gender') is-invalid @enderror" required>
                                         <option selected="selected" value="">選択してください</option>
-                                        @foreach(App\Enums\User\Gender::getInstances() as $gender)
+                                        @foreach($genders as $gender)
                                           <option value="{{ $gender->value }}" @if (old('gender')==$gender->value) selected @endif>
                                             {{ $gender->description }}
                                           </option>
