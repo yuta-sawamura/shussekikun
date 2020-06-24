@@ -5,6 +5,9 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Store;
+use App\Models\Category;
+use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable
 {
@@ -32,6 +35,16 @@ class User extends Authenticatable
         'status'
     ];
 
+    Public function store()
+    {
+        return $this->belongsTo(Store::class);
+    }
+
+    Public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
     protected $attributes = [
         'status' => \App\Enums\User\Status::Continue,
     ];
@@ -53,4 +66,81 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * 性・名のフルネーム
+     * @return stiring
+     */
+    public function getFullNameAttribute()
+    {
+        return "{$this->sei} {$this->mei}";
+    }
+
+    /**
+     * セイ・メイのフルネーム
+     * @return stiring
+     */
+    public function getFullNameKanaAttribute()
+    {
+        return "{$this->sei_kana} {$this->mei_kana}";
+    }
+
+    /**
+     * S3のファイルURL取得
+     * @return stiring
+     */
+    public function getS3Url()
+    {
+        return $this->img ? Storage::disk('s3')->url($this->img): asset('/img/no-image.jpg');
+    }
+
+    /**
+     * 店舗絞り込み
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param int|null $id
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeStoreFilter($query, $id = null)
+    {
+        if ($id) return $query->where('store_id', $id);
+    }
+
+    /**
+     * カテゴリー絞り込み
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param int|null $id
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeCategoryFilter($query, $id = null)
+    {
+        if ($id) return $query->where('category_id', $id);
+    }
+
+    /**
+     * 性別絞り込み
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param int|null $id
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeGenderFilter($query, $id = null)
+    {
+        if ($id) return $query->where('gender', $id);
+    }
+
+    /**
+     * 名前検索
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param string|null $keyword
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeSerachKeyword($query, $keyword = null)
+    {
+        if ($keyword) {
+            $query->where('sei', 'like', '%' . $keyword . '%');
+            $query->orWhere('mei', 'like', '%' . $keyword . '%');
+            $query->orWhere('sei_kana', 'like', '%' . $keyword . '%');
+            $query->orWhere('mei_kana', 'like', '%' . $keyword . '%');
+        }
+        return $query;
+    }
 }

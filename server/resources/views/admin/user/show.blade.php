@@ -18,26 +18,29 @@
               <h3 class="">会員詳細</h3>
             </div>
             <div class="col-md-12 text-right">
-              <a href="{{ url('/admin/user/edit') }}" class="btn btn-outline-primary">編集</a>
+              <a href="{{ url("/admin/user/edit/{$user->id}") }}" class="btn btn-outline-primary">編集</a>
             </div>
             <div class="text-center user-info">
-              <img alt="avatar" src="{{ asset('/img/90x90.jpg') }}">
-              <p class="">澤村 勇太(サワムラ ユウタ)</p>
+              <img alt="profile-img" src="{{ $user->getS3Url() }}" style="height: 100px; width: 100px">
+              <p>{{ $user->full_name }} ({{ $user->full_name_kana }})</p>
             </div>
             <div class="user-info-list">
               <div class="">
                 <ul class="contacts-block list-unstyled">
                   <li class="contacts-block__item">
-                    <p>店舗： 新宿店</p>
+                    <p>権限： {{ App\Enums\User\Role::getDescription($user->role) }}</p>
                   </li>
                   <li class="contacts-block__item">
-                    <p>カテゴリー： 一般</p>
+                    <p>店舗： {{ $user->store->name ?? null }}</p>
                   </li>
                   <li class="contacts-block__item">
-                    <p>性別： 男</p>
+                    <p>カテゴリー： {{ $user->category->name ?? null }}</p>
                   </li>
                   <li class="contacts-block__item">
-                    <p>追加日： 2020-01-01</p>
+                    <p>性別： {{ App\Enums\User\Gender::getDescription($user->gender) }}</p>
+                  </li>
+                  <li class="contacts-block__item">
+                    <p>追加日： {{ $user->created_at->format('Y-m-d') }}</p>
                   </li>
                   <li class="contacts-block__item">
                     <p>年間出席ランキング： 8位</p>
