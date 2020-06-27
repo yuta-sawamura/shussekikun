@@ -11,10 +11,14 @@ use Illuminate\Support\Facades\Storage;
 use App\Enums\User\Role;
 use App\Enums\User\Gender;
 use App\Enums\User\Status;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
     use Notifiable;
+    use SoftDeletes;
+
+    protected $dates = ['deleted_at'];
 
     /**
      * The attributes that are mass assignable.

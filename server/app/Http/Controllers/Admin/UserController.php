@@ -80,7 +80,19 @@ class UserController extends Controller
             ->where('id', $request->id)
             ->firstOrFail();
         $user->fill($request->validated())->save();
+
         return redirect('/admin/user/show/' . $request->id)->with('success_message', '会員情報を編集しました。');
+    }
+
+    public function delete (Request $request)
+    {
+        $user = User::where('id', $request->id)
+            ->where('role', '!=', Role::System)
+            ->where('organization_id', Auth::user()->organization_id)
+            ->firstOrFail();
+        $user->delete();
+
+        return redirect('/admin/user/index')->with('success_message', '会員を削除しました。');
     }
 
     public function premium ()
