@@ -6,7 +6,7 @@ return [
             'man' => '男',
             'woman' => '女',
         ],
-        'stats' => [
+        'status' => [
             'continue' => '継続',
             'cancel' => '退会',
         ],

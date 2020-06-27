@@ -10,6 +10,7 @@ use App\Models\Category;
 use Illuminate\Support\Facades\Storage;
 use App\Enums\User\Role;
 use App\Enums\User\Gender;
+use App\Enums\User\Status;
 
 class User extends Authenticatable
 {
@@ -46,10 +47,6 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Category::class);
     }
-
-    protected $attributes = [
-        'status' => \App\Enums\User\Status::Continue,
-    ];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -112,6 +109,15 @@ class User extends Authenticatable
     public function getGenderNameAttribute()
     {
         return Gender::getDescription($this->gender);
+    }
+
+    /**
+     * 状態
+     * @return stiring
+     */
+    public function getStatusNameAttribute()
+    {
+        return Status::getDescription($this->status);
     }
 
     /**

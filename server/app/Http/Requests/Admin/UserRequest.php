@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Auth;
 use App\Enums\User\Role;
+use App\Enums\User\Status;
 
 class UserRequest extends FormRequest
 {
@@ -56,7 +57,7 @@ class UserRequest extends FormRequest
             'birth' =>'required|date',
             'role' => "required|in:" . Role::System . ',' . Role::Organization_admin . ',' . Role::Store_share . ',' . Role::Normal,
             'password' => 'nullable|string|min:8|required_unless:role,' . Role::Normal,
-            'status' => 'nullable|integer',
+            'status' => 'required|in:' . Status::Continue . ',' . Status::Cancel,
         ];
     }
 
@@ -82,7 +83,7 @@ class UserRequest extends FormRequest
             'birth' =>'required|date' ,
             'role' => "required|in:" . Role::Organization_admin . ',' . Role::Store_share . ',' . Role::Normal,
             'password' => 'nullable|string|min:8|required_if:role,' . Role::Organization_admin . ',' . Role::Store_share,
-            'status' => 'nullable|integer',
+            'status' => 'required|in:' . Status::Continue . ',' . Status::Cancel,
         ];
   }
 

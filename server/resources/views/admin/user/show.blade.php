@@ -40,6 +40,9 @@
                     <p>性別： {{ $user->gender_name }}</p>
                   </li>
                   <li class="contacts-block__item">
+                    <p>状態： {{ $user->status_name }}</p>
+                  </li>
+                  <li class="contacts-block__item">
                     <p>追加日： {{ $user->created_at->format('Y-m-d') }}</p>
                   </li>
                   <li class="contacts-block__item">

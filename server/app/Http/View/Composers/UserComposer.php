@@ -10,6 +10,7 @@ use Illuminate\View\View;
 use Illuminate\Contracts\Auth\Guard;
 use App\Enums\User\Role;
 use App\Enums\User\Gender;
+use App\Enums\User\Status;
 use Auth;
 
 class UserComposer
@@ -34,6 +35,7 @@ class UserComposer
         $view->with([
             'roles' => Role::getInstances(),
             'genders' => Gender::getInstances(),
+            'status' => Status::getInstances(),
             'stores' => Store::where('organization_id', Auth::user()->organization_id)->pluck('name', 'id'),
             'categories' => Category::where('organization_id', Auth::user()->organization_id)->pluck('name', 'id'),
             'organizations' => Organization::pluck('name', 'id'),

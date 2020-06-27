@@ -8,10 +8,6 @@ final class Status extends Enum
 {
     const Continue = 1;
     const Cancel = 2;
-    const List = [
-        self::Continue => '継続',
-        self::Cancel => '退会',
-    ];
 
     public static function getDescription($value): string
     {
