@@ -21,7 +21,7 @@
                       <select name="organization_id" class="form-control @error('organization_id') is-invalid @enderror" required>
                         <option selected="selected" value="">選択してください</option>
                         @foreach($organizations as $k => $v)
-                          <option value="{{ $k }}" {{ old('organization_id') == $k || isset($user->organization_id) == $k ? 'selected': '' }}>
+                          <option value="{{ $k }}" {{ old('organization_id') == $k || isset($user->organization_id) && $user->organization_id == $k ? 'selected': '' }}>
                             {{ $v }}
                           </option>
                         @endforeach
@@ -42,13 +42,13 @@
                       <option selected="selected" value="">選択してください</option>
                       @can('system-only')
                         @foreach($roles as $role)
-                          <option value="{{ $role->value }}" {{ old('role') == $role->value || isset($user->role) == $role->value ? 'selected': '' }}>
+                          <option value="{{ $role->value }}" {{ old('role') == $role->value || isset($user->role) && $user->role == $role->value ? 'selected': '' }}>
                             {{ $role->description }}
                           </option>
                         @endforeach
                       @elsecan('organization-admin-only')
                         @foreach(App\Enums\User\Role::getListByOrganizationAdmin() as $k => $value)
-                          <option value="{{ $k }}" {{ old('role') == $k || isset($user->role) == $k ? 'selected': '' }}>
+                          <option value="{{ $k }}" {{ old('role') == $k || isset($user->role) && $user->role == $k ? 'selected': '' }}>
                             {{ $value }}
                           </option>
                         @endforeach
@@ -82,7 +82,7 @@
                     <select class="form-control @error('store_id') is-invalid @enderror" name="store_id" required>
                       <option selected="selected" value="">選択してください</option>
                       @foreach($stores as $k => $v)
-                        <option value="{{ $k }}" {{ old('store_id') == $k || isset($user->store_id) == $k ? 'selected': '' }}>
+                        <option value="{{ $k }}" {{ old('store_id') == $k || isset($user->store_id) && $user->store_id == $k ? 'selected': '' }}>
                           {{ $v }}
                         </option>
                       @endforeach
@@ -101,7 +101,7 @@
                     <select class="form-control @error('category_id') is-invalid @enderror" name="category_id" required>
                       <option selected="selected" value="">選択してください</option>
                       @foreach($categories as $k => $v)
-                        <option value="{{ $k }}" {{ old('category_id') == $k || isset($user->category_id) == $k ? 'selected': '' }}>
+                        <option value="{{ $k }}" {{ old('category_id') == $k || isset($user->category_id) && $user->category_id == $k ? 'selected': '' }}>
                           {{ $v }}
                         </option>
                       @endforeach
@@ -152,8 +152,8 @@
                     <select name="gender" class="form-control @error('gender') is-invalid @enderror" required>
                       <option selected="selected" value="">選択してください</option>
                       @foreach($genders as $gender)
-                        <option value="{{ $k }}" {{ old('gender') == $k || isset($user->gender) == $k ? 'selected': '' }}>
-                          {{ $v }}
+                        <option value="{{ $gender->value }}" {{ old('role') == $gender->value || isset($user->role) && $user->role == $gender->value ? 'selected': '' }}>
+                          {{ $gender->description }}
                         </option>
                       @endforeach
                     </select>
@@ -177,7 +177,7 @@
               <button type="submit" class="btn btn-dark mb-2 mt-5">退会</button>
               <button type="button" class="btn btn-danger mb-2 mt-5" data-toggle="modal" data-target="#attentionModal">削除</button>
             @endisset
-            <button type="submit" class="btn btn-primary mb-2 mt-5">保存</button>
+            <button type="submit" id="user-submit" class="btn btn-primary mb-2 mt-5">保存</button>
           </div>
         </div>
       </div>

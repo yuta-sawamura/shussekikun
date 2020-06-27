@@ -2,8 +2,9 @@
 @section('content')
 
 <div id="content" class="main-content">
+  @component('components.alerts.app')
+  @endcomponent
   <div class="layout-px-spacing">
-
     <div class="account-settings-container layout-top-spacing">
       <div class="breadcrumb-five">
         <ul class="breadcrumb">
@@ -17,7 +18,7 @@
         <div class="scrollspy-example" data-spy="scroll" data-target="#account-settings-scroll" data-offset="-100">
           <div class="row">
             <div class="col-xl-12 col-lg-12 col-md-12 layout-spacing">
-              <form action="/admin/user/update" method="post" enctype="multipart/form-data" class="section general-info">
+              <form action="/admin/user/update/{{ $user->id }}" method="post" enctype="multipart/form-data" class="section general-info">
                 @csrf
                 <div class="info">
                   <h6>会員編集</h6>

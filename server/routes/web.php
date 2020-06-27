@@ -42,7 +42,8 @@ Route::group(['middleware' => ['auth', 'can:organization-admin-higher']], functi
             Route::get('create', 'Admin\UserController@create');
             Route::post('store', 'Admin\UserController@store');
             Route::get('show/{id}', 'Admin\UserController@show');
-            Route::get('edit', 'Admin\UserController@edit');
+            Route::get('edit/{id}', 'Admin\UserController@edit');
+            Route::post('update/{id}', 'Admin\UserController@update');
         });
 
         // クラス

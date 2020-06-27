@@ -14,6 +14,13 @@
   const store_share_user = @json(App\Enums\User\Role::Store_share);
   const normal_user = @json(App\Enums\User\Role::Normal);
 
+  $('#user-submit').click(function(){
+    const val = $('[name=role]').val();
+    if (val == normal_user) {
+      $('#email, #password').find($('input')).val('');
+    }
+  });
+
   function shoWHideByRole(val) {
     if (val == system_user || val == organization_admin_user) {
       $('#email, #password').show();

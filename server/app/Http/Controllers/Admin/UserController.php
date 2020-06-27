@@ -50,9 +50,9 @@ class UserController extends Controller
         return redirect('/admin/user/index')->with('success_message', '会員を追加しました。');
     }
 
-    public function show ($id)
+    public function show (Request $request)
     {
-        $user = User::where('id', $id)
+        $user = User::where('id', $request->id)
             ->where('role', '!=', Role::System)
             ->where('organization_id', Auth::user()->organization_id)
             ->firstOrFail();
@@ -62,9 +62,25 @@ class UserController extends Controller
         ]);
     }
 
-    public function edit ()
+    public function edit (Request $request)
     {
-        return view('admin.user.edit');
+        $user = User::where('id', $request->id)
+            ->where('role', '!=', Role::System)
+            ->where('organization_id', Auth::user()->organization_id)
+            ->firstOrFail();
+
+        return view('admin.user.edit')->with([
+            'user' => $user
+        ]);
+    }
+
+    public function update (UserRequest $request)
+    {
+        $user = User::where('organization_id', Auth::user()->organization_id)
+            ->where('id', $request->id)
+            ->firstOrFail();
+        $user->fill($request->validated())->save();
+        return redirect('/admin/user/show/' . $request->id)->with('success_message', '会員情報を編集しました。');
     }
 
     public function premium ()
