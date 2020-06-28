@@ -51,7 +51,7 @@ class StoreController extends Controller
             ->firstOrFail();
         $store->fill($request->all())->save();
 
-        return redirect('/admin/store')->with('success_message', '店舗名を編集しました。');
+        return redirect('/admin/store')->with('success_message', '店舗を編集しました。');
     }
 
     public function delete (Request $request)

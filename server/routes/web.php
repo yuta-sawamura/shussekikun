@@ -57,11 +57,16 @@ Route::group(['middleware' => ['auth', 'can:organization-admin-higher']], functi
             Route::post('delete/{id}', 'Admin\StoreController@delete');
         });
 
+        // カテゴリー
+        Route::prefix('category')->group(function () {
+            Route::get('/', 'Admin\CategoryController@index');
+            Route::post('store', 'Admin\CategoryController@store');
+            Route::post('update/{id}', 'Admin\CategoryController@update');
+            Route::post('delete/{id}', 'Admin\CategoryController@delete');
+        });
+
         // クラス
         Route::get('class', 'Admin\ClassworkController@index');
-
-        // カテゴリー
-        Route::get('category', 'Admin\CategoryController@index');
 
         // お知らせ
         Route::prefix('news')->group(function () {
