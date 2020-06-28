@@ -29,7 +29,7 @@
         </a>
         <ul class="collapse submenu recent-submenu mini-recent-submenu list-unstyled show" id="dashboard" data-parent="#accordionExample">
           <li>
-            <a href="{{ url('admin/user/show') }}"> マイページ </a>
+            <a href="{{ url('admin/user/show/' . Auth::id()) }}"> マイページ </a>
           </li>
           <li>
             <form method="post" name="sidebar_logout" action="{{ route('logout') }}">
