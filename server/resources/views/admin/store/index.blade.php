@@ -2,6 +2,8 @@
 @section('content')
 
 <div id="content" class="main-content">
+  @component('components.alerts.app')
+  @endcomponent
   <div class="layout-px-spacing">
     <div class="row layout-top-spacing layout-spacing">
       <div class="col-lg-12">
@@ -21,7 +23,7 @@
           </div>
           <div class="widget-content widget-content-area">
             <div class="col-md-12 text-right">
-              <button type="button" class="btn btn-outline-primary mb-2 mr-2" data-toggle="modal" data-target="#inputModal">
+              <button type="button" class="btn btn-outline-primary mb-2 mr-2" data-toggle="modal" data-target="#createModal">
                 追加
               </button>
             </div>
@@ -37,50 +39,27 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr role="row" class="odd">
-                          <td class="">新宿店</td>
-                          <td>
-                            <button type="button" class="btn btn-outline-primary mb-2 mr-2" data-toggle="modal" data-target="#inputModal">編集</button>
-                            <button type="button" class="btn btn-outline-danger mb-2 mr-2" data-toggle="modal" data-target="#attentionModal">削除</button>
-                          </td>
-                        </tr>
-                        <tr role="row" class="odd">
-                          <td class="">渋谷店</td>
-                          <td>
-                            <button type="button" class="btn btn-outline-primary mb-2 mr-2" data-toggle="modal" data-target="#inputModal">編集</button>
-                            <button type="button" class="btn btn-outline-danger mb-2 mr-2" data-toggle="modal" data-target="#attentionModal">削除</button>
-                          </td>
-                        </tr>
-                        <tr role="row" class="odd">
-                          <td class="">池袋店</td>
-                          <td>
-                            <button type="button" class="btn btn-outline-primary mb-2 mr-2" data-toggle="modal" data-target="#inputModal">編集</button>
-                            <button type="button" class="btn btn-outline-danger mb-2 mr-2" data-toggle="modal" data-target="#attentionModal">削除</button>
-                          </td>
-                        </tr>
+                        @foreach($stores as $store)
+                          <tr role="row" class="odd">
+                            <td>{{ $store->name }}</td>
+                            <td>
+                              <button type="button" class="btn btn-outline-primary mb-2 mr-2" data-toggle="modal" data-target="#editModal">編集</button>
+                              <button type="button" class="btn btn-outline-danger mb-2 mr-2" data-toggle="modal" data-target="#attentionModal">削除</button>
+                            </td>
+                          </tr>
+                          @component('components.modals.admin.edit', ['name' => '店舗名', 'path' => '/admin/store/update/' . $store->id, 'value' => $store->name])
+                          @endcomponent
+                          @component('components.modals.attention', ['title' => '関連データも全て削除されますが本当によろしいですか？', 'path' => '/admin/store/delete/' . $store->id])
+                          @endcomponent
+                        @endforeach
                       </tbody>
                     </table>
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-sm-12 col-md-5">
-                    <div class="dataTables_info" id="style-1_info" role="status" aria-live="polite">表示ページ 1 of 2</div>
-                  </div>
                   <div class="col-sm-12 col-md-7">
-                    <div class="dataTables_paginate paging_simple_numbers" id="style-1_paginate">
-                      <ul class="pagination">
-                        <li class="paginate_button page-item previous disabled" id="style-1_previous"><a href="#" aria-controls="style-1" data-dt-idx="0" tabindex="0" class="page-link"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left">
-                              <line x1="19" y1="12" x2="5" y2="12"></line>
-                              <polyline points="12 19 5 12 12 5"></polyline>
-                            </svg></a></li>
-                        <li class="paginate_button page-item active"><a href="#" aria-controls="style-1" data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
-                        <li class="paginate_button page-item "><a href="#" aria-controls="style-1" data-dt-idx="2" tabindex="0" class="page-link">2</a></li>
-                        <li class="paginate_button page-item next" id="style-1_next"><a href="#" aria-controls="style-1" data-dt-idx="3" tabindex="0" class="page-link"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right">
-                              <line x1="5" y1="12" x2="19" y2="12"></line>
-                              <polyline points="12 5 19 12 12 19"></polyline>
-                            </svg></a>
-                        </li>
-                      </ul>
+                    <div class="dataTables_paginate paging_simple_numbers">
+                      {{ $stores->links() }}
                     </div>
                   </div>
                 </div>
@@ -93,9 +72,7 @@
   </div>
 </div>
 
-@component('components.modals.input', ['name' => '店舗名'])
-@endcomponent
-@component('components.modals.attention', ['name' => '削除'])
+@component('components.modals.admin.create', ['name' => '店舗名', 'path' => '/admin/store/store'])
 @endcomponent
 
 @endsection()

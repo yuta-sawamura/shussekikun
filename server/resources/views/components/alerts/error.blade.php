@@ -6,5 +6,5 @@
       <line x1="6" y1="6" x2="18" y2="18"></line>
     </svg>
   </button>
-  出席に失敗しました。
+  {{ $message }}
 </div>
