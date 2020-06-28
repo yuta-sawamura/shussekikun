@@ -14,7 +14,7 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->insert([
             [
                 'id' => 1,
-                'organization_id' => null,
+                'organization_id' => 1,
                 'store_id' => 1,
                 'category_id' => 1,
                 'sei' => '澤村',

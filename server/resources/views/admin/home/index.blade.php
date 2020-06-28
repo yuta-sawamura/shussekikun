@@ -30,7 +30,7 @@
               <h3 class="">全店舗</h3>
             </div>
             <div class="col-md-12 text-right">
-              <a href="{{ url('/admin/user/index') }}" class="btn btn-outline-primary">一覧</a>
+              <a href="{{ url('/admin/user') }}" class="btn btn-outline-primary">一覧</a>
             </div>
             <div class="user-info-list">
 

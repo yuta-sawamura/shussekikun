@@ -42,7 +42,7 @@ class UserController extends Controller
     {
         $user = new User;
         $user->fill($request->validated())->save();
-        return redirect('/admin/user/index')->with('success_message', '会員を追加しました。');
+        return redirect('/admin/user')->with('success_message', '会員を追加しました。');
     }
 
     public function show (Request $request)
@@ -87,7 +87,7 @@ class UserController extends Controller
             ->firstOrFail();
         $user->delete();
 
-        return redirect('/admin/user/index')->with('success_message', '会員を削除しました。');
+        return redirect('/admin/user')->with('success_message', '会員を削除しました。');
     }
 
     public function premium ()

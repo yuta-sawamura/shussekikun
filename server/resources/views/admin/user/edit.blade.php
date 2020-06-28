@@ -33,7 +33,7 @@
   </div>
 </div>
 
-@component('components.modals.attention', ['path' => "/admin/user/delete/" . $user->id])
+@component('components.modals.attention', ['title' => '関連データも全て削除されますが本当によろしいですか？', 'path' => '/admin/user/delete/' . $user->id])
 @endcomponent
 
 @endsection()
