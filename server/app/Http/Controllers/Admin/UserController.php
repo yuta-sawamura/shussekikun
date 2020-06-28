@@ -14,11 +14,6 @@ use App\Http\Requests\Admin\UserRequest;
 
 class UserController extends Controller
 {
-    public function aggregate ()
-    {
-        return view('admin.user.aggregate');
-    }
-
     public function index (Request $request)
     {
         $params = $request->query();

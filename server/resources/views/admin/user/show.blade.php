@@ -7,8 +7,8 @@
       <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 layout-top-spacing">
         <div class="breadcrumb-five">
           <ul class="breadcrumb">
-            <li class="mb-2"><a href="{{ url('/admin/user/aggregate') }}">ホーム</a></li>
-            <li class="mb-2"><a href="{{ url('/admin/user/index') }}">会員一覧</a></li>
+            <li class="mb-2"><a href="{{ url('/admin') }}">ホーム</a></li>
+            <li class="mb-2"><a href="{{ url('/admin/user/') }}">会員一覧</a></li>
             <li class="active mb-2"><a href="">会員詳細</a></li>
           </ul>
         </div>
@@ -186,7 +186,7 @@
   </div>
 </div>
 
-@component('components.modals.attention', ['name' => '削除'])
+@component('components.modals.attention', ['path' => ''])
 @endcomponent
 @component('components.modals.input', ['name' => 'クラス名'])
 @endcomponent

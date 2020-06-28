@@ -7,7 +7,7 @@
       <div class="col-lg-12">
         <div class="breadcrumb-five">
           <ul class="breadcrumb">
-            <li class="mb-2"><a href="{{ url('/admin/user/aggregate') }}">ホーム</a></li>
+            <li class="mb-2"><a href="{{ url('/admin') }}">ホーム</a></li>
             <li class="active mb-2"><a href="">カテゴリー一覧</a></li>
           </ul>
         </div>

@@ -35,10 +35,12 @@ Route::group(['middleware' => 'auth'], function() {
 Route::group(['middleware' => ['auth', 'can:organization-admin-higher']], function () {
     // 管理画面
     Route::prefix('admin')->group(function () {
+        // ホーム
+        Route::get('/', 'Admin\HomeController@index');
+
         // 会員
         Route::prefix('user')->group(function () {
-            Route::get('aggregate', 'Admin\UserController@aggregate');
-            Route::get('index', 'Admin\UserController@index');
+            Route::get('/', 'Admin\UserController@index');
             Route::get('create', 'Admin\UserController@create');
             Route::post('store', 'Admin\UserController@store');
             Route::get('show/{id}', 'Admin\UserController@show');

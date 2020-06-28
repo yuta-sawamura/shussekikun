@@ -5,8 +5,8 @@
     <div class="account-settings-container layout-top-spacing">
       <div class="breadcrumb-five">
         <ul class="breadcrumb">
-          <li class="mb-2"><a href="{{ url('/admin/user/aggregate') }}">ホーム</a></li>
-          <li class="mb-2"><a href="{{ url('/admin/user/index') }}">会員一覧</a></li>
+          <li class="mb-2"><a href="{{ url('/admin') }}">ホーム</a></li>
+          <li class="mb-2"><a href="{{ url('/admin/user/') }}">会員一覧</a></li>
           <li class="active mb-2"><a href="">会員追加</a></li>
         </ul>
       </div>
