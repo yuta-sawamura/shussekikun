@@ -8,14 +8,14 @@
         <div class="breadcrumb-five">
           <ul class="breadcrumb">
             <li class="mb-2"><a href="{{ url('/admin') }}">ホーム</a></li>
-            <li class="active mb-2"><a href="">クラス一覧</a></li>
+            <li class="active mb-2"><a href="">スケジュール一覧</a></li>
           </ul>
         </div>
         <div class="statbox widget box box-shadow">
           <div class="widget-header">
             <div class="row">
               <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                <h4>クラス一覧</h4>
+                <h4>スケジュール一覧</h4>
               </div>
             </div>
           </div>
@@ -88,10 +88,5 @@
     </div>
   </div>
 </div>
-
-@component('components.modals.class')
-@endcomponent
-@component('components.modals.attention', ['name' => '削除'])
-@endcomponent
 
 @endsection()

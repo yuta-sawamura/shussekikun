@@ -65,8 +65,10 @@ Route::group(['middleware' => ['auth', 'can:organization-admin-higher']], functi
             Route::post('delete/{id}', 'Admin\CategoryController@delete');
         });
 
-        // クラス
-        Route::get('class', 'Admin\ClassworkController@index');
+        // スケジュール
+        Route::prefix('schedule')->group(function () {
+            Route::get('/', 'Admin\ScheduleController@index');
+        });
 
         // お知らせ
         Route::prefix('news')->group(function () {
