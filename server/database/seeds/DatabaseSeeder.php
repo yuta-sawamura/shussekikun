@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
             StoresTableSeeder::class,
             CategoriesTableSeeder::class,
             UsersTableSeeder::class,
+            ClassworksTableSeeder::class,
         ]);
     }
 }
