@@ -13,6 +13,7 @@ class Schedule extends Model
      */
     protected $fillable = [
         'store_id',
+        'classwork_id',
         'day',
         'start_at',
         'end_at',

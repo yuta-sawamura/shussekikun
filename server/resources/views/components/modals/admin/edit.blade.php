@@ -12,8 +12,8 @@
         <div class="modal-body">
           <div class="col-sm-12">
             <div class="form-group">
-              <label>{{ $name }}</label>
-              <input name="name" type="text" value="{{ $value }}" class="form-control">
+              <label>{{ $name }}<span class="text-danger">*</span></label>
+              <input name="name" type="text" value="{{ $value }}" class="form-control" required>
             </div>
           </div>
         </div>

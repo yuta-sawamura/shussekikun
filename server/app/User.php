@@ -158,7 +158,7 @@ class User extends Authenticatable
     }
 
     /**
-     * 名前検索
+     * キーワード検索
      * @param \Illuminate\Database\Eloquent\Builder $query
      * @param string|null $keyword
      * @return \Illuminate\Database\Eloquent\Builder

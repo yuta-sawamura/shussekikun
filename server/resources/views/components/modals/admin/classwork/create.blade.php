@@ -1,6 +1,6 @@
-<div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="inputModalLabel" aria-hidden="true">
+<div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="createModal" aria-hidden="true">
   <div class="modal-dialog" role="document">
-    <form action="{{ $path }}" method="post">
+    <form action="{{ url('/admin/class/store') }}" method="post">
       @csrf
       <div class="modal-content">
         <button type="button" class="close text-right px-2 py-2" data-dismiss="modal" aria-label="Close">
@@ -10,9 +10,26 @@
           </svg>
         </button>
         <div class="modal-body">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label>店舗<span class="text-danger">*</span></label>
+                <div class="row">
+                  <div class="col-md-12">
+                    <select class="form-control" name="store_id" required>
+                      <option selected="selected" value="">選択してください</option>
+                      @foreach($stores as $k => $v)
+                        <option value="{{ $k }}" }}>
+                          {{ $v }}
+                        </option>
+                      @endforeach
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
           <div class="col-sm-12">
             <div class="form-group">
-              <label>{{ $name }}<span class="text-danger">*</span></label>
+              <label>クラス名<span class="text-danger">*</span></label>
               <input name="name" type="text" class="form-control" required>
             </div>
           </div>
