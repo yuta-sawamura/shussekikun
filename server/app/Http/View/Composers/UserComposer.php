@@ -3,14 +3,10 @@
 namespace App\Http\View\Composers;
 
 use App\User;
-use App\Models\Store;
-use App\Models\Category;
-use App\Models\Organization;
+use App\Models;
 use Illuminate\View\View;
 use Illuminate\Contracts\Auth\Guard;
-use App\Enums\User\Role;
-use App\Enums\User\Gender;
-use App\Enums\User\Status;
+use App\Enums\User as U;
 use Auth;
 
 class UserComposer
@@ -33,12 +29,12 @@ class UserComposer
     public function compose(View $view)
     {
         $view->with([
-            'roles' => Role::getInstances(),
-            'genders' => Gender::getInstances(),
-            'status' => Status::getInstances(),
-            'stores' => Store::where('organization_id', Auth::user()->organization_id)->pluck('name', 'id'),
-            'categories' => Category::where('organization_id', Auth::user()->organization_id)->pluck('name', 'id'),
-            'organizations' => Organization::pluck('name', 'id'),
+            'roles' => U\Role::getInstances(),
+            'genders' => U\Gender::getInstances(),
+            'status' => U\Status::getInstances(),
+            //'stores' => Models\Store::where('organization_id', Auth::user()->organization_id)->pluck('name', 'id'),
+            'categories' => Models\Category::where('organization_id', Auth::user()->organization_id)->pluck('name', 'id'),
+            'organizations' => Models\Organization::pluck('name', 'id'),
         ]);
     }
 }

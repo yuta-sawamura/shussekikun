@@ -7,6 +7,7 @@ use App\Http\ViewComposers\User\Agent as Agent;
 use App\Http\ViewComposers\User\FriendRecommendComposer;
 use App\Http\ViewComposers\User\Worker as Worker;
 use View;
+use App\Http\View\Composers as V;
 
 class ViewComposerServiceProvider extends ServiceProvider
 {
@@ -27,8 +28,9 @@ class ViewComposerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::composer(
-            'admin/user/*', 'App\Http\View\Composers\UserComposer'
-        );
+        View::composers([
+            V\UserComposer::class => 'admin/user/*',
+            V\StoreComposer::class => ['admin/user/*', 'admin/classwork/*'],
+        ]);
     }
 }
