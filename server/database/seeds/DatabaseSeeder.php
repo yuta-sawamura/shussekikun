@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             CategoriesTableSeeder::class,
             UsersTableSeeder::class,
             ClassworksTableSeeder::class,
+            SchedulesTableSeeder::class,
         ]);
     }
 }
