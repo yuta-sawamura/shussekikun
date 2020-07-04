@@ -17,8 +17,8 @@ class SchedulesTableSeeder extends Seeder
                 'store_id' => 1,
                 'classwork_id' => 1,
                 'day' => 1,
-                'start_at' => '10:00',
-                'end_at' => '11:30',
+                'start_at' => '21:00',
+                'end_at' => '22:00',
                 'created_at' => '2020-06-10 21:07:31',
                 'updated_at' => '2020-06-10 21:07:31'
             ],
@@ -27,13 +27,23 @@ class SchedulesTableSeeder extends Seeder
                 'store_id' => 1,
                 'classwork_id' => 1,
                 'day' => 1,
+                'start_at' => '10:00',
+                'end_at' => '11:30',
+                'created_at' => '2020-06-10 21:07:31',
+                'updated_at' => '2020-06-10 21:07:31'
+            ],
+            [
+                'id' => 3,
+                'store_id' => 1,
+                'classwork_id' => 1,
+                'day' => 2,
                 'start_at' => '21:00',
                 'end_at' => '22:00',
                 'created_at' => '2020-06-10 21:07:31',
                 'updated_at' => '2020-06-10 21:07:31'
             ],
             [
-                'id' => 3,
+                'id' => 4,
                 'store_id' => 2,
                 'classwork_id' => 2,
                 'day' => 2,
@@ -43,7 +53,7 @@ class SchedulesTableSeeder extends Seeder
                 'updated_at' => '2020-06-10 21:07:31'
             ],
             [
-                'id' => 4,
+                'id' => 5,
                 'store_id' => 3,
                 'classwork_id' => 3,
                 'day' => 4,
@@ -53,7 +63,7 @@ class SchedulesTableSeeder extends Seeder
                 'updated_at' => '2020-06-10 21:07:31'
             ],
             [
-                'id' => 5,
+                'id' => 6,
                 'store_id' => 3,
                 'classwork_id' => 4,
                 'day' => 5,
