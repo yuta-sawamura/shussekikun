@@ -4,7 +4,7 @@ namespace App\Enums;
 
 use BenSampo\Enum\Enum;
 
-final class Schedule extends Enum
+final class Day extends Enum
 {
     const Sun = 1;
     const Mon = 2;
@@ -16,9 +16,9 @@ final class Schedule extends Enum
 
     public static function getDescription($value): string
     {
-        foreach(Status::getValues() as $v) {
+        foreach(Day::getValues() as $v) {
             if ($value === $v) {
-                return __('enum.schedule' . strtolower(Schedule::getKey($v)));
+                return __('enum.day.' . strtolower(Day::getKey($v)));
             }
         }
         return self::getKey($value);
