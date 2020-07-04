@@ -31,6 +31,10 @@
               <form action="{{ url('/admin/class') }}">
                 <div class="form-row">
                   <div class="mb-2 col-md-3">
+                    <label for="keyword">キーワード</label>
+                    <input name="keyword" type="text" class="form-control" placeholder="キーワードを入力" value="{{ $params['keyword'] ?? null }}">
+                  </div>
+                  <div class="mb-2 col-md-3">
                     <label>店舗</label>
                     <select class="form-control" name="store">
                       <option selected="selected" value="">選択してください</option>
@@ -40,10 +44,6 @@
                         </option>
                       @endforeach
                     </select>
-                  </div>
-                  <div class="mb-2 col-md-3">
-                    <label for="keyword">クラス</label>
-                    <input name="keyword" type="text" class="form-control" placeholder="キーワードを入力" value="{{ $params['keyword'] ?? null }}">
                   </div>
                 </div>
                 <button type="submit" class="btn btn-primary mt-3">検索する</button>

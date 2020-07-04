@@ -38,6 +38,7 @@ class Classwork extends Model
     {
         if ($keyword) {
             $query->where('classworks.name', 'like', '%' . $keyword . '%');
+            $query->orWhere('stores.name', 'like', '%' . $keyword . '%');
         }
         return $query;
     }
