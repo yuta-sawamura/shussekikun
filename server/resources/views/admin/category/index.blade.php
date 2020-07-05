@@ -43,13 +43,13 @@
                           <tr role="row" class="odd">
                             <td>{{ $category->name }}</td>
                             <td>
-                              <button type="button" class="btn btn-outline-primary mb-2 mr-2" data-toggle="modal" data-target="#editModal">編集</button>
-                              <button type="button" class="btn btn-outline-danger mb-2 mr-2" data-toggle="modal" data-target="#attentionModal">削除</button>
+                              <button type="button" class="btn btn-outline-primary mb-2 mr-2" data-toggle="modal" data-target="#editModal{{ $category->id }}">編集</button>
+                              <button type="button" class="btn btn-outline-danger mb-2 mr-2" data-toggle="modal" data-target="#attentionModal{{ $category->id }}">削除</button>
                             </td>
                           </tr>
-                          @component('components.modals.admin.edit', ['name' => 'カテゴリー名', 'path' => '/admin/category/update/' . $category->id, 'value' => $category->name])
+                          @component('components.modals.admin.edit', ['name' => 'カテゴリー名', 'path' => '/admin/category/update/' . $category->id, 'value' => $category->name, 'id' => $category->id])
                           @endcomponent
-                          @component('components.modals.attention', ['title' => '関連データも全て削除されますが本当によろしいですか？', 'path' => '/admin/category/delete/' . $category->id])
+                          @component('components.modals.attention', ['title' => '関連データも全て削除されますが本当によろしいですか？', 'path' => '/admin/category/delete/' . $category->id, 'id' => $category->id])
                           @endcomponent
                         @endforeach
                       </tbody>

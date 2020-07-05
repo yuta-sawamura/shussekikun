@@ -186,11 +186,6 @@
   </div>
 </div>
 
-@component('components.modals.attention', ['path' => ''])
-@endcomponent
-@component('components.modals.input', ['name' => 'クラス名'])
-@endcomponent
-
 <script src="{{ asset('/plugins/apex/apexcharts.min.js') }}"></script>
 
 <script>

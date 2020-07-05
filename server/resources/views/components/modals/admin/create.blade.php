@@ -1,4 +1,4 @@
-<div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="inputModalLabel" aria-hidden="true">
+<div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <form action="{{ $path }}" method="post">
       @csrf

@@ -43,13 +43,13 @@
                           <tr role="row" class="odd">
                             <td>{{ $store->name }}</td>
                             <td>
-                              <button type="button" class="btn btn-outline-primary mb-2 mr-2" data-toggle="modal" data-target="#editModal">編集</button>
-                              <button type="button" class="btn btn-outline-danger mb-2 mr-2" data-toggle="modal" data-target="#attentionModal">削除</button>
+                              <button type="button" class="btn btn-outline-primary mb-2 mr-2" data-toggle="modal" data-target="#editModal{{ $store->id }}">編集</button>
+                              <button type="button" class="btn btn-outline-danger mb-2 mr-2" data-toggle="modal" data-target="#attentionModal{{ $store->id }}">削除</button>
                             </td>
                           </tr>
-                          @component('components.modals.admin.edit', ['name' => '店舗名', 'path' => '/admin/store/update/' . $store->id, 'value' => $store->name])
+                          @component('components.modals.admin.edit', ['name' => '店舗名', 'path' => '/admin/store/update/' . $store->id, 'value' => $store->name, 'id' => $store->id])
                           @endcomponent
-                          @component('components.modals.attention', ['title' => '関連データも全て削除されますが本当によろしいですか？', 'path' => '/admin/store/delete/' . $store->id])
+                          @component('components.modals.attention', ['title' => '関連データも全て削除されますが本当によろしいですか？', 'path' => '/admin/store/delete/' . $store->id, 'id' => $store->id])
                           @endcomponent
                         @endforeach
                       </tbody>

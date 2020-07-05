@@ -193,7 +193,7 @@
           </div>
           <div class="col-lg-12 text-right">
             @isset ($isEdit)
-              <button type="button" class="btn btn-danger mb-2 mt-5" data-toggle="modal" data-target="#attentionModal">削除</button>
+              <button type="button" class="btn btn-danger mb-2 mt-5" data-toggle="modal" data-target="#attentionModal{{ $user->id }}">削除</button>
             @endisset
             <button type="submit" id="user-submit" class="btn btn-primary mb-2 mt-5">保存</button>
           </div>

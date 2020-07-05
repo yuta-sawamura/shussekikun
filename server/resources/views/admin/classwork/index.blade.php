@@ -68,12 +68,12 @@
                             <td>{{ $classwork->name }}</td>
                             <td>
                               <button type="button" class="btn btn-outline-primary mb-2 mr-2" data-toggle="modal" data-target="#editModal{{ $classwork->id }}">編集</button>
-                              <button type="button" class="btn btn-outline-danger mb-2 mr-2" data-toggle="modal" data-target="#attentionModal">削除</button>
+                              <button type="button" class="btn btn-outline-danger mb-2 mr-2" data-toggle="modal" data-target="#attentionModal{{ $classwork->id }}">削除</button>
                             </td>
                           </tr>
-                          @component('components.modals.admin.classwork.edit', ['stores' => $stores, 'classwork' => $classwork])
+                          @component('components.modals.admin.classwork.edit', ['stores' => $stores, 'classwork' => $classwork, 'id' => $classwork->id])
                           @endcomponent
-                          @component('components.modals.attention', ['title' => '関連データも全て削除されますが本当によろしいですか？', 'path' => '/admin/class/delete/' . $classwork->id])
+                          @component('components.modals.attention', ['title' => '関連データも全て削除されますが本当によろしいですか？', 'path' => '/admin/class/delete/' . $classwork->id, 'id' => $classwork->id])
                           @endcomponent
                         @endforeach
                       </tbody>
