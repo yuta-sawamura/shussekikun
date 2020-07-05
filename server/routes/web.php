@@ -76,6 +76,7 @@ Route::group(['middleware' => ['auth', 'can:organization-admin-higher']], functi
         // スケジュール
         Route::prefix('schedule')->group(function () {
             Route::get('/', 'Admin\ScheduleController@index');
+            Route::post('store', 'Admin\ScheduleController@store');
         });
 
         // お知らせ

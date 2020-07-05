@@ -10,23 +10,23 @@
           </svg>
         </button>
         <div class="modal-body">
-            <div class="col-sm-12">
-              <div class="form-group">
-                <label>店舗<span class="text-danger">*</span></label>
-                <div class="row">
-                  <div class="col-md-12">
-                    <select class="form-control" name="store_id" required>
-                      <option selected="selected" value="">選択してください</option>
-                      @foreach($stores as $k => $v)
-                        <option value="{{ $k }}" }}>
-                          {{ $v }}
-                        </option>
-                      @endforeach
-                    </select>
-                  </div>
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label>店舗<span class="text-danger">*</span></label>
+              <div class="row">
+                <div class="col-md-12">
+                  <select class="form-control" name="store_id" required>
+                    <option selected="selected" value="">選択してください</option>
+                    @foreach($stores as $k => $v)
+                      <option value="{{ $k }}" }}>
+                        {{ $v }}
+                      </option>
+                    @endforeach
+                  </select>
                 </div>
               </div>
             </div>
+          </div>
           <div class="col-sm-12">
             <div class="form-group">
               <label>クラス名<span class="text-danger">*</span></label>

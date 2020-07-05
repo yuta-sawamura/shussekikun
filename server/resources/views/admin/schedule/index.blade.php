@@ -2,6 +2,8 @@
 @section('content')
 
 <div id="content" class="main-content">
+  @component('components.alerts.app')
+  @endcomponent
   <div class="layout-px-spacing">
     <div class="row layout-top-spacing layout-spacing">
       <div class="col-lg-12">
@@ -21,7 +23,7 @@
           </div>
           <div class="widget-content widget-content-area">
             <div class="col-md-12 text-right">
-              <button type="button" class="btn btn-outline-primary mb-2 mr-2" data-toggle="modal" data-target="#classModal">
+              <button type="button" class="btn btn-outline-primary mb-2 mr-2" data-toggle="modal" data-target="#createModal">
                 追加
               </button>
             </div>
@@ -113,5 +115,16 @@
     </div>
   </div>
 </div>
+
+@component('components.modals.admin.schedule.create', ['stores' => $stores, 'classworks' => $classworks, 'days' => $days])
+@endcomponent
+
+@section('js')
+<script>
+  $('.timepicker').timepicker({
+    'step': 15,
+  });
+</script>
+@endsection()
 
 @endsection()
