@@ -2,6 +2,8 @@
 @section('content')
 
 <div id="content" class="main-content">
+  @component('components.alerts.app')
+  @endcomponent
   <div class="layout-px-spacing">
     <div class="row layout-top-spacing layout-spacing">
       <div class="col-lg-12">

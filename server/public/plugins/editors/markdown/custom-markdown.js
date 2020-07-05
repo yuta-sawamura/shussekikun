@@ -1,15 +1,15 @@
 // Basic
 new SimpleMDE({
-	element: document.getElementById("demo1"),
-	spellChecker: false,
+  element: document.getElementById("news-content"),
+  spellChecker: false
 });
 
 // Autosaving
 new SimpleMDE({
-	element: document.getElementById("demo2"),
-	spellChecker: false,
-	autosave: {
-		enabled: true,
-		unique_id: "demo2",
-	},
+  element: document.getElementById("demo2"),
+  spellChecker: false,
+  autosave: {
+    enabled: true,
+    unique_id: "demo2"
+  }
 });

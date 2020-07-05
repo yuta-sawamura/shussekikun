@@ -85,6 +85,7 @@ Route::group(['middleware' => ['auth', 'can:organization-admin-higher']], functi
         Route::prefix('news')->group(function () {
             Route::get('/', 'Admin\NewsController@index');
             Route::get('create', 'Admin\NewsController@create');
+            Route::post('store', 'Admin\NewsController@store');
             Route::get('show', 'Admin\NewsController@show');
             Route::get('edit', 'Admin\NewsController@edit');
         });

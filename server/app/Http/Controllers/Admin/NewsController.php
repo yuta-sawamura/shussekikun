@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
 use App\Models\News;
-use Validator;
+use App\Http\Requests\Admin\NewsRequest;
 
 class NewsController extends Controller
 {
@@ -36,9 +36,16 @@ class NewsController extends Controller
         ]);
     }
 
-    public function create ()
+    public function create (Request $request)
     {
         return view('admin.news.create');
+    }
+
+    public function store (NewsRequest $request)
+    {
+        $news = new News;
+        $news->fill($request->validated())->save();
+        return redirect('/admin/news')->with('success_message', 'お知らせを追加しました。');
     }
 
     public function show ()
