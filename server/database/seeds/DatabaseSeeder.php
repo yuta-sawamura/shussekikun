@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             UsersTableSeeder::class,
             ClassworksTableSeeder::class,
             SchedulesTableSeeder::class,
+            NewsTableSeeder::class,
         ]);
     }
 }
