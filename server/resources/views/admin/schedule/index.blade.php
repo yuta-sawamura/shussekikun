@@ -92,10 +92,12 @@
                             <td>{{ $schedule->end_at }}</td>
                             <td>
                               <button type="button" class="btn btn-outline-primary mb-2 mr-2" data-toggle="modal" data-target="#editModal{{ $schedule->id }}">編集</button>
-                              <button type="button" class="btn btn-outline-danger mb-2 mr-2" data-toggle="modal" data-target="#attentionModal">削除</button>
+                              <button type="button" class="btn btn-outline-danger mb-2 mr-2" data-toggle="modal" data-target="#attentionModal{{ $schedule->id }}">削除</button>
                             </td>
                           </tr>
                           @component('components.modals.admin.schedule.edit', ['schedule' => $schedule, 'stores' => $stores, 'classworks' => $classworks, 'days' => $days])
+                          @endcomponent
+                          @component('components.modals.attention', ['title' => '関連データも全て削除されますが本当によろしいですか？', 'path' => '/admin/schedule/delete/' . $schedule->id, 'id' => $schedule->id])
                           @endcomponent
                         @endforeach
                       </tbody>

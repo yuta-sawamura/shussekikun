@@ -89,4 +89,25 @@ class ScheduleController extends Controller
         $schedule->fill($request->all())->save();
         return redirect('/admin/schedule')->with('success_message', 'スケジュールを編集しました。');
     }
+
+    public function delete (Request $request)
+    {
+        $schedule = Schedule::select(
+                'schedules.id',
+                'schedules.store_id',
+                'schedules.classwork_id',
+                'schedules.day',
+                'schedules.start_at',
+                'schedules.end_at',
+                'stores.organization_id',
+                'stores.name'
+            )
+            ->join('stores','stores.id','=','schedules.store_id')
+            ->where('schedules.id', $request->id)
+            ->where('stores.organization_id', Auth::user()->organization_id)
+            ->firstOrFail();
+        $schedule->delete();
+
+        return redirect('/admin/schedule')->with('success_message', 'スケジュールを削除しました。');
+    }
 }

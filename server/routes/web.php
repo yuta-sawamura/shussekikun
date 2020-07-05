@@ -78,6 +78,7 @@ Route::group(['middleware' => ['auth', 'can:organization-admin-higher']], functi
             Route::get('/', 'Admin\ScheduleController@index');
             Route::post('store', 'Admin\ScheduleController@store');
             Route::post('update/{id}', 'Admin\ScheduleController@update');
+            Route::post('delete/{id}', 'Admin\ScheduleController@delete');
         });
 
         // お知らせ
