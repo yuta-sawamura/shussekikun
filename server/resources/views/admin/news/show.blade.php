@@ -24,13 +24,13 @@
             <div class="col-md-12 text-right mb-4">
               <a href="{{ url('/admin/news/edit') }}" class="btn btn-outline-primary">編集</a>
             </div>
-            <h5 class="mb-4">休館のお知らせ</h5>
+            <p class="lead">{{ $news->name }}</p>
+            <p class="lead">{{ $news->title }}</p>
             <div class="table-responsive mb-4 style-1">
               <div id="style-1_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
                 <div class="row">
                   <div class="ql-editor" data-gramm="false" contenteditable="true" data-placeholder="Compose an epic...">
-                    <p>責任者が体調不良のため、4月22日~5月31日まで<strong>休館</strong>です。</p>
-                    <p>詳細は<span style="color: rgb(81, 83, 101);">改めて</span><u>メール</u>でもお送りしますのでご確認ください。</p>
+                    <p>{!! $news->mark_content !!}</p>
                   </div>
                 </div>
               </div>

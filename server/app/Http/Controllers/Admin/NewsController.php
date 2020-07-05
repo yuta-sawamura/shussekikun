@@ -48,9 +48,25 @@ class NewsController extends Controller
         return redirect('/admin/news')->with('success_message', 'お知らせを追加しました。');
     }
 
-    public function show ()
+    public function show (Request $request)
     {
-        return view('admin.news.show');
+        $news = News::select(
+                'news.id',
+                'news.store_id',
+                'news.title',
+                'news.content',
+                'news.created_at',
+                'stores.organization_id',
+                'stores.name'
+            )
+            ->join('stores','stores.id','=','news.store_id')
+            ->where('news.id', $request->id)
+            ->where('stores.organization_id', Auth::user()->organization_id)
+            ->firstOrFail();
+
+        return view('admin.news.show')->with([
+            'news' => $news
+        ]);
     }
 
     public function edit ()

@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use cebe\markdown\Markdown;
+use Illuminate\Support\HtmlString;
 
 class News extends Model
 {
@@ -42,5 +44,17 @@ class News extends Model
     public function scopeStoreFilter($query, $id = null)
     {
         if ($id) return $query->where('store_id', $id);
+    }
+
+    /**
+     * パース
+     */
+    public function parse() {
+        $parser = new Markdown();
+        return new HtmlString($parser->parse($this->content));
+    }
+
+    public function getMarkContentAttribute() {
+        return $this->parse();
     }
 }
