@@ -10,6 +10,12 @@ use App\Http\Requests\Admin\NewsRequest;
 
 class NewsController extends Controller
 {
+
+    public function __construct(News $news)
+    {
+        $this->news = $news;
+    }
+
     public function index (Request $request)
     {
         $params = $request->query();
@@ -50,19 +56,7 @@ class NewsController extends Controller
 
     public function show (Request $request)
     {
-        $news = News::select(
-                'news.id',
-                'news.store_id',
-                'news.title',
-                'news.content',
-                'news.created_at',
-                'stores.organization_id',
-                'stores.name'
-            )
-            ->join('stores','stores.id','=','news.store_id')
-            ->where('news.id', $request->id)
-            ->where('stores.organization_id', Auth::user()->organization_id)
-            ->firstOrFail();
+        $news = $this->news->findByIdOrFail(Auth::user()->organization_id, $request->id);
 
         return view('admin.news.show')->with([
             'news' => $news
@@ -71,19 +65,7 @@ class NewsController extends Controller
 
     public function edit (Request $request)
     {
-        $news = News::select(
-                'news.id',
-                'news.store_id',
-                'news.title',
-                'news.content',
-                'news.created_at',
-                'stores.organization_id',
-                'stores.name'
-            )
-            ->join('stores','stores.id','=','news.store_id')
-            ->where('news.id', $request->id)
-            ->where('stores.organization_id', Auth::user()->organization_id)
-            ->firstOrFail();
+        $news = $this->news->findByIdOrFail(Auth::user()->organization_id, $request->id);
 
         return view('admin.news.edit')->with([
             'news' => $news
@@ -92,19 +74,7 @@ class NewsController extends Controller
 
     public function update (NewsRequest $request)
     {
-        $news = News::select(
-                'news.id',
-                'news.store_id',
-                'news.title',
-                'news.content',
-                'news.created_at',
-                'stores.organization_id',
-                'stores.name'
-            )
-            ->join('stores','stores.id','=','news.store_id')
-            ->where('news.id', $request->id)
-            ->where('stores.organization_id', Auth::user()->organization_id)
-            ->firstOrFail();
+        $news = $this->news->findByIdOrFail(Auth::user()->organization_id, $request->id);
         $news->fill($request->all())->save();
 
         return redirect('/admin/news/show/' . $request->id)->with('success_message', 'お知らせを編集しました。');

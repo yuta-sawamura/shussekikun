@@ -57,4 +57,27 @@ class News extends Model
     public function getMarkContentAttribute() {
         return $this->parse();
     }
+
+    /**
+     * お知らせ取得関数
+     * @param int
+     * @param int
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function findByIdOrFail(int $organizationId, int $newsId)
+    {
+        return $this->select(
+            'news.id',
+            'news.store_id',
+            'news.title',
+            'news.content',
+            'news.created_at',
+            'stores.organization_id',
+            'stores.name'
+        )
+        ->join('stores','stores.id','=','news.store_id')
+        ->where('news.id', $newsId)
+        ->where('stores.organization_id', $organizationId)
+        ->firstOrFail();
+    }
 }
