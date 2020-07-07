@@ -15,4 +15,17 @@ class Category extends Model
         'name',
         'organization_id'
     ];
+
+    /**
+     * カテゴリー取得関数
+     * @param int
+     * @param int
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function findByIdOrFail(int $organizationId, int $categoryId)
+    {
+        return $this->where('organization_id', $organizationId)
+            ->where('id', $categoryId)
+            ->firstOrFail();
+    }
 }

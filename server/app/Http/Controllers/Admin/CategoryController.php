@@ -10,6 +10,11 @@ use Validator;
 
 class CategoryController extends Controller
 {
+    public function __construct(Category $category)
+    {
+        $this->category = $category;
+    }
+
     public function index ()
     {
         $categories = Category::where('organization_id', Auth::user()->organization_id)
@@ -46,9 +51,7 @@ class CategoryController extends Controller
             return redirect('/admin/category')->with('error_message', 'カテゴリーを編集できませんでした。');
         }
 
-        $category = Category::where('organization_id', Auth::user()->organization_id)
-            ->where('id', $request->id)
-            ->firstOrFail();
+        $category = $this->category->findByIdOrFail(Auth::user()->organization_id, $request->id);
         $category->fill($request->all())->save();
 
         return redirect('/admin/category')->with('success_message', 'カテゴリーを編集しました。');
@@ -56,9 +59,7 @@ class CategoryController extends Controller
 
     public function delete (Request $request)
     {
-        $category = Category::where('organization_id', Auth::user()->organization_id)
-            ->where('id', $request->id)
-            ->firstOrFail();
+        $category = $this->category->findByIdOrFail(Auth::user()->organization_id, $request->id);
         $category->delete();
 
         return redirect('/admin/category')->with('success_message', 'カテゴリーを削除しました。');
