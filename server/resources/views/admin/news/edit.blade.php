@@ -22,23 +22,7 @@
             </div>
           </div>
           <div class="widget-content widget-content-area">
-            <form action="">
-              <div class="form-group col-xl-4 col-md-12 col-sm-12 col-12">
-                <label for="">タイトル</label>
-                <input type="text" class="form-control" id="" placeholder="">
-              </div>
-              <div class="form-group col-xl-10 col-md-12 col-sm-12 col-12">
-                <label for="">本文</label>
-                <textarea id="demo1">
-# 休館お知らせ
-4月はコロナの影響で緊急事態宣のため休館です。
-                </textarea>
-              </div>
-              <div class="col-xl-10 col-md-12 col-sm-12 col-12 text-right">
-                <button type="button" class="btn btn-danger mb-2 mt-5" data-toggle="modal" data-target="#attentionModal">削除</button>
-                <button type="submit" class="btn btn-primary mb-2 mt-5">保存</button>
-              </div>
-            </form>
+            @include('admin.news._form')
           </div>
         </div>
       </div>
@@ -46,8 +30,8 @@
   </div>
 </div>
 
-@component('components.modals.attention', ['name' => '削除'])
-@endcomponent
+{{-- @component('components.modals.attention', ['name' => '削除'])
+@endcomponent --}}
 
 @endsection
 

@@ -69,8 +69,44 @@ class NewsController extends Controller
         ]);
     }
 
-    public function edit ()
+    public function edit (Request $request)
     {
-        return view('admin.news.edit');
+        $news = News::select(
+                'news.id',
+                'news.store_id',
+                'news.title',
+                'news.content',
+                'news.created_at',
+                'stores.organization_id',
+                'stores.name'
+            )
+            ->join('stores','stores.id','=','news.store_id')
+            ->where('news.id', $request->id)
+            ->where('stores.organization_id', Auth::user()->organization_id)
+            ->firstOrFail();
+
+        return view('admin.news.edit')->with([
+            'news' => $news
+        ]);
+    }
+
+    public function update (NewsRequest $request)
+    {
+        $news = News::select(
+                'news.id',
+                'news.store_id',
+                'news.title',
+                'news.content',
+                'news.created_at',
+                'stores.organization_id',
+                'stores.name'
+            )
+            ->join('stores','stores.id','=','news.store_id')
+            ->where('news.id', $request->id)
+            ->where('stores.organization_id', Auth::user()->organization_id)
+            ->firstOrFail();
+        $news->fill($request->all())->save();
+
+        return redirect('/admin/news/show/' . $request->id)->with('success_message', 'お知らせを編集しました。');
     }
 }

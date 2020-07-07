@@ -18,7 +18,7 @@
                 @csrf
                 <div class="info">
                   <h6>会員追加</h6>
-                  @include('admin.user._form');
+                  @include('admin.user._form')
                 </div>
               </form>
             </div>

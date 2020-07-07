@@ -2,6 +2,8 @@
 @section('content')
 
 <div id="content" class="main-content">
+  @component('components.alerts.app')
+  @endcomponent
   <div class="layout-px-spacing">
     <div class="row layout-top-spacing layout-spacing">
       <div class="col-lg-12">
@@ -22,7 +24,7 @@
           </div>
           <div class="widget-content widget-content-area">
             <div class="col-md-12 text-right mb-4">
-              <a href="{{ url('/admin/news/edit') }}" class="btn btn-outline-primary">編集</a>
+              <a href="{{ url('/admin/news/edit/' . $news->id) }}" class="btn btn-outline-primary">編集</a>
             </div>
             <p class="lead">{{ $news->name }}</p>
             <p class="lead">{{ $news->title }}</p>

@@ -87,7 +87,8 @@ Route::group(['middleware' => ['auth', 'can:organization-admin-higher']], functi
             Route::get('create', 'Admin\NewsController@create');
             Route::post('store', 'Admin\NewsController@store');
             Route::get('show/{id}', 'Admin\NewsController@show');
-            Route::get('edit', 'Admin\NewsController@edit');
+            Route::get('edit/{id}', 'Admin\NewsController@edit');
+            Route::post('update/{id}', 'Admin\NewsController@update');
         });
 
         // プレミアム会員
