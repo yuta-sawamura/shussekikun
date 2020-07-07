@@ -10,6 +10,11 @@ use Validator;
 
 class StoreController extends Controller
 {
+    public function __construct(Store $store)
+    {
+        $this->store = $store;
+    }
+
     public function index ()
     {
         $stores = Store::where('organization_id', Auth::user()->organization_id)
@@ -46,9 +51,7 @@ class StoreController extends Controller
             return redirect('/admin/store')->with('error_message', '店舗を編集できませんでした。');
         }
 
-        $store = Store::where('organization_id', Auth::user()->organization_id)
-            ->where('id', $request->id)
-            ->firstOrFail();
+        $store = $this->store->findByIdOrFail(Auth::user()->organization_id, $request->id);
         $store->fill($request->all())->save();
 
         return redirect('/admin/store')->with('success_message', '店舗を編集しました。');
@@ -56,9 +59,7 @@ class StoreController extends Controller
 
     public function delete (Request $request)
     {
-        $store = Store::where('organization_id', Auth::user()->organization_id)
-            ->where('id', $request->id)
-            ->firstOrFail();
+        $store = $this->store->findByIdOrFail(Auth::user()->organization_id, $request->id);
         $store->delete();
 
         return redirect('/admin/store')->with('success_message', '店舗を削除しました。');

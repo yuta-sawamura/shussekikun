@@ -16,4 +16,17 @@ class Store extends Model
         'name',
         'organization_id'
     ];
+
+    /**
+     * 店舗取得関数
+     * @param int
+     * @param int
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function findByIdOrFail(int $organizationId, int $storeId)
+    {
+        return $this->where('organization_id', $organizationId)
+        ->where('id', $storeId)
+        ->firstOrFail();
+    }
 }
