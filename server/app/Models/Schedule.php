@@ -92,4 +92,28 @@ class Schedule extends Model
     {
         if ($id) return $query->where('schedules.day', $id);
     }
+
+    /**
+     * スケジュール取得関数
+     * @param int
+     * @param int
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function findByIdOrFail(int $organizationId, int $scheduleId)
+    {
+        return $this->select(
+            'schedules.id',
+            'schedules.store_id',
+            'schedules.classwork_id',
+            'schedules.day',
+            'schedules.start_at',
+            'schedules.end_at',
+            'stores.organization_id',
+            'stores.name'
+        )
+        ->join('stores','stores.id','=','schedules.store_id')
+        ->where('schedules.id', $scheduleId)
+        ->where('stores.organization_id', $organizationId)
+        ->firstOrFail();
+    }
 }

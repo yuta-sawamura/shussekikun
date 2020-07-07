@@ -10,6 +10,11 @@ use Validator;
 
 class ScheduleController extends Controller
 {
+    public function __construct(Schedule $schedule)
+    {
+        $this->schedule = $schedule;
+    }
+
     public function index (Request $request)
     {
         $params = $request->query();
@@ -71,20 +76,7 @@ class ScheduleController extends Controller
             return redirect('/admin/schedule')->with('error_message', 'スケジュールを編集できませんでした。');
         }
 
-        $schedule = Schedule::select(
-                'schedules.id',
-                'schedules.store_id',
-                'schedules.classwork_id',
-                'schedules.day',
-                'schedules.start_at',
-                'schedules.end_at',
-                'stores.organization_id',
-                'stores.name'
-            )
-            ->join('stores','stores.id','=','schedules.store_id')
-            ->where('schedules.id', $request->id)
-            ->where('stores.organization_id', Auth::user()->organization_id)
-            ->firstOrFail();
+        $schedule = $this->schedule->findByIdOrFail(Auth::user()->organization_id, $request->id);
 
         $schedule->fill($request->all())->save();
         return redirect('/admin/schedule')->with('success_message', 'スケジュールを編集しました。');
@@ -92,20 +84,7 @@ class ScheduleController extends Controller
 
     public function delete (Request $request)
     {
-        $schedule = Schedule::select(
-                'schedules.id',
-                'schedules.store_id',
-                'schedules.classwork_id',
-                'schedules.day',
-                'schedules.start_at',
-                'schedules.end_at',
-                'stores.organization_id',
-                'stores.name'
-            )
-            ->join('stores','stores.id','=','schedules.store_id')
-            ->where('schedules.id', $request->id)
-            ->where('stores.organization_id', Auth::user()->organization_id)
-            ->firstOrFail();
+        $schedule = $this->schedule->findByIdOrFail(Auth::user()->organization_id, $request->id);
         $schedule->delete();
 
         return redirect('/admin/schedule')->with('success_message', 'スケジュールを削除しました。');
