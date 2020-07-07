@@ -9,7 +9,7 @@
           <ul class="breadcrumb">
             <li class="mb-2"><a href="{{ url('/admin') }}">ホーム</a></li>
             <li class="mb-2"><a href="{{ url('/admin/news/') }}">お知らせ一覧</a></li>
-            <li class="mb-2"><a href="{{ url('/admin/news/show') }}">お知らせ詳細</a></li>
+            <li class="mb-2"><a href="{{ url('/admin/news/show/' . $news->id) }}">お知らせ詳細</a></li>
             <li class="active mb-2"><a href="">お知らせ編集</a></li>
           </ul>
         </div>
@@ -22,7 +22,7 @@
             </div>
           </div>
           <div class="widget-content widget-content-area">
-            @include('admin.news._form')
+            @include('admin.news._form', ['isEdit' => true])
           </div>
         </div>
       </div>
@@ -30,8 +30,8 @@
   </div>
 </div>
 
-{{-- @component('components.modals.attention', ['name' => '削除'])
-@endcomponent --}}
+@component('components.modals.attention', ['title' => '関連データも全て削除されますが本当によろしいですか？', 'path' => '/admin/news/delete/' . $news->id, 'id' => $news->id])
+@endcomponent
 
 @endsection
 

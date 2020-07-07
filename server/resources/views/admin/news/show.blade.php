@@ -26,9 +26,9 @@
             <div class="col-md-12 text-right mb-4">
               <a href="{{ url('/admin/news/edit/' . $news->id) }}" class="btn btn-outline-primary">編集</a>
             </div>
-            <p class="lead">{{ $news->name }}</p>
+            <p>{{ $news->name }}</p>
             <p class="lead">{{ $news->title }}</p>
-            <div class="table-responsive mb-4 style-1">
+            <div class="table-responsive my-4 style-1">
               <div id="style-1_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
                 <div class="row">
                   <div class="ql-editor" data-gramm="false" contenteditable="true" data-placeholder="Compose an epic...">

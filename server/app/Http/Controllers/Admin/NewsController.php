@@ -79,4 +79,12 @@ class NewsController extends Controller
 
         return redirect('/admin/news/show/' . $request->id)->with('success_message', 'お知らせを編集しました。');
     }
+
+    public function delete (Request $request)
+    {
+        $news = $this->news->findByIdOrFail(Auth::user()->organization_id, $request->id);
+        $news->delete();
+
+        return redirect('/admin/news')->with('success_message', 'お知らせを削除しました。');
+    }
 }
