@@ -14,6 +14,11 @@ use App\Http\Requests\Admin\UserRequest;
 
 class UserController extends Controller
 {
+    public function __construct(User $user)
+    {
+        $this->user = $user;
+    }
+
     public function index (Request $request)
     {
         $params = $request->query();
@@ -47,10 +52,7 @@ class UserController extends Controller
 
     public function show (Request $request)
     {
-        $user = User::where('id', $request->id)
-            ->where('role', '!=', Role::System)
-            ->where('organization_id', Auth::user()->organization_id)
-            ->firstOrFail();
+        $user = $this->user->findByIdOrFail(Auth::user()->organization_id, $request->id);
 
         return view('admin.user.show')->with([
             'user' => $user
@@ -59,10 +61,7 @@ class UserController extends Controller
 
     public function edit (Request $request)
     {
-        $user = User::where('id', $request->id)
-            ->where('role', '!=', Role::System)
-            ->where('organization_id', Auth::user()->organization_id)
-            ->firstOrFail();
+        $user = $this->user->findByIdOrFail(Auth::user()->organization_id, $request->id);
 
         return view('admin.user.edit')->with([
             'user' => $user
@@ -71,9 +70,7 @@ class UserController extends Controller
 
     public function update (UserRequest $request)
     {
-        $user = User::where('organization_id', Auth::user()->organization_id)
-            ->where('id', $request->id)
-            ->firstOrFail();
+        $user = $this->user->findByIdOrFail(Auth::user()->organization_id, $request->id);
         $user->fill($request->validated())->save();
 
         return redirect('/admin/user/show/' . $request->id)->with('success_message', '会員情報を編集しました。');
@@ -81,10 +78,7 @@ class UserController extends Controller
 
     public function delete (Request $request)
     {
-        $user = User::where('id', $request->id)
-            ->where('role', '!=', Role::System)
-            ->where('organization_id', Auth::user()->organization_id)
-            ->firstOrFail();
+        $user = $this->user->findByIdOrFail(Auth::user()->organization_id, $request->id);
         $user->delete();
 
         return redirect('/admin/user')->with('success_message', '会員を削除しました。');

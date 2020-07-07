@@ -10,7 +10,6 @@ use App\Http\Requests\Admin\NewsRequest;
 
 class NewsController extends Controller
 {
-
     public function __construct(News $news)
     {
         $this->news = $news;

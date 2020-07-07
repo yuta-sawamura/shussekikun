@@ -173,4 +173,18 @@ class User extends Authenticatable
         }
         return $query;
     }
+
+    /**
+     * 会員取得関数
+     * @param int
+     * @param int
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function findByIdOrFail(int $organizationId, int $userId)
+    {
+        return $this->where('id', $userId)
+        ->where('role', '!=', Role::System)
+        ->where('organization_id', $organizationId)
+        ->firstOrFail();
+    }
 }
