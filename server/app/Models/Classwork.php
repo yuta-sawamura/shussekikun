@@ -42,4 +42,19 @@ class Classwork extends Model
         }
         return $query;
     }
+
+    /**
+     * クラス取得関数
+     * @param int
+     * @param int
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function findByIdOrFail(int $organizationId, int $classworkId)
+    {
+        return $this->select('classworks.id', 'classworks.name', 'classworks.store_id', 'stores.organization_id', 'stores.name as store_name')
+            ->join('stores','stores.id','=','classworks.store_id')
+            ->where('classworks.id', $classworkId)
+            ->where('stores.organization_id', $organizationId)
+            ->firstOrFail();
+    }
 }

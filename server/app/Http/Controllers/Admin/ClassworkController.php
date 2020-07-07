@@ -10,6 +10,11 @@ use Validator;
 
 class ClassworkController extends Controller
 {
+    public function __construct(Classwork $classwork)
+    {
+        $this->classwork = $classwork;
+    }
+
     public function index (Request $request)
     {
         $params = $request->query();
@@ -54,11 +59,7 @@ class ClassworkController extends Controller
             return redirect('/admin/class')->with('error_message', 'クラスを編集できませんでした。');
         }
 
-        $classwork = Classwork::select('classworks.id', 'classworks.name', 'classworks.store_id', 'stores.organization_id', 'stores.name as store_name')
-            ->join('stores','stores.id','=','classworks.store_id')
-            ->where('classworks.id', $request->id)
-            ->where('stores.organization_id', Auth::user()->organization_id)
-            ->firstOrFail();
+        $classwork = $this->classwork->findByIdOrFail(Auth::user()->organization_id, $request->id);
         $classwork->fill($request->all())->save();
 
         return redirect('/admin/class')->with('success_message', 'クラスを編集しました。');
@@ -66,11 +67,7 @@ class ClassworkController extends Controller
 
     public function delete (Request $request)
     {
-        $classwork = Classwork::select('classworks.id', 'classworks.name', 'classworks.store_id', 'stores.organization_id', 'stores.name as store_name')
-            ->join('stores','stores.id','=','classworks.store_id')
-            ->where('classworks.id', $request->id)
-            ->where('stores.organization_id', Auth::user()->organization_id)
-            ->firstOrFail();
+        $classwork = $this->classwork->findByIdOrFail(Auth::user()->organization_id, $request->id);
         $classwork->delete();
 
         return redirect('/admin/class')->with('success_message', 'クラスを削除しました。');
