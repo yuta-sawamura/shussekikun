@@ -35,9 +35,8 @@ class CategoryController extends Controller
             return redirect('/admin/category')->with('error_message', 'カテゴリーを追加できませんでした。');
         }
 
-        $category = new Category;
         $request['organization_id'] = Auth::user()->organization_id;
-        $category->fill($request->all())->save();
+        $this->category->fill($request->all())->save();
 
         return redirect('/admin/category')->with('success_message', 'カテゴリーを追加しました。');
     }

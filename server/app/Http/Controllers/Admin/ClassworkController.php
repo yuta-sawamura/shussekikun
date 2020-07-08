@@ -42,9 +42,7 @@ class ClassworkController extends Controller
         if ($validator->fails()) {
             return redirect('/admin/class')->with('error_message', 'クラスを追加できませんでした。');
         }
-
-        $classwork = new Classwork;
-        $classwork->fill($request->all())->save();
+        $this->classwork->fill($request->all())->save();
 
         return redirect('/admin/class')->with('success_message', 'クラスを追加しました。');
     }

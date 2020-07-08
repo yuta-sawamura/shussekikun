@@ -48,8 +48,7 @@ class NewsController extends Controller
 
     public function store (NewsRequest $request)
     {
-        $news = new News;
-        $news->fill($request->validated())->save();
+        $this->news->fill($request->validated())->save();
         return redirect('/admin/news')->with('success_message', 'お知らせを追加しました。');
     }
 

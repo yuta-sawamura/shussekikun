@@ -45,8 +45,7 @@ class UserController extends Controller
 
     public function store (UserRequest $request)
     {
-        $user = new User;
-        $user->fill($request->validated())->save();
+        $this->user->fill($request->validated())->save();
         return redirect('/admin/user')->with('success_message', '会員を追加しました。');
     }
 

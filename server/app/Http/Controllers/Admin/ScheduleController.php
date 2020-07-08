@@ -58,8 +58,7 @@ class ScheduleController extends Controller
             return redirect('/admin/schedule')->with('error_message', 'スケジュールを追加できませんでした。');
         }
 
-        $schedule = new Schedule;
-        $schedule->fill($request->all())->save();
+        $this->schedule->fill($request->all())->save();
         return redirect('/admin/schedule')->with('success_message', 'スケジュールを追加しました。');
     }
 

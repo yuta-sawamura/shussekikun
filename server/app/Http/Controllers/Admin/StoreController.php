@@ -35,9 +35,8 @@ class StoreController extends Controller
             return redirect('/admin/store')->with('error_message', '店舗を追加できませんでした。');
         }
 
-        $store = new Store;
         $request['organization_id'] = Auth::user()->organization_id;
-        $store->fill($request->all())->save();
+        $this->store->fill($request->all())->save();
 
         return redirect('/admin/store')->with('success_message', '店舗を追加しました。');
     }
