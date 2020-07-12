@@ -11,6 +11,8 @@
 |
 */
 
+URL::forceScheme('https');
+
 Route::group(['middleware' => 'auth'], function() {
     // トップ
     Route::get('/', 'HomeController@index');
