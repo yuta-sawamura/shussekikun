@@ -18,3 +18,5 @@ ENV PATH $PATH:/composer/vendor/bin
 WORKDIR /var/www
 
 RUN composer global require "laravel/installer"
+
+COPY php.ini /usr/local/etc/php/
