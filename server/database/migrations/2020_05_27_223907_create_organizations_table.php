@@ -16,6 +16,7 @@ class CreateOrganizationsTable extends Migration
         Schema::create('organizations', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name', 50)->comment('組織名');
+            $table->boolean('premium_flg')->nullable()->comment('プレミアム会員フラグ');
             $table->timestamps();
         });
     }

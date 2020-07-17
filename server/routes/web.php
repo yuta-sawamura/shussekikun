@@ -51,6 +51,11 @@ Route::group(['middleware' => ['auth', 'can:organization-admin-higher']], functi
             Route::post('delete/{id}', 'Admin\UserController@delete');
         });
 
+        // プレミアム
+        Route::get('premium', 'Admin\SubscriptionController@index');
+        Route::post('subscription/subscribe', 'Admin\SubscriptionController@subscribe');
+        Route::post('subscription/cancel', 'Admin\SubscriptionController@cancel');
+
         // 店舗
         Route::prefix('store')->group(function () {
             Route::get('/', 'Admin\StoreController@index');
@@ -93,9 +98,6 @@ Route::group(['middleware' => ['auth', 'can:organization-admin-higher']], functi
             Route::post('update/{id}', 'Admin\NewsController@update');
             Route::post('delete/{id}', 'Admin\NewsController@delete');
         });
-
-        // プレミアム会員
-        Route::get('premium', 'Admin\UserController@premium');
     });
   // ユーザ一覧
   Route::get('/account', 'AccountController@index')->name('account.index');

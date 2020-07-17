@@ -82,9 +82,4 @@ class UserController extends Controller
 
         return redirect('/admin/user')->with('success_message', '会員を削除しました。');
     }
-
-    public function premium ()
-    {
-        return view('admin.user.premium');
-    }
 }

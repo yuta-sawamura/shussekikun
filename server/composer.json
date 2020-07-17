@@ -13,6 +13,7 @@
         "bensampo/laravel-enum": "^1.37",
         "cebe/markdown": "^1.2",
         "fideloper/proxy": "^4.0",
+        "laravel/cashier": "~9.0",
         "laravel/framework": "^6.2",
         "laravel/tinker": "^2.0",
         "laravelcollective/html": "^6.1",
