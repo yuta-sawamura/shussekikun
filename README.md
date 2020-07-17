@@ -77,11 +77,7 @@ Docker | Nginx | GitHub | CircleCI
 
 ■ER図
 
-![ER図](https://user-images.githubusercontent.com/29622529/86188099-83cde580-bb78-11ea-9739-42ba775f8f84.jpg)
-
-■DB定義書
-
-https://docs.google.com/spreadsheets/d/1wt3V8w0pTHa2evWwitPKhLXX5lrj0CnDgDHrJkFX_ks/edit?usp=sharing
+![ER図](https://user-images.githubusercontent.com/29622529/87788307-1f996a00-c878-11ea-9951-c1f0336ece5d.jpg)
 
 ## Git flow
 
