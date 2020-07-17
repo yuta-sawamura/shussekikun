@@ -31,6 +31,10 @@ class CreateUsersTable extends Migration
             $table->date('birth')->comment('誕生日');
             $table->unsignedTinyInteger('role')->comment('権限(1:システム管理者  3:組織管理者 5:共有アカウント 9:一般アカウント)');
             $table->string('password', 255)->nullable()->comment('パスワード');
+            $table->string('stripe_id')->nullable()->collation('utf8mb4_bin');
+            $table->string('card_brand')->nullable();
+            $table->string('card_last_four', 4)->nullable();
+            $table->timestamp('trial_ends_at')->nullable();
             $table->unsignedSmallInteger('status')->comment('状態(1:継続 2:退会)');
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();

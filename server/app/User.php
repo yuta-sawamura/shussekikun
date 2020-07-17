@@ -12,11 +12,11 @@ use App\Enums\User\Role;
 use App\Enums\User\Gender;
 use App\Enums\User\Status;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Laravel\Cashier\Billable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
-    use SoftDeletes;
+    use Notifiable, SoftDeletes, Billable;
 
     protected $dates = ['deleted_at'];
 
