@@ -20,7 +20,7 @@ Route::group(['middleware' => 'auth'], function() {
     // 会員
     Route::prefix('user')->group(function() {
         Route::get('/', 'UserController@index');
-        Route::get('show', 'UserController@show');
+        Route::get('show/{id}', 'UserController@show');
     });
 
     // ランキング
@@ -99,8 +99,6 @@ Route::group(['middleware' => ['auth', 'can:organization-admin-higher']], functi
             Route::post('delete/{id}', 'Admin\NewsController@delete');
         });
     });
-  // ユーザ一覧
-  Route::get('/account', 'AccountController@index')->name('account.index');
 });
 
 Auth::routes([

@@ -19,20 +19,20 @@
               <h3 class="">会員詳細</h3>
             </div>
             <div class="text-center user-info">
-              <img src="{{ asset('/img/90x90.jpg') }}" alt="avatar">
-              <p class="">澤村 勇太(サワムラ ユウタ)</p>
+              <img alt="profile-img" src="{{ $user->S3_url }}" style="height: 100px; width: 100px">
+              <p>{{ $user->full_name }} ({{ $user->full_name_kana }})</p>
             </div>
             <div class="user-info-list">
               <div class="">
                 <ul class="contacts-block list-unstyled">
                   <li class="contacts-block__item">
-                    <p>カテゴリー： 一般</p>
+                    <p>カテゴリー： {{ $user->category->name ?? null }}</p>
                   </li>
                   <li class="contacts-block__item">
-                    <p>性別： 男</p>
+                    <p>性別： {{ $user->gender_name }}</p>
                   </li>
                   <li class="contacts-block__item">
-                    <p>登録日： 2020-01-01</p>
+                    <p>追加日： {{ $user->created_at->format('Y-m-d') }}</p>
                   </li>
                   <li class="contacts-block__item">
                     <p>年間出席ランキング： 8位</p>

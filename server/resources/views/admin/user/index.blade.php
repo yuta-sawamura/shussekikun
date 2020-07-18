@@ -78,11 +78,8 @@
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-sm-12 col-md-7">
-                    <div class="dataTables_paginate paging_simple_numbers">
-                      {{ $users->links() }}
-                    </div>
-                  </div>
+                  @component('components.paginate', ['pagination' => $users])
+                  @endcomponent
                 </div>
               </div>
             </div>
