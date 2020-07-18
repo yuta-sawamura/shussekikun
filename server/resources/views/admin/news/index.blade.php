@@ -56,11 +56,7 @@
                             <td>{{ $v->title }}</td>
                             <td>{{ $v->created_at->format('Y-m-d') }}</td>
                             <td>
-                              @isset ($admin)
-                                <a href="{{ url('/admin/news/show/' . $v->id) }}" class="btn btn-outline-primary mb-2 mr-2">詳細</a>
-                              @else
-                                <a href="{{ url('/news/show/' . $v->id) }}" class="btn btn-outline-primary mb-2 mr-2">詳細</a>
-                              @endisset
+                              <a href="{{ url('/admin/news/show/' . $v->id) }}" class="btn btn-outline-primary mb-2 mr-2">詳細</a>
                             </td>
                           </tr>
                         @endforeach

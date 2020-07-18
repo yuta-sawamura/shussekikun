@@ -21,13 +21,13 @@
             </div>
           </div>
           <div class="widget-content widget-content-area">
-            <h5 class="mb-4">休館のお知らせ</h5>
-            <div class="table-responsive mb-4 style-1">
-              <div id="style-1_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer mt-4">
+            <p class="lead">{{ $news->title }}</p>
+            <hr>
+            <div class="table-responsive my-4 style-1">
+              <div id="style-1_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
                 <div class="row">
                   <div class="ql-editor" data-gramm="false" contenteditable="true" data-placeholder="Compose an epic...">
-                    <p>責任者が体調不良のため、4月22日~5月31日まで<strong>休館</strong>です。</p>
-                    <p>詳細は<span style="color: rgb(81, 83, 101);">改めて</span><u>メール</u>でもお送りしますのでご確認ください。</p>
+                    <p>{!! $news->mark_content !!}</p>
                   </div>
                 </div>
               </div>

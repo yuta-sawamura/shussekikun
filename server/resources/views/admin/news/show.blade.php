@@ -23,11 +23,12 @@
             </div>
           </div>
           <div class="widget-content widget-content-area">
-            <div class="col-md-12 text-right mb-4">
+            <div class="col-md-12 text-right">
               <a href="{{ url('/admin/news/edit/' . $news->id) }}" class="btn btn-outline-primary">編集</a>
             </div>
             <p>{{ $news->name }}</p>
             <p class="lead">{{ $news->title }}</p>
+            <hr>
             <div class="table-responsive my-4 style-1">
               <div id="style-1_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
                 <div class="row">

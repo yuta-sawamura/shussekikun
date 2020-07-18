@@ -29,7 +29,7 @@ Route::group(['middleware' => 'auth'], function() {
     // お知らせ
     Route::prefix('news')->group(function() {
         Route::get('/', 'NewsController@index');
-        Route::get('show', 'NewsController@show');
+        Route::get('show/{id}', 'NewsController@show');
     });
 });
 

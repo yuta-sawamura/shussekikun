@@ -3,16 +3,53 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
+use App\Models\News;
 
 class NewsController extends Controller
 {
-    public function index ()
+    public function index (Request $request)
     {
-        return view('news.index');
+        $params = $request->query();
+
+        $news = News::select(
+                'news.id',
+                'news.store_id',
+                'news.title',
+                'news.content',
+                'news.created_at',
+                'stores.organization_id',
+                'stores.name'
+            )
+            ->join('stores','stores.id','=','news.store_id')
+            ->where('stores.id', Auth::user()->store_id)
+            ->serachKeyword($params['keyword'] ?? null)
+            ->storeFilter($params['store'] ?? null)
+            ->orderBy('news.id', 'desc')
+            ->paginate(20);
+
+        return view('news.index')->with([
+            'news' => $news,
+            'params' => $params,
+        ]);
     }
 
-    public function show ()
+    public function show (Request $request)
     {
-        return view('news.show');
+        $news = News::select(
+                'news.id',
+                'news.store_id',
+                'news.title',
+                'news.content',
+                'news.created_at'
+            )
+            ->join('stores','stores.id','=','news.store_id')
+            ->where('news.id', $request->id)
+            ->where('stores.id', Auth::user()->store_id)
+            ->firstOrFail();
+
+        return view('news.show')->with([
+            'news' => $news
+        ]);
     }
 }

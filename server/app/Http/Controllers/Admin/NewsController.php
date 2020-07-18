@@ -24,9 +24,7 @@ class NewsController extends Controller
                 'news.store_id',
                 'news.title',
                 'news.content',
-                'news.created_at',
-                'stores.organization_id',
-                'stores.name'
+                'news.created_at'
             )
             ->join('stores','stores.id','=','news.store_id')
             ->where('stores.organization_id', Auth::user()->organization_id)
