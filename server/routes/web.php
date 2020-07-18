@@ -13,10 +13,10 @@
 
 URL::forceScheme('https');
 
-Route::group(['middleware' => 'auth'], function() {
-    // トップ
-    Route::get('/', 'HomeController@index');
+// トップ
+Route::get('/', 'HomeController@index');
 
+Route::group(['middleware' => 'auth'], function() {
     // 会員
     Route::prefix('user')->group(function() {
         Route::get('/', 'UserController@index');

@@ -4,13 +4,13 @@
         <line x1="3" y1="12" x2="21" y2="12"></line>
         <line x1="3" y1="6" x2="21" y2="6"></line>
         <line x1="3" y1="18" x2="21" y2="18"></line>
-      </svg></a>
-
+      </svg>
+    </a>
     <ul class="navbar-item flex-row navbar-title">
       <li class="nav-item align-self-center page-heading">
         <div class="page-header">
           <div class="page-title">
-            <h3>出席</h3>
+            <h3>{{ \Auth::user()->store->name ?? null }}</h3>
           </div>
         </div>
       </li>
