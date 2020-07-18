@@ -25,18 +25,12 @@
                 <div class="widget-content widget-content-area">
                   <form>
                     <div class="form-row">
-                      <div class="form-group col-md-4">
-                        <label for="name">名前</label>
-                        <input type="text" class="form-control" placeholder="キーワードを入力">
-                      </div>
-                      <div class="col-md-2">
-                        <label for="inputState">カテゴリー</label>
-                        <select id="inputState" class="form-control">
-                          <option selected="">一般</option>
-                          <option>少年</option>
-                          <option>親子</option>
-                        </select>
-                      </div>
+                      @component('components.search.keyword', ['params' => $params])
+                      @endcomponent
+                      @component('components.search.category', ['params' => $params, 'categories' => $categories])
+                      @endcomponent
+                      @component('components.search.gender', ['params' => $params, 'genders' => $genders])
+                      @endcomponent
                     </div>
                     <button type="submit" class="btn btn-primary mt-3">検索する</button>
                   </form>

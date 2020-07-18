@@ -29,43 +29,14 @@
                 <div class="widget-content widget-content-area">
                   <form action="{{url('/admin/user')}}">
                     <div class="form-row">
-                      <div class="mb-2 col-md-3">
-                        <label for="keyword">名前</label>
-                        <input name="keyword" type="text" class="form-control" placeholder="キーワードを入力" value="{{ $params['keyword'] ?? null }}">
-                      </div>
-                      <div class="mb-2 col-md-3">
-                        <label>店舗</label>
-                        <select class="form-control" name="store">
-                          <option selected="selected" value="">選択してください</option>
-                          @foreach($stores as $k => $v)
-                            <option value="{{ $k }}" {{ isset($params['store']) && $params['store'] == $k ? 'selected': null }}>
-                              {{ $v }}
-                            </option>
-                          @endforeach
-                        </select>
-                      </div>
-                      <div class="mb-2 col-md-3">
-                        <label>カテゴリー</label>
-                        <select class="form-control" name="category">
-                          <option selected="selected" value="">選択してください</option>
-                          @foreach($categories as $k => $v)
-                            <option value="{{ $k }}" {{ isset($params['category']) && $params['category'] == $k ? 'selected': null }}>
-                              {{ $v }}
-                            </option>
-                          @endforeach
-                        </select>
-                      </div>
-                      <div class="mb-2 col-md-3">
-                        <label>性別</label>
-                        <select class="form-control" name="gender">
-                          <option selected="selected" value="">選択してください</option>
-                          @foreach($genders as $gender)
-                            <option value="{{ $gender->value }}" {{ isset($params['gender']) && $params['gender'] == $gender->value ? 'selected': null }}>
-                              {{ $gender->description }}
-                            </option>
-                          @endforeach
-                        </select>
-                      </div>
+                      @component('components.search.keyword', ['params' => $params])
+                      @endcomponent
+                      @component('components.search.store', ['params' => $params, 'stores' => $stores])
+                      @endcomponent
+                      @component('components.search.category', ['params' => $params, 'categories' => $categories])
+                      @endcomponent
+                      @component('components.search.gender', ['params' => $params, 'genders' => $genders])
+                      @endcomponent
                     </div>
                     <button type="submit" class="btn btn-primary mt-3">検索する</button>
                   </form>

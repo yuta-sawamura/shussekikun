@@ -32,39 +32,12 @@
                 <div class="widget-content widget-content-area">
                   <form action="{{url('/admin/schedule')}}">
                     <div class="form-row">
-                      <div class="mb-2 col-md-3">
-                        <label>店舗</label>
-                        <select class="form-control" name="store">
-                          <option selected="selected" value="">選択してください</option>
-                          @foreach($stores as $k => $v)
-                            <option value="{{ $k }}" {{ isset($params['store']) && $params['store'] == $k ? 'selected': null }}>
-                              {{ $v }}
-                            </option>
-                          @endforeach
-                        </select>
-                      </div>
-                      <div class="mb-2 col-md-3">
-                        <label>クラス</label>
-                        <select class="form-control" name="classwork">
-                          <option selected="selected" value="">選択してください</option>
-                          @foreach($classworks as $k => $v)
-                            <option value="{{ $k }}" {{ isset($params['classwork']) && $params['classwork'] == $k ? 'selected': null }}>
-                              {{ $v }}
-                            </option>
-                          @endforeach
-                        </select>
-                      </div>
-                      <div class="mb-2 col-md-3">
-                        <label>曜日</label>
-                        <select class="form-control" name="day">
-                          <option selected="selected" value="">選択してください</option>
-                          @foreach($days as $day)
-                            <option value="{{ $day->value }}" {{ isset($params['day']) && $params['day'] == $day->value ? 'selected': null }}>
-                              {{ $day->description }}
-                            </option>
-                          @endforeach
-                        </select>
-                      </div>
+                      @component('components.search.store', ['params' => $params, 'stores' => $stores])
+                      @endcomponent
+                      @component('components.search.classwork', ['params' => $params, 'classworks' => $classworks])
+                      @endcomponent
+                      @component('components.search.day', ['params' => $params, 'days' => $days])
+                      @endcomponent
                     </div>
                     <button type="submit" class="btn btn-primary mt-3">検索する</button>
                   </form>
