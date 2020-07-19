@@ -21,7 +21,7 @@ class NewsController extends Controller
                 'stores.organization_id',
                 'stores.name'
             )
-            ->join('stores','stores.id','=','news.store_id')
+            ->join('stores', 'stores.id', '=', 'news.store_id')
             ->where('stores.id', Auth::user()->store_id)
             ->serachKeyword($params['keyword'] ?? null)
             ->storeFilter($params['store'] ?? null)
@@ -43,7 +43,7 @@ class NewsController extends Controller
                 'news.content',
                 'news.created_at'
             )
-            ->join('stores','stores.id','=','news.store_id')
+            ->join('stores', 'stores.id', '=', 'news.store_id')
             ->where('news.id', $request->id)
             ->where('stores.id', Auth::user()->store_id)
             ->firstOrFail();

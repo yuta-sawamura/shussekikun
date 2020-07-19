@@ -29,7 +29,7 @@ class ScheduleController extends Controller
                 'stores.organization_id',
                 'stores.name'
             )
-            ->join('stores','stores.id','=','schedules.store_id')
+            ->join('stores', 'stores.id', '=', 'schedules.store_id')
             ->where('stores.organization_id', Auth::user()->organization_id)
             ->storeFilter($params['store'] ?? null)
             ->classworkFilter($params['classwork'] ?? null)

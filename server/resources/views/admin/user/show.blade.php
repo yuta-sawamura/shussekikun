@@ -98,9 +98,9 @@
                     <table id="style-1" class="table style-1 table-hover non-hover dataTable no-footer" role="grid" aria-describedby="style-1_info" style="table-layout: fixed; width: 100%;">
                       <thead>
                         <tr role="row">
-                          <th tabindex="0" aria-controls="style-1" rowspan="1" colspan="1" style="width: 100px;">クラス</th>
-                          <th tabindex="0" aria-controls="style-1" rowspan="1" colspan="1" style="width: 160px;">出席日時</th>
-                          <th tabindex="0" aria-controls="style-1" rowspan="1" colspan="1" style="width: 200px;"></th>
+                          <th style="width: 100px;">クラス</th>
+                          <th style="width: 160px;">出席日時</th>
+                          <th style="width: 200px;"></th>
                         </tr>
                       </thead>
                       <tbody>
@@ -163,14 +163,14 @@
                   <div class="col-sm-12 col-md-7">
                     <div class="dataTables_paginate paging_simple_numbers" id="style-1_paginate">
                       <ul class="pagination">
-                        <li class="paginate_button page-item previous disabled" id="style-1_previous"><a href="#" aria-controls="style-1" data-dt-idx="0" tabindex="0" class="page-link"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left">
+                        <li class="paginate_button page-item previous disabled" id="style-1_previous"><a href="#" aria-controls="style-1" data-dt-idx="0" class="page-link"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left">
                               <line x1="19" y1="12" x2="5" y2="12"></line>
                               <polyline points="12 19 5 12 12 5"></polyline>
                             </svg></a>
                         </li>
-                        <li class="paginate_button page-item active"><a href="#" aria-controls="style-1" data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
-                        <li class="paginate_button page-item "><a href="#" aria-controls="style-1" data-dt-idx="2" tabindex="0" class="page-link">2</a></li>
-                        <li class="paginate_button page-item next" id="style-1_next"><a href="#" aria-controls="style-1" data-dt-idx="3" tabindex="0" class="page-link"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right">
+                        <li class="paginate_button page-item active"><a href="#" aria-controls="style-1" data-dt-idx="1" class="page-link">1</a></li>
+                        <li class="paginate_button page-item "><a href="#" aria-controls="style-1" data-dt-idx="2" class="page-link">2</a></li>
+                        <li class="paginate_button page-item next" id="style-1_next"><a href="#" aria-controls="style-1" data-dt-idx="3" class="page-link"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right">
                               <line x1="5" y1="12" x2="19" y2="12"></line>
                               <polyline points="12 5 19 12 12 19"></polyline>
                             </svg></a>

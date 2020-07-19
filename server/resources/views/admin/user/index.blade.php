@@ -46,13 +46,13 @@
                     <table id="style-1" class="table style-1 table-hover non-hover dataTable no-footer" role="grid" aria-describedby="style-1_info" style="table-layout: fixed; width: 100%;">
                       <thead>
                         <tr role="row">
-                          <th tabindex="0" aria-controls="style-1" rowspan="1" colspan="1" style="width: 150px;">名前</th>
-                          <th tabindex="0" aria-controls="style-1" rowspan="1" colspan="1" style="width: 60px;">画像</th>
-                          <th tabindex="0" aria-controls="style-1" rowspan="1" colspan="1" style="width: 130px;">権限</th>
-                          <th tabindex="0" aria-controls="style-1" rowspan="1" colspan="1" style="width: 80px;">店舗</th>
-                          <th tabindex="0" aria-controls="style-1" rowspan="1" colspan="1" style="width: 100px;">カテゴリー</th>
-                          <th tabindex="0" aria-controls="style-1" rowspan="1" colspan="1" style="width: 60px;">性別</th>
-                          <th tabindex="0" aria-controls="style-1" rowspan="1" colspan="1" style="width: 105px;"></th>
+                          <th style="width: 150px;">名前</th>
+                          <th style="width: 60px;">画像</th>
+                          <th style="width: 130px;">権限</th>
+                          <th style="width: 80px;">店舗</th>
+                          <th style="width: 100px;">カテゴリー</th>
+                          <th style="width: 60px;">性別</th>
+                          <th style="width: 105px;"></th>
                         </tr>
                       </thead>
                       <tbody>

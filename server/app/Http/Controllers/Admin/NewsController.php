@@ -26,7 +26,7 @@ class NewsController extends Controller
                 'news.content',
                 'news.created_at'
             )
-            ->join('stores','stores.id','=','news.store_id')
+            ->join('stores', 'stores.id', '=', 'news.store_id')
             ->where('stores.organization_id', Auth::user()->organization_id)
             ->serachKeyword($params['keyword'] ?? null)
             ->storeFilter($params['store'] ?? null)

@@ -111,7 +111,7 @@ class Schedule extends Model
             'stores.organization_id',
             'stores.name'
         )
-        ->join('stores','stores.id','=','schedules.store_id')
+        ->join('stores', 'stores.id', '=', 'schedules.store_id')
         ->where('schedules.id', $scheduleId)
         ->where('stores.organization_id', $organizationId)
         ->firstOrFail();

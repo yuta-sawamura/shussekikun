@@ -75,7 +75,7 @@ class News extends Model
             'stores.organization_id',
             'stores.name'
         )
-        ->join('stores','stores.id','=','news.store_id')
+        ->join('stores', 'stores.id', '=', 'news.store_id')
         ->where('news.id', $newsId)
         ->where('stores.organization_id', $organizationId)
         ->firstOrFail();
