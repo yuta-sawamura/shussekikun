@@ -38,8 +38,21 @@
       line-height: 22px; }
       .modal-content .modal-body p:last-child {
         margin-bottom: 0; }
-      .modal-content .modal-body p:not(:last-child) {
-        margin-bottom: 10px; }
+    .modal-content .modal-body ul {
+      padding: 0;
+      margin-top: 0;
+      margin-bottom: 1rem; }
+      .modal-content .modal-body ul li {
+        display: flex; }
+        .modal-content .modal-body ul li svg {
+          width: 17px;
+          color: #acb0c3; }
+        .modal-content .modal-body ul li p {
+          line-height: 2;
+          margin-bottom: 0; }
+        .modal-content .modal-body ul li .close {
+          padding: 1rem 1rem;
+          margin: -1rem -1rem -1rem auto; }
   .modal-content .modal-footer {
     border-top: 1px solid #e0e6ed; }
     .modal-content .modal-footer button.btn {

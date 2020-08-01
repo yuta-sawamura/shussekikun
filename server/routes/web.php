@@ -13,10 +13,16 @@
 
 URL::forceScheme('https');
 
-// トップ
+// ホーム
 Route::get('/', 'HomeController@index');
 
 Route::group(['middleware' => 'auth'], function() {
+    // 出席
+    Route::prefix('attendance')->group(function() {
+        Route::post('store', 'AttendanceController@store');
+        Route::post('store_multiple', 'AttendanceController@storeMultiple');
+    });
+
     // 会員
     Route::prefix('user')->group(function() {
         Route::get('/', 'UserController@index');

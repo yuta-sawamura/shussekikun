@@ -26,18 +26,12 @@
                 <div class="widget-content widget-content-area">
                   <form>
                     <div class="form-row">
-                      <div class="form-group col-md-4">
-                        <label for="name">名前</label>
-                        <input type="text" class="form-control" placeholder="キーワードを入力">
-                      </div>
-                      <div class="col-md-2">
-                        <label for="inputState">カテゴリー</label>
-                        <select id="inputState" class="form-control">
-                          <option selected="">一般</option>
-                          <option>少年</option>
-                          <option>親子</option>
-                        </select>
-                      </div>
+                      @component('components.search.keyword', ['params' => $params])
+                      @endcomponent
+                      @component('components.search.category', ['params' => $params, 'categories' => $categories])
+                      @endcomponent
+                      @component('components.search.gender', ['params' => $params, 'genders' => $genders])
+                      @endcomponent
                     </div>
                     <button type="submit" class="btn btn-primary mt-3">検索する</button>
                   </form>
@@ -48,75 +42,58 @@
                     <table id="style-1" class="table style-1 table-hover non-hover dataTable no-footer" role="grid" aria-describedby="style-1_info" style="table-layout: fixed; width: 100%;">
                       <thead>
                         <tr role="row">
-                          <th class="checkbox-column sorting_asc" rowspan="1" colspan="1" aria-label=" Record no. " style="width: 30px;"><label class="new-control new-checkbox checkbox-outline-primary m-auto">
-                              <input type="checkbox" class="new-control-input chk-parent select-customers-info" id="customer-all-info">
-                              <span class="new-control-indicator"></span><span style="visibility:hidden">c</span>
-                            </label></th>
-                          <th tabindex="0" aria-controls="style-1" rowspan="1" colspan="1" style="width: 150px;">名前</th>
-                          <th tabindex="0" aria-controls="style-1" rowspan="1" colspan="1" style="width: 80px;">画像</th>
-                          <th tabindex="0" aria-controls="style-1" rowspan="1" colspan="1" style="width: 110px;">カテゴリー</th>
-                          <th tabindex="0" aria-controls="style-1" rowspan="1" colspan="1" style="width: 60px;">性別</th>
-                          <th tabindex="0" aria-controls="style-1" rowspan="1" colspan="1" style="width: 105px;"></th>
+                          <th style="width: 30px;"></th>
+                          <th style="width: 150px;">名前</th>
+                          <th style="width: 80px;">画像</th>
+                          <th style="width: 110px;">カテゴリー</th>
+                          <th style="width: 60px;">性別</th>
+                          <th style="width: 105px;"></th>
                         </tr>
                       </thead>
                       <tbody>
-                        @for ($i = 1; $i <= 10; $i++)
-                          <tr role="row" class="odd">
-                            <td class="checkbox-column sorting_1"><label class="new-control new-checkbox checkbox-outline-primary  m-auto">
-                                <input type="checkbox" class="new-control-input child-chk select-customers-info" id="customer-all-info">
-                                <span class="new-control-indicator"></span><span style="visibility:hidden">c</span>
-                              </label></td>
-                            <td class="">澤村 勇太<br>サワムラ ユウタ</td>
-                            <td class="">
-                              <a class="profile-img" href="javascript: void(0);">
-                                <img alt="product" src="{{ asset('/img/90x90.jpg') }}">
-                              </a>
-                            </td>
-                            <td>一般</td>
-                            <td>男</td>
-                            <td class="text-center">
-                              <div class="dropdown custom-dropdown">
-                                <div class="text-center">
-                                  <button type="button" class="btn btn-primary mb-2 mr-2" data-toggle="modal" data-target="#attendanceModal">
-                                    出席
-                                  </button>
+                        @if (\Auth::check())
+                          @foreach ($users as $user)
+                            <tr role="row" class="odd">
+                              <td class="checkbox-column sorting_1"><label class="new-control new-checkbox checkbox-outline-primary  m-auto">
+                                  <input type="checkbox" name="check" class="new-control-input child-chk select-customers-info" id="checkbox-{{ $user->id }}">
+                                  <span class="new-control-indicator"></span><span style="visibility:hidden">c</span>
+                                </label>
+                              </td>
+                              <td>{{ $user->full_name }}<br>{{ $user->full_name_kana }}</td>
+                              <td>
+                                <a class="profile-img" href="javascript: void(0);">
+                                  <img alt="profile-img" src="{{ $user->S3_url }}">
+                                </a>
+                              </td>
+                              <td>{{ $user->category->name ?? null }}</td>
+                              <td>{{ $user->gender_name }}</td>
+                              <td class="text-center">
+                                <div class="dropdown custom-dropdown">
+                                  <div class="text-center">
+                                    <button type="button" class="btn btn-primary mb-2 mr-2" data-toggle="modal" data-target="#attendanceModal{{ $user->id }}">
+                                      出席
+                                    </button>
+                                  </div>
                                 </div>
-                              </div>
-                            </td>
-                          </tr>
-                        @endfor
+                              </td>
+                              <input type="hidden" name="full_name" value="{{ $user->full_name }}">
+                              <input type="hidden" name="user_id" value="{{ $user->id }}">
+                            </tr>
+                            @include('components.modals.attendance', ['user' => $user])
+                          @endforeach
+                        @endif
                       </tbody>
                     </table>
-                    <button type="button" class="float-right btn btn-primary mb-2 mr-2" data-toggle="modal" data-target="#attendanceModal">
+                    <button type="button" id="attendanceMultiple" class="float-right btn btn-primary mb-2 mr-2" data-toggle="modal" data-target="#attendanceMultipleModal">
                       一括出席
                     </button>
                   </div>
-
-                  @include('components.modals.attendance')
-
                 </div>
                 <div class="row">
-                  <div class="col-sm-12 col-md-5">
-                    <div class="dataTables_info" id="style-1_info" role="status" aria-live="polite">表示ページ 1 of 2</div>
-                  </div>
-                  <div class="col-sm-12 col-md-7">
-                    <div class="dataTables_paginate paging_simple_numbers" id="style-1_paginate">
-                      <ul class="pagination">
-                        <li class="paginate_button page-item previous disabled" id="style-1_previous"><a href="#" aria-controls="style-1" data-dt-idx="0" tabindex="0" class="page-link"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left">
-                              <line x1="19" y1="12" x2="5" y2="12"></line>
-                              <polyline points="12 19 5 12 12 5"></polyline>
-                            </svg></a>
-                        </li>
-                        <li class="paginate_button page-item active"><a href="#" aria-controls="style-1" data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
-                        <li class="paginate_button page-item "><a href="#" aria-controls="style-1" data-dt-idx="2" tabindex="0" class="page-link">2</a></li>
-                        <li class="paginate_button page-item next" id="style-1_next"><a href="#" aria-controls="style-1" data-dt-idx="3" tabindex="0" class="page-link"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right">
-                              <line x1="5" y1="12" x2="19" y2="12"></line>
-                              <polyline points="12 5 19 12 12 19"></polyline>
-                            </svg></a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
+                  @if (\Auth::check())
+                    @component('components.paginate', ['pagination' => $users])
+                    @endcomponent
+                  @endif
                 </div>
               </div>
             </div>
@@ -128,4 +105,29 @@
 </div>
 
 @include('components.modals.login')
+@include('components.modals.attendanceMultiple')
+
+@section('js')
+<script>
+  $(function(){
+    $('[name="check"]').change(function() {
+      const full_name = $(this).parents('tr').find('input:hidden[name="full_name"]').val();
+      const user_id = $(this).parents('tr').find('input:hidden[name="user_id"]').val();
+      if ($(this).is(':checked')) {
+        $('#attendanceMultipleModal').find('ul').append(
+          '<li id="userId-' + user_id + '" class="mb-2 attendance-multiple-close"><p>' + full_name + '</p><button type="button" class="close" aria-label="Close"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button><input type="hidden" name="users[][user_id]" value="' + user_id + '"></li>'
+        );
+      } else {
+        $('#userId-' + user_id).remove();
+      }
+    });
+    $(document).on("click", ".attendance-multiple-close", function () {
+      const user_id = $(this).find('[type="hidden"]').val();
+      $('#checkbox-' + user_id).prop('checked', false);
+      $(this).remove();
+    });
+  });
+</script>
+@endsection()
+
 @endsection

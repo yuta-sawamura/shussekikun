@@ -1,4 +1,4 @@
-<div class="modal fade" id="attendanceModal{{ $user->id }}" tabindex="-1" role="dialog" aria-labelledby="attendanceModal" aria-modal="true">
+<div class="modal fade" id="attendanceMultipleModal" tabindex="-1" role="dialog" aria-labelledby="attendanceMultipleModal" aria-modal="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -7,14 +7,10 @@
           <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
         </button>
       </div>
-      <form action="{{ url('/attendance/store') }}" method="post">
+      <form action="{{ url('/attendance/store_multiple') }}" method="post">
         @csrf
         <div class="modal-body">
           <ul>
-            <li class="mb-2">
-              <p>{{ $user->full_name }}</p>
-            </li>
-            <input type="hidden" name="user_id" value="{{ $user->id }}">
           </ul>
           <div class="form-group">
             <label>スケジュール<span class="text-danger">*</span></label>
