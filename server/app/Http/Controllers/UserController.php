@@ -66,8 +66,9 @@ class UserController extends Controller
             ->get();
 
         if ($yearUsers->isNotEmpty()) {
-            $yearTitle = $this->user->getNumbering($yearUsers)['title'];
-            $yearCount = $this->user->getNumbering($yearUsers)['count'];
+            $yearUsers = $this->user->getNumbering($yearUsers);
+            $yearTitle = $yearUsers['title'];
+            $yearCount = $yearUsers['count'];
         }
 
         $monthlyUsers = User::select(DB::raw('count(*) as attendance_count, users.id as userid, users.sei, users.mei'))
@@ -83,8 +84,9 @@ class UserController extends Controller
             ->get();
 
         if ($monthlyUsers->isNotEmpty()) {
-            $monthlyTitle = $this->user->getNumbering($monthlyUsers)['title'];
-            $monthlyCount = $this->user->getNumbering($monthlyUsers)['count'];
+            $monthlyUsers = $this->user->getNumbering($monthlyUsers);
+            $monthlyTitle = $monthlyUsers['title'];
+            $monthlyCount = $monthlyUsers['count'];
         }
 
         return view('user.rank')->with([
