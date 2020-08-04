@@ -42,12 +42,12 @@ class User extends Authenticatable
         'status'
     ];
 
-    Public function store()
+    public function store()
     {
         return $this->belongsTo(Store::class);
     }
 
-    Public function category()
+    public function category()
     {
         return $this->belongsTo(Category::class);
     }
@@ -94,7 +94,7 @@ class User extends Authenticatable
      */
     public function getS3UrlAttribute()
     {
-        return $this->img ? Storage::disk('s3')->url($this->img): asset('/img/no-image.jpg');
+        return $this->img ? Storage::disk('s3')->url($this->img) : asset('/img/no-image.jpg');
     }
 
     /**
@@ -122,6 +122,33 @@ class User extends Authenticatable
     public function getStatusNameAttribute()
     {
         return Status::getDescription($this->status);
+    }
+
+    /**
+     * 採番関数
+     * @param object
+     * @return array
+     */
+    public function getNumbering(object $users): array
+    {
+        $rank = 1;
+        foreach ($users as $key => $user) {
+            // 1つ目の要素
+            if ($key === 0) {
+                $user['rank'] = $rank;
+            } else {
+                // 1つ前の要素と比較
+                if ($users[$key - 1]['attendance_count'] === $user['attendance_count']) {
+                    $user['rank'] = $users[$key - 1]['rank'];
+                } else {
+                    $user['rank'] = $rank;
+                }
+            }
+            $title[] = $user['rank'] . '位 ' . $user['sei'] . ' ' . $user['mei'];
+            $count[] = $user['attendance_count'];
+            $rank++;
+        }
+        return ['title' => $title, 'count' => $count];
     }
 
     /**
@@ -183,8 +210,8 @@ class User extends Authenticatable
     public function findByIdOrFail(int $organizationId, int $userId)
     {
         return $this->where('id', $userId)
-        ->where('role', '!=', Role::System)
-        ->where('organization_id', $organizationId)
-        ->firstOrFail();
+            ->where('role', '!=', Role::System)
+            ->where('organization_id', $organizationId)
+            ->firstOrFail();
     }
 }

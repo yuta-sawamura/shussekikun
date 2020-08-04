@@ -19,7 +19,7 @@ class AttendanceController extends Controller
         $this->today = Carbon::today()->format('Y-m-d');
     }
 
-    public function store (Request $request)
+    public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'user_id' => 'required|integer',
@@ -34,13 +34,13 @@ class AttendanceController extends Controller
             'schedule_id' => $request->schedule_id,
             'date' => $this->today
         ]);
-        $request['date'] = $today;
+        $request['date'] = $this->today;
         $attendance->fill($request->all())->save();
 
         return redirect('/')->with('success_message', '出席しました。');
     }
 
-    public function storeMultiple (Request $request)
+    public function storeMultiple(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'users.*.user_id' => 'required|integer',
@@ -56,7 +56,7 @@ class AttendanceController extends Controller
                 'schedule_id' => $request->schedule_id,
                 'date' => $this->today
             ]);
-            $request['date'] = $today;
+            $request['date'] = $this->today;
             $attendance->fill($request->all())->save();
         }
 

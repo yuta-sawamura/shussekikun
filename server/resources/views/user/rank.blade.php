@@ -14,14 +14,13 @@
         </div>
         <ul class="nav nav-tabs  mb-3 mt-3" id="simpletab" role="tablist">
           <li class="nav-item">
-            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">総合</a>
+            <a class="nav-link {{ !isset($params['category']) ? 'active' : null }}" href="#" onclick="submitForm('category')">総合</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">一般</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">少年</a>
-          </li>
+          @foreach($categories as $k => $category)
+            <li class="nav-item">
+              <a class="nav-link {{ isset($params['category']) && $params['category'] == $k ? 'active' : null }}" href="#" onclick="submitForm('category', {{ $k }})">{{ $category }}</a>
+            </li>
+          @endforeach
         </ul>
         <div class="statbox widget box box-shadow">
           <div class="widget-header">
@@ -31,8 +30,17 @@
               </div>
             </div>
             <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-              <p>2020年</p>
-              <a class="bs-tooltip" href="" title="前年">&lt;</a> &emsp; <a class="bs-tooltip" href="" title="翌年">&gt;</a>
+              <p>{{ isset($params['year']) ? $params['year'] : date('Y') }}年</p>
+              @php
+                if (isset($params['year'])):
+                  $lastYear = $params['year'] - 1;
+                  $nextYear = $params['year'] + 1;
+                else:
+                  $lastYear = date('Y') - 1;
+                  $nextYear = date('Y') + 1;
+                endif;
+              @endphp
+              <a class="bs-tooltip text-primary" href="#" onclick="submitForm('year', {{ $lastYear }})" title="前年">&lt;</a> &emsp; <a class="bs-tooltip text-primary" href="#" onclick="submitForm('year', {{ $nextYear }})" title="翌年">&gt;</a>
             </div>
           </div>
           <div class="widget-content widget-content-area">
@@ -50,8 +58,18 @@
               </div>
             </div>
             <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-              <p>2020年12年</p>
-              <a class="bs-tooltip" href="" title="前月">&lt;</a> &emsp; <a class="bs-tooltip" href="" title="翌月">&gt;</a>
+              <p>{{ (isset($params['year'])) ? $params['year'] : date('Y') }}年{{ (isset($params['month'])) ? $params['month'] : date('m') }}月</p>
+              @php
+                if (isset($params['month'])):
+                  $lastMonth = $params['month'] - 1;
+                  $nextMonth = $params['month'] + 1;
+                else:
+                  $lastMonth = date('m') - 1;
+                  $nextMonth = date('m') + 1;
+                endif;
+              @endphp
+              <a class="bs-tooltip text-primary" href="#" onclick="submitForm('month', {{ $lastMonth }})" title="前月">&lt;</a> &emsp; <a class="bs-tooltip text-primary" href="#" onclick="submitForm('month', {{ $nextMonth }})" title="翌月">&gt;</a>
+              {{-- <a class="bs-tooltip text-primary" href="#" onclick="submitForm('year', {{ $lastYear }})" title="前年">&lt;</a> &emsp; <a class="bs-tooltip text-primary" href="#" onclick="submitForm('year', {{ $nextYear }})" title="翌年">&gt;</a> --}}
             </div>
           </div>
           <div class="widget-content widget-content-area">
@@ -60,13 +78,26 @@
         </div>
       </div>
 
+      <form action="{{ url('/rank') }}" id="form">
+        <input type="hidden" name="category" value="{{ $params['category'] ?? null }}" id="category">
+        <input type="hidden" name="year" value="{{ $params['year'] ?? null }}" id="year">
+        <input type="hidden" name="month" value="{{ $params['month'] ?? null }}" id="month">
+      </form>
+
     </div>
   </div>
 </div>
 
-<script src="{{ asset('/plugins/apex/apexcharts.min.js') }}"></script>
-
 <script>
+  function submitForm(type, val = null) {
+    $('form').find('#' + type).val(val);
+    $('#form').submit();
+  }
+</script>
+<script src="{{ asset('/plugins/apex/apexcharts.min.js') }}"></script>
+<script>
+  const yearCount = @json($yearCount);
+  const yearTitle = @json($yearTitle);
   const sBar1 = {
     chart: {
       height: 450,
@@ -86,10 +117,13 @@
     },
     series: [{
       name: '年間出席回数',
-      data: [30, 25, 24, 21, 20, 15, 11, 10, 9]
+      data: yearCount
     }],
+    tooltip: {
+      enabled: false
+    },
     xaxis: {
-      categories: ['1位 澤村 勇太', '2位 澤村 勇太', '4位 澤村 勇太', '4位 澤村 勇太', '5位 澤村 勇太', '6位 澤村 勇太', '7位 澤村 勇太', '8位 澤村 勇太', '9位 澤村 勇太', '10位 澤村 勇太'],
+      categories: yearTitle,
       title: {
         text: '回数'
       }
@@ -103,6 +137,8 @@
 
   chart.render();
 
+  const monthlyCount = @json($monthlyCount);
+  const monthlyTitle = @json($monthlyTitle);
   const sBar2 = {
     chart: {
       height: 450,
@@ -121,10 +157,10 @@
     },
     series: [{
       name: '月間出席回数',
-      data: [30, 25, 24, 21, 20, 15, 11, 10, 9]
+      data: monthlyCount
     }],
     xaxis: {
-      categories: ['1位 澤村 勇太', '2位 澤村 勇太', '4位 澤村 勇太', '4位 澤村 勇太', '5位 澤村 勇太', '6位 澤村 勇太', '7位 澤村 勇太', '8位 澤村 勇太', '9位 澤村 勇太', '10位 澤村 勇太'],
+      categories: monthlyTitle,
       title: {
         text: '回数'
       }

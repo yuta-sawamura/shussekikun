@@ -130,4 +130,4 @@
 </script>
 @endsection()
 
-@endsection
+@endsection()
