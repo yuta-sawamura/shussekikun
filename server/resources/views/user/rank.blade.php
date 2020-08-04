@@ -4,7 +4,6 @@
 <div id="content" class="main-content">
   <div class="layout-px-spacing">
     <div class="row layout-spacing">
-      <!-- Content -->
       <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 layout-top-spacing">
         <div class="breadcrumb-five">
           <ul class="breadcrumb">
@@ -69,7 +68,6 @@
                 endif;
               @endphp
               <a class="bs-tooltip text-primary" href="#" onclick="submitForm('month', {{ $lastMonth }})" title="前月">&lt;</a> &emsp; <a class="bs-tooltip text-primary" href="#" onclick="submitForm('month', {{ $nextMonth }})" title="翌月">&gt;</a>
-              {{-- <a class="bs-tooltip text-primary" href="#" onclick="submitForm('year', {{ $lastYear }})" title="前年">&lt;</a> &emsp; <a class="bs-tooltip text-primary" href="#" onclick="submitForm('year', {{ $nextYear }})" title="翌年">&gt;</a> --}}
             </div>
           </div>
           <div class="widget-content widget-content-area">
@@ -88,12 +86,7 @@
   </div>
 </div>
 
-<script>
-  function submitForm(type, val = null) {
-    $('form').find('#' + type).val(val);
-    $('#form').submit();
-  }
-</script>
+<script src="{{ asset('/js/submit_form.js') }}"></script>
 <script src="{{ asset('/plugins/apex/apexcharts.min.js') }}"></script>
 <script>
   const yearCount = @json($yearCount);

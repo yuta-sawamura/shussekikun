@@ -11,6 +11,7 @@ use App\Enums\User\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\Admin\UserRequest;
+use Carbon\Carbon;
 
 class UserController extends Controller
 {
@@ -19,7 +20,7 @@ class UserController extends Controller
         $this->user = $user;
     }
 
-    public function index (Request $request)
+    public function index(Request $request)
     {
         $params = $request->query();
 
@@ -38,18 +39,18 @@ class UserController extends Controller
         ]);
     }
 
-    public function create (Request $request)
+    public function create(Request $request)
     {
         return view('admin.user.create');
     }
 
-    public function store (UserRequest $request)
+    public function store(UserRequest $request)
     {
         $this->user->fill($request->validated())->save();
         return redirect('/admin/user')->with('success_message', '会員を追加しました。');
     }
 
-    public function show (Request $request)
+    public function show(Request $request)
     {
         $user = $this->user->findByIdOrFail(Auth::user()->organization_id, $request->id);
 
@@ -58,7 +59,7 @@ class UserController extends Controller
         ]);
     }
 
-    public function edit (Request $request)
+    public function edit(Request $request)
     {
         $user = $this->user->findByIdOrFail(Auth::user()->organization_id, $request->id);
 
@@ -67,7 +68,7 @@ class UserController extends Controller
         ]);
     }
 
-    public function update (UserRequest $request)
+    public function update(UserRequest $request)
     {
         $user = $this->user->findByIdOrFail(Auth::user()->organization_id, $request->id);
         $user->fill($request->validated())->save();
@@ -75,11 +76,31 @@ class UserController extends Controller
         return redirect('/admin/user/show/' . $request->id)->with('success_message', '会員情報を編集しました。');
     }
 
-    public function delete (Request $request)
+    public function delete(Request $request)
     {
         $user = $this->user->findByIdOrFail(Auth::user()->organization_id, $request->id);
         $user->delete();
 
         return redirect('/admin/user')->with('success_message', '会員を削除しました。');
+    }
+
+    public function rank(Request $request)
+    {
+        $dt = Carbon::now();
+        $params = $request->query();
+        $totalUsersCount = User::where('organization_id', Auth::user()->organization_id)
+            ->where('role', Role::Normal)
+            ->count();
+        $workingUsers = User::select('users.id')
+            ->join('attendances', 'attendances.user_id', '=', 'users.id')
+            ->where('organization_id', Auth::user()->organization_id)
+            ->where('users.role', Role::Normal)
+            ->groupBy('users.id')
+            ->get();
+
+        return view('admin.user.rank')->with([
+            'totalUsersCount' => $totalUsersCount,
+            'workingUsersCount' => $workingUsers->count()
+        ]);
     }
 }

@@ -12,10 +12,7 @@
         </div>
         <ul class="nav nav-tabs  mb-3" id="simpletab" role="tablist">
           <li class="nav-item">
-            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">全店舗</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">新宿店</a>
+            <a class="nav-link active" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">新宿店</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">渋谷店</a>
@@ -27,20 +24,16 @@
         <div class="user-profile layout-spacing">
           <div class="widget-content widget-content-area">
             <div class="d-flex justify-content-between">
-              <h3 class="">全店舗</h3>
-            </div>
-            <div class="col-md-12 text-right">
-              <a href="{{ url('/admin/user') }}" class="btn btn-outline-primary">一覧</a>
+              <h3>全店舗</h3>
             </div>
             <div class="user-info-list">
-
-              <div class="">
+              <div>
                 <ul class="contacts-block list-unstyled">
                   <li class="contacts-block__item">
-                    <p>合計会員数： 420名</p>
+                    <p>合計会員数： {{ $totalUsersCount }}名</p>
                   </li>
                   <li class="contacts-block__item">
-                    <p>合計実働会員数： 320名</p>
+                    <p>合計実働会員数： {{ $workingUsersCount }}名</p>
                   </li>
                 </ul>
               </div>
@@ -58,7 +51,7 @@
             </div>
           </div>
           <div class="widget-content widget-content-area">
-            <div id="s-bar1" class=""></div>
+            <div id="s-bar1"></div>
           </div>
         </div>
       </div>
@@ -67,12 +60,12 @@
           <div class="widget-header">
             <div class="row">
               <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                <h4>【カテゴリー別】会員数・実働数</h4>
+                <h4>【新宿店カテゴリー別】会員数・実働数</h4>
               </div>
             </div>
           </div>
           <div class="widget-content widget-content-area">
-            <div id="s-bar2" class=""></div>
+            <div id="s-bar2"></div>
           </div>
         </div>
       </div>
@@ -81,12 +74,12 @@
           <div class="widget-header">
             <div class="row">
               <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                <h4>【年別】会員数・実働数</h4>
+                <h4>【新宿店年別】会員数・実働数</h4>
               </div>
             </div>
           </div>
           <div class="widget-content widget-content-area">
-            <div id="s-bar3" class=""></div>
+            <div id="s-bar3"></div>
           </div>
         </div>
       </div>
@@ -95,7 +88,7 @@
           <div class="widget-header">
             <div class="row">
               <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                <h4>【月別】会員数・実働数</h4>
+                <h4>【新宿店月別】会員数・実働数</h4>
               </div>
             </div>
             <div class="col-xl-12 col-md-12 col-sm-12 col-12">
@@ -104,16 +97,22 @@
             </div>
           </div>
           <div class="widget-content widget-content-area">
-            <div id="s-bar4" class=""></div>
+            <div id="s-bar4"></div>
           </div>
         </div>
       </div>
     </div>
+
+    <form action="{{ url('/admin/rank') }}" id="form">
+      <input type="hidden" name="category" value="{{ $params['category'] ?? null }}" id="category">
+      <input type="hidden" name="year" value="{{ $params['year'] ?? null }}" id="year">
+    </form>
+
   </div>
 </div>
 
+<script src="{{ asset('/js/submit_form.js') }}"></script>
 <script src="{{ asset('/plugins/apex/apexcharts.min.js') }}"></script>
-
 <script>
     const sBar1 = {
       chart: {

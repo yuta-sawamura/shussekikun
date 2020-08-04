@@ -16,15 +16,15 @@ URL::forceScheme('https');
 // ホーム
 Route::get('/', 'HomeController@index');
 
-Route::group(['middleware' => 'auth'], function() {
+Route::group(['middleware' => 'auth'], function () {
     // 出席
-    Route::prefix('attendance')->group(function() {
+    Route::prefix('attendance')->group(function () {
         Route::post('store', 'AttendanceController@store');
         Route::post('store_multiple', 'AttendanceController@storeMultiple');
     });
 
     // 会員
-    Route::prefix('user')->group(function() {
+    Route::prefix('user')->group(function () {
         Route::get('/', 'UserController@index');
         Route::get('show/{id}', 'UserController@show');
     });
@@ -33,7 +33,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('rank', 'UserController@rank');
 
     // お知らせ
-    Route::prefix('news')->group(function() {
+    Route::prefix('news')->group(function () {
         Route::get('/', 'NewsController@index');
         Route::get('show/{id}', 'NewsController@show');
     });
@@ -44,7 +44,7 @@ Route::group(['middleware' => ['auth', 'can:organization-admin-higher']], functi
     // 管理画面
     Route::prefix('admin')->group(function () {
         // ホーム
-        Route::get('/', 'Admin\HomeController@index');
+        Route::get('/', 'Admin\UserController@rank');
 
         // 会員
         Route::prefix('user')->group(function () {
