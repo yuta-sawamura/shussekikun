@@ -33,6 +33,13 @@ class StoresTableSeeder extends Seeder
                 'created_at' => '2020-06-10 21:07:31',
                 'updated_at' => '2020-06-10 21:07:31'
             ],
+            [
+                'id' => 4,
+                'organization_id' => 2,
+                'name' => '東中野店',
+                'created_at' => '2020-06-10 21:07:31',
+                'updated_at' => '2020-06-10 21:07:31'
+            ],
         ]);
     }
 }

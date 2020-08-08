@@ -26,6 +26,13 @@ class CategoriesTableSeeder extends Seeder
                 'created_at' => '2020-06-10 21:07:31',
                 'updated_at' => '2020-06-10 21:07:31'
             ],
+            [
+                'id' => 3,
+                'organization_id' => 2,
+                'name' => '高学年',
+                'created_at' => '2020-06-10 21:07:31',
+                'updated_at' => '2020-06-10 21:07:31'
+            ],
         ]);
     }
 }

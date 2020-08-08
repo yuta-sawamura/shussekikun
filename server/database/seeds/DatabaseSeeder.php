@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             ClassworksTableSeeder::class,
             SchedulesTableSeeder::class,
             NewsTableSeeder::class,
+            AttendancesTableSeeder::class,
         ]);
     }
 }

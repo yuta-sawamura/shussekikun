@@ -20,6 +20,10 @@ class CreateAttendancesTable extends Migration
             $table->unsignedBigInteger('schedule_id')->comment('スケジュールID');
             $table->foreign('schedule_id')->references('id')->on('schedules')->onDelete('cascade');
             $table->date('date')->comment('日付');
+            $table->unique(
+                ['user_id', 'schedule_id', 'date'],
+                'unique_userid_scheduleid_date'
+            );
             $table->timestamps();
         });
     }
