@@ -11,15 +11,11 @@
           </ul>
         </div>
         <ul class="nav nav-tabs  mb-3" id="simpletab" role="tablist">
-          <li class="nav-item">
-            <a class="nav-link active" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">新宿店</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">渋谷店</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">池袋店</a>
-          </li>
+          @foreach($stores as $k => $store)
+            <li class="nav-item">
+              <a class="nav-link {{ isset($params['store']) && $params['store'] == $k ? 'active' : null }}" href="#" onclick="submitForm('store', {{ $k }})">{{ $store }}</a>
+            </li>
+          @endforeach
         </ul>
         <div class="user-profile layout-spacing">
           <div class="widget-content widget-content-area">
@@ -30,10 +26,10 @@
               <div>
                 <ul class="contacts-block list-unstyled">
                   <li class="contacts-block__item">
-                    <p>合計会員数： {{ $totalUsersCount }}名</p>
+                    <p>累計会員数 {{ $totalUsersCount }}名</p>
                   </li>
                   <li class="contacts-block__item">
-                    <p>合計実働会員数： {{ $workingUsersCount }}名</p>
+                    <p>実働会員数： {{ $workingUsersCount }}名</p>
                   </li>
                 </ul>
               </div>
@@ -46,7 +42,7 @@
           <div class="widget-header">
             <div class="row">
               <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                <h4>【店舗別】会員数・実働数</h4>
+                <h4>{{ $stores[$params['store']] ?? null }}年別</h4>
               </div>
             </div>
           </div>
@@ -60,35 +56,7 @@
           <div class="widget-header">
             <div class="row">
               <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                <h4>【新宿店カテゴリー別】会員数・実働数</h4>
-              </div>
-            </div>
-          </div>
-          <div class="widget-content widget-content-area">
-            <div id="s-bar2"></div>
-          </div>
-        </div>
-      </div>
-      <div id="chartBar" class="col-xl-12 layout-spacing">
-        <div class="statbox widget box box-shadow">
-          <div class="widget-header">
-            <div class="row">
-              <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                <h4>【新宿店年別】会員数・実働数</h4>
-              </div>
-            </div>
-          </div>
-          <div class="widget-content widget-content-area">
-            <div id="s-bar3"></div>
-          </div>
-        </div>
-      </div>
-      <div id="chartBar" class="col-xl-12 layout-spacing">
-        <div class="statbox widget box box-shadow">
-          <div class="widget-header">
-            <div class="row">
-              <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                <h4>【新宿店月別】会員数・実働数</h4>
+                <h4>{{ $stores[$params['store']] ?? null }}月別</h4>
               </div>
             </div>
             <div class="col-xl-12 col-md-12 col-sm-12 col-12">
@@ -97,14 +65,14 @@
             </div>
           </div>
           <div class="widget-content widget-content-area">
-            <div id="s-bar4"></div>
+            <div id="s-bar2"></div>
           </div>
         </div>
       </div>
     </div>
 
-    <form action="{{ url('/admin/rank') }}" id="form">
-      <input type="hidden" name="category" value="{{ $params['category'] ?? null }}" id="category">
+    <form action="{{ url('/admin') }}" id="form">
+      <input type="hidden" name="store" value="{{ $params['store'] ?? null }}" id="store">
       <input type="hidden" name="year" value="{{ $params['year'] ?? null }}" id="year">
     </form>
 
@@ -114,181 +82,105 @@
 <script src="{{ asset('/js/submit_form.js') }}"></script>
 <script src="{{ asset('/plugins/apex/apexcharts.min.js') }}"></script>
 <script>
-    const sBar1 = {
-      chart: {
-        type: 'bar',
-        height: 330,
-        toolbar: {
-          show: false,
-        }
-      },
-      plotOptions: {
-        bar: {
-          horizontal: true,
-          dataLabels: {
-            position: 'top',
-          },
-        }
-      },
-      dataLabels: {
-        enabled: true,
-        offsetX: -6,
-        style: {
-          fontSize: '12px',
-          colors: ['#fff']
-        }
-      },
-      series: [{
-        name: '会員数',
-        data: [76, 85, 101]
-      }, {
-        name: '実働数',
-        data: [44, 55, 57]
-      }],
-      stroke: {
-        show: true,
-        width: 1,
+  const years = @json($yearUsers['years']);
+  const usersCount = @json($yearUsers['users_count']);
+  const workingUsersCount = @json($yearUsers['working_users_count']);
+  const joinUsersCount = @json($yearUsers['join_users_count']);
+  const cancelUsersCount = @json($yearUsers['cancel_users_count']);
+  const sBar1 = {
+    chart: {
+      type: 'bar',
+      height: 400,
+      toolbar: {
+        show: false,
+      }
+    },
+    plotOptions: {
+      bar: {
+        horizontal: true,
+        dataLabels: {
+          position: 'top',
+        },
+      }
+    },
+    dataLabels: {
+      enabled: true,
+      offsetX: -6,
+      style: {
+        fontSize: '12px',
         colors: ['#fff']
-      },
-      xaxis: {
-        categories: ['新宿店', '渋谷店', '池袋店'],
-      },
-    };
+      }
+    },
+    series: [{
+      name: '累計会員数',
+      data: usersCount
 
-    var chart = new ApexCharts(document.querySelector("#s-bar1"), sBar1);
-    chart.render();
+    }, {
+      name: '実働会員数',
+      data: workingUsersCount
+    }, {
+      name: '入会者数',
+      data: joinUsersCount
+    }, {
+      name: '退会者数',
+      data: cancelUsersCount
+    }],
+    stroke: {
+      show: true,
+      width: 1,
+      colors: ['#fff']
+    },
+    xaxis: {
+      categories: years,
+    },
+  };
 
-    const sBar2 = {
-      chart: {
-        type: 'bar',
-        height: 250,
-        toolbar: {
-          show: false,
-        }
-      },
-      plotOptions: {
-        bar: {
-          horizontal: true,
-          dataLabels: {
-            position: 'top',
-          },
-        }
-      },
-      dataLabels: {
-        enabled: true,
-        offsetX: -6,
-        style: {
-          fontSize: '12px',
-          colors: ['#fff']
-        }
-      },
-      series: [{
-        name: '会員数',
-        data: [76, 85]
-      }, {
-        name: '実働数',
-        data: [44, 55]
-      }],
-      stroke: {
-        show: true,
-        width: 1,
+  var chart = new ApexCharts(document.querySelector("#s-bar1"), sBar1);
+  chart.render();
+
+  const sBar2 = {
+    chart: {
+      type: 'bar',
+      height: 800,
+      toolbar: {
+        show: false,
+      }
+    },
+    plotOptions: {
+      bar: {
+        horizontal: true,
+        dataLabels: {
+          position: 'top',
+        },
+      }
+    },
+    dataLabels: {
+      enabled: true,
+      offsetX: -6,
+      style: {
+        fontSize: '14px',
         colors: ['#fff']
-      },
-      xaxis: {
-        categories: ['一般', '少年'],
-      },
-    };
+      }
+    },
+    series: [{
+      name: '会員数',
+      data: [76, 85, 101, 76, 85, 101, 76, 85, 101, 76, 85, 101]
+    }, {
+      name: '実働数',
+      data: [76, 85, 101, 76, 85, 101, 76, 85, 101, 76, 85, 101]
+    }],
+    stroke: {
+      show: true,
+      width: 1,
+      colors: ['#fff']
+    },
+    xaxis: {
+      categories: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+    },
+  };
 
-    var chart = new ApexCharts(document.querySelector("#s-bar2"), sBar2);
-    chart.render();
-
-    const sBar3 = {
-      chart: {
-        type: 'bar',
-        height: 330,
-        toolbar: {
-          show: false,
-        }
-      },
-      plotOptions: {
-        bar: {
-          horizontal: true,
-          dataLabels: {
-            position: 'top',
-          },
-        }
-      },
-      dataLabels: {
-        enabled: true,
-        offsetX: -6,
-        style: {
-          fontSize: '12px',
-          colors: ['#fff']
-        }
-      },
-      series: [{
-        name: '会員数',
-        data: [76, 85, 101]
-      }, {
-        name: '実働数',
-        data: [44, 55, 57]
-      }],
-      stroke: {
-        show: true,
-        width: 1,
-        colors: ['#fff']
-      },
-      xaxis: {
-        categories: ['2020年', '2019年', '2018年'],
-      },
-    };
-
-    var chart = new ApexCharts(document.querySelector("#s-bar3"), sBar3);
-    chart.render();
-
-    const sBar4 = {
-      chart: {
-        type: 'bar',
-        height: 800,
-        toolbar: {
-          show: false,
-        }
-      },
-      plotOptions: {
-        bar: {
-          horizontal: true,
-          dataLabels: {
-            position: 'top',
-          },
-        }
-      },
-      dataLabels: {
-        enabled: true,
-        offsetX: -6,
-        style: {
-          fontSize: '14px',
-          colors: ['#fff']
-        }
-      },
-      series: [{
-        name: '会員数',
-        data: [76, 85, 101, 76, 85, 101, 76, 85, 101, 76, 85, 101]
-      }, {
-        name: '実働数',
-        data: [76, 85, 101, 76, 85, 101, 76, 85, 101, 76, 85, 101]
-      }],
-      stroke: {
-        show: true,
-        width: 1,
-        colors: ['#fff']
-      },
-      xaxis: {
-        categories: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
-      },
-    };
-
-    var chart = new ApexCharts(document.querySelector("#s-bar4"), sBar4);
-    chart.render();
+  var chart = new ApexCharts(document.querySelector("#s-bar2"), sBar2);
+  chart.render();
 </script>
 
 @endsection()

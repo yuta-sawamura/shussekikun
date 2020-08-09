@@ -8,10 +8,12 @@ use App\Models\Category;
 use App\Models\Organization;
 use Auth;
 use App\Enums\User\Role;
+use App\Enums\User\Status;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\Admin\UserRequest;
 use Carbon\Carbon;
+use DB;
 
 class UserController extends Controller
 {
@@ -88,9 +90,11 @@ class UserController extends Controller
     {
         $dt = Carbon::now();
         $params = $request->query();
+        // 累計会員数
         $totalUsersCount = User::where('organization_id', Auth::user()->organization_id)
             ->where('role', Role::Normal)
             ->count();
+        // 実働会員数
         $workingUsers = User::select('users.id')
             ->join('attendances', 'attendances.user_id', '=', 'users.id')
             ->where('organization_id', Auth::user()->organization_id)
@@ -98,9 +102,57 @@ class UserController extends Controller
             ->groupBy('users.id')
             ->get();
 
+        $params = $request->query();
+        if (!$params) {
+            $store = Store::where('organization_id', Auth::user()->organization_id)
+                ->orderBy('created_at', 'ASC')
+                ->first();
+            $params['store'] = $store->id ?? null;
+        }
+
+        $user = User::where('users.store_id', $params['store'])
+            ->orderBy('created_at', 'ASC')
+            ->first();
+        if ($user) {
+            for ($i = $user->created_at->format('Y'); $i <= $dt->year; $i++) {
+                $years[] = strval($i);
+            }
+            foreach ($years as $key => $year) {
+                // 年別
+                $yearUsers['years'][] = $year . '年';
+                // 累計会員数
+                $yearUsers['users_count'][] = User::where('store_id', $params['store'])
+                    ->where('users.role', Role::Normal)
+                    ->whereYear('created_at', '<=', $year)
+                    ->count();
+                // 実働会員数
+                $workingYearUsers = User::select('users.id')
+                    ->join('attendances', 'attendances.user_id', '=', 'users.id')
+                    ->where('users.role', Role::Normal)
+                    ->where('users.store_id', $params['store'])
+                    ->whereYear('attendances.date', $year)
+                    ->groupBy('users.id')
+                    ->get();
+                // 入会者数
+                $yearUsers['join_users_count'][] = User::where('store_id', $params['store'])
+                    ->where('users.role', Role::Normal)
+                    ->whereYear('created_at', '=', $year)
+                    ->count();
+                // 退会者数
+                $yearUsers['cancel_users_count'][] = User::where('store_id', $params['store'])
+                    ->where('role', Role::Normal)
+                    ->whereYear('updated_at', '=', $year)
+                    ->where('status', Status::Cancel)
+                    ->count();
+                $yearUsers['working_users_count'][] = $workingYearUsers->count();
+            }
+        }
+
         return view('admin.user.rank')->with([
             'totalUsersCount' => $totalUsersCount,
-            'workingUsersCount' => $workingUsers->count()
+            'workingUsersCount' => $workingUsers->count(),
+            'yearUsers' => $yearUsers ?? null,
+            'params' => $params
         ]);
     }
 }
