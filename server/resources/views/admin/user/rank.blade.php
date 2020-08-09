@@ -60,8 +60,12 @@
               </div>
             </div>
             <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-              <p>2020年</p>
-              <a class="bs-tooltip" href="" title="前年">&lt;</a> &emsp; <a class="bs-tooltip" href="" title="翌年">&gt;</a>
+              <p>{{ $params['year'] }}年</p>
+              @php
+                  $lastYear = $params['year'] - 1;
+                  $nextYear = $params['year'] + 1;
+              @endphp
+              <a class="bs-tooltip text-primary" href="#!" onclick="submitForm('year', {{ $lastYear }})" title="前年">&lt;</a> &emsp; <a class="bs-tooltip text-primary" href="#!" onclick="submitForm('year', {{ $nextYear }})" title="翌年">&gt;</a>
             </div>
           </div>
           <div class="widget-content widget-content-area">
@@ -83,14 +87,14 @@
 <script src="{{ asset('/plugins/apex/apexcharts.min.js') }}"></script>
 <script>
   const years = @json($yearUsers['years']);
-  const usersCount = @json($yearUsers['users_count']);
-  const workingUsersCount = @json($yearUsers['working_users_count']);
-  const joinUsersCount = @json($yearUsers['join_users_count']);
-  const cancelUsersCount = @json($yearUsers['cancel_users_count']);
+  const yearUsersCount = @json($yearUsers['users_count']);
+  const yearWorkingUsersCount = @json($yearUsers['working_users_count']);
+  const yearJoinUsersCount = @json($yearUsers['join_users_count']);
+  const yearCancelUsersCount = @json($yearUsers['cancel_users_count']);
   const sBar1 = {
     chart: {
       type: 'bar',
-      height: 400,
+      height: 300,
       toolbar: {
         show: false,
       }
@@ -113,17 +117,17 @@
     },
     series: [{
       name: '累計会員数',
-      data: usersCount
+      data: yearUsersCount
 
     }, {
       name: '実働会員数',
-      data: workingUsersCount
+      data: yearWorkingUsersCount
     }, {
       name: '入会者数',
-      data: joinUsersCount
+      data: yearJoinUsersCount
     }, {
       name: '退会者数',
-      data: cancelUsersCount
+      data: yearCancelUsersCount
     }],
     stroke: {
       show: true,
@@ -134,14 +138,18 @@
       categories: years,
     },
   };
-
   var chart = new ApexCharts(document.querySelector("#s-bar1"), sBar1);
   chart.render();
 
+  const months = @json($monthUsers['months']);
+  const monthUsersCount = @json($monthUsers['users_count']);
+  const monthWorkingUsersCount = @json($monthUsers['working_users_count']);
+  const monthJoinUsersCount = @json($monthUsers['join_users_count']);
+  const monthCancelUsersCount = @json($monthUsers['cancel_users_count']);
   const sBar2 = {
     chart: {
       type: 'bar',
-      height: 800,
+      height: 1300,
       toolbar: {
         show: false,
       }
@@ -163,11 +171,18 @@
       }
     },
     series: [{
-      name: '会員数',
-      data: [76, 85, 101, 76, 85, 101, 76, 85, 101, 76, 85, 101]
+      name: '累計会員数',
+      data: monthUsersCount
+
     }, {
-      name: '実働数',
-      data: [76, 85, 101, 76, 85, 101, 76, 85, 101, 76, 85, 101]
+      name: '実働会員数',
+      data: monthWorkingUsersCount
+    }, {
+      name: '入会者数',
+      data: monthJoinUsersCount
+    }, {
+      name: '退会者数',
+      data: monthCancelUsersCount
     }],
     stroke: {
       show: true,

@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\Organization;
 use Auth;
 use App\Enums\User\Role;
+use App\Enums\User\Status;
 use Carbon\Carbon;
 use DB;
 
@@ -25,6 +26,7 @@ class UserController extends Controller
 
         $users = User::where('store_id', Auth::user()->store_id)
             ->where('role', Role::Normal)
+            ->where('status', '!=', Status::Cancel)
             ->serachKeyword($params['keyword'] ?? null)
             ->categoryFilter($params['category'] ?? null)
             ->genderFilter($params['gender'] ?? null)
@@ -42,6 +44,7 @@ class UserController extends Controller
         $user = User::where('id', $request->id)
             ->where('role', Role::Normal)
             ->where('store_id', Auth::user()->store_id)
+            ->where('status', '!=', Status::Cancel)
             ->firstOrFail();
 
         return view('user.show')->with([
@@ -58,6 +61,7 @@ class UserController extends Controller
             ->leftJoin('attendances', 'attendances.user_id', '=', 'users.id')
             ->where('users.role', Role::Normal)
             ->where('users.store_id', Auth::user()->store_id)
+            ->where('status', '!=', Status::Cancel)
             ->categoryFilter($params['category'] ?? null)
             ->whereYear('attendances.date', $params['year'] ?? $dt->year)
             ->groupBy('userid')
@@ -75,6 +79,7 @@ class UserController extends Controller
             ->leftJoin('attendances', 'attendances.user_id', '=', 'users.id')
             ->where('users.role', Role::Normal)
             ->where('users.store_id', Auth::user()->store_id)
+            ->where('status', '!=', Status::Cancel)
             ->categoryFilter($params['category'] ?? null)
             ->whereYear('attendances.date', $params['year'] ?? $dt->year)
             ->whereMonth('attendances.date', $params['month'] ?? $dt->month)

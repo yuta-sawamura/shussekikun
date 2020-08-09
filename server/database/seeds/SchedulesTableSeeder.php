@@ -54,7 +54,7 @@ class SchedulesTableSeeder extends Seeder
             ],
             [
                 'id' => 5,
-                'store_id' => 3,
+                'store_id' => 2,
                 'classwork_id' => 3,
                 'day' => 4,
                 'start_at' => '14:00',
