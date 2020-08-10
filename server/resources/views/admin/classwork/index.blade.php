@@ -34,17 +34,6 @@
                     <label for="keyword">キーワード</label>
                     <input name="keyword" type="text" class="form-control" placeholder="キーワードを入力" value="{{ $params['keyword'] ?? null }}">
                   </div>
-                  <div class="mb-2 col-md-3">
-                    <label>店舗</label>
-                    <select class="form-control" name="store">
-                      <option selected="selected" value="">選択してください</option>
-                      @foreach($stores as $k => $v)
-                        <option value="{{ $k }}" {{ isset($params['store']) && $params['store'] == $k ? 'selected': null }}>
-                          {{ $v }}
-                        </option>
-                      @endforeach
-                    </select>
-                  </div>
                 </div>
                 <button type="submit" class="btn btn-primary mt-3">検索する</button>
               </form>
@@ -56,7 +45,6 @@
                     <table id="style-1" class="table style-1 table-hover non-hover dataTable no-footer" role="grid" aria-describedby="style-1_info" style="table-layout: fixed; width: 100%;">
                       <thead>
                         <tr role="row">
-                          <th style="width: 120px;">店舗</th>
                           <th style="width: 120px;">クラス</th>
                           <th style="width: 210px;"></th>
                         </tr>
@@ -64,14 +52,13 @@
                       <tbody>
                         @foreach($classworks as $classwork)
                           <tr role="row" class="odd">
-                            <td>{{ $classwork->store_name }}</td>
                             <td>{{ $classwork->name }}</td>
                             <td>
                               <button type="button" class="btn btn-outline-primary mb-2 mr-2" data-toggle="modal" data-target="#editModal{{ $classwork->id }}">編集</button>
                               <button type="button" class="btn btn-outline-danger mb-2 mr-2" data-toggle="modal" data-target="#attentionModal{{ $classwork->id }}">削除</button>
                             </td>
                           </tr>
-                          @component('components.modals.admin.classwork.edit', ['stores' => $stores, 'classwork' => $classwork, 'id' => $classwork->id])
+                          @component('components.modals.admin.edit', ['name' => 'クラス名', 'path' => '/admin/class/update/' . $classwork->id, 'value' => $classwork->name, 'id' => $classwork->id])
                           @endcomponent
                           @component('components.modals.attention', ['title' => '関連データも全て削除されますが本当によろしいですか？', 'path' => '/admin/class/delete/' . $classwork->id, 'id' => $classwork->id])
                           @endcomponent
@@ -96,7 +83,7 @@
   </div>
 </div>
 
-@component('components.modals.admin.classwork.create', ['stores' => $stores])
+@component('components.modals.admin.create', ['name' => 'カテゴリー名', 'path' => '/admin/class/store'])
 @endcomponent
 
 @endsection()

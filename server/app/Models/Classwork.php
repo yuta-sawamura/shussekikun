@@ -14,19 +14,8 @@ class Classwork extends Model
      */
     protected $fillable = [
         'name',
-        'store_id',
+        'organization_id',
     ];
-
-    /**
-     * 店舗絞り込み
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param int|null $id
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public function scopeStoreFilter($query, $id = null)
-    {
-        if ($id) return $query->where('store_id', $id);
-    }
 
     /**
      * キーワード検索
@@ -37,24 +26,21 @@ class Classwork extends Model
     public function scopeSerachKeyword($query, $keyword = null)
     {
         if ($keyword) {
-            $query->where('classworks.name', 'like', '%' . $keyword . '%');
-            $query->orWhere('stores.name', 'like', '%' . $keyword . '%');
+            $query->where('name', 'like', '%' . $keyword . '%');
         }
         return $query;
     }
 
     /**
      * クラス取得関数
-     * @param int
-     * @param int
+     * @param
+     * @param
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function findByIdOrFail(int $organizationId, int $classworkId)
+    public function findByIdOrFail($classworkId, $organizationId)
     {
-        return $this->select('classworks.id', 'classworks.name', 'classworks.store_id', 'stores.organization_id', 'stores.name as store_name')
-            ->join('stores', 'stores.id', '=', 'classworks.store_id')
-            ->where('classworks.id', $classworkId)
-            ->where('stores.organization_id', $organizationId)
+        return $this->where('organization_id', $organizationId)
+            ->where('id', $classworkId)
             ->firstOrFail();
     }
 }
