@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Auth;
 use App\Models\Classwork;
 use Validator;
@@ -15,7 +16,7 @@ class ClassworkController extends Controller
         $this->classwork = $classwork;
     }
 
-    public function index (Request $request)
+    public function index(Request $request)
     {
         $params = $request->query();
 
@@ -33,12 +34,21 @@ class ClassworkController extends Controller
         ]);
     }
 
-    public function store (Request $request)
+    public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'store_id' => 'required|integer',
-            'name' => 'required|string|max:50',
+            'name' => [
+                'required',
+                'string',
+                'max:50',
+                Rule::unique('classworks')->where(function ($query) use ($request) {
+                    return $query->where('store_id', $request['store_id'])
+                        ->where('name', $request['name']);
+                }),
+            ]
         ]);
+
         if ($validator->fails()) {
             return redirect('/admin/class')->with('error_message', 'クラスを追加できませんでした。');
         }
@@ -47,11 +57,19 @@ class ClassworkController extends Controller
         return redirect('/admin/class')->with('success_message', 'クラスを追加しました。');
     }
 
-    public function update (Request $request)
+    public function update(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'store_id' => 'required|integer',
-            'name' => 'required|string|max:50',
+            'name' => [
+                'required',
+                'string',
+                'max:50',
+                Rule::unique('classworks')->ignore($request['id'])->where(function ($query) use ($request) {
+                    return $query->where('store_id', $request['store_id'])
+                        ->where('name', $request['name']);
+                }),
+            ]
         ]);
         if ($validator->fails()) {
             return redirect('/admin/class')->with('error_message', 'クラスを編集できませんでした。');
@@ -63,7 +81,7 @@ class ClassworkController extends Controller
         return redirect('/admin/class')->with('success_message', 'クラスを編集しました。');
     }
 
-    public function delete (Request $request)
+    public function delete(Request $request)
     {
         $classwork = $this->classwork->findByIdOrFail(Auth::user()->organization_id, $request->id);
         $classwork->delete();
