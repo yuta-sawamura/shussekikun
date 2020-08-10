@@ -19,7 +19,7 @@
           <div class="widget-header">
             <div class="row">
               <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                <h4>プレミアム会員</h4>
+                <h4>プレミアム会員 <small class="text-danger">*テスト機能のため、実際に決済されません。</small></h4>
               </div>
             </div>
           </div>
