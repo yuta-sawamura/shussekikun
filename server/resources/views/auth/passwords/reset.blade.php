@@ -48,7 +48,7 @@
                   <button type="submit" class="btn btn-primary">リセット</button>
                 </div>
               </div>
-              <p class="signup-link"><a href="{{ url('/') }}">トップ</a></p>
+              <p class="signup-link"><a href="{{ url('login') }}">ログイン</a></p>
             </div>
           </form>
         </div>
