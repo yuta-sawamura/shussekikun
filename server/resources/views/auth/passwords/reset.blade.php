@@ -7,7 +7,7 @@
       <div class="form-container">
         <div class="form-content">
           <h1 class="">パスワードリセット</h1>
-          <form method="POST" action="{{ route('password.update') }}" class="text-left">
+          <form method="POST" action="{{ route('password.update') }}" class="text-left" onSubmit="return double()">
             @csrf
             <input type="hidden" name="token" value="{{ $token }}">
             <div class="form">
@@ -56,5 +56,7 @@
     </div>
   </div>
 </div>
+
+<script src="{{ asset('js/double.js') }}"></script>
 
 @endsection

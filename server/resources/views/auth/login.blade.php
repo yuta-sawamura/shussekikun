@@ -13,7 +13,7 @@
             <a href="#" onclick="submitLogin('organization_admin')" type="button" class="btn btn-info w-100 mb-1">ゲスト管理者ログイン</a>
             <a href="#" onclick="submitLogin('store_share')" type="button" class="btn btn-info w-100">ゲスト会員ログイン</a>
           </div>
-          <form method="POST" action="{{ route('login') }}" id="login" class="text-left">
+          <form method="POST" action="{{ route('login') }}" id="login" class="text-left" onSubmit="return double()">
             @csrf
             <div class="form">
               <div id="username-field" class="field-wrapper input">
@@ -63,5 +63,6 @@
 </div>
 
 <script src="{{ asset('/js/submit_login.js') }}"></script>
+<script src="{{ asset('js/double.js') }}"></script>
 
 @endsection

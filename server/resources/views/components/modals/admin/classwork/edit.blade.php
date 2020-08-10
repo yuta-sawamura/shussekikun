@@ -1,6 +1,6 @@
 <div class="modal fade" id="editModal{{ $classwork->id }}" tabindex="-1" role="dialog" aria-labelledby="editModal" aria-hidden="true">
   <div class="modal-dialog" role="document">
-    <form action="{{ url('/admin/class/update/' . $classwork->id) }}" method="post">
+    <form action="{{ url('/admin/class/update/' . $classwork->id) }}" method="post" onSubmit="return double()">
       @csrf
       <div class="modal-content">
         <button type="button" class="close text-right px-2 py-2" data-dismiss="modal" aria-label="Close">

@@ -104,7 +104,6 @@
   </div>
 </div>
 
-@include('components.modals.login')
 @include('components.modals.attendanceMultiple')
 
 @section('js')

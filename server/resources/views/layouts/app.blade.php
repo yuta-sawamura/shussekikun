@@ -61,6 +61,8 @@
       App.init();
     });
   </script>
+  <script src="{{ asset('js/double.js') }}"></script>
+  <script src="{{ asset('js/submit_logout.js') }}"></script>
 
 </body>
 </html>

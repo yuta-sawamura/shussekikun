@@ -18,7 +18,7 @@
       <div class="form-container">
         <div class="form-content">
           <h1 class="">パスワードリセット</h1>
-          <form method="POST" action="{{ route('password.email') }}" class="text-left">
+          <form method="POST" action="{{ route('password.email') }}" class="text-left" onSubmit="return double()">
             @csrf
             <div class="form">
               <div id="username-field" class="field-wrapper input">
@@ -44,5 +44,7 @@
     </div>
   </div>
 </div>
+
+<script src="{{ asset('js/double.js') }}"></script>
 
 @endsection
