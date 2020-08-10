@@ -1,0 +1,3 @@
+function submitLogout() {
+  $("#logout").submit();
+}

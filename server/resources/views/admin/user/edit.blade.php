@@ -18,7 +18,7 @@
         <div class="scrollspy-example" data-spy="scroll" data-target="#account-settings-scroll" data-offset="-100">
           <div class="row">
             <div class="col-xl-12 col-lg-12 col-md-12 layout-spacing">
-              <form action="/admin/user/update/{{ $user->id }}" method="post" enctype="multipart/form-data" class="section general-info">
+              <form action="/admin/user/update/{{ $user->id }}" method="post" enctype="multipart/form-data" class="section general-info" onSubmit="return double()">
                 @csrf
                 <div class="info">
                   <h6>会員編集</h6>

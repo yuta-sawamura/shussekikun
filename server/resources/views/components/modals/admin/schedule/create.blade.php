@@ -1,6 +1,6 @@
 <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="createModal" aria-hidden="true">
   <div class="modal-dialog" role="document">
-    <form action="{{ url('/admin/schedule/store') }}" method="post">
+    <form action="{{ url('/admin/schedule/store') }}" method="post" onSubmit="return double()">
       @csrf
       <div class="modal-content">
         <button type="button" class="close text-right px-2 py-2" data-dismiss="modal" aria-label="Close">

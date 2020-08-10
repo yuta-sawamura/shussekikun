@@ -11,7 +11,7 @@
         </button>
       </div>
       <div class="modal-footer">
-        <form action="{{ $path }}" method="post">
+        <form action="{{ $path }}" method="post" onSubmit="return double()">
           @csrf
           <button class="btn" data-dismiss="modal"><i class="flaticon-cancel-12"></i> いいえ</button>
           <button type="submit" class="btn btn-primary">はい</button>
