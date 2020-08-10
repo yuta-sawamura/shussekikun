@@ -15,12 +15,12 @@ class CreateClassworksTable extends Migration
     {
         Schema::create('classworks', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('store_id')->comment('店舗ID');
-            $table->foreign('store_id')->references('id')->on('stores')->onDelete('cascade');
+            $table->unsignedBigInteger('organization_id')->comment('組織ID');
+            $table->foreign('organization_id')->references('id')->on('organizations')->onDelete('cascade');
             $table->string('name', 50)->comment('クラス名');
             $table->unique(
-                ['store_id', 'name'],
-                'unique_store_id_name'
+                ['organization_id', 'name'],
+                'unique_organization_id_name'
             );
             $table->timestamps();
         });

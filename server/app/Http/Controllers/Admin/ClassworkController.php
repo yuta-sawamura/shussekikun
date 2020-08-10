@@ -20,11 +20,8 @@ class ClassworkController extends Controller
     {
         $params = $request->query();
 
-        $classworks = Classwork::select('classworks.id', 'classworks.name', 'classworks.store_id', 'stores.organization_id', 'stores.name as store_name')
-            ->join('stores', 'stores.id', '=', 'classworks.store_id')
-            ->where('stores.organization_id', Auth::user()->organization_id)
+        $classworks = Classwork::where('organization_id', Auth::user()->organization_id)
             ->serachKeyword($params['keyword'] ?? null)
-            ->storeFilter($params['store'] ?? null)
             ->orderBy('id', 'desc')
             ->paginate(20);
 
@@ -37,21 +34,21 @@ class ClassworkController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'store_id' => 'required|integer',
             'name' => [
                 'required',
                 'string',
                 'max:50',
                 Rule::unique('classworks')->where(function ($query) use ($request) {
-                    return $query->where('store_id', $request['store_id'])
+                    return $query->where('organization_id', Auth::user()->organization_id)
                         ->where('name', $request['name']);
                 }),
             ]
         ]);
-
         if ($validator->fails()) {
             return redirect('/admin/class')->with('error_message', 'クラスを追加できませんでした。');
         }
+
+        $request['organization_id'] = Auth::user()->organization_id;
         $this->classwork->fill($request->all())->save();
 
         return redirect('/admin/class')->with('success_message', 'クラスを追加しました。');
@@ -60,13 +57,12 @@ class ClassworkController extends Controller
     public function update(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'store_id' => 'required|integer',
             'name' => [
                 'required',
                 'string',
                 'max:50',
                 Rule::unique('classworks')->ignore($request['id'])->where(function ($query) use ($request) {
-                    return $query->where('store_id', $request['store_id'])
+                    return $query->where('organization_id', Auth::user()->organization_id)
                         ->where('name', $request['name']);
                 }),
             ]
@@ -75,7 +71,7 @@ class ClassworkController extends Controller
             return redirect('/admin/class')->with('error_message', 'クラスを編集できませんでした。');
         }
 
-        $classwork = $this->classwork->findByIdOrFail(Auth::user()->organization_id, $request->id);
+        $classwork = $this->classwork->findByIdOrFail($request->id, Auth::user()->organization_id);
         $classwork->fill($request->all())->save();
 
         return redirect('/admin/class')->with('success_message', 'クラスを編集しました。');
@@ -83,7 +79,7 @@ class ClassworkController extends Controller
 
     public function delete(Request $request)
     {
-        $classwork = $this->classwork->findByIdOrFail(Auth::user()->organization_id, $request->id);
+        $classwork = $this->classwork->findByIdOrFail($request->id, Auth::user()->organization_id);
         $classwork->delete();
 
         return redirect('/admin/class')->with('success_message', 'クラスを削除しました。');
