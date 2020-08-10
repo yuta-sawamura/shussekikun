@@ -15,17 +15,16 @@ class NewsController extends Controller
         $this->news = $news;
     }
 
-    public function index (Request $request)
+    public function index(Request $request)
     {
         $params = $request->query();
 
         $news = News::select(
-                'news.id',
-                'news.store_id',
-                'news.title',
-                'news.content',
-                'news.created_at'
-            )
+            'news.id',
+            'news.title',
+            'news.created_at',
+            'stores.name'
+        )
             ->join('stores', 'stores.id', '=', 'news.store_id')
             ->where('stores.organization_id', Auth::user()->organization_id)
             ->serachKeyword($params['keyword'] ?? null)
@@ -39,18 +38,18 @@ class NewsController extends Controller
         ]);
     }
 
-    public function create (Request $request)
+    public function create(Request $request)
     {
         return view('admin.news.create');
     }
 
-    public function store (NewsRequest $request)
+    public function store(NewsRequest $request)
     {
         $this->news->fill($request->validated())->save();
         return redirect('/admin/news')->with('success_message', 'お知らせを追加しました。');
     }
 
-    public function show (Request $request)
+    public function show(Request $request)
     {
         $news = $this->news->findByIdOrFail(Auth::user()->organization_id, $request->id);
 
@@ -59,7 +58,7 @@ class NewsController extends Controller
         ]);
     }
 
-    public function edit (Request $request)
+    public function edit(Request $request)
     {
         $news = $this->news->findByIdOrFail(Auth::user()->organization_id, $request->id);
 
@@ -68,7 +67,7 @@ class NewsController extends Controller
         ]);
     }
 
-    public function update (NewsRequest $request)
+    public function update(NewsRequest $request)
     {
         $news = $this->news->findByIdOrFail(Auth::user()->organization_id, $request->id);
         $news->fill($request->all())->save();
@@ -76,7 +75,7 @@ class NewsController extends Controller
         return redirect('/admin/news/show/' . $request->id)->with('success_message', 'お知らせを編集しました。');
     }
 
-    public function delete (Request $request)
+    public function delete(Request $request)
     {
         $news = $this->news->findByIdOrFail(Auth::user()->organization_id, $request->id);
         $news->delete();
