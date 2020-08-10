@@ -77,7 +77,7 @@ Docker | Nginx | GitHub | CircleCI
 
 ■ER図
 
-![ER図](https://user-images.githubusercontent.com/29622529/87788307-1f996a00-c878-11ea-9951-c1f0336ece5d.jpg)
+![ER図](https://user-images.githubusercontent.com/29622529/89781780-eee2e280-db4e-11ea-9640-c5ff0e73aee7.jpg)
 
 ## Git flow
 
