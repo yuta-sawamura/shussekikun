@@ -32,16 +32,7 @@
                     <p>性別： {{ $user->gender_name }}</p>
                   </li>
                   <li class="contacts-block__item">
-                    <p>追加日： {{ $user->created_at->format('Y-m-d') }}</p>
-                  </li>
-                  <li class="contacts-block__item">
-                    <p>年間出席ランキング： 8位</p>
-                  </li>
-                  <li class="contacts-block__item">
-                    <p>月間出席ランキング： 32位</p>
-                  </li>
-                  <li class="contacts-block__item">
-                    <p>月間平均出席回数： 10回</p>
+                    <p>入会日： {{ $user->created_at->format('Y-m-d') }}</p>
                   </li>
                 </ul>
               </div>
@@ -58,12 +49,16 @@
               </div>
             </div>
             <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-              <p>2020年</p>
-              <a class="bs-tooltip" href="" title="前年">&lt;</a> &emsp; <a class="bs-tooltip" href="" title="翌年">&gt;</a>
+              <p>{{ $params['year'] }}年</p>
+              @php
+                $lastYear = $params['year'] - 1;
+                $nextYear = $params['year'] + 1;
+              @endphp
+              <a class="bs-tooltip text-primary" href="{{ url('user/show/' . $user->id . '?year=' . $lastYear) }}" title="前年">&lt;</a> &emsp; <a class="bs-tooltip text-primary" href="{{ url('user/show/' . $user->id . '?year=' . $nextYear) }}" title="翌年">&gt;</a>
             </div>
           </div>
           <div class="widget-content widget-content-area">
-            <div id="s-bar" class=""></div>
+            <div id="s-bar"></div>
           </div>
         </div>
       </div>
@@ -71,40 +66,7 @@
   </div>
 </div>
 
-<script src="{{ asset('/plugins/apex/apexcharts.min.js') }}"></script>
-
-<script>
-  const sBar = {
-    chart: {
-      height: 450,
-      type: 'bar',
-      toolbar: {
-        show: false,
-      }
-    },
-    plotOptions: {
-      bar: {
-        horizontal: true,
-      }
-    },
-    dataLabels: {
-      enabled: true
-    },
-    series: [{
-      name: '年間出席回数',
-      data: [10, 13, 14, 7, 22, 0, 20, 15, 12]
-    }],
-    xaxis: {
-      categories: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
-    }
-  }
-
-  const chart = new ApexCharts(
-    document.querySelector("#s-bar"),
-    sBar
-  );
-
-  chart.render();
-</script>
+@component('components.js.chart', ['name' => '年間出席回数', 'data' => $rank['counts'], 'text' => '回数',  'categories' => $rank['months'], 'selector' => '#s-bar'])
+@endcomponent
 
 @endsection

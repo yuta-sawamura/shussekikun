@@ -87,85 +87,10 @@
 </div>
 
 <script src="{{ asset('/js/submit_form.js') }}"></script>
-<script src="{{ asset('/plugins/apex/apexcharts.min.js') }}"></script>
-<script>
-  const yearCount = @json($yearCount);
-  const yearTitle = @json($yearTitle);
-  const sBar1 = {
-    chart: {
-      height: 450,
-      type: 'bar',
-      toolbar: {
-        show: false,
-      }
-    },
-    plotOptions: {
-      bar: {
-        horizontal: true,
-      }
-    },
-    colors: ['#1b55e2'],
-    dataLabels: {
-      enabled: true
-    },
-    series: [{
-      name: '年間出席回数',
-      data: yearCount
-    }],
-    tooltip: {
-      enabled: false
-    },
-    xaxis: {
-      categories: yearTitle,
-      title: {
-        text: '回数'
-      }
-    }
-  }
 
-  var chart = new ApexCharts(
-    document.querySelector("#s-bar"),
-    sBar1
-  );
-
-  chart.render();
-
-  const monthlyCount = @json($monthlyCount);
-  const monthlyTitle = @json($monthlyTitle);
-  const sBar2 = {
-    chart: {
-      height: 450,
-      type: 'bar',
-      toolbar: {
-        show: false,
-      }
-    },
-    plotOptions: {
-      bar: {
-        horizontal: true,
-      }
-    },
-    dataLabels: {
-      enabled: true
-    },
-    series: [{
-      name: '月間出席回数',
-      data: monthlyCount
-    }],
-    xaxis: {
-      categories: monthlyTitle,
-      title: {
-        text: '回数'
-      }
-    }
-  }
-
-  var chart = new ApexCharts(
-    document.querySelector("#s-bar2"),
-    sBar2
-  );
-
-  chart.render();
-</script>
+@component('components.js.chart', ['name' => '年間出席回数', 'data' => $yearCount, 'text' => '回数',  'categories' => $yearTitle, 'selector' => '#s-bar'])
+@endcomponent
+@component('components.js.chart', ['name' => '月間出席回数', 'data' => $monthlyCount, 'text' => '回数',  'categories' => $monthlyTitle, 'selector' => '#s-bar2'])
+@endcomponent
 
 @endsection()
