@@ -67,7 +67,8 @@
                 $lastYear = $params['year'] - 1;
                 $nextYear = $params['year'] + 1;
               @endphp
-              <a class="bs-tooltip text-primary" href="{{ url('admin/user/show/' . $user->id . '?year=' . $lastYear) }}" title="前年">&lt;</a> &emsp; <a class="bs-tooltip text-primary" href="{{ url('admin/user/show/' . $user->id . '?year=' . $nextYear) }}" title="翌年">&gt;</a>
+              <a class="bs-tooltip text-primary" href="{{ url('admin/user/show/' . $user->id . '?year=' . $lastYear . (isset($params['page']) ? '&page=' . $params['page'] : null)) }}" title="前年">&lt;</a> &emsp;
+              <a class="bs-tooltip text-primary" href="{{ url('admin/user/show/' . $user->id . '?year=' . $nextYear . (isset($params['page']) ? '&page=' . $params['page'] : null)) }}" title="翌年">&gt;</a>
             </div>
           </div>
           <div class="widget-content widget-content-area">
@@ -80,7 +81,7 @@
           <div class="widget-header">
             <div class="row">
               <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                <h4>出席クラス一覧</h4>
+                <h4>出席一覧</h4>
               </div>
             </div>
           </div>
@@ -93,84 +94,31 @@
                     <table id="style-1" class="table style-1 table-hover non-hover dataTable no-footer" role="grid" aria-describedby="style-1_info" style="table-layout: fixed; width: 100%;">
                       <thead>
                         <tr role="row">
-                          <th style="width: 100px;">クラス</th>
+                          <th style="width: 160px;">クラス</th>
                           <th style="width: 160px;">出席日時</th>
                           <th style="width: 200px;"></th>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td class="">一般クラス</td>
-                          <td>2020-01-01 17:19</td>
-                          <td>
-                            <button type="button" class="btn btn-outline-primary mb-2 mr-2" data-toggle="modal" data-target="#inputModal">編集</button>
-                            <button type="button" class="btn btn-outline-danger mb-2 mr-2" data-toggle="modal" data-target="#attentionModal">削除</button>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="">一般クラス</td>
-                          <td>2020-01-01 17:19</td>
-                          <td>
-                            <button type="button" class="btn btn-outline-primary mb-2 mr-2" data-toggle="modal" data-target="#inputModal">編集</button>
-                            <button type="button" class="btn btn-outline-danger mb-2 mr-2" data-toggle="modal" data-target="#attentionModal">削除</button>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="">一般クラス</td>
-                          <td>2020-01-01 17:19</td>
-                          <td>
-                            <button type="button" class="btn btn-outline-primary mb-2 mr-2" data-toggle="modal" data-target="#inputModal">編集</button>
-                            <button type="button" class="btn btn-outline-danger mb-2 mr-2" data-toggle="modal" data-target="#attentionModal">削除</button>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="">一般クラス</td>
-                          <td>2020-01-01 17:19</td>
-                          <td>
-                            <button type="button" class="btn btn-outline-primary mb-2 mr-2" data-toggle="modal" data-target="#inputModal">編集</button>
-                            <button type="button" class="btn btn-outline-danger mb-2 mr-2" data-toggle="modal" data-target="#attentionModal">削除</button>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="">一般クラス</td>
-                          <td>2020-01-01 17:19</td>
-                          <td>
-                            <button type="button" class="btn btn-outline-primary mb-2 mr-2" data-toggle="modal" data-target="#inputModal">編集</button>
-                            <button type="button" class="btn btn-outline-danger mb-2 mr-2" data-toggle="modal" data-target="#attentionModal">削除</button>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="">一般クラス</td>
-                          <td>2020-01-01 17:19</td>
-                          <td>
-                            <button type="button" class="btn btn-outline-primary mb-2 mr-2" data-toggle="modal" data-target="#inputModal">編集</button>
-                            <button type="button" class="btn btn-outline-danger mb-2 mr-2" data-toggle="modal" data-target="#attentionModal">削除</button>
-                          </td>
-                        </tr>
+                        @foreach($attendances as $attendance)
+                          <tr>
+                            <td>{{ $attendance->schedule->classwork->classwork_name }}({{ $attendance->schedule->day_name }} {{ $attendance->schedule->time }})</td>
+                            <td>{{ $attendance->created_at }}</td>
+                            <td>
+                              <button type="button" class="btn btn-outline-primary mb-2 mr-2" data-toggle="modal" data-target="#attendanceModal{{ $user->id }}">編集</button>
+                              <button type="button" class="btn btn-outline-danger mb-2 mr-2" data-toggle="modal" data-target="#attentionModal">削除</button>
+                            </td>
+                          </tr>
+                          @include('components.modals.attendance', ['user' => $user, 'url' => '/admin/attendance/update/' . $attendance->id, 'attendance' => $attendance])
+                        @endforeach
                       </tbody>
                     </table>
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-sm-12 col-md-5">
-                    <div class="dataTables_info" id="style-1_info" role="status" aria-live="polite">表示ページ 1 of 2</div>
-                  </div>
                   <div class="col-sm-12 col-md-7">
-                    <div class="dataTables_paginate paging_simple_numbers" id="style-1_paginate">
-                      <ul class="pagination">
-                        <li class="paginate_button page-item previous disabled" id="style-1_previous"><a href="#" aria-controls="style-1" data-dt-idx="0" class="page-link"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left">
-                              <line x1="19" y1="12" x2="5" y2="12"></line>
-                              <polyline points="12 19 5 12 12 5"></polyline>
-                            </svg></a>
-                        </li>
-                        <li class="paginate_button page-item active"><a href="#" aria-controls="style-1" data-dt-idx="1" class="page-link">1</a></li>
-                        <li class="paginate_button page-item "><a href="#" aria-controls="style-1" data-dt-idx="2" class="page-link">2</a></li>
-                        <li class="paginate_button page-item next" id="style-1_next"><a href="#" aria-controls="style-1" data-dt-idx="3" class="page-link"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right">
-                              <line x1="5" y1="12" x2="19" y2="12"></line>
-                              <polyline points="12 5 19 12 12 19"></polyline>
-                            </svg></a>
-                        </li>
-                      </ul>
+                    <div class="dataTables_paginate paging_simple_numbers">
+                      {{ $attendances->appends($params)->links() }}
                     </div>
                   </div>
                 </div>

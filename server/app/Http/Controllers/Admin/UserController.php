@@ -7,6 +7,7 @@ use App\Models\Store;
 use App\Models\Category;
 use App\Models\Organization;
 use App\Models\Attendance;
+use App\Models\Schedule;
 use Auth;
 use App\Enums\User\Role;
 use App\Enums\User\Status;
@@ -18,9 +19,10 @@ use DB;
 
 class UserController extends Controller
 {
-    public function __construct(User $user)
+    public function __construct(User $user, Schedule $schedule)
     {
         $this->user = $user;
+        $this->schedule = $schedule;
         $this->dt = Carbon::now();
     }
 
@@ -58,8 +60,12 @@ class UserController extends Controller
     {
         $user = $this->user->findByIdOrFail(Auth::user()->organization_id, $request->id);
 
+        $attendances = Attendance::where('user_id', $request->id)
+            ->orderBy('id', 'desc')
+            ->paginate(20);
+
         $params = $request->query();
-        if (!$params) $params['year'] = $this->dt->year;
+        if (!isset($params['year'])) $params['year'] = $this->dt->year;
 
         // 月別
         for ($i = 1; $i <= 12; $i++) {
@@ -70,10 +76,14 @@ class UserController extends Controller
                 ->count();
         }
 
+        $schedules = $this->schedule->findByIdScheduleClass($user->store_id);
+
         return view('admin.user.show')->with([
             'user' => $user,
             'rank' => $rank,
-            'params' => $params
+            'params' => $params,
+            'attendances' => $attendances,
+            'schedules' => $schedules
         ]);
     }
 
