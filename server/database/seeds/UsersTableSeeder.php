@@ -541,7 +541,7 @@ class UsersTableSeeder extends Seeder
                 'sei' => '藤本',
                 'mei' => '順',
                 'sei_kana' => 'フジモト',
-                'mei_kana' => 'ジュンx',
+                'mei_kana' => 'ジュン',
                 'gender' => 1,
                 'email' => null,
                 'birth' => '2012-06-22',

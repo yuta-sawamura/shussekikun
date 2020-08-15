@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Store;
 use App\Models\Category;
+use App\Models\Attendance;
 use Illuminate\Support\Facades\Storage;
 use App\Enums\User\Role;
 use App\Enums\User\Gender;
@@ -47,6 +48,11 @@ class User extends Authenticatable
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function attendances()
+    {
+        return $this->hasMany(Attendance::class);
     }
 
     /**
@@ -196,6 +202,21 @@ class User extends Authenticatable
             $query->orWhere('mei_kana', 'like', '%' . $keyword . '%');
         }
         return $query;
+    }
+
+    /**
+     * 権限・店舗・状態絞り込み
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param int $roleId
+     * @param int $storeId
+     * @param int $statusId
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeRoleStoreStatusFilter($query, $roleId, $storeId, $statusId)
+    {
+        return $query->where('users.role', $roleId)
+            ->where('users.store_id', $storeId)
+            ->where('status', '!=', $statusId);
     }
 
     /**

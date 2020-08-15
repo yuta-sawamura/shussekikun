@@ -7,6 +7,7 @@ use App\User;
 use App\Models\Store;
 use App\Models\Category;
 use App\Models\Organization;
+use App\Models\Attendance;
 use Auth;
 use App\Enums\User\Role;
 use App\Enums\User\Status;
@@ -18,15 +19,14 @@ class UserController extends Controller
     public function __construct(User $user)
     {
         $this->user = $user;
+        $this->dt = Carbon::now();
     }
 
     public function index(Request $request)
     {
         $params = $request->query();
 
-        $users = User::where('store_id', Auth::user()->store_id)
-            ->where('role', Role::Normal)
-            ->where('status', '!=', Status::Cancel)
+        $users = User::roleStoreStatusFilter(Role::Normal, Auth::user()->store_id, Status::Cancel)
             ->serachKeyword($params['keyword'] ?? null)
             ->categoryFilter($params['category'] ?? null)
             ->genderFilter($params['gender'] ?? null)
@@ -42,13 +42,25 @@ class UserController extends Controller
     public function show(Request $request)
     {
         $user = User::where('id', $request->id)
-            ->where('role', Role::Normal)
-            ->where('store_id', Auth::user()->store_id)
-            ->where('status', '!=', Status::Cancel)
+            ->roleStoreStatusFilter(Role::Normal, Auth::user()->store_id, Status::Cancel)
             ->firstOrFail();
 
+        $params = $request->query();
+        if (!$params) $params['year'] = $this->dt->year;
+
+        // 月別
+        for ($i = 1; $i <= 12; $i++) {
+            $rank['months'][] = $i . '月';
+            $rank['counts'][] = Attendance::where('user_id', $request->id)
+                ->whereYear('date', $params['year'])
+                ->whereMonth('date', $i)
+                ->count();
+        }
+
         return view('user.show')->with([
-            'user' => $user
+            'user' => $user,
+            'rank' => $rank,
+            'params' => $params
         ]);
     }
 
@@ -59,9 +71,7 @@ class UserController extends Controller
 
         $yearUsers = User::select(DB::raw('count(*) as attendance_count, users.id as userid, users.sei, users.mei'))
             ->leftJoin('attendances', 'attendances.user_id', '=', 'users.id')
-            ->where('users.role', Role::Normal)
-            ->where('users.store_id', Auth::user()->store_id)
-            ->where('status', '!=', Status::Cancel)
+            ->roleStoreStatusFilter(Role::Normal, Auth::user()->store_id, Status::Cancel)
             ->categoryFilter($params['category'] ?? null)
             ->whereYear('attendances.date', $params['year'] ?? $dt->year)
             ->groupBy('userid')
@@ -77,9 +87,7 @@ class UserController extends Controller
 
         $monthlyUsers = User::select(DB::raw('count(*) as attendance_count, users.id as userid, users.sei, users.mei'))
             ->leftJoin('attendances', 'attendances.user_id', '=', 'users.id')
-            ->where('users.role', Role::Normal)
-            ->where('users.store_id', Auth::user()->store_id)
-            ->where('status', '!=', Status::Cancel)
+            ->roleStoreStatusFilter(Role::Normal, Auth::user()->store_id, Status::Cancel)
             ->categoryFilter($params['category'] ?? null)
             ->whereYear('attendances.date', $params['year'] ?? $dt->year)
             ->whereMonth('attendances.date', $params['month'] ?? $dt->month)

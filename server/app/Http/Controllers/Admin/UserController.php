@@ -6,6 +6,8 @@ use App\User;
 use App\Models\Store;
 use App\Models\Category;
 use App\Models\Organization;
+use App\Models\Attendance;
+use App\Models\Schedule;
 use Auth;
 use App\Enums\User\Role;
 use App\Enums\User\Status;
@@ -17,9 +19,11 @@ use DB;
 
 class UserController extends Controller
 {
-    public function __construct(User $user)
+    public function __construct(User $user, Schedule $schedule)
     {
         $this->user = $user;
+        $this->schedule = $schedule;
+        $this->dt = Carbon::now();
     }
 
     public function index(Request $request)
@@ -56,8 +60,30 @@ class UserController extends Controller
     {
         $user = $this->user->findByIdOrFail(Auth::user()->organization_id, $request->id);
 
+        $attendances = Attendance::where('user_id', $request->id)
+            ->orderBy('id', 'desc')
+            ->paginate(20);
+
+        $params = $request->query();
+        if (!isset($params['year'])) $params['year'] = $this->dt->year;
+
+        // 月別
+        for ($i = 1; $i <= 12; $i++) {
+            $rank['months'][] = $i . '月';
+            $rank['counts'][] = Attendance::where('user_id', $request->id)
+                ->whereYear('date', $params['year'])
+                ->whereMonth('date', $i)
+                ->count();
+        }
+
+        $schedules = $this->schedule->findByIdScheduleClass($user->store_id);
+
         return view('admin.user.show')->with([
-            'user' => $user
+            'user' => $user,
+            'rank' => $rank,
+            'params' => $params,
+            'attendances' => $attendances,
+            'schedules' => $schedules
         ]);
     }
 
@@ -88,7 +114,6 @@ class UserController extends Controller
 
     public function rank(Request $request)
     {
-        $dt = Carbon::now();
         $params = $request->query();
         // 累計会員数
         $totalUsersCount = User::where('organization_id', Auth::user()->organization_id)
@@ -108,14 +133,14 @@ class UserController extends Controller
                 ->orderBy('created_at', 'ASC')
                 ->first();
             $params['store'] = $store->id ?? null;
-            $params['year'] = $dt->year;
+            $params['year'] = $this->dt->year;
         }
         $user = User::where('users.store_id', $params['store'])
             ->where('users.role', Role::Normal)
             ->orderBy('created_at', 'ASC')
             ->first();
         if ($user) {
-            for ($i = $user->created_at->format('Y'); $i <= $dt->year; $i++) {
+            for ($i = $user->created_at->format('Y'); $i <= $this->dt->year; $i++) {
                 $years[] = strval($i);
             }
             // 年別
@@ -151,7 +176,7 @@ class UserController extends Controller
             // 月別
             for ($i = 1; $i <= 12; $i++) {
                 $monthUsers['months'][] = $i . '月';
-                $day = $dt->setDate($params['year'], $i, 1);
+                $day = $this->dt->setDate($params['year'], $i, 1);
                 $dt = Carbon::now();
                 $thisDay = $dt->setDate($dt->year, $dt->month, 1);
                 if ($day->lte($thisDay)) {

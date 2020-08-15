@@ -57,6 +57,12 @@ Route::group(['middleware' => ['auth', 'can:organization-admin-higher']], functi
             Route::post('delete/{id}', 'Admin\UserController@delete');
         });
 
+        // 出席
+        Route::prefix('attendance')->group(function () {
+            Route::post('update/{id}', 'Admin\AttendanceController@update');
+            Route::post('delete/{id}', 'Admin\AttendanceController@delete');
+        });
+
         // プレミアム
         Route::get('premium', 'Admin\SubscriptionController@index');
         Route::post('subscription/subscribe', 'Admin\SubscriptionController@subscribe');
