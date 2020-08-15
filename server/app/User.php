@@ -196,10 +196,11 @@ class User extends Authenticatable
     public function scopeSerachKeyword($query, $keyword = null)
     {
         if ($keyword) {
-            $query->where('sei', 'like', '%' . $keyword . '%');
-            $query->orWhere('mei', 'like', '%' . $keyword . '%');
-            $query->orWhere('sei_kana', 'like', '%' . $keyword . '%');
-            $query->orWhere('mei_kana', 'like', '%' . $keyword . '%');
+            $query
+                ->where('sei', 'like', '%' . $keyword . '%')
+                ->orWhere('mei', 'like', '%' . $keyword . '%')
+                ->orWhere('sei_kana', 'like', '%' . $keyword . '%')
+                ->orWhere('mei_kana', 'like', '%' . $keyword . '%');
         }
         return $query;
     }
