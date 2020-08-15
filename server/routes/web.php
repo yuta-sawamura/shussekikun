@@ -60,6 +60,7 @@ Route::group(['middleware' => ['auth', 'can:organization-admin-higher']], functi
         // 出席
         Route::prefix('attendance')->group(function () {
             Route::post('update/{id}', 'Admin\AttendanceController@update');
+            Route::post('delete/{id}', 'Admin\AttendanceController@delete');
         });
 
         // プレミアム

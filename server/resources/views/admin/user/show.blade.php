@@ -106,10 +106,11 @@
                             <td>{{ $attendance->created_at }}</td>
                             <td>
                               <button type="button" class="btn btn-outline-primary mb-2 mr-2" data-toggle="modal" data-target="#attendanceModal{{ $user->id }}">編集</button>
-                              <button type="button" class="btn btn-outline-danger mb-2 mr-2" data-toggle="modal" data-target="#attentionModal">削除</button>
+                              <button type="button" class="btn btn-outline-danger mb-2 mr-2" data-toggle="modal" data-target="#attentionModal{{ $attendance->id }}">削除</button>
                             </td>
                           </tr>
                           @include('components.modals.attendance', ['user' => $user, 'url' => '/admin/attendance/update/' . $attendance->id, 'attendance' => $attendance])
+                          @include('components.modals.attention', ['title' => '本当に削除してよろしいですか？', 'path' => '/admin/attendance/delete/' . $attendance->id, 'id' => $attendance->id])
                         @endforeach
                       </tbody>
                     </table>
