@@ -26,7 +26,7 @@ class Store extends Model
     public function findByIdOrFail(int $organizationId, int $storeId)
     {
         return $this->where('organization_id', $organizationId)
-        ->where('id', $storeId)
-        ->firstOrFail();
+            ->where('id', $storeId)
+            ->firstOrFail();
     }
 }
