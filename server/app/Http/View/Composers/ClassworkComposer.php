@@ -4,7 +4,6 @@ namespace App\Http\View\Composers;
 
 use App\Models;
 use Illuminate\View\View;
-use Illuminate\Contracts\Auth\Guard;
 use Auth;
 
 class ClassworkComposer
