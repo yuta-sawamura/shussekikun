@@ -3,8 +3,6 @@
 namespace App\Http\View\Composers;
 
 use Illuminate\View\View;
-use Illuminate\Contracts\Auth\Guard;
-use Auth;
 use App\Enums\Day;
 
 class DayComposer
