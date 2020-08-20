@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
 use App\Models\Category;
-use Validator;
+use App\Http\Requests\Admin\CategoryRequest;
 
 class CategoryController extends Controller
 {
@@ -15,7 +15,7 @@ class CategoryController extends Controller
         $this->category = $category;
     }
 
-    public function index ()
+    public function index()
     {
         $categories = Category::where('organization_id', Auth::user()->organization_id)
             ->orderBy('id', 'desc')
@@ -26,37 +26,23 @@ class CategoryController extends Controller
         ]);
     }
 
-    public function store (Request $request)
+    public function store(CategoryRequest $request)
     {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:50',
-        ]);
-        if ($validator->fails()) {
-            return redirect('/admin/category')->with('error_message', 'カテゴリーを追加できませんでした。');
-        }
-
         $request['organization_id'] = Auth::user()->organization_id;
         $this->category->fill($request->all())->save();
 
         return redirect('/admin/category')->with('success_message', 'カテゴリーを追加しました。');
     }
 
-    public function update (Request $request)
+    public function update(CategoryRequest $request)
     {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:50',
-        ]);
-        if ($validator->fails()) {
-            return redirect('/admin/category')->with('error_message', 'カテゴリーを編集できませんでした。');
-        }
-
         $category = $this->category->findByIdOrFail(Auth::user()->organization_id, $request->id);
         $category->fill($request->all())->save();
 
         return redirect('/admin/category')->with('success_message', 'カテゴリーを編集しました。');
     }
 
-    public function delete (Request $request)
+    public function delete(Request $request)
     {
         $category = $this->category->findByIdOrFail(Auth::user()->organization_id, $request->id);
         $category->delete();

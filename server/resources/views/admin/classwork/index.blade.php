@@ -83,7 +83,7 @@
   </div>
 </div>
 
-@component('components.modals.admin.create', ['name' => 'カテゴリー名', 'path' => '/admin/class/store'])
+@component('components.modals.admin.create', ['name' => 'クラス名', 'path' => '/admin/class/store'])
 @endcomponent
 
 @endsection()
