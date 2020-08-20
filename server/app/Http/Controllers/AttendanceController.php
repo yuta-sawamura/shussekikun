@@ -4,12 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Carbon\Carbon;
-use Validator;
 use App\Models\Attendance;
 use App\User;
 use App\Models\Schedule;
 use Auth;
 use App\Enums\User\Role;
+use App\Http\Requests\AttendanceRequest;
 
 class AttendanceController extends Controller
 {
@@ -19,16 +19,8 @@ class AttendanceController extends Controller
         $this->today = Carbon::today()->format('Y-m-d');
     }
 
-    public function store(Request $request)
+    public function store(AttendanceRequest $request)
     {
-        $validator = Validator::make($request->all(), [
-            'user_id' => 'required|integer',
-            'schedule_id' => 'required|integer',
-        ]);
-        if ($validator->fails()) {
-            return redirect('/')->with('error_message', '出席できませんでした。');
-        }
-
         $attendance = Attendance::firstOrNew([
             'user_id' => $request->user_id,
             'schedule_id' => $request->schedule_id,

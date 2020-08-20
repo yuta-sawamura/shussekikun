@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
 use App\Models\Store;
-use Validator;
+use App\Http\Requests\Admin\StoreRequest;
 
 class StoreController extends Controller
 {
@@ -15,7 +15,7 @@ class StoreController extends Controller
         $this->store = $store;
     }
 
-    public function index ()
+    public function index()
     {
         $stores = Store::where('organization_id', Auth::user()->organization_id)
             ->orderBy('id', 'desc')
@@ -26,37 +26,23 @@ class StoreController extends Controller
         ]);
     }
 
-    public function store (Request $request)
+    public function store(StoreRequest $request)
     {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:50',
-        ]);
-        if ($validator->fails()) {
-            return redirect('/admin/store')->with('error_message', '店舗を追加できませんでした。');
-        }
-
         $request['organization_id'] = Auth::user()->organization_id;
         $this->store->fill($request->all())->save();
 
         return redirect('/admin/store')->with('success_message', '店舗を追加しました。');
     }
 
-    public function update (Request $request)
+    public function update(StoreRequest $request)
     {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:50',
-        ]);
-        if ($validator->fails()) {
-            return redirect('/admin/store')->with('error_message', '店舗を編集できませんでした。');
-        }
-
         $store = $this->store->findByIdOrFail(Auth::user()->organization_id, $request->id);
         $store->fill($request->all())->save();
 
         return redirect('/admin/store')->with('success_message', '店舗を編集しました。');
     }
 
-    public function delete (Request $request)
+    public function delete(Request $request)
     {
         $store = $this->store->findByIdOrFail(Auth::user()->organization_id, $request->id);
         $store->delete();
