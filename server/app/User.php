@@ -2,9 +2,10 @@
 
 namespace App;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Builder;
 use App\Models\Store;
 use App\Models\Category;
 use App\Models\Attendance;
@@ -129,10 +130,10 @@ class User extends Authenticatable
 
     /**
      * 採番関数
-     * @param object
+     * @param Illuminate\Database\Eloquent\Collection
      * @return array
      */
-    public function getNumbering(object $users): array
+    public function getNumbering(Collection $users): array
     {
         $rank = 1;
         foreach ($users as $key => $user) {
@@ -156,44 +157,44 @@ class User extends Authenticatable
 
     /**
      * 店舗絞り込み
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param int|null $id
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @param \Illuminate\Database\Eloquent\Builder
+     * @param int|null
+     * @return \Illuminate\Database\Eloquent\Builder|null
      */
-    public function scopeStoreFilter($query, $id = null)
+    public function scopeStoreFilter(Builder $query, int $id = null)
     {
         if ($id) return $query->where('store_id', $id);
     }
 
     /**
      * カテゴリー絞り込み
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param int|null $id
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @param \Illuminate\Database\Eloquent\Builder
+     * @param int|null
+     * @return \Illuminate\Database\Eloquent\Builder|null
      */
-    public function scopeCategoryFilter($query, $id = null)
+    public function scopeCategoryFilter(Builder $query, int $id = null)
     {
         if ($id) return $query->where('category_id', $id);
     }
 
     /**
      * 性別絞り込み
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param int|null $id
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @param \Illuminate\Database\Eloquent\Builder
+     * @param int|null
+     * @return \Illuminate\Database\Eloquent\Builder|null
      */
-    public function scopeGenderFilter($query, $id = null)
+    public function scopeGenderFilter(Builder $query, int $id = null)
     {
         if ($id) return $query->where('gender', $id);
     }
 
     /**
      * キーワード検索
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param string|null $keyword
+     * @param \Illuminate\Database\Eloquent\Builder
+     * @param string|null
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeSerachKeyword($query, $keyword = null)
+    public function scopeSerachKeyword(Builder $query, string $keyword = null): Builder
     {
         if ($keyword) {
             $query
@@ -207,13 +208,13 @@ class User extends Authenticatable
 
     /**
      * 権限・店舗・状態絞り込み
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param int $roleId
-     * @param int $storeId
-     * @param int $statusId
+     * @param \Illuminate\Database\Eloquent\Builder
+     * @param int
+     * @param int
+     * @param int
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeRoleStoreStatusFilter($query, $roleId, $storeId, $statusId)
+    public function scopeRoleStoreStatusFilter(Builder $query, int $roleId, int $storeId, int $statusId): Builder
     {
         return $query->where('users.role', $roleId)
             ->where('users.store_id', $storeId)
@@ -224,9 +225,9 @@ class User extends Authenticatable
      * 会員取得関数
      * @param int
      * @param int
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return App\User
      */
-    public function findByIdOrFail(int $organizationId, int $userId)
+    public function findByIdOrFail(int $organizationId, int $userId): User
     {
         return $this->where('id', $userId)
             ->where('role', '!=', Role::System)
