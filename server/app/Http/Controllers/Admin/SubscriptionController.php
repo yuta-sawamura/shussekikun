@@ -8,6 +8,7 @@ use Auth;
 use Stripe\Stripe;
 use App\User;
 use App\Models\Organization;
+use Illuminate\Support\Facades\Log;
 
 class SubscriptionController extends Controller
 {
@@ -44,6 +45,7 @@ class SubscriptionController extends Controller
 
             return redirect('admin/premium')->with('success_message', '支払いに成功しました。');
         } catch (\Exception $ex) {
+            Log::channel('single')->error($ex->httpBody);
             return redirect('admin/premium')->with('error_message', '支払いに失敗しました。');
         }
     }
@@ -58,6 +60,7 @@ class SubscriptionController extends Controller
 
             return redirect('admin/premium')->with('success_message', '支払いをキャンセルしました。');
         } catch (\Exception $ex) {
+            Log::channel('single')->error($ex->httpBody);
             return redirect('admin/premium')->with('error_message', 'キャンセルに失敗しました。');
         }
     }

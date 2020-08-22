@@ -20,7 +20,7 @@ class Category extends Model
      * カテゴリー取得関数
      * @param int
      * @param int
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return App\Models\Category|\Illuminate\Database\Eloquent\ModelNotFoundException
      */
     public function findByIdOrFail(int $organizationId, int $categoryId)
     {

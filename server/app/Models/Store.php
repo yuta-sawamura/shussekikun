@@ -21,12 +21,12 @@ class Store extends Model
      * 店舗取得関数
      * @param int
      * @param int
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return App\Models\Store|\Illuminate\Database\Eloquent\ModelNotFoundException
      */
     public function findByIdOrFail(int $organizationId, int $storeId)
     {
         return $this->where('organization_id', $organizationId)
-        ->where('id', $storeId)
-        ->firstOrFail();
+            ->where('id', $storeId)
+            ->firstOrFail();
     }
 }
