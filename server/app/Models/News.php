@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use cebe\markdown\Markdown;
 use Illuminate\Support\HtmlString;
 
@@ -21,11 +22,11 @@ class News extends Model
 
     /**
      * キーワード検索
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param string|null $keyword
+     * @param \Illuminate\Database\Eloquent\Builder
+     * @param string|null
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeSerachKeyword($query, $keyword = null)
+    public function scopeSerachKeyword(Builder $query, $keyword = null): Builder
     {
         if ($keyword) {
             $query->where('news.title', 'like', '%' . $keyword . '%');
@@ -37,11 +38,11 @@ class News extends Model
 
     /**
      * 店舗絞り込み
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param int|null $id
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @param \Illuminate\Database\Eloquent\Builder
+     * @param int|null
+     * @return \Illuminate\Database\Eloquent\Builder|null
      */
-    public function scopeStoreFilter($query, $id = null)
+    public function scopeStoreFilter(Builder $query, int $id = null)
     {
         if ($id) return $query->where('store_id', $id);
     }
@@ -49,12 +50,14 @@ class News extends Model
     /**
      * パース
      */
-    public function parse() {
+    public function parse()
+    {
         $parser = new Markdown();
         return new HtmlString($parser->parse($this->content));
     }
 
-    public function getMarkContentAttribute() {
+    public function getMarkContentAttribute()
+    {
         return $this->parse();
     }
 
@@ -62,7 +65,7 @@ class News extends Model
      * お知らせ取得関数
      * @param int
      * @param int
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return App\Models\News|\Illuminate\Database\Eloquent\ModelNotFoundException
      */
     public function findByIdOrFail(int $organizationId, int $newsId)
     {
@@ -75,9 +78,9 @@ class News extends Model
             'stores.organization_id',
             'stores.name'
         )
-        ->join('stores', 'stores.id', '=', 'news.store_id')
-        ->where('news.id', $newsId)
-        ->where('stores.organization_id', $organizationId)
-        ->firstOrFail();
+            ->join('stores', 'stores.id', '=', 'news.store_id')
+            ->where('news.id', $newsId)
+            ->where('stores.organization_id', $organizationId)
+            ->firstOrFail();
     }
 }

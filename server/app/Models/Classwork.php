@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class Classwork extends Model
 {
@@ -19,11 +20,11 @@ class Classwork extends Model
 
     /**
      * キーワード検索
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param string|null $keyword
+     * @param \Illuminate\Database\Eloquent\Builder
+     * @param string|null
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeSerachKeyword($query, $keyword = null)
+    public function scopeSerachKeyword(Builder $query, string $keyword = null): Builder
     {
         if ($keyword) {
             $query->where('name', 'like', '%' . $keyword . '%');
@@ -33,11 +34,11 @@ class Classwork extends Model
 
     /**
      * クラス取得関数
-     * @param
-     * @param
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @param int
+     * @param int
+     * @return App\Models\Classwork|\Illuminate\Database\Eloquent\ModelNotFoundException
      */
-    public function findByIdOrFail($classworkId, $organizationId)
+    public function findByIdOrFail(int $classworkId, int $organizationId)
     {
         return $this->where('organization_id', $organizationId)
             ->where('id', $classworkId)

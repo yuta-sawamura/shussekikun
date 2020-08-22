@@ -3,9 +3,10 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Collection;
 use App\Models\Store;
 use App\Models\Classwork;
-use App\Models\Attendance;
 use App\Enums\Day;
 use Carbon\Carbon;
 use DB;
@@ -25,15 +26,6 @@ class Schedule extends Model
         'end_at',
     ];
 
-    /**
-     * 開始時間~終了時間
-     * @return stiring
-     */
-    public function getTimeAttribute()
-    {
-        return "{$this->start_at}~{$this->end_at}";
-    }
-
     public function store()
     {
         return $this->belongsTo(Store::class);
@@ -42,6 +34,15 @@ class Schedule extends Model
     public function classwork()
     {
         return $this->belongsTo(Classwork::class)->select('classworks.name as classwork_name');
+    }
+
+    /**
+     * 開始時間~終了時間
+     * @return stiring
+     */
+    public function getTimeAttribute()
+    {
+        return "{$this->start_at}~{$this->end_at}";
     }
 
     /**
@@ -73,33 +74,33 @@ class Schedule extends Model
 
     /**
      * 店舗絞り込み
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param int|null $id
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @param \Illuminate\Database\Eloquent\Builder
+     * @param int|null
+     * @return \Illuminate\Database\Eloquent\Builder|null
      */
-    public function scopeStoreFilter($query, $id = null)
+    public function scopeStoreFilter(Builder $query, int $id = null)
     {
         if ($id) return $query->where('schedules.store_id', $id);
     }
 
     /**
      * クラス絞り込み
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param int|null $id
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @param \Illuminate\Database\Eloquent\Builder
+     * @param int|null
+     * @return \Illuminate\Database\Eloquent\Builder|null
      */
-    public function scopeClassworkFilter($query, $id = null)
+    public function scopeClassworkFilter(Builder $query, int $id = null)
     {
         if ($id) return $query->where('schedules.classwork_id', $id);
     }
 
     /**
      * 曜日絞り込み
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param int|null $id
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @param \Illuminate\Database\Eloquent\Builder
+     * @param int|null
+     * @return \Illuminate\Database\Eloquent\Builder|null
      */
-    public function scopeDayFilter($query, $id = null)
+    public function scopeDayFilter(Builder $query, $id = null)
     {
         if ($id) return $query->where('schedules.day', $id);
     }
@@ -108,7 +109,7 @@ class Schedule extends Model
      * スケジュール取得関数
      * @param int
      * @param int
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return App\Models\Schedule|\Illuminate\Database\Eloquent\ModelNotFoundException
      */
     public function findByIdOrFail(int $organizationId, int $scheduleId)
     {
@@ -133,7 +134,7 @@ class Schedule extends Model
      * @param int
      * @return Illuminate\Support\Collection
      */
-    public function findByIdScheduleClass(int $storeId)
+    public function findByIdScheduleClass(int $storeId): Collection
     {
         return $this->select(
             'schedules.day',
