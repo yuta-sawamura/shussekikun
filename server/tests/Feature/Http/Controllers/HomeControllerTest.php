@@ -5,10 +5,8 @@ declare(strict_types=1);
 namespace Tests\Feature\Http\Controllers;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\User;
-use App\Models\Store;
 use App\Models\Organization;
 
 class HomeControllerTest extends TestCase
@@ -16,25 +14,20 @@ class HomeControllerTest extends TestCase
 
     use RefreshDatabase;
 
-    /**
-     * ログインユーザーのアクセス
-     *
-     * @return void
-     */
-    public function testIndex()
+    public function test_非ログインユーザーがアクセス時にステータスコード302を返す()
+    {
+        $response = $this->get('/');
+        $response->assertStatus(302);
+    }
+
+    public function test_ログインアカウントがアクセス時にステータスコード200を返す()
     {
         $organization = factory(Organization::class)->create();
-        $store = factory(Store::class)->create([
-            'organization_id' => $organization->id
-        ]);
         $user = factory(User::class)->create([
             'organization_id' => $organization->id,
-            'store_id' => $store->id
-
         ]);
-        //dd($user);
+
         $response = $this->actingAs($user)->get('/');
-        dd($response);
         $response->assertStatus(200);
     }
 }

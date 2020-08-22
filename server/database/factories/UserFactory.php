@@ -28,7 +28,7 @@ $factory->define(User::class, function (Faker $faker) {
         'mei_kana' => $faker->firstName(),
         'img' => null,
         'gender' => $faker->numberBetween($min = 1, $max = 2),
-        'email' => 'test@gmail.com',
+        'email' => $faker->safeEmail(),
         'birth' => $faker->dateTimeThisCentury()->format('Y-m-d'),
         'role' => 3,
         'password' => bcrypt('secret'),
