@@ -36,6 +36,12 @@ class UserControllerTest extends TestCase
             'role' => Role::System
         ]);
 
+        // 組織管理者アカウント
+        $this->organization_admin_user = factory(User::class)->create([
+            'organization_id' => $this->organization->id,
+            'role' => Role::Organization_admin
+        ]);
+
         // 共有アカウント
         $this->store_share_user = factory(User::class)->create([
             'organization_id' => $this->organization->id,
@@ -69,9 +75,15 @@ class UserControllerTest extends TestCase
         $response->assertStatus(200);
     }
 
+    public function test_組織管理者アカウントがアクセス時にステータスコード200を返す()
+    {
+        $response = $this->actingAs($this->organization_admin_user)->get('admin');
+        $response->assertStatus(200);
+    }
+
     public function test_会員を登録できる()
     {
-        $this->actingAs($this->system_user)->get('/admin/user/create');
+        $this->actingAs($this->organization_admin_user)->get('/admin/user/create');
         $data = [
             'organization_id' => $this->organization->id,
             'store_id' => $this->store->id,
@@ -95,7 +107,7 @@ class UserControllerTest extends TestCase
 
     public function test_会員を編集できる()
     {
-        $this->actingAs($this->system_user)->get('/admin/user/edit');
+        $this->actingAs($this->organization_admin_user)->get('/admin/user/edit');
         $new_email = 'new@gmail.com';
         $data = [
             'organization_id' => $this->organization->id,
@@ -120,13 +132,13 @@ class UserControllerTest extends TestCase
 
     public function test_会員の詳細画面を閲覧できる()
     {
-        $response = $this->actingAs($this->system_user)->get('/admin/user/show/' . $this->normal_user->id);
+        $response = $this->actingAs($this->organization_admin_user)->get('/admin/user/show/' . $this->normal_user->id);
         $response->assertStatus(200);
     }
 
     public function test_会員を削除できる()
     {
-        $this->actingAs($this->system_user)->get('/admin/user/edit/' . $this->normal_user->id);
+        $this->actingAs($this->organization_admin_user)->get('/admin/user/edit/' . $this->normal_user->id);
         $this->assertDatabaseHas('users', [
             'id' => $this->normal_user->id,
         ]);

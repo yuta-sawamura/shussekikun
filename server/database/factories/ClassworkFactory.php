@@ -18,6 +18,6 @@ use Faker\Generator as Faker;
 
 $factory->define(Classwork::class, function (Faker $faker) {
     return [
-        'name' => '上級',
+        'name' => $faker->name,
     ];
 });

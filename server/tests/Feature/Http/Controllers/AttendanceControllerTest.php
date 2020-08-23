@@ -11,7 +11,6 @@ use App\Models\Store;
 use App\Models\Organization;
 use App\Models\Classwork;
 use App\Models\Schedule;
-use App\Models\Attendance;
 use App\Enums\User\Role;
 
 class AttendanceControllerTest extends TestCase
