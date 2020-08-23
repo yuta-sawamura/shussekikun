@@ -23,10 +23,17 @@ class AttendanceRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'user_id' => 'required|integer',
-            'schedule_id' => 'required|integer',
-        ];
+        if ($this->is('attendance/store')) {
+            return [
+                'user_id' => 'required|integer',
+                'schedule_id' => 'required|integer',
+            ];
+        } elseif ($this->is('attendance/store_multiple')) {
+            return [
+                'users.*.user_id' => 'required|integer',
+                'schedule_id' => 'required|integer',
+            ];
+        }
     }
 
     public function withValidator($validator)

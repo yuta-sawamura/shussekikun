@@ -5,10 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Models\Attendance;
-use App\User;
-use App\Models\Schedule;
-use Auth;
-use App\Enums\User\Role;
 use App\Http\Requests\AttendanceRequest;
 
 class AttendanceController extends Controller
@@ -32,16 +28,8 @@ class AttendanceController extends Controller
         return redirect('/')->with('success_message', '出席しました。');
     }
 
-    public function storeMultiple(Request $request)
+    public function storeMultiple(AttendanceRequest $request)
     {
-        $validator = Validator::make($request->all(), [
-            'users.*.user_id' => 'required|integer',
-            'schedule_id' => 'required|integer',
-        ]);
-        if ($validator->fails()) {
-            return redirect('/')->with('error_message', '出席できませんでした。');
-        }
-
         foreach ($request->users as $user) {
             $attendance = Attendance::firstOrNew([
                 'user_id' => $user['user_id'],
