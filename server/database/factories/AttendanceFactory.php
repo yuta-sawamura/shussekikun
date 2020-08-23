@@ -2,7 +2,7 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Models\Store;
+use App\Models\Attendance;
 use Faker\Generator as Faker;
 
 /*
@@ -16,9 +16,8 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(Store::class, function (Faker $faker) {
+$factory->define(Attendance::class, function (Faker $faker) {
     return [
-        'organization_id' => null,
-        'name' => '渋谷店',
+        'date' => '2020-10-10',
     ];
 });

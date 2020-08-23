@@ -2,7 +2,7 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Models\Store;
+use App\Models\Schedule;
 use Faker\Generator as Faker;
 
 /*
@@ -16,9 +16,10 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(Store::class, function (Faker $faker) {
+$factory->define(Schedule::class, function (Faker $faker) {
     return [
-        'organization_id' => null,
-        'name' => '渋谷店',
+        'day' => $faker->numberBetween($min = 1, $max = 7),
+        'start_at' => '20:00',
+        'end_at' => '21:00',
     ];
 });

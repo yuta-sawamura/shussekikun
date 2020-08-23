@@ -2,7 +2,7 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Models\Store;
+use App\Models\News;
 use Faker\Generator as Faker;
 
 /*
@@ -16,9 +16,10 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(Store::class, function (Faker $faker) {
+$factory->define(News::class, function (Faker $faker) {
     return [
-        'organization_id' => null,
-        'name' => '渋谷店',
+        'store_id' => 1,
+        'title' => '2月のお知らせ',
+        'content' => 'お休みです。',
     ];
 });

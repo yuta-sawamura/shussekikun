@@ -33,9 +33,7 @@ class UserControllerTest extends TestCase
         // システム管理者アカウント
         $this->system_user = factory(User::class)->create([
             'organization_id' => $this->organization->id,
-            'store_id' => $this->store->id,
             'role' => Role::System
-
         ]);
 
         // 共有アカウント

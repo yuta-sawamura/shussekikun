@@ -8,19 +8,19 @@ use App\Models\News;
 
 class NewsController extends Controller
 {
-    public function index (Request $request)
+    public function index(Request $request)
     {
         $params = $request->query();
 
         $news = News::select(
-                'news.id',
-                'news.store_id',
-                'news.title',
-                'news.content',
-                'news.created_at',
-                'stores.organization_id',
-                'stores.name'
-            )
+            'news.id',
+            'news.store_id',
+            'news.title',
+            'news.content',
+            'news.created_at',
+            'stores.organization_id',
+            'stores.name'
+        )
             ->join('stores', 'stores.id', '=', 'news.store_id')
             ->where('stores.id', Auth::user()->store_id)
             ->serachKeyword($params['keyword'] ?? null)
@@ -34,15 +34,15 @@ class NewsController extends Controller
         ]);
     }
 
-    public function show (Request $request)
+    public function show(Request $request)
     {
         $news = News::select(
-                'news.id',
-                'news.store_id',
-                'news.title',
-                'news.content',
-                'news.created_at'
-            )
+            'news.id',
+            'news.store_id',
+            'news.title',
+            'news.content',
+            'news.created_at'
+        )
             ->join('stores', 'stores.id', '=', 'news.store_id')
             ->where('news.id', $request->id)
             ->where('stores.id', Auth::user()->store_id)
