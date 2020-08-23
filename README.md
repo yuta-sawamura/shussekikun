@@ -84,7 +84,6 @@ Docker | Nginx | GitHub | CircleCI
 |ブランチ名 |概要 |
 |---|---|
 |master |デプロイ用ブランチ |
-|release |確認用ブランチ |
 |develop |開発用ブランチ |
 |feature |機能別開発用ブランチ |
 
