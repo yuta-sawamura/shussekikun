@@ -4,8 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\User;
 use App\Models\Store;
-use App\Models\Category;
-use App\Models\Organization;
 use App\Models\Attendance;
 use App\Models\Schedule;
 use Auth;
@@ -15,7 +13,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\Admin\UserRequest;
 use Carbon\Carbon;
-use DB;
 
 class UserController extends Controller
 {

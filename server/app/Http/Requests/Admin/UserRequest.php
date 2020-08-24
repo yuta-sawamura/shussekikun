@@ -29,9 +29,9 @@ class UserRequest extends FormRequest
     public function rules()
     {
         if (Auth::user()->role === Role::System) {
-          return $this->systemRules();
+            return $this->systemRules();
         } elseif (Auth::user()->role === Role::Organization_admin) {
-          return $this->organizationAdminRules();
+            return $this->organizationAdminRules();
         }
     }
 
@@ -54,7 +54,7 @@ class UserRequest extends FormRequest
             'img' => 'nullable|image',
             'gender' => 'required|integer',
             'email' => 'nullable|unique:users,email,' . $this->id . '|email|max:100|required_unless:role,' . Role::Normal,
-            'birth' =>'required|date',
+            'birth' => 'required|date',
             'role' => "required|in:" . Role::System . ',' . Role::Organization_admin . ',' . Role::Store_share . ',' . Role::Normal,
             'password' => 'nullable|string|min:8|required_unless:role,' . Role::Normal,
             'status' => 'required|in:' . Status::Continue . ',' . Status::Cancel,
@@ -67,8 +67,8 @@ class UserRequest extends FormRequest
      *
      * @return array
      */
-   private function organizationAdminRules()
-   {
+    private function organizationAdminRules()
+    {
         return [
             'organization_id' => 'nullable|integer',
             'store_id' => 'nullable|integer|required_if:role,' . Role::Store_share . ',' . Role::Normal,
@@ -80,12 +80,12 @@ class UserRequest extends FormRequest
             'img' => 'nullable|image',
             'gender' => 'required|integer',
             'email' => 'nullable|unique:users,email,' . $this->id . '|email|max:100|required_if:role,' . Role::Organization_admin . ',' . Role::Store_share,
-            'birth' =>'required|date' ,
+            'birth' => 'required|date',
             'role' => "required|in:" . Role::Organization_admin . ',' . Role::Store_share . ',' . Role::Normal,
             'password' => 'nullable|string|min:8|required_if:role,' . Role::Organization_admin . ',' . Role::Store_share,
             'status' => 'required|in:' . Status::Continue . ',' . Status::Cancel,
         ];
-  }
+    }
 
     /**
      * エラーメッセージのカスタマイズ

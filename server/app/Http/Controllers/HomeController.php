@@ -36,11 +36,11 @@ class HomeController extends Controller
             ->orderBy('id', 'desc')
             ->paginate(30);
 
-        $schedules = $this->schedule->findByIdScheduleClass(Auth::user()->store_id);
+        if (isset(Auth::user()->store_id)) $schedules = $this->schedule->findByIdScheduleClass(Auth::user()->store_id);
 
         return view('home.index')->with([
             'users' => $users,
-            'schedules' => $schedules,
+            'schedules' => $schedules ?? [],
             'params' => $params,
         ]);
     }
