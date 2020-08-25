@@ -1,23 +1,24 @@
-# SHUSSEKIKUNとは
+# SHUSSEKIKUN とは
 
-SHUSSEKIKUN(しゅっせきくん)は、店舗オーナーが会員の出席を管理できるWebシステムです。<br/>
+SHUSSEKIKUN(しゅっせきくん)は、店舗オーナーが会員の出席を管理できる Web システムです。<br/>
 会員は店舗に置かれた端末(PC、タブレット、スマートフォン)から、共通アカウントを用いて出席します。店舗オーナーは管理者アカントを用いて会員の出席情報を集計・閲覧できます。
 
 ## デザイン
 
 <img width="1406" alt="スクリーンショット 2020-04-27 22 48 39" src="https://user-images.githubusercontent.com/29622529/80379657-58f5b580-88d9-11ea-843a-f15f211896f4.png">
 
-[デザインのURL](https://yuuta1988.github.io/shussekikun-design/index.html)
+[デザインの URL](https://yuuta1988.github.io/shussekikun-design/index.html)
 
 ## 作成の背景
-私は以前、責任者として空手道場を運営していました。道場生の出席を紙ベースで管理しており、集計に苦労した経験があります。そんな背景から店舗オーナーは、特別な機材を導入することなく出席の管理ができ、会員は子どもでも直感的に出席できるWebシステムを作成することにしました。
+
+私は以前、責任者として空手道場を運営していました。道場生の出席を紙ベースで管理しており、集計に苦労した経験があります。そんな背景から店舗オーナーは、特別な機材を導入することなく出席の管理ができ、会員は子どもでも直感的に出席できる Web システムを作成することにしました。
 
 ## 使用技術
 
-■言語<br>
-PHP7.2 | JavaScript  | HTML/CSS
+■ 言語<br>
+PHP7.2 | JavaScript | HTML/CSS
 
-■フレームワーク・ライブラリ等<br>
+■ フレームワーク・ライブラリ等<br>
 Laravel6.1 | jQuery | ApexCharts(チャート用) | Bootstrap
 
 ■RDB<br>
@@ -27,7 +28,7 @@ MySQL5.7
 ECS | VPC | S3 | EC2 | ELB | IAM | RDS | Route53
 [参考](https://qiita.com/okoppe8/items/dc1de147a36797442e4c)
 
-■その他<br>
+■ その他<br>
 Docker | Nginx | GitHub | CircleCI
 
 ## 機能一覧
@@ -60,7 +61,7 @@ Docker | Nginx | GitHub | CircleCI
     - 一括削除
     - ランキング
       - 一覧(全体)
-        -  種別
+        - 種別
         - 年別
         - 月別
       - 詳細(個別)
@@ -73,23 +74,22 @@ Docker | Nginx | GitHub | CircleCI
     - カード情報変更
     - 解約
 
-## DB設計
+## DB 設計
 
-■ER図
+■ER 図
 
 ![ER図](https://user-images.githubusercontent.com/29622529/89781780-eee2e280-db4e-11ea-9640-c5ff0e73aee7.jpg)
 
 ## Git flow
 
-|ブランチ名 |概要 |
-|---|---|
-|master |デプロイ用ブランチ |
-|develop |開発用ブランチ |
-|feature |機能別開発用ブランチ |
+| ブランチ名 | 概要               |
+| ---------- | ------------------ |
+| master     | デプロイ用ブランチ |
+| feature    | 開発用ブランチ     |
 
-|No. |ルール |
-|---|---|
-|1. |masterは常にデプロイ可能である。 |
-|2. |masterにマージ後デプロイを行う。 |
-|3. |master以外のブランチの命名規則。<br>「ブランンチ名/日付/内容」|
-|4. |コミットの命名規則。<br>[タイトル]概要<br><br>内容|
+| No. | ルール                                                                         |
+| --- | ------------------------------------------------------------------------------ |
+| 1.  | master は常にデプロイ可能である                                                |
+| 2.  | master にマージ後デプロイを行う。                                              |
+| 3.  | ブランチの命名規則。<br>「ブランンチ名/日付/内容」                             |
+| 4.  | コミットの命名規則。<br>[種別(add or update or fix or delete)]概要<br><br>内容 |
