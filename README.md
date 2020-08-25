@@ -93,5 +93,3 @@ Docker | Nginx | GitHub | CircleCI
 | 2.  | master にマージ後デプロイを行う。                                              |
 | 3.  | ブランチの命名規則。<br>「ブランンチ名/日付/内容」                             |
 | 4.  | コミットの命名規則。<br>[種別(add or update or fix or delete)]概要<br><br>内容 |
-
-CI のテスト 2
