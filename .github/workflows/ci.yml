@@ -1,4 +1,4 @@
-name: tests
+name: CI
 
 on:
   push:
@@ -30,11 +30,13 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - name: cd
+        run: cd server
       - name: Copy .env
-        run: cp server/.env.ci .env
+        run: cp .env.ci .env
       - name: composer install
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: composer install -n --prefer-dist
+        run: |
+          composer install --no-scripts
       - name: Generate key
         run: php artisan key:generate
       - name: Directory Permissions
