@@ -31,7 +31,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Copy .env
-        run: cp server/.env.ci .env
+        run: cp .env.ci .env
         working-directory: ./server
       - name: composer install
         run: |
