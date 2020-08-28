@@ -30,16 +30,19 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: cd
-        run: cd server
       - name: Copy .env
-        run: cp .env.ci .env
+        run: cp server/.env.ci .env
+        working-directory: ./server
       - name: composer install
         run: |
           composer install --no-scripts
+        working-directory: ./server
       - name: Generate key
         run: php artisan key:generate
+        working-directory: ./server
       - name: Directory Permissions
         run: chmod -R 777 storage bootstrap/cache
+        working-directory: ./server
       - name: unit test
         run: ./vendor/bin/phpunit
+        working-directory: ./server
