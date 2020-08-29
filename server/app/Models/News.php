@@ -21,30 +21,24 @@ class News extends Model
     ];
 
     /**
-     * キーワード検索
+     * 検索・絞り込み
      * @param \Illuminate\Database\Eloquent\Builder
-     * @param string|null
+     * @param array
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeSerachKeyword(Builder $query, $keyword = null): Builder
+    public function scopeSerach(Builder $query, array $params): Builder
     {
-        if ($keyword) {
-            $query->where('news.title', 'like', '%' . $keyword . '%');
-            $query->orWhere('news.content', 'like', '%' . $keyword . '%');
-            $query->orWhere('stores.name', 'like', '%' . $keyword . '%');
+        // キーワード検索
+        if (!empty($params['keyword'])) {
+            $query->where('news.title', 'like', '%' . $params['keyword'] . '%')
+                ->orWhere('news.content', 'like', '%' . $params['keyword'] . '%')
+                ->orWhere('stores.name', 'like', '%' . $params['keyword'] . '%');
         }
-        return $query;
-    }
 
-    /**
-     * 店舗絞り込み
-     * @param \Illuminate\Database\Eloquent\Builder
-     * @param int|null
-     * @return \Illuminate\Database\Eloquent\Builder|null
-     */
-    public function scopeStoreFilter(Builder $query, int $id = null)
-    {
-        if ($id) return $query->where('store_id', $id);
+        // 店舗絞り込み
+        if (!empty($params['store'])) $query->where('store_id', $params['store']);
+
+        return $query;
     }
 
     /**

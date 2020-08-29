@@ -73,36 +73,23 @@ class Schedule extends Model
     }
 
     /**
-     * 店舗絞り込み
+     * 検索・絞り込み
      * @param \Illuminate\Database\Eloquent\Builder
-     * @param int|null
-     * @return \Illuminate\Database\Eloquent\Builder|null
+     * @param array
+     * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeStoreFilter(Builder $query, int $id = null)
+    public function scopeSerach(Builder $query, array $params): Builder
     {
-        if ($id) return $query->where('schedules.store_id', $id);
-    }
+        // 店舗絞り込み
+        if (!empty($params['store'])) $query->where('schedules.store_id', $params['store']);
 
-    /**
-     * クラス絞り込み
-     * @param \Illuminate\Database\Eloquent\Builder
-     * @param int|null
-     * @return \Illuminate\Database\Eloquent\Builder|null
-     */
-    public function scopeClassworkFilter(Builder $query, int $id = null)
-    {
-        if ($id) return $query->where('schedules.classwork_id', $id);
-    }
+        // クラス絞り込み
+        if (!empty($params['classwork'])) $query->where('schedules.classwork_id', $params['classwork']);
 
-    /**
-     * 曜日絞り込み
-     * @param \Illuminate\Database\Eloquent\Builder
-     * @param int|null
-     * @return \Illuminate\Database\Eloquent\Builder|null
-     */
-    public function scopeDayFilter(Builder $query, $id = null)
-    {
-        if ($id) return $query->where('schedules.day', $id);
+        // 曜日絞り込み
+        if (!empty($params['day'])) $query->where('schedules.day', $params['day']);
+
+        return $query;
     }
 
     /**

@@ -19,16 +19,14 @@ class Classwork extends Model
     ];
 
     /**
-     * キーワード検索
+     * 検索
      * @param \Illuminate\Database\Eloquent\Builder
-     * @param string|null
+     * @param array
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeSerachKeyword(Builder $query, string $keyword = null): Builder
+    public function scopeSerach(Builder $query, array $params): Builder
     {
-        if ($keyword) {
-            $query->where('name', 'like', '%' . $keyword . '%');
-        }
+        if (!empty($params['keyword'])) $query->where('name', 'like', '%' . $params['keyword'] . '%');
         return $query;
     }
 

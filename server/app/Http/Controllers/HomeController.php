@@ -29,10 +29,7 @@ class HomeController extends Controller
         $users = User::where('store_id', Auth::user()->store_id)
             ->where('role', Role::Normal)
             ->where('status', '!=', Status::Cancel)
-            ->serachKeyword($params['keyword'] ?? null)
-            ->storeFilter($params['store'] ?? null)
-            ->categoryFilter($params['category'] ?? null)
-            ->genderFilter($params['gender'] ?? null)
+            ->serach($params)
             ->orderBy('id', 'desc')
             ->paginate(30);
 

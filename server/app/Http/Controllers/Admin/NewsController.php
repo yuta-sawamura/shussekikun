@@ -27,8 +27,7 @@ class NewsController extends Controller
         )
             ->join('stores', 'stores.id', '=', 'news.store_id')
             ->where('stores.organization_id', Auth::user()->organization_id)
-            ->serachKeyword($params['keyword'] ?? null)
-            ->storeFilter($params['store'] ?? null)
+            ->serach($params)
             ->orderBy('news.id', 'desc')
             ->paginate(20);
 
