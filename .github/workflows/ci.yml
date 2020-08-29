@@ -36,5 +36,5 @@ jobs:
         run: chmod -R 777 storage bootstrap/cache
         working-directory: ./server
       - name: unit test
-        run: ./vendor/bin/phpunit tests/Feature
+        run: ./vendor/bin/phpunit tests/Unit
         working-directory: ./server
