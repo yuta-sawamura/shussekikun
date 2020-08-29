@@ -13,12 +13,20 @@ jobs:
     services:
       mysql:
         image: mysql:5.7
-        env:
-          MYSQL_ROOT_PASSWORD: docker
-          MYSQL_DATABASE: database-test
         ports:
-          - 33306:3306
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+          - 3306:3306
+        options: --health-cmd "mysqladmin ping -h localhost" --health-interval 20s --health-timeout 10s --health-retries 10
+        env:
+          MYSQL_ROOT_PASSWORD: password
+          MYSQL_DATABASE: testdatabase
+
+    env:
+      DB_CONNECTION: mysql
+      DB_HOST: 127.0.0.1
+      DB_PORT: 3306
+      DB_DATABASE: testdatabase
+      DB_USERNAME: root
+      DB_PASSWORD: password
 
     steps:
       - uses: actions/checkout@v2
@@ -36,4 +44,5 @@ jobs:
         run: chmod -R 777 storage bootstrap/cache
         working-directory: ./server
       - name: unit test
-        run: ./vendor/bin/phpunit
+        run: ./vendor/bin/phpunit tests/Feature
+        working-directory: ./server
