@@ -13,30 +13,25 @@ jobs:
     services:
       mysql:
         image: mysql:5.7
-        ports:
-          - 3306:3306
-        options: --health-cmd "mysqladmin ping -h localhost" --health-interval 20s --health-timeout 10s --health-retries 10
         env:
           MYSQL_ROOT_PASSWORD: password
-          MYSQL_DATABASE: testdatabase
+          MYSQL_DATABASE: testing
+        ports:
+          - 33306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
 
     steps:
       - uses: actions/checkout@v2
-      - name: Copy .env
-        run: cp .env.ci .env
+      - name: Prepare Laravel Application
+        run: |
+          cp .env.ci .env
+          php artisan key:generate
+          chmod -R 777 storage bootstrap/cache
+          php artisan migrate
         working-directory: ./server
       - name: composer install
         run: |
           composer install --no-scripts
-        working-directory: ./server
-      - name: Generate key
-        run: php artisan key:generate
-        working-directory: ./server
-      - name: Directory Permissions
-        run: chmod -R 777 storage bootstrap/cache
-        working-directory: ./server
-      - name: migrate
-        run: php artisan migrate
         working-directory: ./server
       - name: unit test
         run: ./vendor/bin/phpunit tests/Unit
