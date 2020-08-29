@@ -35,6 +35,9 @@ jobs:
       - name: Directory Permissions
         run: chmod -R 777 storage bootstrap/cache
         working-directory: ./server
+      - name: migrate
+        run: php artisan migrate
+        working-directory: ./server
       - name: unit test
         run: ./vendor/bin/phpunit tests/Unit
         working-directory: ./server
