@@ -55,7 +55,8 @@ class StoreControllerTest extends TestCase
         $data = [
             'name' => '埼玉県店舗'
         ];
-        $this->post('admin/store/store', $data);
+        $response = $this->post('admin/store/store', $data);
+        $response->assertSessionHas('success_message', '店舗を追加しました。');
         $this->assertDatabaseHas('stores', $data);
     }
 
@@ -69,7 +70,8 @@ class StoreControllerTest extends TestCase
             'name' => '栃木県店舗'
         ];
         $this->assertDatabaseMissing('stores', $new_data);
-        $this->post('admin/store/update/' . $this->store->id, $new_data);
+        $response = $this->post('admin/store/update/' . $this->store->id, $new_data);
+        $response->assertSessionHas('success_message', '店舗を編集しました。');
         $this->assertDatabaseHas('stores', $new_data);
     }
 
@@ -82,7 +84,7 @@ class StoreControllerTest extends TestCase
         $new_data = [
             'name' => '栃木県店舗'
         ];
-        $this->post('admin/store/update/' . $this->store->id, $new_data);
+        $response = $this->post('admin/store/update/' . $this->store->id, $new_data);
         $this->assertDatabaseMissing('stores', $new_data);
     }
 

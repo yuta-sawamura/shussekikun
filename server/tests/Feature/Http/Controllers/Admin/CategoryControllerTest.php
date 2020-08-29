@@ -56,7 +56,8 @@ class CategoryControllerTest extends TestCase
         $data = [
             'name' => '大人'
         ];
-        $this->post('/admin/category/store', $data);
+        $response = $this->post('/admin/category/store', $data);
+        $response->assertSessionHas('success_message', 'カテゴリーを追加しました。');
         $this->assertDatabaseHas('categories', $data);
     }
 
@@ -70,7 +71,8 @@ class CategoryControllerTest extends TestCase
             'name' => '上級大人'
         ];
         $this->assertDatabaseMissing('categories', $new_data);
-        $this->post('admin/category/update/' . $this->category->id, $new_data);
+        $response = $this->post('admin/category/update/' . $this->category->id, $new_data);
+        $response->assertSessionHas('success_message', 'カテゴリーを編集しました。');
         $this->assertDatabaseHas('categories', $new_data);
     }
 
@@ -93,7 +95,8 @@ class CategoryControllerTest extends TestCase
         $this->assertDatabaseHas('categories', [
             'id' => $this->category->id,
         ]);
-        $this->post('admin/category/delete/' . $this->category->id);
+        $response = $this->post('admin/category/delete/' . $this->category->id);
+        $response->assertSessionHas('success_message', 'カテゴリーを削除しました。');
         $this->assertDatabaseMissing('users', [
             'id' => $this->category->id,
         ]);

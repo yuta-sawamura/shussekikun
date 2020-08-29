@@ -70,7 +70,8 @@ class NewsControllerTest extends TestCase
             'title' => '８月のお知らせ',
             'content' => '休館です。'
         ];
-        $this->post('admin/news/store', $data);
+        $response = $this->post('admin/news/store', $data);
+        $response->assertSessionHas('success_message', 'お知らせを追加しました。');
         $this->assertDatabaseHas('news', $data);
     }
 
@@ -86,7 +87,8 @@ class NewsControllerTest extends TestCase
             'content' => '休館は上旬までです。'
         ];
         $this->assertDatabaseMissing('news', $new_data);
-        $this->post('admin/news/update/' . $this->news->id, $new_data);
+        $response = $this->post('admin/news/update/' . $this->news->id, $new_data);
+        $response->assertSessionHas('success_message', 'お知らせを編集しました。');
         $this->assertDatabaseHas('news', $new_data);
     }
 
@@ -112,7 +114,8 @@ class NewsControllerTest extends TestCase
         $this->assertDatabaseHas('news', [
             'id' => $this->news->id,
         ]);
-        $this->post('admin/news/delete/' . $this->news->id);
+        $response = $this->post('admin/news/delete/' . $this->news->id);
+        $response->assertSessionHas('success_message', 'お知らせを削除しました。');
         $this->assertDatabaseMissing('news', [
             'id' => $this->news->id,
         ]);

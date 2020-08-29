@@ -99,7 +99,8 @@ class UserControllerTest extends TestCase
             'password' => '12345678',
             'status' => Status::Continue,
         ];
-        $this->post('/admin/user/store', $data);
+        $response = $this->post('/admin/user/store', $data);
+        $response->assertSessionHas('success_message', '会員を追加しました。');
         $this->assertDatabaseHas('users', [
             'email' => $data['email'],
         ]);
@@ -124,7 +125,8 @@ class UserControllerTest extends TestCase
             'password' => '12345678',
             'status' => Status::Continue,
         ];
-        $this->post('/admin/user/update/' . $this->store_share_user->id, $data);
+        $response = $this->post('/admin/user/update/' . $this->store_share_user->id, $data);
+        $response->assertSessionHas('success_message', '会員情報を編集しました。');
         $this->assertDatabaseHas('users', [
             'email' => $new_email,
         ]);
@@ -142,7 +144,8 @@ class UserControllerTest extends TestCase
         $this->assertDatabaseHas('users', [
             'id' => $this->normal_user->id,
         ]);
-        $this->post('/admin/user/delete/' . $this->normal_user->id);
+        $response = $this->post('/admin/user/delete/' . $this->normal_user->id);
+        $response->assertSessionHas('success_message', '会員を削除しました。');
         $this->assertDatabaseMissing('users', [
             'id' => $this->normal_user->id,
         ]);

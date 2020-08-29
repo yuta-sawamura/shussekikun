@@ -67,7 +67,8 @@ class AttendanceControllerTest extends TestCase
             'user_id' => $this->normal_user2->id,
             'schedule_id' => $this->schedule->id,
         ];
-        $this->post('attendance/store', $data);
+        $response = $this->post('attendance/store', $data);
+        $response->assertSessionHas('success_message', '出席しました。');
         $this->assertDatabaseHas('attendances', [
             'user_id' => $this->normal_user2->id,
             'schedule_id' => $this->schedule->id
@@ -84,7 +85,8 @@ class AttendanceControllerTest extends TestCase
             ],
             'schedule_id' => $this->schedule->id,
         ];
-        $this->post('attendance/store_multiple', $data);
+        $response = $this->post('attendance/store_multiple', $data);
+        $response->assertSessionHas('success_message', '出席しました。');
         $this->assertDatabaseHas('attendances', [
             'user_id' => $this->normal_user2->id,
             'schedule_id' => $this->schedule->id

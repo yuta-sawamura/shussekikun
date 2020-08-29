@@ -56,7 +56,8 @@ class ClassworkControllerTest extends TestCase
         $data = [
             'name' => '初級'
         ];
-        $this->post('/admin/class/store', $data);
+        $response = $this->post('/admin/class/store', $data);
+        $response->assertSessionHas('success_message', 'クラスを追加しました。');
         $this->assertDatabaseHas('classworks', $data);
     }
 
@@ -70,7 +71,8 @@ class ClassworkControllerTest extends TestCase
             'name' => '中級'
         ];
         $this->assertDatabaseMissing('classworks', $new_data);
-        $this->post('admin/class/update/' . $this->classwork->id, $new_data);
+        $response = $this->post('admin/class/update/' . $this->classwork->id, $new_data);
+        $response->assertSessionHas('success_message', 'クラスを編集しました。');
         $this->assertDatabaseHas('classworks', $new_data);
     }
 
@@ -93,7 +95,8 @@ class ClassworkControllerTest extends TestCase
         $this->assertDatabaseHas('classworks', [
             'id' => $this->classwork->id,
         ]);
-        $this->post('admin/class/delete/' . $this->classwork->id);
+        $response = $this->post('admin/class/delete/' . $this->classwork->id);
+        $response->assertSessionHas('success_message', 'クラスを削除しました。');
         $this->assertDatabaseMissing('classworks', [
             'id' => $this->classwork->id,
         ]);
