@@ -20,14 +20,6 @@ jobs:
           MYSQL_ROOT_PASSWORD: password
           MYSQL_DATABASE: testdatabase
 
-    env:
-      DB_CONNECTION: mysql
-      DB_HOST: 127.0.0.1
-      DB_PORT: 3306
-      DB_DATABASE: testdatabase
-      DB_USERNAME: root
-      DB_PASSWORD: password
-
     steps:
       - uses: actions/checkout@v2
       - name: Copy .env
