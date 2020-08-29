@@ -29,10 +29,7 @@ class UserController extends Controller
 
         $users = User::where('organization_id', Auth::user()->organization_id)
             ->where('role', '!=', Role::System)
-            ->serachKeyword($params['keyword'] ?? null)
-            ->storeFilter($params['store'] ?? null)
-            ->categoryFilter($params['category'] ?? null)
-            ->genderFilter($params['gender'] ?? null)
+            ->serach($params)
             ->orderBy('id', 'desc')
             ->paginate(20);
 

@@ -20,7 +20,7 @@ class ClassworkController extends Controller
         $params = $request->query();
 
         $classworks = Classwork::where('organization_id', Auth::user()->organization_id)
-            ->serachKeyword($params['keyword'] ?? null)
+            ->serach($params)
             ->orderBy('id', 'desc')
             ->paginate(20);
 

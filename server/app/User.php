@@ -156,53 +156,31 @@ class User extends Authenticatable
     }
 
     /**
-     * 店舗絞り込み
+     * 検索・絞り込み
      * @param \Illuminate\Database\Eloquent\Builder
-     * @param int|null
-     * @return \Illuminate\Database\Eloquent\Builder|null
-     */
-    public function scopeStoreFilter(Builder $query, int $id = null)
-    {
-        if ($id) return $query->where('store_id', $id);
-    }
-
-    /**
-     * カテゴリー絞り込み
-     * @param \Illuminate\Database\Eloquent\Builder
-     * @param int|null
-     * @return \Illuminate\Database\Eloquent\Builder|null
-     */
-    public function scopeCategoryFilter(Builder $query, int $id = null)
-    {
-        if ($id) return $query->where('category_id', $id);
-    }
-
-    /**
-     * 性別絞り込み
-     * @param \Illuminate\Database\Eloquent\Builder
-     * @param int|null
-     * @return \Illuminate\Database\Eloquent\Builder|null
-     */
-    public function scopeGenderFilter(Builder $query, int $id = null)
-    {
-        if ($id) return $query->where('gender', $id);
-    }
-
-    /**
-     * キーワード検索
-     * @param \Illuminate\Database\Eloquent\Builder
-     * @param string|null
+     * @param array
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeSerachKeyword(Builder $query, string $keyword = null): Builder
+    public function scopeSerach(Builder $query, array $params): Builder
     {
-        if ($keyword) {
+        // キーワード検索
+        if (!empty($params['keyword'])) {
             $query
-                ->where('sei', 'like', '%' . $keyword . '%')
-                ->orWhere('mei', 'like', '%' . $keyword . '%')
-                ->orWhere('sei_kana', 'like', '%' . $keyword . '%')
-                ->orWhere('mei_kana', 'like', '%' . $keyword . '%');
+                ->where('sei', 'like', '%' . $params['keyword'] . '%')
+                ->orWhere('mei', 'like', '%' . $params['keyword'] . '%')
+                ->orWhere('sei_kana', 'like', '%' . $params['keyword'] . '%')
+                ->orWhere('mei_kana', 'like', '%' . $params['keyword'] . '%');
         }
+
+        // 店舗絞り込み
+        if (!empty($params['store'])) $query->where('store_id', $params['store']);
+
+        // カテゴリー絞り込み
+        if (!empty($params['category'])) $query->where('category_id', $params['category']);
+
+        // 性別絞り込み
+        if (!empty($params['gender'])) $query->where('gender', $params['gender']);
+
         return $query;
     }
 
