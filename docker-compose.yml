@@ -14,6 +14,23 @@ services:
       - ./docker/mysql/config/mysql.cnf:/etc/mysql/conf.d/mysql.cnf
     ports:
       - 33060:3306
+  db-testing:
+    image: mysql:5.7.31
+    container_name: db-testing
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: database-test
+      MYSQL_USER: docker
+      MYSQL_PASSWORD: docker
+      TZ: "Asia/Tokyo"
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - ./docker/db/my.cnf:/etc/mysql/conf.d/my.cnf
+    tmpfs:
+      - /var/lib/mysql
+      - /var/log/mysql
+    ports:
+      - 3307:3306
   phpfpm:
     build:
       context: .
