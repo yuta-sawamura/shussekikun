@@ -16,63 +16,92 @@ SHUSSEKIKUN(しゅっせきくん)は、店舗オーナーが会員の出席を�
 ## 使用技術
 
 ■ 言語<br>
-PHP7.2 | JavaScript | HTML/CSS
+PHP7.3.20 | JavaScript | HTML/CSS
 
 ■ フレームワーク・ライブラリ等<br>
-Laravel6.1 | jQuery | ApexCharts(チャート用) | Bootstrap
+Laravel6.1 | jQuery | ApexCharts | Bootstrap
 
 ■RDB<br>
 MySQL5.7
 
 ■AWS<br>
 ECS | VPC | S3 | EC2 | ELB | IAM | RDS | Route53
-[参考](https://qiita.com/okoppe8/items/dc1de147a36797442e4c)
 
 ■ その他<br>
-Docker | Nginx | GitHub | CircleCI
+Docker | Nginx1.17.10 | GitHub | CI(GitHub Actions)
+
+## Docker によるプロジェクト開始方法
+
+docker がローカル端末にインストールされていない場合、docker のインストールが必要です。(Docker Desktop for Mac)
+
+コンテナ起動
+
+    docker-compose up -d
+
+マイグレーション実行
+
+    docker-compose exec phpfpm php artisan migrate
+
+コンテナ停止
+
+    docker-compose down
+
+Composer Install
+
+    docker run --rm --interactive --tty -v $PWD:/var/www/html learning-test_phpfpm composer install
+
+テストコードの実行
+
+    docker-compose exec phpfpm ./vendor/bin/phpunit
+
+### 動作確認
+
+| URL                     |
+| :---------------------- |
+| <http://localhost:8080> |
 
 ## 機能一覧
 
-- 会員機能
-  - 管理画面
-    - 管理者の編集機能
-    - 出席管理会員の編集機能
-    - 一般会員の追加・編集・削除機能
-      - 種別カテゴリー
-  - 会員画面・管理画面
-    - 一般会員の検索機能
-    - 一覧・詳細表示
-    - ログイン
-    - パスワード再発行
-- 種別カテゴリー機能
-  - 種別の追加・編集・削除機能
-  - 一覧・詳細表示
-- クラス機能
-  - 管理画面
-    - 追加・編集・削除機能
-  - 会員画面・管理画面
-    - 一覧・詳細表示
-    - 検索
-- 出席機能
-  - 会員画面
-    - 一覧表示
-    - 追加・編集・削除機能
-    - 一括追加
-    - 一括削除
-    - ランキング
-      - 一覧(全体)
-        - 種別
-        - 年別
-        - 月別
-      - 詳細(個別)
-        - 年別出席数・平均
-        - 月別出席数・平均
-    - 検索
-- 決済機能
-  - 管理画面
-    - 月額追加
-    - カード情報変更
-    - 解約
+-   会員機能
+    -   管理画面
+        -   管理者の編集機能
+        -   出席管理会員の編集機能
+        -   一般会員の追加・編集・削除機能
+            -   種別カテゴリー
+    -   会員画面・管理画面
+        -   一般会員の検索機能
+        -   一覧・詳細表示
+        -   ログイン
+        -   パスワード再発行
+-   種別カテゴリー機能
+    -   種別の追加・編集・削除機能
+    -   一覧・詳細表示
+-   クラス機能
+    -   管理画面
+        -   追加・編集・削除機能
+    -   会員画面・管理画面
+        -   一覧・詳細表示
+        -   検索
+-   出席機能
+    -   会員画面
+        -   一覧表示
+        -   追加・編集・削除機能
+        -   一括追加
+        -   一括削除
+        -   ランキング
+            -   一覧(全体)
+                -   種別
+                -   年別
+                -   月別
+            -   詳細(個別)
+                -   年別出席数・平均
+                -   月別出席数・平均
+        -   検索
+-   決済機能
+    -   管理画面
+        -   月額追加
+        -   カード情報変更
+        -   解約
 
 ## DB 設計
 
