@@ -135,6 +135,6 @@
 @component('components.js.chart', ['name' => '年間出席回数', 'data' => $rank['counts'], 'text' => '回数',  'categories' => $rank['months'], 'selector' => '#s-bar'])
 @endcomponent
 
-<script src="{{ secure_asset('/plugins/apex/apexcharts.min.js') }}"></script>
+<script src="{{ asset('/plugins/apex/apexcharts.min.js') }}"></script>
 
 @endsection()

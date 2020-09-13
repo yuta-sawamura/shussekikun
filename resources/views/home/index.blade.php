@@ -103,7 +103,7 @@
 @include('components.modals.attendanceMultiple')
 
 @section('js')
-<script src="{{ secure_asset('/js/attendance_multiple.js') }}"></script>
+<script src="{{ asset('/js/attendance_multiple.js') }}"></script>
 @endsection()
 
 @endsection()

@@ -7,28 +7,28 @@
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>SHUSSEKIKUN | 管理画面</title>
-  <link rel="icon" type="image/x-icon" href="{{ secure_asset('/img/logo.png') }}">
-  <link rel="stylesheet" href="{{ secure_asset('/css/loader.css') }}">
-  <script src="{{ secure_asset('/js/loader.js') }}"></script>
+  <link rel="icon" type="image/x-icon" href="{{ asset('/img/logo.png') }}">
+  <link rel="stylesheet" href="{{ asset('/css/loader.css') }}">
+  <script src="{{ asset('/js/loader.js') }}"></script>
 
   <!-- BEGIN STYLES -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:400,600,700">
-  <link rel="stylesheet" type="text/css" href="{{ secure_asset('/bootstrap/css/bootstrap.min.css') }}">
-  <link rel="stylesheet" type="text/css" href="{{ secure_asset('/css/plugins.css') }}">
-  <link rel="stylesheet" type="text/css" href="{{ secure_asset('/css/elements/breadcrumb.css') }}">
-  <link rel="stylesheet" type="text/css" href="{{ secure_asset('/plugins/apex/apexcharts.css') }}">
-  <link rel="stylesheet" type="text/css" href="{{ secure_asset('/css/elements/alert.css') }}">
-  <link rel="stylesheet" type="text/css" href="{{ secure_asset('/css/dashboard/dash_1.css') }}">
-  <link rel="stylesheet" type="text/css" href="{{ secure_asset('/css/forms/theme-checkbox-radio.css') }}">
-  <link rel="stylesheet" type="text/css" href="{{ secure_asset('/plugins/table/datatable/dt-global_style.css') }}">
-  <link rel="stylesheet" type="text/css" href="{{ secure_asset('/plugins/table/datatable/custom_dt_custom.css') }}">
-  <link rel="stylesheet" type="text/css" href="{{ secure_asset('/css/components/custom-modal.css') }}">
-  <link rel="stylesheet" type="text/css" href="{{ secure_asset('/css/users/user-profile.css') }}">
-  <link rel="stylesheet" type="text/css" href="{{ secure_asset('/plugins/dropify/dropify.min.css') }}">
-  <link rel="stylesheet" type="text/css" href="{{ secure_asset('/css/users/account-setting.css') }}">
-  <link rel="stylesheet" type="text/css" href="{{ secure_asset('/plugins/editors/markdown/simplemde.min.css') }}">
-  <link rel="stylesheet" type="text/css" href="{{ secure_asset('/bootstrap/css/bootstrap-datepicker.min.css') }}">
-  <link rel="stylesheet" type="text/css" href="{{ secure_asset('/css/jquery.timepicker.min.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('/bootstrap/css/bootstrap.min.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('/css/plugins.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('/css/elements/breadcrumb.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/apex/apexcharts.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('/css/elements/alert.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('/css/dashboard/dash_1.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('/css/forms/theme-checkbox-radio.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/table/datatable/dt-global_style.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/table/datatable/custom_dt_custom.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('/css/components/custom-modal.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('/css/users/user-profile.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/dropify/dropify.min.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('/css/users/account-setting.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/editors/markdown/simplemde.min.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('/bootstrap/css/bootstrap-datepicker.min.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('/css/jquery.timepicker.min.css') }}">
   <!-- END STYLES -->
 </head>
 <body>
@@ -56,7 +56,7 @@
   <!-- END MAIN CONTAINER -->
 
   <!-- BEGIN SCRIPTS -->
-  <script src="{{ secure_asset('js/app.js') }}"></script>
+  <script src="{{ asset('js/app.js') }}"></script>
   @yield('js')
   <!-- END SCRIPTS -->
 
@@ -65,8 +65,8 @@
       App.init();
     });
   </script>
-  <script src="{{ secure_asset('js/double.js') }}"></script>
-  <script src="{{ secure_asset('js/submit_logout.js') }}"></script>
+  <script src="{{ asset('js/double.js') }}"></script>
+  <script src="{{ asset('js/submit_logout.js') }}"></script>
 
 </body>
 </html>
