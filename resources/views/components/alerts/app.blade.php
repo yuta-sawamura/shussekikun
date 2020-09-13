@@ -1,9 +1,9 @@
 
 @if (session('success_message'))
-  @component('components.alerts.success', ['message' => e(session('success_message'))])
-  @endcomponent
+  @include('components.alerts.success', ['message' => e(session('success_message'))])
+
 @endif
 @if (session('error_message'))
-  @component('components.alerts.error', ['message' => e(session('error_message'))])
-  @endcomponent
+  @include('components.alerts.error', ['message' => e(session('error_message'))])
+
 @endif

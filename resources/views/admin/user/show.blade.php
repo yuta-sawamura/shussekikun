@@ -2,8 +2,8 @@
 @section('content')
 
 <div id="content" class="main-content">
-  @component('components.alerts.app')
-  @endcomponent
+  @include('components.alerts.app')
+
   <div class="layout-px-spacing">
     <div class="row layout-spacing">
       <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 layout-top-spacing">
@@ -132,8 +132,8 @@
   </div>
 </div>
 
-@component('components.js.chart', ['name' => '年間出席回数', 'data' => $rank['counts'], 'text' => '回数',  'categories' => $rank['months'], 'selector' => '#s-bar'])
-@endcomponent
+@include('components.js.chart', ['name' => '年間出席回数', 'data' => $rank['counts'], 'text' => '回数',  'categories' => $rank['months'], 'selector' => '#s-bar'])
+
 
 <script src="{{ asset('/plugins/apex/apexcharts.min.js') }}"></script>
 

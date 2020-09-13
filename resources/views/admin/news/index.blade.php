@@ -2,8 +2,8 @@
 @section('content')
 
 <div id="content" class="main-content">
-  @component('components.alerts.app')
-  @endcomponent
+  @include('components.alerts.app')
+
   <div class="layout-px-spacing">
     <div class="row layout-top-spacing layout-spacing">
       <div class="col-lg-12">
@@ -30,10 +30,10 @@
                 <div class="widget-content widget-content-area">
                   <form action="{{url('/admin/news')}}">
                     <div class="form-row">
-                      @component('components.search.keyword', ['params' => $params])
-                      @endcomponent
-                      @component('components.search.store', ['params' => $params, 'stores' =>$stores])
-                      @endcomponent
+                      @include('components.search.keyword', ['params' => $params])
+
+                      @include('components.search.store', ['params' => $params, 'stores' =>$stores])
+
                     </div>
                     <button type="submit" class="btn btn-primary mt-3">検索する</button>
                   </form>
@@ -65,8 +65,8 @@
                   </div>
                 </div>
                 <div class="row">
-                  @component('components.paginate', ['pagination' => $news])
-                  @endcomponent
+                  @include('components.paginate', ['pagination' => $news])
+
                 </div>
               </div>
             </div>

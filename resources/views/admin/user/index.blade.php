@@ -1,8 +1,8 @@
 @extends('layouts.admin.app')
 @section('content')
 <div id="content" class="main-content">
-  @component('components.alerts.app')
-  @endcomponent
+  @include('components.alerts.app')
+
   <div class="layout-px-spacing">
     <div class="row layout-top-spacing layout-spacing">
       <div class="col-lg-12">
@@ -29,14 +29,14 @@
                 <div class="widget-content widget-content-area">
                   <form action="{{url('/admin/user')}}">
                     <div class="form-row">
-                      @component('components.search.keyword', ['params' => $params])
-                      @endcomponent
-                      @component('components.search.store', ['params' => $params, 'stores' => $stores])
-                      @endcomponent
-                      @component('components.search.category', ['params' => $params, 'categories' => $categories])
-                      @endcomponent
-                      @component('components.search.gender', ['params' => $params, 'genders' => $genders])
-                      @endcomponent
+                      @include('components.search.keyword', ['params' => $params])
+
+                      @include('components.search.store', ['params' => $params, 'stores' => $stores])
+
+                      @include('components.search.category', ['params' => $params, 'categories' => $categories])
+
+                      @include('components.search.gender', ['params' => $params, 'genders' => $genders])
+
                     </div>
                     <button type="submit" class="btn btn-primary mt-3">検索する</button>
                   </form>
@@ -78,8 +78,8 @@
                   </div>
                 </div>
                 <div class="row">
-                  @component('components.paginate', ['pagination' => $users])
-                  @endcomponent
+                  @include('components.paginate', ['pagination' => $users])
+
                 </div>
               </div>
             </div>

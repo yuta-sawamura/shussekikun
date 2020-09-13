@@ -28,8 +28,8 @@
                   <polyline points="22,6 12,13 2,6"></polyline>
                 </svg>
                 <input id="email" name="email" type="email" value="{{ $email ?? old('email') }}" class="form-control @error('email') is-invalid @enderror" placeholder="text@gmail.com" required autocomplete="email" autofocus>
-                @component('components.validations.feedback', ['message' => 'email'])
-                @endcomponent
+                @include('components.validations.feedback', ['message' => 'email'])
+
               </div>
               <div class="d-sm-flex justify-content-between">
                 <div class="field-wrapper">

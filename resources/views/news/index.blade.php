@@ -25,8 +25,8 @@
                 <div class="widget-content widget-content-area">
                   <form>
                     <div class="form-row">
-                      @component('components.search.keyword', ['params' => $params])
-                      @endcomponent
+                      @include('components.search.keyword', ['params' => $params])
+
                     </div>
                     <button type="submit" class="btn btn-primary mt-3">検索する</button>
                   </form>
@@ -56,8 +56,8 @@
                   </div>
                 </div>
                 <div class="row">
-                  @component('components.paginate', ['pagination' => $news])
-                  @endcomponent
+                  @include('components.paginate', ['pagination' => $news])
+
                 </div>
               </div>
             </div>

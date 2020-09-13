@@ -10,20 +10,20 @@
         </option>
       @endforeach
     </select>
-    @component('components.validations.feedback', ['message' => 'store_id'])
-    @endcomponent
+    @include('components.validations.feedback', ['message' => 'store_id'])
+
   </div>
   <div class="form-group col-xl-4 col-md-12 col-sm-12 col-12">
     <label>タイトル<span class="text-danger">*</span></label>
     <input type="text" name="title" value="{{ $news->title ?? null }}" class="form-control @error('title') is-invalid @enderror">
-    @component('components.validations.feedback', ['message' => 'title'])
-    @endcomponent
+    @include('components.validations.feedback', ['message' => 'title'])
+
   </div>
   <div class="form-group col-xl-10 col-md-12 col-sm-12 col-12">
     <label>本文<span class="text-danger">*</span></label>
     <textarea name="content" id="news-content">{{ $news->content ?? null }}</textarea>
-    @component('components.validations.feedback', ['message' => 'content'])
-    @endcomponent
+    @include('components.validations.feedback', ['message' => 'content'])
+
   </div>
   <div class="col-xl-10 col-md-12 col-sm-12 col-12 text-right">
     @isset ($isEdit)

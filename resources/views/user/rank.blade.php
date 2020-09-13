@@ -88,9 +88,9 @@
 
 <script src="{{ asset('/js/submit_form.js') }}"></script>
 
-@component('components.js.chart', ['name' => '年間出席回数', 'data' => $yearCount, 'text' => '回数',  'categories' => $yearTitle, 'selector' => '#s-bar'])
-@endcomponent
-@component('components.js.chart', ['name' => '月間出席回数', 'data' => $monthlyCount, 'text' => '回数',  'categories' => $monthlyTitle, 'selector' => '#s-bar2'])
-@endcomponent
+@include('components.js.chart', ['name' => '年間出席回数', 'data' => $yearCount, 'text' => '回数',  'categories' => $yearTitle, 'selector' => '#s-bar'])
+
+@include('components.js.chart', ['name' => '月間出席回数', 'data' => $monthlyCount, 'text' => '回数',  'categories' => $monthlyTitle, 'selector' => '#s-bar2'])
+
 
 @endsection()

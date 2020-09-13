@@ -1,4 +1,4 @@
-@component('mail::message')
+@include('mail::message')
 {{-- Greeting --}}
 @if (! empty($greeting))
 # {{ $greeting }}
@@ -28,9 +28,9 @@
             $color = 'primary';
     }
 ?>
-@component('mail::button', ['url' => $actionUrl, 'color' => $color])
+@include('mail::button', ['url' => $actionUrl, 'color' => $color])
 {{ $actionText }}
-@endcomponent
+
 @endisset
 
 {{-- Outro Lines --}}
@@ -55,4 +55,4 @@
 ) <span class="break-all">[{{ $displayableActionUrl }}]({{ $actionUrl }})</span>
 @endslot
 @endisset
-@endcomponent
+

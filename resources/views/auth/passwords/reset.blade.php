@@ -18,8 +18,8 @@
                   <polyline points="22,6 12,13 2,6"></polyline>
                 </svg>
                 <input id="email" name="email" type="email" value="{{ $email ?? old('email') }}" class="form-control @error('email') is-invalid @enderror" placeholder="text@gmail.com" required autocomplete="email" autofocus>
-                @component('components.validations.feedback', ['message' => 'email'])
-                @endcomponent
+                @include('components.validations.feedback', ['message' => 'email'])
+
               </div>
               <div id="password-field" class="field-wrapper input mb-2">
                 <div class="d-flex justify-content-between">
@@ -30,8 +30,8 @@
                   <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                 </svg>
                 <input id="password" name="password" type="password" class="form-control @error('password') is-invalid @enderror" autocomplete="current-password" required>
-                @component('components.validations.feedback', ['message' => 'password'])
-                @endcomponent
+                @include('components.validations.feedback', ['message' => 'password'])
+
               </div>
               <div class="field-wrapper input mb-2">
                 <div class="d-flex justify-content-between">
