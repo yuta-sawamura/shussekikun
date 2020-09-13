@@ -40,28 +40,31 @@
           </div>
         </div>
       </div>
-      <div id="chartBar" class="col-xl-12 layout-spacing">
-        <div class="statbox widget box box-shadow">
-          <div class="widget-header">
-            <div class="row">
+
+      @if ($user->role === App\Enums\User\Role::Normal)
+        <div id="chartBar" class="col-xl-12 layout-spacing">
+          <div class="statbox widget box box-shadow">
+            <div class="widget-header">
+              <div class="row">
+                <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                  <h4>出席回数</h4>
+                </div>
+              </div>
               <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                <h4>出席回数</h4>
+                <p>{{ $params['year'] }}年</p>
+                @php
+                  $lastYear = $params['year'] - 1;
+                  $nextYear = $params['year'] + 1;
+                @endphp
+                <a class="bs-tooltip text-primary" href="{{ url('user/show/' . $user->id . '?year=' . $lastYear) }}" title="前年">&lt;</a> &emsp; <a class="bs-tooltip text-primary" href="{{ url('user/show/' . $user->id . '?year=' . $nextYear) }}" title="翌年">&gt;</a>
               </div>
             </div>
-            <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-              <p>{{ $params['year'] }}年</p>
-              @php
-                $lastYear = $params['year'] - 1;
-                $nextYear = $params['year'] + 1;
-              @endphp
-              <a class="bs-tooltip text-primary" href="{{ url('user/show/' . $user->id . '?year=' . $lastYear) }}" title="前年">&lt;</a> &emsp; <a class="bs-tooltip text-primary" href="{{ url('user/show/' . $user->id . '?year=' . $nextYear) }}" title="翌年">&gt;</a>
+            <div class="widget-content widget-content-area">
+              <div id="s-bar"></div>
             </div>
           </div>
-          <div class="widget-content widget-content-area">
-            <div id="s-bar"></div>
-          </div>
         </div>
-      </div>
+      @endif
     </div>
   </div>
 </div>
