@@ -86,7 +86,7 @@
   </div>
 </div>
 
-<script src="{{ asset('/js/submit_form.js') }}"></script>
+<script src="{{ secure_asset('/js/submit_form.js') }}"></script>
 
 @component('components.js.chart', ['name' => '年間出席回数', 'data' => $yearCount, 'text' => '回数',  'categories' => $yearTitle, 'selector' => '#s-bar'])
 @endcomponent

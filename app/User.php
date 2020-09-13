@@ -98,7 +98,7 @@ class User extends Authenticatable
      */
     public function getS3UrlAttribute()
     {
-        return $this->img ? Storage::disk('s3')->url($this->img) : asset('/img/no-image.jpg');
+        return $this->img ? Storage::disk('s3')->url($this->img) : secure_asset('/img/no-image.jpg');
     }
 
     /**

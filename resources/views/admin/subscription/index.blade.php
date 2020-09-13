@@ -36,7 +36,7 @@
                           <p>- カード情報：4242424242424242</p>
                           <p>- 有効期限：12 / 30</p>
                           <p>- CVS：333</p>
-                          <form action="{{ asset('admin/subscription/subscribe') }}" method="POST">
+                          <form action="{{ secure_asset('admin/subscription/subscribe') }}" method="POST">
                             @csrf
                             <script
                               src="https://checkout.stripe.com/checkout.js" class="stripe-button"
@@ -45,13 +45,13 @@
                               data-name="SHUSSEKIKUN"
                               data-label="プレミアム会員"
                               data-description="プレミアム会員で便利な機能を使用"
-                              data-image="{{ asset('/img/logo.png') }}"
+                              data-image="{{ secure_asset('/img/logo.png') }}"
                               data-locale="auto"
                               data-currency="JPY">
                             </script>
                           </form>
                         @elseif ($type === 'cancel')
-                          <form action="{{ asset('admin/subscription/cancel') }}" method="POST">
+                          <form action="{{ secure_asset('admin/subscription/cancel') }}" method="POST">
                             @csrf
                             <button type="submit" class="btn btn-danger">キャンセル</button>
                           </form>
