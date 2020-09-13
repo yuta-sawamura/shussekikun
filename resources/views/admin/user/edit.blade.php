@@ -40,6 +40,6 @@
 
 @section('js')
 @include('admin.user._form_js');
-<script src="{{ secure_asset('/plugins/dropify/dropify.min.js') }}"></script>
-<script src="{{ secure_asset('/js/users/account-settings.js') }}"></script>
+<script src="{{ asset('/plugins/dropify/dropify.min.js') }}"></script>
+<script src="{{ asset('/js/users/account-settings.js') }}"></script>
 @endsection()

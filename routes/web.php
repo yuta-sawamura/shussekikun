@@ -11,6 +11,10 @@
 |
 */
 
+if (config('app.env') == 'production') {
+    URL::forceScheme('https');
+}
+
 Route::group(['middleware' => 'auth'], function () {
     // ホーム
     Route::get('/', 'HomeController@index');

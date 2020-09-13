@@ -83,8 +83,8 @@
   </div>
 </div>
 
-<script src="{{ secure_asset('/js/submit_form.js') }}"></script>
-<script src="{{ secure_asset('/plugins/apex/apexcharts.min.js') }}"></script>
+<script src="{{ asset('/js/submit_form.js') }}"></script>
+<script src="{{ asset('/plugins/apex/apexcharts.min.js') }}"></script>
 <script>
   const years = @json($yearUsers['years']);
   const yearUsersCount = @json($yearUsers['users_count']);

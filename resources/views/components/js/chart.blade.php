@@ -1,4 +1,4 @@
-<script src="{{ secure_asset('/plugins/apex/apexcharts.min.js') }}"></script>
+<script src="{{ asset('/plugins/apex/apexcharts.min.js') }}"></script>
 
 <script>
   var data = @json($data);
