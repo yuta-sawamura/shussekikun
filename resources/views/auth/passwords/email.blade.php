@@ -45,6 +45,6 @@
   </div>
 </div>
 
-<script src="{{ asset('js/double.js') }}"></script>
+<script src="{{ secure_asset('js/double.js') }}"></script>
 
 @endsection
