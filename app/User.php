@@ -187,14 +187,14 @@ class User extends Authenticatable
     /**
      * 権限・店舗・状態絞り込み
      * @param \Illuminate\Database\Eloquent\Builder
-     * @param int
+     * @param array
      * @param int|null
      * @param int
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeRoleStoreStatusFilter(Builder $query, int $roleId, int $storeId = null, int $statusId): Builder
+    public function scopeRoleStoreStatusFilter(Builder $query, array $roleIds, int $storeId = null, int $statusId): Builder
     {
-        return $query->where('users.role', $roleId)
+        return $query->whereIn('users.role', $roleIds)
             ->where('users.store_id', $storeId)
             ->where('status', '!=', $statusId);
     }
