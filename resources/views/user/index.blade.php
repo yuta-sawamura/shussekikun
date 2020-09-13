@@ -25,12 +25,12 @@
                 <div class="widget-content widget-content-area">
                   <form>
                     <div class="form-row">
-                      @component('components.search.keyword', ['params' => $params])
-                      @endcomponent
-                      @component('components.search.category', ['params' => $params, 'categories' => $categories])
-                      @endcomponent
-                      @component('components.search.gender', ['params' => $params, 'genders' => $genders])
-                      @endcomponent
+                      @include('components.search.keyword', ['params' => $params])
+
+                      @include('components.search.category', ['params' => $params, 'categories' => $categories])
+
+                      @include('components.search.gender', ['params' => $params, 'genders' => $genders])
+
                     </div>
                     <button type="submit" class="btn btn-primary mt-3">検索する</button>
                   </form>
@@ -68,8 +68,8 @@
                   </div>
                 </div>
                 <div class="row">
-                  @component('components.paginate', ['pagination' => $users])
-                  @endcomponent
+                  @include('components.paginate', ['pagination' => $users])
+
                 </div>
               </div>
             </div>

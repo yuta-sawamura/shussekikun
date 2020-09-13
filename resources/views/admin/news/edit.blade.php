@@ -30,8 +30,8 @@
   </div>
 </div>
 
-@component('components.modals.attention', ['title' => '関連データも全て削除されますが本当によろしいですか？', 'path' => '/admin/news/delete/' . $news->id, 'id' => $news->id])
-@endcomponent
+@include('components.modals.attention', ['title' => '関連データも全て削除されますが本当によろしいですか？', 'path' => '/admin/news/delete/' . $news->id, 'id' => $news->id])
+
 
 @endsection
 

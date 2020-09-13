@@ -2,8 +2,8 @@
 @section('content')
 
 <div id="content" class="main-content">
-  @component('components.alerts.app')
-  @endcomponent
+  @include('components.alerts.app')
+
   <div class="layout-px-spacing">
     <div class="row layout-top-spacing layout-spacing">
       <div class="col-lg-12">
@@ -47,10 +47,10 @@
                               <button type="button" class="btn btn-outline-danger mb-2 mr-2" data-toggle="modal" data-target="#attentionModal{{ $category->id }}">削除</button>
                             </td>
                           </tr>
-                          @component('components.modals.admin.edit', ['name' => 'カテゴリー名', 'path' => '/admin/category/update/' . $category->id, 'value' => $category->name, 'id' => $category->id])
-                          @endcomponent
-                          @component('components.modals.attention', ['title' => '関連データも全て削除されますが本当によろしいですか？', 'path' => '/admin/category/delete/' . $category->id, 'id' => $category->id])
-                          @endcomponent
+                          @include('components.modals.admin.edit', ['name' => 'カテゴリー名', 'path' => '/admin/category/update/' . $category->id, 'value' => $category->name, 'id' => $category->id])
+
+                          @include('components.modals.attention', ['title' => '関連データも全て削除されますが本当によろしいですか？', 'path' => '/admin/category/delete/' . $category->id, 'id' => $category->id])
+
                         @endforeach
                       </tbody>
                     </table>
@@ -72,7 +72,6 @@
   </div>
 </div>
 
-@component('components.modals.admin.create', ['name' => 'カテゴリー名', 'path' => '/admin/category/store'])
-@endcomponent
+@include('components.modals.admin.create', ['name' => 'カテゴリー名', 'path' => '/admin/category/store'])
 
 @endsection()

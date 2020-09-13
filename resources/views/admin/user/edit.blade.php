@@ -2,8 +2,8 @@
 @section('content')
 
 <div id="content" class="main-content">
-  @component('components.alerts.app')
-  @endcomponent
+  @include('components.alerts.app')
+
   <div class="layout-px-spacing">
     <div class="account-settings-container layout-top-spacing">
       <div class="breadcrumb-five">
@@ -33,8 +33,8 @@
   </div>
 </div>
 
-@component('components.modals.attention', ['title' => '関連データも全て削除されますが本当によろしいですか？', 'path' => '/admin/user/delete/' . $user->id, 'id' => $user->id])
-@endcomponent
+@include('components.modals.attention', ['title' => '関連データも全て削除されますが本当によろしいですか？', 'path' => '/admin/user/delete/' . $user->id, 'id' => $user->id])
+
 
 @endsection()
 

@@ -2,8 +2,8 @@
 @section('content')
 
 <div id="content" class="main-content">
-  @component('components.alerts.app')
-  @endcomponent
+  @include('components.alerts.app')
+
   <div class="layout-px-spacing">
     <div class="row layout-top-spacing layout-spacing">
       <div class="col-lg-12">
@@ -32,12 +32,12 @@
                 <div class="widget-content widget-content-area">
                   <form action="{{url('/admin/schedule')}}">
                     <div class="form-row">
-                      @component('components.search.store', ['params' => $params, 'stores' => $stores])
-                      @endcomponent
-                      @component('components.search.classwork', ['params' => $params, 'classworks' => $classworks])
-                      @endcomponent
-                      @component('components.search.day', ['params' => $params, 'days' => $days])
-                      @endcomponent
+                      @include('components.search.store', ['params' => $params, 'stores' => $stores])
+
+                      @include('components.search.classwork', ['params' => $params, 'classworks' => $classworks])
+
+                      @include('components.search.day', ['params' => $params, 'days' => $days])
+
                     </div>
                     <button type="submit" class="btn btn-primary mt-3">検索する</button>
                   </form>
@@ -68,10 +68,10 @@
                               <button type="button" class="btn btn-outline-danger mb-2 mr-2" data-toggle="modal" data-target="#attentionModal{{ $schedule->id }}">削除</button>
                             </td>
                           </tr>
-                          @component('components.modals.admin.schedule.edit', ['schedule' => $schedule, 'stores' => $stores, 'classworks' => $classworks, 'days' => $days])
-                          @endcomponent
-                          @component('components.modals.attention', ['title' => '関連データも全て削除されますが本当によろしいですか？', 'path' => '/admin/schedule/delete/' . $schedule->id, 'id' => $schedule->id])
-                          @endcomponent
+                          @include('components.modals.admin.schedule.edit', ['schedule' => $schedule, 'stores' => $stores, 'classworks' => $classworks, 'days' => $days])
+
+                          @include('components.modals.attention', ['title' => '関連データも全て削除されますが本当によろしいですか？', 'path' => '/admin/schedule/delete/' . $schedule->id, 'id' => $schedule->id])
+
                         @endforeach
                       </tbody>
                     </table>
@@ -93,8 +93,8 @@
   </div>
 </div>
 
-@component('components.modals.admin.schedule.create', ['stores' => $stores, 'classworks' => $classworks, 'days' => $days])
-@endcomponent
+@include('components.modals.admin.schedule.create', ['stores' => $stores, 'classworks' => $classworks, 'days' => $days])
+
 
 @section('js')
 <script>
