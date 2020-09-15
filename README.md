@@ -15,50 +15,19 @@ SHUSSEKIKUN(しゅっせきくん)は、店舗オーナーが会員の出席を�
 
 ## 使用技術
 
-■ 言語<br>
-PHP7.3.20 | JavaScript | HTML/CSS
-
-■ フレームワーク・ライブラリ等<br>
-Laravel6.1 | jQuery | ApexCharts | Bootstrap
+■ 言語・フレームワーク・ライブラリ等<br>
+Laravel6.1 | PHP7.3.20 | JavaScript | jQuery | HTML/CSS | Bootstrap
 
 ■RDB<br>
 MySQL5.7
 
 ■AWS<br>
-ECS | VPC | S3 | EC2 | ELB | IAM | RDS | Route53
+ECS | ALB | RDS | Route53 | ACM | VPC | S3 | EC2 | IAM
 
 ■ その他<br>
-Docker | Nginx1.17.10 | GitHub | CI(GitHub Actions)
+Docker | Nginx1.17.10 | GitHub | GitHub Actions(CI)
 
-## Docker によるプロジェクト開始方法
-
-docker がローカル端末にインストールされていない場合、docker のインストールが必要です。(Docker Desktop for Mac)
-
-コンテナ起動
-
-    docker-compose up -d
-
-マイグレーション実行
-
-    docker-compose exec phpfpm php artisan migrate
-
-コンテナ停止
-
-    docker-compose down
-
-Composer Install
-
-    docker run --rm --interactive --tty -v $PWD:/var/www/html learning-test_phpfpm composer install
-
-テストコードの実行
-
-    docker-compose exec phpfpm ./vendor/bin/phpunit
-
-### 動作確認
-
-| URL                     |
-| :---------------------- |
-| <http://localhost:8080> |
+### クラウドアーキテクチャ
 
 ## 機能一覧
 
@@ -109,7 +78,37 @@ Composer Install
 
 ![ER図](https://user-images.githubusercontent.com/29622529/89781780-eee2e280-db4e-11ea-9640-c5ff0e73aee7.jpg)
 
-## Git flow
+## Docker によるプロジェクト開始方法
+
+docker がローカル端末にインストールされていない場合、docker のインストールが必要です。(Docker Desktop for Mac)
+
+コンテナ起動
+
+    docker-compose up -d
+
+マイグレーション実行
+
+    docker-compose exec phpfpm php artisan migrate
+
+コンテナ停止
+
+    docker-compose down
+
+Composer Install
+
+    docker run --rm --interactive --tty -v $PWD:/var/www/html learning-test_phpfpm composer install
+
+テストコードの実行
+
+    docker-compose exec phpfpm ./vendor/bin/phpunit
+
+### 動作確認
+
+| URL                     |
+| :---------------------- |
+| <http://localhost:8080> |
+
+## GitHub flow(Git 運用方法)
 
 | ブランチ名 | 概要               |
 | ---------- | ------------------ |
@@ -118,9 +117,11 @@ Composer Install
 
 | No. | ルール                                                                         |
 | --- | ------------------------------------------------------------------------------ |
-| 1.  | master は常にデプロイ可能である                                                |
-| 2.  | master にマージ後デプロイを行う。                                              |
-| 3.  | ブランチの命名規則。<br>「ブランンチ名/日付/内容」                             |
-| 4.  | コミットの命名規則。<br>[種別(add or update or fix or delete)]概要<br><br>内容 |
-
-CI のテスト
+| 1.  | master ブランチは常にデプロイ可能である                                        |
+| 2.  | 作業用ブランチを master から作成する                                           |
+| 3.  | 作業用ブランチを定期的にプッシュする                                           |
+| 4.  | プルリクエストを活用する                                                       |
+| 5.  | プルリクエストが承認されたら master へマージする                               |
+| 6.  | master へのマージが完了したら直ちにデプロイを行う                              |
+| 7.  | ブランチの命名規則。<br>「ブランンチ名/イシュー番号」                          |
+| 8.  | コミットの命名規則。<br>[種別(add or update or fix or delete)]概要<br><br>内容 |
