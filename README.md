@@ -29,6 +29,8 @@ Docker | Nginx1.17.10 | GitHub | GitHub Actions(CI)
 
 ### クラウドアーキテクチャ
 
+![aws](https://user-images.githubusercontent.com/29622529/93275128-06b92080-f7f7-11ea-92cc-8a2bd127a546.png)
+
 ## 機能一覧
 
 -   会員機能
