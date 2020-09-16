@@ -27,17 +27,6 @@
                 追加
               </button>
             </div>
-            <div class="widget-content widget-content-area">
-              <form action="{{ url('/admin/class') }}">
-                <div class="form-row">
-                  <div class="mb-2 col-md-3">
-                    <label for="keyword">キーワード</label>
-                    <input name="keyword" type="text" class="form-control" placeholder="キーワードを入力" value="{{ $params['keyword'] ?? null }}">
-                  </div>
-                </div>
-                <button type="submit" class="btn btn-primary mt-3">検索する</button>
-              </form>
-            </div>
             <div class="table-responsive mb-4 style-1">
               <div id="style-1_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
                 <div class="row">

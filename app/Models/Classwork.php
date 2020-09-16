@@ -19,18 +19,6 @@ class Classwork extends Model
     ];
 
     /**
-     * 検索
-     * @param \Illuminate\Database\Eloquent\Builder
-     * @param array
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public function scopeSerach(Builder $query, array $params): Builder
-    {
-        if (!empty($params['keyword'])) $query->where('name', 'like', '%' . $params['keyword'] . '%');
-        return $query;
-    }
-
-    /**
      * クラス取得関数
      * @param int
      * @param int

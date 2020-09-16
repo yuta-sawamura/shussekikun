@@ -15,18 +15,14 @@ class ClassworkController extends Controller
         $this->classwork = $classwork;
     }
 
-    public function index(Request $request)
+    public function index()
     {
-        $params = $request->query();
-
         $classworks = Classwork::where('organization_id', Auth::user()->organization_id)
-            ->serach($params)
             ->orderBy('id', 'desc')
             ->paginate(20);
 
         return view('admin.classwork.index')->with([
             'classworks' => $classworks,
-            'params' => $params,
         ]);
     }
 

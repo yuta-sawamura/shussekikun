@@ -30,10 +30,8 @@
                 <div class="widget-content widget-content-area">
                   <form action="{{url('/admin/news')}}">
                     <div class="form-row">
-                      @include('components.search.keyword', ['params' => $params])
-
                       @include('components.search.store', ['params' => $params, 'stores' =>$stores])
-
+                      @include('components.search.keyword', ['params' => $params, 'name' => 'タイトトル・本文'])
                     </div>
                     <button type="submit" class="btn btn-primary mt-3">検索する</button>
                   </form>
@@ -66,7 +64,6 @@
                 </div>
                 <div class="row">
                   @include('components.paginate', ['pagination' => $news])
-
                 </div>
               </div>
             </div>
