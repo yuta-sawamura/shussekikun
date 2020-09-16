@@ -25,12 +25,9 @@
                 <div class="widget-content widget-content-area">
                   <form>
                     <div class="form-row">
-                      @include('components.search.keyword', ['params' => $params])
-
                       @include('components.search.category', ['params' => $params, 'categories' => $categories])
-
                       @include('components.search.gender', ['params' => $params, 'genders' => $genders])
-
+                      @include('components.search.keyword', ['params' => $params, 'name' => '名前'])
                     </div>
                     <button type="submit" class="btn btn-primary mt-3">検索する</button>
                   </form>

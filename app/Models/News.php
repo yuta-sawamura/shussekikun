@@ -31,8 +31,7 @@ class News extends Model
         // キーワード検索
         if (!empty($params['keyword'])) {
             $query->where('news.title', 'like', '%' . $params['keyword'] . '%')
-                ->orWhere('news.content', 'like', '%' . $params['keyword'] . '%')
-                ->orWhere('stores.name', 'like', '%' . $params['keyword'] . '%');
+                ->orWhere('news.content', 'like', '%' . $params['keyword'] . '%');
         }
 
         // 店舗絞り込み

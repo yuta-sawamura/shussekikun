@@ -29,14 +29,10 @@
                 <div class="widget-content widget-content-area">
                   <form action="{{url('/admin/user')}}">
                     <div class="form-row">
-                      @include('components.search.keyword', ['params' => $params])
-
                       @include('components.search.store', ['params' => $params, 'stores' => $stores])
-
                       @include('components.search.category', ['params' => $params, 'categories' => $categories])
-
                       @include('components.search.gender', ['params' => $params, 'genders' => $genders])
-
+                      @include('components.search.keyword', ['params' => $params, 'name' => '名前'])
                     </div>
                     <button type="submit" class="btn btn-primary mt-3">検索する</button>
                   </form>
@@ -79,7 +75,6 @@
                 </div>
                 <div class="row">
                   @include('components.paginate', ['pagination' => $users])
-
                 </div>
               </div>
             </div>
