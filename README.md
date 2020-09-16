@@ -49,7 +49,7 @@ SHUSSEKIKUN(しゅっせきくん)は、管理者が会員の出席を管理で�
 
 ### クラウドアーキテクチャ
 
-![aws](https://user-images.githubusercontent.com/29622529/93275128-06b92080-f7f7-11ea-92cc-8a2bd127a546.png)
+![aws](https://user-images.githubusercontent.com/29622529/93402317-64b13b00-f8bf-11ea-89c2-4b9c7fa96ffe.png)
 
 ## 機能一覧
 
