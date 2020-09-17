@@ -46,7 +46,9 @@
                           <th style="width: 80px;">画像</th>
                           <th style="width: 110px;">カテゴリー</th>
                           <th style="width: 60px;">性別</th>
+                          @can('share')
                           <th style="width: 105px;"></th>
+                          @endcan
                         </tr>
                       </thead>
                       <tbody>
@@ -67,6 +69,7 @@
                             </td>
                             <td>{{ $user->category->name ?? null }}</td>
                             <td>{{ $user->gender_name }}</td>
+                            @can('share')
                             <td class="text-center">
                               <div class="dropdown custom-dropdown">
                                 <div class="text-center">
@@ -76,6 +79,7 @@
                                 </div>
                               </div>
                             </td>
+                            @endcan
                             <input type="hidden" name="full_name" value="{{ $user->full_name }}">
                             <input type="hidden" name="user_id" value="{{ $user->id }}">
                           </tr>
