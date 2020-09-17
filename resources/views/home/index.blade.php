@@ -39,7 +39,9 @@
                     <table id="style-1" class="table style-1 table-hover non-hover dataTable no-footer" role="grid" aria-describedby="style-1_info" style="table-layout: fixed; width: 100%;">
                       <thead>
                         <tr role="row">
+                          @can('organization-admin-higher')
                           <th style="width: 30px;"></th>
+                          @endcan
                           <th style="width: 150px;">名前</th>
                           <th style="width: 80px;">画像</th>
                           <th style="width: 110px;">カテゴリー</th>
@@ -50,11 +52,13 @@
                       <tbody>
                         @foreach ($users as $user)
                           <tr role="row" class="odd">
+                            @can('organization-admin-higher')
                             <td class="checkbox-column sorting_1"><label class="new-control new-checkbox checkbox-outline-primary  m-auto">
                                 <input type="checkbox" name="check" class="new-control-input child-chk select-customers-info" id="checkbox-{{ $user->id }}">
                                 <span class="new-control-indicator"></span><span style="visibility:hidden">c</span>
                               </label>
                             </td>
+                            @endcan
                             <td>{{ $user->full_name }}<br>{{ $user->full_name_kana }}</td>
                             <td>
                               <a class="profile-img" href="javascript: void(0);">
@@ -79,9 +83,11 @@
                         @endforeach
                       </tbody>
                     </table>
+                    @can('organization-admin-higher')
                     <button type="button" id="attendanceMultiple" class="float-right btn btn-primary mb-2 mr-2" data-toggle="modal" data-target="#attendanceMultipleModal">
                       一括出席
                     </button>
+                    @endcan
                   </div>
                 </div>
                 <div class="row">
