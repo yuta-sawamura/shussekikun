@@ -43,8 +43,8 @@
                               data-key="{{ env('STRIPE_KEY') }}"
                               data-amount="1000"
                               data-name="SHUSSEKIKUN"
-                              data-label="プレミアム会員"
-                              data-description="プレミアム会員で便利な機能を使用"
+                              data-label="プレミアム会員登録"
+                              data-description="プレミアム会員で便利な機能を利用"
                               data-image="{{ asset('/img/logo.png') }}"
                               data-locale="auto"
                               data-currency="JPY">
