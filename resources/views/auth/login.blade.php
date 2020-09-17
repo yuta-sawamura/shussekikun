@@ -11,7 +11,7 @@
           <h1>ログイン</h1>
           <div class="field-wrapper my-2">
             <a href="#" onclick="submitLogin('organization_admin')" type="button" class="btn btn-info w-100 mb-1">ゲスト管理者ログイン</a>
-            <a href="#" onclick="submitLogin('store_share')" type="button" class="btn btn-info w-100">ゲスト会員ログイン</a>
+            <a href="#" onclick="submitLogin('store_share')" type="button" class="btn btn-info w-100">ゲスト共有アカウントログイン</a>
           </div>
           <form method="POST" action="{{ route('login') }}" id="login" class="text-left" onSubmit="return double()">
             @csrf
