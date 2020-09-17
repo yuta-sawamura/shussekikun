@@ -28,14 +28,16 @@ class News extends Model
      */
     public function scopeSerach(Builder $query, array $params): Builder
     {
-        // キーワード検索
-        if (!empty($params['keyword'])) {
-            $query->where('news.title', 'like', '%' . $params['keyword'] . '%')
-                ->orWhere('news.content', 'like', '%' . $params['keyword'] . '%');
-        }
-
         // 店舗絞り込み
         if (!empty($params['store'])) $query->where('store_id', $params['store']);
+
+        // キーワード検索
+        if (!empty($params['keyword'])) {
+            $query->where(function ($query) use ($params) {
+                $query->where('news.title', 'like', '%' . $params['keyword'] . '%')
+                    ->orWhere('news.content', 'like', '%' . $params['keyword'] . '%');
+            });
+        }
 
         return $query;
     }
