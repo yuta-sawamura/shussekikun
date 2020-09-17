@@ -163,14 +163,6 @@ class User extends Authenticatable
      */
     public function scopeSerach(Builder $query, array $params): Builder
     {
-        // キーワード検索
-        if (!empty($params['keyword'])) {
-            $query
-                ->where('sei', 'like', '%' . $params['keyword'] . '%')
-                ->orWhere('mei', 'like', '%' . $params['keyword'] . '%')
-                ->orWhere('sei_kana', 'like', '%' . $params['keyword'] . '%')
-                ->orWhere('mei_kana', 'like', '%' . $params['keyword'] . '%');
-        }
 
         // 店舗絞り込み
         if (!empty($params['store'])) $query->where('store_id', $params['store']);
@@ -180,6 +172,16 @@ class User extends Authenticatable
 
         // 性別絞り込み
         if (!empty($params['gender'])) $query->where('gender', $params['gender']);
+
+        // キーワード検索
+        if (!empty($params['keyword'])) {
+            $query->where(function ($query) use ($params) {
+                $query->where('sei', 'like', '%' . $params['keyword'] . '%')
+                    ->orWhere('mei', 'like', '%' . $params['keyword'] . '%')
+                    ->orWhere('sei_kana', 'like', '%' . $params['keyword'] . '%')
+                    ->orWhere('mei_kana', 'like', '%' . $params['keyword'] . '%');
+            });
+        }
 
         return $query;
     }
