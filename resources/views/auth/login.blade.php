@@ -10,8 +10,8 @@
         <div class="form-content">
           <h1>ログイン</h1>
           <div class="field-wrapper my-2">
-            <a href="#" onclick="submitLogin('organization_admin')" type="button" class="btn btn-info w-100 mb-1">ゲスト管理者ログイン</a>
-            <a href="#" onclick="submitLogin('store_share')" type="button" class="btn btn-info w-100">ゲスト共有アカウントログイン</a>
+            <a href="#" onclick='submitLogin("{{ App\Enums\User\Role::Organization_admin }}")' type="button" class="btn btn-info w-100 mb-1">ゲスト管理者ログイン</a>
+            <a href="#" onclick='submitLogin("{{ App\Enums\User\Role::Store_share }}")' type="button" class="btn btn-info w-100">ゲスト共有アカウントログイン</a>
           </div>
           <form method="POST" action="{{ route('login') }}" id="login" class="text-left" onSubmit="return double()">
             @csrf
@@ -62,7 +62,19 @@
   </div>
 </div>
 
-<script src="{{ asset('/js/submit_login.js') }}"></script>
+<script>
+  function submitLogin(role) {
+    if (role === "{{ App\Enums\User\Role::Organization_admin }}") {
+      $("#login").find('input[name="email"]').val("{{ env('ORGANIZATION_ADMIN_MAIL') }}");
+      $("#login").find('input[name="password"]').val("{{ env('ORGANIZATION_ADMIN_PASSWORD') }}");
+    } else if (role === "{{ App\Enums\User\Role::Store_share }}") {
+      $("#login").find('input[name="email"]').val("{{ env('STORE_SHARE_MAIL') }}");
+      $("#login").find('input[name="password"]').val("{{ env('STORE_SHARE_PASSWORD') }}");
+    }
+    $("#login").submit();
+  }
+</script>
+
 <script src="{{ asset('js/double.js') }}"></script>
 
 @endsection
