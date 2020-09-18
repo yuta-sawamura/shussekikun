@@ -38,11 +38,11 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('organization-admin-only', function ($user) {
             return ($user->role === Role::Organization_admin);
         });
-        // 店舗別共有アカウント以上
+        // 共有アカウント以上
         Gate::define('share-higher', function ($user) {
             return ($user->role > 0 && $user->role <= Role::Store_share);
         });
-        // 店舗別共有アカウント
+        // 共有アカウント
         Gate::define('share', function ($user) {
             return ($user->role === Role::Store_share);
         });
