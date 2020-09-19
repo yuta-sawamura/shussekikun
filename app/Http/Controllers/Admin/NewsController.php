@@ -22,13 +22,13 @@ class NewsController extends Controller
         $news = News::select(
             'news.id',
             'news.title',
-            'news.created_at',
+            'news.updated_at',
             'stores.name'
         )
             ->join('stores', 'stores.id', '=', 'news.store_id')
             ->where('stores.organization_id', Auth::user()->organization_id)
             ->serach($params)
-            ->orderBy('news.id', 'desc')
+            ->orderBy('news.updated_at', 'desc')
             ->paginate(20);
 
         return view('admin.news.index')->with([
