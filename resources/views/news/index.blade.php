@@ -36,7 +36,7 @@
                       <thead>
                         <tr role="row">
                           <th style="width: 150px;">タイトル</th>
-                          <th style="width: 200px;">投稿日</th>
+                          <th style="width: 200px;">更新日</th>
                           <th style="width: 110px;"></th>
                         </tr>
                       </thead>
@@ -44,7 +44,7 @@
                         @foreach ($news as $k => $v)
                           <tr role="row" class="odd">
                             <td>{{ $v->title }}</td>
-                            <td>{{ $v->created_at->format('Y-m-d') }}</td>
+                            <td>{{ $v->updated_at->format('Y-m-d') }}</td>
                             <td>
                               <a href="{{ url('/news/show/' . $v->id) }}" class="btn btn-outline-primary mb-2 mr-2">詳細</a>
                             </td>
