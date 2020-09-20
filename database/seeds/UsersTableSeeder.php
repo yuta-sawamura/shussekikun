@@ -644,7 +644,7 @@ class UsersTableSeeder extends Seeder
             [
                 'id' => 36,
                 'organization_id' => 2,
-                'store_id' => 4,
+                'store_id' => 3,
                 'category_id' => 3,
                 'sei' => '萩原',
                 'mei' => '淳一',
