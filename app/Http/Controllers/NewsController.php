@@ -18,6 +18,7 @@ class NewsController extends Controller
             'news.title',
             'news.content',
             'news.created_at',
+            'news.updated_at',
             'stores.organization_id',
             'stores.name'
         )
