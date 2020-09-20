@@ -54,9 +54,9 @@ SHUSSEKIKUN(しゅっせきくん)は、管理者が会員の出席を管理で�
 ## 機能一覧
 
 -   管理者機能
-    -   認証機能
+    -   認証 | 認可
         -   登録 | 退会 | 削除
-        -   権限(システム管理者 | 組織管理者 | 共有アカウント)
+        -   アクセス制限(システム管理者 | 組織管理者 | 共有アカウント)
         -   ログイン | ログアウト | パスワードリセット(メール送信機能)
     -   プレミアム機能(Web API)
         -   決済機能 | 解約機能
@@ -80,6 +80,7 @@ SHUSSEKIKUN(しゅっせきくん)は、管理者が会員の出席を管理で�
     -   出席ランキング閲覧機能
     -   お知らせ閲覧機能
 -   その他
+    -   結合テスト
     -   SSL 化
 
 ## DB 設計
@@ -106,7 +107,7 @@ docker がローカル端末にインストールされていない場合、dock
 
 Composer Install
 
-    docker run --rm --interactive --tty -v $PWD:/var/www/html learning-test_phpfpm composer install
+    docker-compose exec phpfpm composer install
 
 テストコードの実行
 
