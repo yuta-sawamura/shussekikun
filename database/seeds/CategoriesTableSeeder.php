@@ -15,14 +15,14 @@ class CategoriesTableSeeder extends Seeder
             [
                 'id' => 1,
                 'organization_id' => 1,
-                'name' => '一般',
+                'name' => '社会人',
                 'created_at' => '2020-06-10 21:07:31',
                 'updated_at' => '2020-06-10 21:07:31'
             ],
             [
                 'id' => 2,
                 'organization_id' => 1,
-                'name' => '少年',
+                'name' => '小学生',
                 'created_at' => '2020-06-10 21:07:31',
                 'updated_at' => '2020-06-10 21:07:31'
             ],

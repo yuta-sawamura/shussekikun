@@ -43,7 +43,7 @@ class ClassworksTableSeeder extends Seeder
             [
                 'id' => 5,
                 'organization_id' => 2,
-                'name' => '一般',
+                'name' => 'ビギナー',
                 'created_at' => '2020-06-10 21:07:31',
                 'updated_at' => '2020-06-10 21:07:31'
             ],
