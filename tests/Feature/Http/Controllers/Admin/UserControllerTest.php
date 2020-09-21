@@ -49,7 +49,7 @@ class UserControllerTest extends TestCase
             'role' => Role::Store_share
         ]);
 
-        // 一般アカウント
+        // 会員アカウント
         $this->normal_user = factory(User::class)->create([
             'organization_id' => $this->organization->id,
             'store_id' => $this->store->id,
