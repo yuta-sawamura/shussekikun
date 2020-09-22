@@ -31,19 +31,19 @@ class AttendanceControllerTest extends TestCase
             'store_id' => $this->store->id,
             'role' => Role::Store_share
         ]);
-        // 一般アカウント
+        // 会員アカウント
         $this->normal_user = factory(User::class)->create([
             'organization_id' => $this->organization->id,
             'store_id' => $this->store->id,
             'role' => Role::Normal
         ]);
-        // 別の一般アカウント2
+        // 別の会員アカウント2
         $this->normal_user2 = factory(User::class)->create([
             'organization_id' => $this->organization->id,
             'store_id' => $this->store->id,
             'role' => Role::Normal
         ]);
-        // 別の一般アカウント3
+        // 別の会員アカウント3
         $this->normal_user3 = factory(User::class)->create([
             'organization_id' => $this->organization->id,
             'store_id' => $this->store->id,
