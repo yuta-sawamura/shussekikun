@@ -42,8 +42,8 @@
                           @can('organization-admin-higher')
                           <th style="width: 30px;"></th>
                           @endcan
-                          <th style="width: 150px;">名前</th>
                           <th style="width: 80px;">画像</th>
+                          <th style="width: 150px;">名前</th>
                           <th style="width: 110px;">カテゴリー</th>
                           <th style="width: 60px;">性別</th>
                           @can('share')
@@ -61,12 +61,12 @@
                               </label>
                             </td>
                             @endcan
-                            <td>{{ $user->full_name }}<br>{{ $user->full_name_kana }}</td>
                             <td>
-                              <a class="profile-img" href="javascript: void(0);">
-                                <img alt="profile-img" src="{{ $user->S3_url }}">
-                              </a>
+                              <div class="avatar avatar-xl">
+                                <img alt="avatar" src="{{ $user->S3_url }}" class="rounded-circle" />
+                              </div>
                             </td>
+                            <td>{{ $user->full_name }}<br>{{ $user->full_name_kana }}</td>
                             <td>{{ $user->category->name ?? null }}</td>
                             <td>{{ $user->gender_name }}</td>
                             @can('share')

@@ -23,7 +23,9 @@
               <a href="{{ url("/admin/user/edit/{$user->id}") }}" class="btn btn-outline-primary">編集</a>
             </div>
             <div class="text-center user-info">
-              <img alt="profile-img" src="{{ $user->S3_url }}" style="height: 100px; width: 100px">
+              <div class="avatar avatar-xxl">
+                <img alt="avatar" src="{{ $user->S3_url }}" class="rounded-circle" />
+              </div>
               <p>{{ $user->full_name }} ({{ $user->full_name_kana }})</p>
             </div>
             <div class="user-info-list">

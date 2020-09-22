@@ -37,8 +37,8 @@
                     <table id="style-1" class="table style-1 table-hover non-hover dataTable no-footer" role="grid" aria-describedby="style-1_info" style="table-layout: fixed; width: 100%;">
                       <thead>
                         <tr role="row">
-                          <th style="width: 150px;">名前</th>
                           <th style="width: 60px;">画像</th>
+                          <th style="width: 150px;">名前</th>
                           <th style="width: 100px;">カテゴリー</th>
                           <th style="width: 60px;">性別</th>
                           <th style="width: 105px;"></th>
@@ -47,12 +47,12 @@
                       <tbody>
                         @foreach ($users as $user)
                           <tr role="row" class="odd">
-                            <td>{{ $user->full_name }}<br>{{ $user->full_name_kana }}</td>
                             <td>
-                              <a class="profile-img" href="javascript: void(0);">
-                                <img alt="profile-img" src="{{ $user->S3_url }}">
-                              </a>
+                              <div class="avatar avatar-xl">
+                                <img alt="avatar" src="{{ $user->S3_url }}" class="rounded-circle" />
+                              </div>
                             </td>
+                            <td>{{ $user->full_name }}<br>{{ $user->full_name_kana }}</td>
                             <td>{{ $user->category->name ?? null }}</td>
                             <td>{{ $user->gender_name }}</td>
                             <td class="text-center">
