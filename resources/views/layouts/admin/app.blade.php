@@ -29,6 +29,7 @@
   <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/editors/markdown/simplemde.min.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('/bootstrap/css/bootstrap-datepicker.min.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('/css/jquery.timepicker.min.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('/css/elements/avatar.css') }}">
   <!-- END STYLES -->
 </head>
 <body>

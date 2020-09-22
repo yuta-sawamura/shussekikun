@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-xl-2 col-lg-12 col-md-4">
         <div class="upload mt-4 pr-md-4">
-          <input type="file" name="img" id="input-file-max-fs" class="dropify" data-default-file="{{ isset($user->img) ? Illuminate\Support\Facades\Storage::disk('s3')->url($user->img) : null }}" data-max-file-size="2M" accept="image/*" />
+          <input type="file" name="img" id="input-file-max-fs" class="dropify" data-default-file="{{ isset($user->img) && $user->img ? Illuminate\Support\Facades\Storage::disk('s3')->url($user->img) : null }}" data-max-file-size="2M" accept="image/*" />
           <p class="mt-2"><i class="flaticon-cloud-upload mr-1"></i>画像アップロード</p>
           @include('components.validations.feedback', ['message' => 'img'])
 
