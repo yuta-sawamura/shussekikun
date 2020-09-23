@@ -62,7 +62,7 @@
                             </td>
                             @endcan
                             <td>
-                              <div class="avatar avatar-xl">
+                              <div class="avatar avatar-x">
                                 <img alt="avatar" src="{{ $user->S3_url }}" class="rounded-circle" />
                               </div>
                             </td>
