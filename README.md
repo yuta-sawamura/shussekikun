@@ -100,7 +100,7 @@ docker がローカル端末にインストールされていない場合、dock
 
 マイグレーション実行
 
-    docker-compose exec phpfpm php artisan migrate
+    docker-compose exec phpfpm php artisan migrate:fresh --seed
 
 コンテナ停止
 
