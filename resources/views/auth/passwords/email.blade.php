@@ -45,6 +45,4 @@
   </div>
 </div>
 
-<script src="{{ asset('js/double.js') }}"></script>
-
 @endsection
