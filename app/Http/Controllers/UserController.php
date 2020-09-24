@@ -29,7 +29,7 @@ class UserController extends Controller
         $users = User::roleStoreStatusFilter([Role::Normal], Auth::user()->store_id, Status::Cancel)
             ->serach($params)
             ->orderBy('id', 'desc')
-            ->paginate(20);
+            ->paginate(config('const.PAGINATION_PER_PAGE'));
 
         return view('user.index')->with([
             'users' => $users,

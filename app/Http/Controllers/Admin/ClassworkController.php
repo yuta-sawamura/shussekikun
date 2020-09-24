@@ -19,7 +19,7 @@ class ClassworkController extends Controller
     {
         $classworks = Classwork::where('organization_id', Auth::user()->organization_id)
             ->orderBy('id', 'desc')
-            ->paginate(20);
+            ->paginate(config('const.PAGINATION_PER_PAGE'));
 
         return view('admin.classwork.index')->with([
             'classworks' => $classworks,

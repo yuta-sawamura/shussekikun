@@ -19,7 +19,7 @@ class StoreController extends Controller
     {
         $stores = Store::where('organization_id', Auth::user()->organization_id)
             ->orderBy('id', 'desc')
-            ->paginate(20);
+            ->paginate(config('const.PAGINATION_PER_PAGE'));
 
         return view('admin.store.index')->with([
             'stores' => $stores,

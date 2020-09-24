@@ -19,7 +19,7 @@ class CategoryController extends Controller
     {
         $categories = Category::where('organization_id', Auth::user()->organization_id)
             ->orderBy('id', 'desc')
-            ->paginate(20);
+            ->paginate(config('const.PAGINATION_PER_PAGE'));
 
         return view('admin.category.index')->with([
             'categories' => $categories,

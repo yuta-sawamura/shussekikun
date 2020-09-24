@@ -29,7 +29,7 @@ class NewsController extends Controller
             ->where('stores.organization_id', Auth::user()->organization_id)
             ->serach($params)
             ->orderBy('news.updated_at', 'desc')
-            ->paginate(20);
+            ->paginate(config('const.PAGINATION_PER_PAGE'));
 
         return view('admin.news.index')->with([
             'news' => $news,
