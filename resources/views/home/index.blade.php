@@ -88,7 +88,7 @@
                       </tbody>
                     </table>
                     @can('organization-admin-higher')
-                    <button type="button" id="attendanceMultiple" class="btn btn-primary mb-2 mr-2" data-toggle="modal" data-target="#attendanceMultipleModal">
+                    <button type="button" id="attendanceMultiple" class="btn btn-primary mb-5" data-toggle="modal" data-target="#attendanceMultipleModal">
                       一括出席
                     </button>
                     @endcan
