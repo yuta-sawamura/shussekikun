@@ -31,7 +31,7 @@ class HomeController extends Controller
             ->where('status', '!=', Status::Cancel)
             ->serach($params)
             ->orderBy('id', 'desc')
-            ->paginate(30);
+            ->paginate(config('const.PAGINATION_PER_PAGE'));
 
         if (isset(Auth::user()->store_id)) $schedules = $this->schedule->findByIdScheduleClass(Auth::user()->store_id);
 

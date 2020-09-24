@@ -31,7 +31,7 @@ class UserController extends Controller
             ->where('role', '!=', Role::System)
             ->serach($params)
             ->orderBy('id', 'desc')
-            ->paginate(20);
+            ->paginate(config('const.PAGINATION_PER_PAGE'));
 
         return view('admin.user.index')->with([
             'users' => $users,
@@ -56,7 +56,7 @@ class UserController extends Controller
 
         $attendances = Attendance::where('user_id', $request->id)
             ->orderBy('id', 'desc')
-            ->paginate(20);
+            ->paginate(config('const.PAGINATION_PER_PAGE'));
 
         $params = $request->query();
         if (!isset($params['year'])) $params['year'] = $this->dt->year;

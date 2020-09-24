@@ -36,7 +36,7 @@
 
                 <div class="row">
                   <div class="col-sm-12">
-                    <table id="style-1" class="table style-1 table-hover non-hover dataTable no-footer" role="grid" aria-describedby="style-1_info" style="table-layout: fixed; width: 100%;">
+                    <table id="style-1" class="table style-1 non-hover dataTable no-footer" role="grid" aria-describedby="style-1_info" style="table-layout: fixed; width: 100%;">
                       <thead>
                         <tr role="row">
                           @can('organization-admin-higher')
@@ -88,7 +88,7 @@
                       </tbody>
                     </table>
                     @can('organization-admin-higher')
-                    <button type="button" id="attendanceMultiple" class="float-right btn btn-primary mb-2 mr-2" data-toggle="modal" data-target="#attendanceMultipleModal">
+                    <button type="button" id="attendanceMultiple" class="btn btn-primary mb-5" data-toggle="modal" data-target="#attendanceMultipleModal">
                       一括出席
                     </button>
                     @endcan

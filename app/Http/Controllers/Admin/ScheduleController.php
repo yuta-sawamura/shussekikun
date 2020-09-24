@@ -35,7 +35,7 @@ class ScheduleController extends Controller
             ->orderBy('stores.id', 'desc')
             ->orderBy('schedules.day', 'asc')
             ->orderBy('schedules.start_at', 'asc')
-            ->paginate(20);
+            ->paginate(config('const.PAGINATION_PER_PAGE'));
 
         return view('admin.schedule.index')->with([
             'schedules' => $schedules,
