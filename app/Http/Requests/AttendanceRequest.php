@@ -30,6 +30,7 @@ class AttendanceRequest extends FormRequest
             ];
         } elseif ($this->is('attendance/store_multiple')) {
             return [
+                'users' => 'required',
                 'users.*.user_id' => 'required|integer',
                 'schedule_id' => 'required|integer',
             ];
@@ -38,8 +39,6 @@ class AttendanceRequest extends FormRequest
 
     public function withValidator($validator)
     {
-        if ($validator->fails()) {
-            return back()->with('error_message', '出席できませんでした。');
-        }
+        if ($validator->fails()) return back()->with('error_message', '出席できませんでした。');
     }
 }
