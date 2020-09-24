@@ -36,7 +36,7 @@
 
                 <div class="row">
                   <div class="col-sm-12">
-                    <table id="style-1" class="table style-1 non-hover dataTable no-footer" role="grid" aria-describedby="style-1_info" style="table-layout: fixed; width: 100%;">
+                    <table id="style-1" class="table non-hover" role="grid" aria-describedby="style-1_info" style="table-layout: fixed; width: 100%;">
                       <thead>
                         <tr role="row">
                           @can('organization-admin-higher')
