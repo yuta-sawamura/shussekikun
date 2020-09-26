@@ -62,8 +62,8 @@
       App.init();
     });
   </script>
-  <script src="{{ asset('js/double.js') }}"></script>
   <script src="{{ asset('js/submit_logout.js') }}"></script>
+  <script src="{{ asset('js/prop_disable.js') }}"></script>
 
 </body>
 </html>

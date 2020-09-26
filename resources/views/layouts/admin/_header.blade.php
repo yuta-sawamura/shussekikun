@@ -36,7 +36,7 @@
                 </svg> ログアウト
               </a>
             </div>
-            <form method="post" name="header_logout" action="{{ route('logout') }}" id="logout" onSubmit="return double()">
+            <form method="post" name="header_logout" action="{{ route('logout') }}" id="logout">
               @csrf
               <input type="hidden" name="logout" value="">
             </form>

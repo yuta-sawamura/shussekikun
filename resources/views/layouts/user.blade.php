@@ -20,6 +20,7 @@
 
   <!-- BEGIN SCRIPTS -->
   <script src="{{ asset('js/app.js') }}"></script>
+  <script src="{{ asset('js/prop_disable.js') }}"></script>
   <!-- END SCRIPTS -->
 </body>
 </html>
