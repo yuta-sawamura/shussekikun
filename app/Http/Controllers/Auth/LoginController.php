@@ -53,9 +53,6 @@ class LoginController extends Controller
 
     /**
      * ゲストログイン
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  mixed  $user
      * @return \Illuminate\Http\Response
      */
     protected function guestLogin()
