@@ -9,11 +9,16 @@
       <div class="form-container">
         <div class="form-content">
           <h1>ログイン</h1>
-          <div class="field-wrapper my-3">
-            <button onclick='submitLogin("{{ App\Enums\User\Role::Organization_admin }}")' type="submit" class="btn btn-info w-100">ゲスト管理者ログイン</button>
-          </div>
-          <form method="POST" action="{{ route('login') }}" id="login" class="text-left">
+          <form method="POST" action="{{ route('login') }}" class="text-left">
             @csrf
+
+            <p class="pt-4 text-danger">*ゲスト管理者としてお試しでログインできます。</p>
+            <div class="d-sm-flex justify-content-between pb-4">
+              <div class="field-wrapper">
+                <a class="btn btn-danger" href="{{ route('guest.login') }}">ゲスト管理者ログイン</a>
+              </div>
+            </div>
+
             <div class="form">
               <div id="username-field" class="field-wrapper input">
                 <label for="username">メールアドレス<span class="text-danger">*</span></label>
@@ -60,15 +65,5 @@
     </div>
   </div>
 </div>
-
-<script>
-  function submitLogin(role) {
-    if (role === "{{ App\Enums\User\Role::Organization_admin }}") {
-      $("#login").find('input[name="email"]').val("{{ env('ORGANIZATION_ADMIN_MAIL') }}");
-      $("#login").find('input[name="password"]').val("{{ env('ORGANIZATION_ADMIN_PASSWORD') }}");
-    }
-    $("#login").submit();
-  }
-</script>
 
 @endsection
