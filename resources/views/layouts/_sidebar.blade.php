@@ -9,11 +9,15 @@
       <li class="nav-item theme-text">
         <a href="{{ url('/') }}" class="nav-link"> SHUSSEKIKUN </a>
       </li>
+      <li class="nav-item toggle-sidebar">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left sidebarCollapse"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      </li>
     </ul>
+
     <div class="shadow-bottom"></div>
-    <ul class="list-unstyled menu-categories">
-      <li class="menu">
-        <a href="{{ url('/') }}" aria-expanded="false" class="dropdown-toggle">
+    <ul class="list-unstyled menu-categories" id="accordionExample">
+      <li class="menu {{ request()->route()->uri == '/' ? 'active': null }}">
+        <a href="{{ url('/') }}" aria-expanded="{{ request()->route()->uri == '/' ? 'true': 'false' }}" class="dropdown-toggle">
           <div>
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check">
               <polyline points="20 6 9 17 4 12"></polyline>
@@ -22,8 +26,8 @@
           </div>
         </a>
       </li>
-      <li class="menu">
-        <a href="{{ url('rank') }}" aria-expanded="false" class="dropdown-toggle">
+      <li class="menu {{ strpos(url()->current(), 'rank') == true ? 'active': null }}">
+        <a href="{{ url('rank') }}" aria-expanded="{{ strpos(url()->current(), 'rank') == true ? 'true': 'false' }}" class="dropdown-toggle">
           <div>
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bar-chart-2">
               <line x1="18" y1="20" x2="18" y2="10"></line>
@@ -34,8 +38,8 @@
           </div>
         </a>
       </li>
-      <li class="menu">
-        <a href="{{ url('user/') }}" aria-expanded="false" class="dropdown-toggle">
+      <li class="menu {{ strpos(url()->current(), 'user') == true ? 'active': null }}">
+        <a href="{{ url('user/') }}" aria-expanded="{{ strpos(url()->current(), 'user') == true ? 'true': 'false' }}" class="dropdown-toggle">
           <div>
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users">
               <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
@@ -47,8 +51,8 @@
           </div>
         </a>
       </li>
-      <li class="menu">
-        <a href="{{ url('news/') }}" aria-expanded="false" class="dropdown-toggle">
+      <li class="menu {{ strpos(url()->current(), 'news') == true ? 'active': null }}">
+        <a href="{{ url('news/') }}" aria-expanded="{{ strpos(url()->current(), 'news') == true ? 'true': 'false' }}" class="dropdown-toggle">
           <div>
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell">
               <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>

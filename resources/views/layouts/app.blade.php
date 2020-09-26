@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -25,9 +26,10 @@
   <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/table/datatable/custom_dt_custom.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('/css/components/custom-modal.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('/css/elements/avatar.css') }}">
-  <!-- END STYLES -->
+    <!-- END STYLES -->
 
 </head>
+
 <body>
   <!-- BEGIN LOADER -->
   @include('layouts._loader')
@@ -48,22 +50,25 @@
     <!--  BEGIN CONTENT AREA  -->
     @yield('content')
     <!--  END CONTENT AREA  -->
-
   </div>
   <!-- END MAIN CONTAINER -->
 
   <!-- BEGIN SCRIPTS -->
+  <script src="{{ asset('js/libs/jquery-3.1.1.min.js') }}"></script>
+  <script src="{{ asset('bootstrap/js/popper.min.js') }}"></script>
+  <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
+  <script src="{{ asset('plugins/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
   <script src="{{ asset('js/app.js') }}"></script>
+  <script src="{{ asset('js/submit_logout.js') }}"></script>
+  <script src="{{ asset('js/prop_disable.js') }}"></script>
   @yield('js')
-  <!-- END SCRIPTS -->
-
   <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
       App.init();
     });
   </script>
-  <script src="{{ asset('js/submit_logout.js') }}"></script>
-  <script src="{{ asset('js/prop_disable.js') }}"></script>
+  <!-- END SCRIPTS -->
 
 </body>
+
 </html>

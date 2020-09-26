@@ -12,8 +12,8 @@
     </ul>
     <div class="shadow-bottom"></div>
     <ul class="list-unstyled menu-categories" id="accordionExample">
-      <li class="menu">
-        <a href="{{ url('admin/') }}" aria-expanded="false" class="dropdown-toggle">
+      <li class="menu {{ request()->route()->uri == 'admin' ? 'active': null }}">
+        <a href="{{ url('admin/') }}" aria-expanded="{{ request()->route()->uri == 'admin' ? 'true': 'false' }}" class="dropdown-toggle">
           <div>
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bar-chart-2">
               <line x1="18" y1="20" x2="18" y2="10"></line>
@@ -24,8 +24,8 @@
           </div>
         </a>
       </li>
-      <li class="menu">
-        <a href="{{ url('admin/user/') }}" aria-expanded="false" class="dropdown-toggle">
+      <li class="menu {{ strpos(url()->current(), 'user') == true ? 'active': null }}">
+        <a href="{{ url('admin/user/') }}" aria-expanded="{{ strpos(url()->current(), 'user') == true ? 'true': 'false' }}" class="dropdown-toggle">
           <div>
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users">
               <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
@@ -37,8 +37,8 @@
           </div>
         </a>
       </li>
-      <li class="menu">
-        <a href="{{ url('admin/premium') }}" aria-expanded="false" class="dropdown-toggle">
+      <li class="menu {{ strpos(url()->current(), 'premium') == true ? 'active': null }}">
+        <a href="{{ url('admin/premium') }}" aria-expanded="{{ strpos(url()->current(), 'premium') == true ? 'true': 'false' }}" class="dropdown-toggle">
           <div>
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-corner-right-up">
               <polyline points="10 9 15 4 20 9"></polyline>
@@ -49,8 +49,8 @@
           </div>
         </a>
       </li>
-      <li class="menu">
-        <a href="{{ url('admin/news/') }}" aria-expanded="false" class="dropdown-toggle">
+      <li class="menu {{ strpos(url()->current(), 'news') == true ? 'active': null }}">
+        <a href="{{ url('admin/news/') }}" aria-expanded="{{ strpos(url()->current(), 'news') == true ? 'true': 'false' }}" class="dropdown-toggle">
           <div>
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell">
               <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
@@ -61,8 +61,12 @@
           </div>
         </a>
       </li>
-      <li class="menu">
-        <a href="#datatables" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+
+      @php
+      $array = ['admin/store', 'admin/category', 'admin/class', 'admin/schedule'];
+      @endphp
+      <li class="menu {{ in_array(request()->route()->uri, $array) ? 'active': null }}">
+        <a href="#datatables" data-toggle="collapse" aria-expanded="{{ in_array(request()->route()->uri, $array) ? 'true': 'false' }}" class="dropdown-toggle">
           <div>
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-settings">
               <circle cx="12" cy="12" r="3"></circle>
@@ -74,17 +78,17 @@
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
           </div>
         </a>
-        <ul class="collapse submenu list-unstyled" id="datatables" data-parent="#accordionExample">
-          <li>
+        <ul class="{{ in_array(request()->route()->uri, $array) ? 'submenu list-unstyled collapse show': 'collapse submenu list-unstyled' }}" id="datatables" data-parent="#accordionExample">
+          <li class="{{ strpos(url()->current(), 'store') == true ? 'active': null }}">
             <a href="{{ url('admin/store') }}"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">店舗</font></font></a>
           </li>
-          <li>
+          <li class="{{ strpos(url()->current(), 'category') == true ? 'active': null }}">
             <a href="{{ url('admin/category') }}"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">カテゴリー</font></font></a>
           </li>
-          <li>
+          <li class="{{ strpos(url()->current(), 'class') == true ? 'active': null }}">
             <a href="{{ url('admin/class') }}"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">クラス</font></font></a>
           </li>
-          <li>
+          <li class="{{ strpos(url()->current(), 'schedule') == true ? 'active': null }}">
             <a href="{{ url('admin/schedule') }}"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">スケジュール</font></font></a>
           </li>
         </ul>
