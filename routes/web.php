@@ -120,3 +120,4 @@ Auth::routes([
     'verify' => false,
     'confirm' => false
 ]);
+Route::get('guest', 'Auth\LoginController@guestLogin')->name('guest.login');
