@@ -12,7 +12,7 @@
           <div class="field-wrapper my-3">
             <button onclick='submitLogin("{{ App\Enums\User\Role::Organization_admin }}")' type="submit" class="btn btn-info w-100">ゲスト管理者ログイン</button>
           </div>
-          <form method="POST" action="{{ route('login') }}" id="login" class="text-left" onSubmit="return double()">
+          <form method="POST" action="{{ route('login') }}" id="login" class="text-left">
             @csrf
             <div class="form">
               <div id="username-field" class="field-wrapper input">

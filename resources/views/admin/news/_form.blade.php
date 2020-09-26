@@ -1,4 +1,4 @@
-<form action="/admin/news/<?= isset($add) ? 'store' : "update/$news->id" ?>" method="post" onSubmit="return double()">
+<form action="/admin/news/<?= isset($add) ? 'store' : "update/$news->id" ?>" method="post">
   @csrf
   <div class="form-group col-xl-4 col-md-12 col-sm-12 col-12">
     <label>店舗<span class="text-danger">*</span></label>
