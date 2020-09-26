@@ -52,6 +52,24 @@ class LoginController extends Controller
     }
 
     /**
+     * ゲストログイン
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  mixed  $user
+     * @return \Illuminate\Http\Response
+     */
+    protected function guestLogin()
+    {
+        $email = env('ORGANIZATION_ADMIN_MAIL');
+        $password = env('ORGANIZATION_ADMIN_PASSWORD');
+
+        if (\Auth::attempt(['email' => $email, 'password' => $password])) {
+            return redirect('/')->with('success_message', 'ログインしました。');
+        }
+        return back();
+    }
+
+    /**
      * ユーザーをログアウトさせる
      *
      * @param  \Illuminate\Http\Request  $request
