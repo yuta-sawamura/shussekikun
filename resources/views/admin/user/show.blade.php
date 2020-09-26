@@ -34,12 +34,14 @@
                   <li class="contacts-block__item">
                     <p>権限： {{ $user->role_name }}</p>
                   </li>
+                  @if ($user->role === App\Enums\User\Role::Normal)
                   <li class="contacts-block__item">
                     <p>店舗： {{ $user->store->name ?? null }}</p>
                   </li>
                   <li class="contacts-block__item">
                     <p>カテゴリー： {{ $user->category->name ?? null }}</p>
                   </li>
+                  @endif
                   <li class="contacts-block__item">
                     <p>性別： {{ $user->gender_name }}</p>
                   </li>

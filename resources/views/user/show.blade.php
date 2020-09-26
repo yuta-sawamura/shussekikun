@@ -27,9 +27,16 @@
             <div class="user-info-list">
               <div class="">
                 <ul class="contacts-block list-unstyled">
+                  @can('organization-admin-higher')
+                  <li class="contacts-block__item">
+                    <p>権限： {{ $user->role_name }}</p>
+                  </li>
+                  @endcan
+                  @can('normal')
                   <li class="contacts-block__item">
                     <p>カテゴリー： {{ $user->category->name ?? null }}</p>
                   </li>
+                  @endcan
                   <li class="contacts-block__item">
                     <p>性別： {{ $user->gender_name }}</p>
                   </li>

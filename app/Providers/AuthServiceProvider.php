@@ -46,5 +46,9 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('share', function ($user) {
             return ($user->role === Role::Store_share);
         });
+        // 会員アカウント
+        Gate::define('normal', function ($user) {
+            return ($user->role === Role::Normal);
+        });
     }
 }
