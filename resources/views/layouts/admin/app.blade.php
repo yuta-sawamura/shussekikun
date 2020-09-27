@@ -32,6 +32,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/elements/avatar.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('bootstrap-datepicker-1.9.0-dist/css/bootstrap-datepicker.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/editors/quill/quill.bubble.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('jquery-timepicker-master/jquery.timepicker.css') }}">
     <!-- END STYLES -->
   </head>
   <body>
@@ -67,6 +68,7 @@
     <script src="{{ asset('js/submit_logout.js') }}"></script>
     <script src="{{ asset('bootstrap-datepicker-1.9.0-dist/js/bootstrap-datepicker.min.js') }}"></script>
     <script src="{{ asset('bootstrap-datepicker-1.9.0-dist/locales/bootstrap-datepicker.ja.min.js') }}"></script>
+    <script src="{{ asset('jquery-timepicker-master/jquery.timepicker.min.js') }}"></script>
     @yield('js')
     <script>
       $(document).ready(function() {
@@ -87,9 +89,12 @@
           clear: "クリア",
         };
       })(jQuery);
-
       $(".datepicker").datepicker({
         language: "ja",
+      });
+
+      $('.timepicker').timepicker({
+        'step': 15,
       });
     </script>
     <!-- END SCRIPTS -->

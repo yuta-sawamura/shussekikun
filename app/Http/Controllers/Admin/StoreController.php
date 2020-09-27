@@ -26,12 +26,24 @@ class StoreController extends Controller
         ]);
     }
 
+    public function create(Request $request)
+    {
+        return view('admin.store.create');
+    }
+
     public function store(StoreRequest $request)
     {
         $request['organization_id'] = Auth::user()->organization_id;
         $this->store->fill($request->all())->save();
 
         return redirect('/admin/store')->with('success_message', '店舗を追加しました。');
+    }
+
+    public function edit(Request $request)
+    {
+        return view('admin.store.edit')->with([
+            'store' => $this->store->findByIdOrFail(Auth::user()->organization_id, $request->id),
+        ]);
     }
 
     public function update(StoreRequest $request)

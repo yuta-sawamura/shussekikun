@@ -26,12 +26,24 @@ class CategoryController extends Controller
         ]);
     }
 
+    public function create(Request $request)
+    {
+        return view('admin.category.create');
+    }
+
     public function store(CategoryRequest $request)
     {
         $request['organization_id'] = Auth::user()->organization_id;
         $this->category->fill($request->all())->save();
 
         return redirect('/admin/category')->with('success_message', 'カテゴリーを追加しました。');
+    }
+
+    public function edit(Request $request)
+    {
+        return view('admin.category.edit')->with([
+            'category' => $this->category->findByIdOrFail(Auth::user()->organization_id, $request->id),
+        ]);
     }
 
     public function update(CategoryRequest $request)
