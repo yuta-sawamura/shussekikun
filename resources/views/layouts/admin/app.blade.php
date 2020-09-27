@@ -31,6 +31,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/jquery.timepicker.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/elements/avatar.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('bootstrap-datepicker-1.9.0-dist/css/bootstrap-datepicker.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/editors/quill/quill.bubble.css') }}">
     <!-- END STYLES -->
   </head>
   <body>
