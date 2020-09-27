@@ -10,7 +10,7 @@
       <li class="nav-item align-self-center page-heading">
         <div class="page-header">
           <div class="page-title">
-            <h3>{{ \Auth::user()->store->name }}</h3>
+            <h3>{{ \Auth::user()->store->name ?? null }}</h3>
           </div>
         </div>
       </li>

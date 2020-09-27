@@ -17,7 +17,7 @@
     <div class="shadow-bottom"></div>
     <ul class="list-unstyled menu-categories" id="accordionExample">
       <li class="menu menu-heading">
-        <div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle"><circle cx="12" cy="12" r="10"></circle></svg><span>{{ \Auth::user()->store->name }}</span></div>
+        <div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle"><circle cx="12" cy="12" r="10"></circle></svg><span>{{ \Auth::user()->store->name ?? null }}</span></div>
       </li>
       <li class="menu {{ request()->route()->uri == '/' ? 'active': null }}">
         <a href="{{ url('/') }}" aria-expanded="{{ request()->route()->uri == '/' ? 'true': 'false' }}" class="dropdown-toggle">
