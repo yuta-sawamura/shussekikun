@@ -66,6 +66,7 @@
     <script src="{{ asset('plugins/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/submit_logout.js') }}"></script>
+    <script src="{{ asset('js/prop_disable.js') }}"></script>
     <script src="{{ asset('bootstrap-datepicker-1.9.0-dist/js/bootstrap-datepicker.min.js') }}"></script>
     <script src="{{ asset('bootstrap-datepicker-1.9.0-dist/locales/bootstrap-datepicker.ja.min.js') }}"></script>
     <script src="{{ asset('jquery-timepicker-master/jquery.timepicker.min.js') }}"></script>
