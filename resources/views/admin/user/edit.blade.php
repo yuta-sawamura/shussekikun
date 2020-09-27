@@ -33,9 +33,6 @@
   </div>
 </div>
 
-@include('components.modals.attention', ['title' => '関連データも全て削除されますが本当によろしいですか？', 'path' => '/admin/user/delete/' . $user->id, 'id' => $user->id])
-
-
 @endsection
 
 @section('js')

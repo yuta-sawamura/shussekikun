@@ -114,7 +114,7 @@ class NewsControllerTest extends TestCase
         $this->assertDatabaseHas('news', [
             'id' => $this->news->id,
         ]);
-        $response = $this->post('admin/news/delete/' . $this->news->id);
+        $response = $this->get('admin/news/delete/' . $this->news->id);
         $response->assertSessionHas('success_message', 'お知らせを削除しました。');
         $this->assertDatabaseMissing('news', [
             'id' => $this->news->id,

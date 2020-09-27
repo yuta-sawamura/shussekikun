@@ -27,7 +27,6 @@
                         @endforeach
                       </select>
                       @include('components.validations.feedback', ['message' => 'organization_id'])
-
                     </div>
                   </div>
                 </div>
@@ -55,7 +54,6 @@
                       @endcan
                     </select>
                     @include('components.validations.feedback', ['message' => 'role'])
-
                   </div>
                 </div>
               </div>
@@ -65,7 +63,6 @@
                 <label for="">メールアドレス<span class="text-danger">*</span></label>
                 <input type="text" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="yamada@gmail.com" value="{{ $errors->has('*') ? old('email'):($user->email ?? '') }}" required>
                 @include('components.validations.feedback', ['message' => 'email'])
-
               </div>
             </div>
             <div class="col-sm-6" id="password">
@@ -88,7 +85,6 @@
                       @endforeach
                     </select>
                     @include('components.validations.feedback', ['message' => 'store_id'])
-
                   </div>
                 </div>
               </div>
@@ -107,7 +103,6 @@
                       @endforeach
                     </select>
                     @include('components.validations.feedback', ['message' => 'category_id'])
-
                   </div>
                 </div>
               </div>
@@ -117,7 +112,6 @@
                 <label for="">姓<span class="text-danger">*</span></label>
                 <input type="text" name="sei" class="form-control @error('sei') is-invalid @enderror" placeholder="山田" value="{{ $errors->has('*') ? old('sei'):($user->sei ?? '') }}" required>
                 @include('components.validations.feedback', ['message' => 'sei'])
-
               </div>
             </div>
             <div class="col-md-6">
@@ -125,7 +119,6 @@
                 <label for="">名<span class="text-danger">*</span></label>
                 <input type="text" name="mei" class="form-control @error('mei') is-invalid @enderror" placeholder="太郎" value="{{ $errors->has('*') ? old('mei'):($user->mei ?? '') }}" required>
                 @include('components.validations.feedback', ['message' => 'mei'])
-
               </div>
             </div>
             <div class="col-md-6">
@@ -133,7 +126,6 @@
                 <label for="">姓(カタカナ)</label>
                 <input type="text" name="sei_kana" class="form-control @error('sei_kana') is-invalid @enderror" placeholder="ヤマダ" value="{{ $errors->has('*') ? old('sei_kana'):($user->sei_kana ?? '') }}">
                 @include('components.validations.feedback', ['message' => 'sei_kana'])
-
               </div>
             </div>
             <div class="col-md-6">
@@ -141,7 +133,6 @@
                 <label for="">名(カタカナ)</label>
                 <input type="text" name="mei_kana" class="form-control @error('mei_kana') is-invalid @enderror" placeholder="タロウ" value="{{ $errors->has('*') ? old('mei_kana'):($user->mei_kana ?? '') }}">
                 @include('components.validations.feedback', ['message' => 'mei_kana'])
-
               </div>
             </div>
             <div class="col-md-6">
@@ -158,7 +149,6 @@
                       @endforeach
                     </select>
                     @include('components.validations.feedback', ['message' => 'gender'])
-
                   </div>
                 </div>
               </div>
@@ -168,7 +158,6 @@
                 <label>生年月日<span class="text-danger">*</span></label>
                 <input type="text" name="birth" class="form-control datepicker @error('birth') is-invalid @enderror" value="{{ $errors->has('*') ? old('birth'):($user->birth ?? '') }}" required>
                   @include('components.validations.feedback', ['message' => 'birth'])
-
               </div>
             </div>
             <div class="col-md-6">
@@ -185,7 +174,6 @@
                       @endforeach
                     </select>
                     @include('components.validations.feedback', ['message' => 'status'])
-
                   </div>
                 </div>
               </div>
@@ -193,7 +181,7 @@
           </div>
           <div class="col-lg-12 text-right">
             @isset ($isEdit)
-              <button type="button" class="btn btn-danger mb-2 mt-5" data-toggle="modal" data-target="#attentionModal{{ $user->id }}">削除</button>
+              <a class="btn btn-danger mb-2 mt-5" href="{{ url('admin/user/delete/' . $user->id) }}" onclick="return confirm('関連データも全て削除されますが本当によろしいですか？')" role="button">削除</a>
             @endisset
             <button type="submit" id="user-submit" class="btn btn-primary mb-2 mt-5">保存</button>
           </div>

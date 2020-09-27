@@ -100,7 +100,7 @@ class ScheduleControllerTest extends TestCase
         $this->assertDatabaseHas('schedules', [
             'id' => $this->schedule->id,
         ]);
-        $response = $this->post('admin/schedule/delete/' . $this->schedule->id);
+        $response = $this->get('admin/schedule/delete/' . $this->schedule->id);
         $response->assertSessionHas('success_message', 'スケジュールを削除しました。');
         $this->assertDatabaseMissing('schedules', [
             'id' => $this->schedule->id,

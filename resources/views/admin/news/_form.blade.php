@@ -26,7 +26,7 @@
   </div>
   <div class="col-xl-10 col-md-12 col-sm-12 col-12 text-right">
     @isset ($isEdit)
-      <button type="button" class="btn btn-danger mb-2 mt-5" data-toggle="modal" data-target="#attentionModal{{ $news->id }}">削除</button>
+      <a class="btn btn-danger mb-2 mt-5" href="{{ url('admin/news/delete/' . $news->id) }}" onclick="return confirm('本当によろしいですか？')" role="button">削除</a>
     @endisset
     <button type="submit" class="btn btn-primary mb-2 mt-5">保存</button>
   </div>

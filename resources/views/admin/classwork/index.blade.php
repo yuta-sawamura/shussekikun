@@ -44,11 +44,10 @@
                             <td>{{ $classwork->name }}</td>
                             <td>
                               <button type="button" class="btn btn-outline-primary mb-2 mr-2" data-toggle="modal" data-target="#editModal{{ $classwork->id }}">編集</button>
-                              <button type="button" class="btn btn-outline-danger mb-2 mr-2" data-toggle="modal" data-target="#attentionModal{{ $classwork->id }}">削除</button>
+                              <a class="btn btn-outline-danger mb-2" href="{{ url('admin/class/delete/' . $classwork->id) }}" onclick="return confirm('関連データも全て削除されますが本当によろしいですか？')" role="button">削除</a>
                             </td>
                           </tr>
                           @include('components.modals.admin.edit', ['name' => 'クラス名', 'path' => '/admin/class/update/' . $classwork->id, 'value' => $classwork->name, 'id' => $classwork->id])
-                          @include('components.modals.attention', ['title' => '関連データも全て削除されますが本当によろしいですか？', 'path' => '/admin/class/delete/' . $classwork->id, 'id' => $classwork->id])
                         @endforeach
                       </tbody>
                     </table>

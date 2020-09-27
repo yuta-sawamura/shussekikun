@@ -92,7 +92,6 @@
           <div class="widget-content widget-content-area">
             <div class="table-responsive mb-4 style-1">
               <div id="style-1_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
-
                 <div class="row">
                   <div class="col-sm-12">
                     <table id="style-1" class="table style-1 table-hover non-hover dataTable no-footer" role="grid" aria-describedby="style-1_info" style="table-layout: fixed; width: 100%;">
@@ -110,11 +109,10 @@
                             <td>{{ $attendance->created_at }}</td>
                             <td>
                               <button type="button" class="btn btn-outline-primary mb-2 mr-2" data-toggle="modal" data-target="#attendanceModal{{ $user->id }}">編集</button>
-                              <button type="button" class="btn btn-outline-danger mb-2 mr-2" data-toggle="modal" data-target="#attentionModal{{ $attendance->id }}">削除</button>
+                              <a class="btn btn-outline-danger mb-2" href="{{ url('admin/attendance/delete/' . $attendance->id) }}" onclick="return confirm('本当によろしいですか？')" role="button">削除</a>
                             </td>
                           </tr>
                           @include('components.modals.attendance', ['user' => $user, 'url' => '/admin/attendance/update/' . $attendance->id, 'attendance' => $attendance])
-                          @include('components.modals.attention', ['title' => '本当に削除してよろしいですか？', 'path' => '/admin/attendance/delete/' . $attendance->id, 'id' => $attendance->id])
                         @endforeach
                       </tbody>
                     </table>
@@ -137,8 +135,6 @@
 </div>
 
 @include('components.js.chart', ['name' => '年間出席回数', 'data' => $rank['counts'], 'text' => '回数',  'categories' => $rank['months'], 'selector' => '#s-bar'])
-
-
 <script src="{{ asset('/plugins/apex/apexcharts.min.js') }}"></script>
 
 @endsection

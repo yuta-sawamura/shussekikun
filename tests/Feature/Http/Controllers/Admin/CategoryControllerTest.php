@@ -95,7 +95,7 @@ class CategoryControllerTest extends TestCase
         $this->assertDatabaseHas('categories', [
             'id' => $this->category->id,
         ]);
-        $response = $this->post('admin/category/delete/' . $this->category->id);
+        $response = $this->get('admin/category/delete/' . $this->category->id);
         $response->assertSessionHas('success_message', 'カテゴリーを削除しました。');
         $this->assertDatabaseMissing('users', [
             'id' => $this->category->id,
