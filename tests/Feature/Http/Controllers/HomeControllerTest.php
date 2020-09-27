@@ -8,7 +8,6 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use App\User;
 use App\Models\Organization;
-use App\Models\Store;
 
 class HomeControllerTest extends TestCase
 {
@@ -24,10 +23,8 @@ class HomeControllerTest extends TestCase
     public function test_ログインアカウントがアクセス時にステータスコード200を返す()
     {
         $organization = factory(Organization::class)->create();
-        $store = factory(Store::class)->create();
         $user = factory(User::class)->create([
             'organization_id' => $organization->id,
-            'store_id' => $store->id,
         ]);
 
         $response = $this->actingAs($user)->get('/');
