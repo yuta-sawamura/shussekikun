@@ -85,7 +85,7 @@ class AttendanceControllerTest extends TestCase
             'user_id' => $this->normal_user->id,
             'schedule_id' => $this->schedule1->id
         ]);
-        $response = $this->post('admin/attendance/delete/' . $this->attendance->id);
+        $response = $this->get('admin/attendance/delete/' . $this->attendance->id);
         $response->assertSessionHas('success_message', '出席クラスを削除しました。');
         $this->assertDatabaseMissing('attendances', [
             'user_id' => $this->normal_user->id,

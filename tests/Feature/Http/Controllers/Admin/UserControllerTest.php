@@ -144,7 +144,7 @@ class UserControllerTest extends TestCase
         $this->assertDatabaseHas('users', [
             'id' => $this->normal_user->id,
         ]);
-        $response = $this->post('/admin/user/delete/' . $this->normal_user->id);
+        $response = $this->get('/admin/user/delete/' . $this->normal_user->id);
         $response->assertSessionHas('success_message', '会員を削除しました。');
         $this->assertDatabaseMissing('users', [
             'id' => $this->normal_user->id,

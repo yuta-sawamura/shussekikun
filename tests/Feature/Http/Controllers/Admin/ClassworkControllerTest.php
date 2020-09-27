@@ -95,7 +95,7 @@ class ClassworkControllerTest extends TestCase
         $this->assertDatabaseHas('classworks', [
             'id' => $this->classwork->id,
         ]);
-        $response = $this->post('admin/class/delete/' . $this->classwork->id);
+        $response = $this->get('admin/class/delete/' . $this->classwork->id);
         $response->assertSessionHas('success_message', 'クラスを削除しました。');
         $this->assertDatabaseMissing('classworks', [
             'id' => $this->classwork->id,

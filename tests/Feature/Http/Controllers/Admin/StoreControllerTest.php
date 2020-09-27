@@ -94,7 +94,7 @@ class StoreControllerTest extends TestCase
         $this->assertDatabaseHas('stores', [
             'id' => $this->store->id,
         ]);
-        $this->post('admin/store/delete/' . $this->store->id);
+        $this->get('admin/store/delete/' . $this->store->id);
         $this->assertDatabaseMissing('stores', [
             'id' => $this->store->id,
         ]);
