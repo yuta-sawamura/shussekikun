@@ -14,19 +14,20 @@
 
   <!-- BEGIN STYLES -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:400,600,700">
-  <link rel="stylesheet" type="text/css" href="{{ asset('/bootstrap/css/bootstrap.min.css') }}">
-  <link rel="stylesheet" type="text/css" href="{{ asset('/css/plugins.css') }}">
-  <link rel="stylesheet" type="text/css" href="{{ asset('/css/elements/breadcrumb.css') }}">
-  <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/apex/apexcharts.css') }}">
-  <link rel="stylesheet" type="text/css" href="{{ asset('/css/elements/alert.css') }}">
-  <link rel="stylesheet" type="text/css" href="{{ asset('/css/dashboard/dash_1.css') }}">
-  <link rel="stylesheet" type="text/css" href="{{ asset('/css/users/user-profile.css') }}">
-  <link rel="stylesheet" type="text/css" href="{{ asset('/css/forms/theme-checkbox-radio.css') }}">
-  <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/table/datatable/dt-global_style.css') }}">
-  <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/table/datatable/custom_dt_custom.css') }}">
-  <link rel="stylesheet" type="text/css" href="{{ asset('/css/components/custom-modal.css') }}">
-  <link rel="stylesheet" type="text/css" href="{{ asset('/css/elements/avatar.css') }}">
-    <!-- END STYLES -->
+  <link rel="stylesheet" type="text/css" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/plugins.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/elements/breadcrumb.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('plugins/apex/apexcharts.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/elements/alert.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/dashboard/dash_1.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/users/user-profile.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/forms/theme-checkbox-radio.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('plugins/table/datatable/dt-global_style.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('plugins/table/datatable/custom_dt_custom.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/components/custom-modal.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/elements/avatar.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('plugins/editors/quill/quill.bubble.css') }}">
+  <!-- END STYLES -->
 
 </head>
 

@@ -27,7 +27,7 @@
               <div id="style-1_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
                 <div class="row">
                   <div class="ql-editor" data-gramm="false" contenteditable="true" data-placeholder="Compose an epic...">
-                    <p>{!! $news->mark_content !!}</p>
+                    {!! $news->mark_content !!}
                   </div>
                 </div>
               </div>
