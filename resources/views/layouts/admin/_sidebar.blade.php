@@ -62,11 +62,8 @@
         </a>
       </li>
 
-      @php
-      $array = ['admin/store', 'admin/category', 'admin/class', 'admin/schedule'];
-      @endphp
-      <li class="menu {{ in_array(request()->route()->uri, $array) ? 'active': null }}">
-        <a href="#datatables" data-toggle="collapse" aria-expanded="{{ in_array(request()->route()->uri, $array) ? 'true': 'false' }}" class="dropdown-toggle">
+      <li class="menu {{ strpos(url()->current(), 'store') || strpos(url()->current(), 'category') || strpos(url()->current(), 'class') || strpos(url()->current(), 'schedule')== true ? 'active': null }}">
+        <a href="#datatables" data-toggle="collapse" aria-expanded="{{ strpos(url()->current(), 'store') || strpos(url()->current(), 'category') || strpos(url()->current(), 'class') || strpos(url()->current(), 'schedule')== true ? 'true': 'false' }}" class="dropdown-toggle">
           <div>
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-settings">
               <circle cx="12" cy="12" r="3"></circle>
@@ -78,7 +75,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
           </div>
         </a>
-        <ul class="{{ in_array(request()->route()->uri, $array) ? 'submenu list-unstyled collapse show': 'collapse submenu list-unstyled' }}" id="datatables" data-parent="#accordionExample">
+        <ul class="{{ strpos(url()->current(), 'store') || strpos(url()->current(), 'category') || strpos(url()->current(), 'class') || strpos(url()->current(), 'schedule')== true ? 'submenu list-unstyled collapse show': 'collapse submenu list-unstyled' }}" id="datatables" data-parent="#accordionExample">
           <li class="{{ strpos(url()->current(), 'store') == true ? 'active': null }}">
             <a href="{{ url('admin/store') }}"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">店舗</font></font></a>
           </li>
