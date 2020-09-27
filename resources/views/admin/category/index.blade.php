@@ -23,9 +23,7 @@
           </div>
           <div class="widget-content widget-content-area">
             <div class="col-md-12 text-right">
-              <button type="button" class="btn btn-outline-primary mb-2 mr-2" data-toggle="modal" data-target="#createModal">
-                追加
-              </button>
+
             </div>
             <div class="table-responsive mb-4 style-1">
               <div id="style-1_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
@@ -44,7 +42,7 @@
                             <td>{{ $category->name }}</td>
                             <td>
                               <button type="button" class="btn btn-outline-primary mb-2 mr-2" data-toggle="modal" data-target="#editModal{{ $category->id }}">編集</button>
-                              <button type="button" class="btn btn-outline-danger mb-2 mr-2" data-toggle="modal" data-target="#attentionModal{{ $category->id }}">削除</button>
+
                             </td>
                           </tr>
                           @include('components.modals.admin.edit', ['name' => 'カテゴリー名', 'path' => '/admin/category/update/' . $category->id, 'value' => $category->name, 'id' => $category->id])
