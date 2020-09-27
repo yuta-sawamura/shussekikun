@@ -48,9 +48,6 @@
                             </td>
                           </tr>
                           @include('components.modals.admin.edit', ['name' => 'カテゴリー名', 'path' => '/admin/category/update/' . $category->id, 'value' => $category->name, 'id' => $category->id])
-
-                          @include('components.modals.attention', ['title' => '関連データも全て削除されますが本当によろしいですか？', 'path' => '/admin/category/delete/' . $category->id, 'id' => $category->id])
-
                         @endforeach
                       </tbody>
                     </table>
@@ -72,6 +69,5 @@
   </div>
 </div>
 
-@include('components.modals.admin.create', ['name' => 'カテゴリー名', 'path' => '/admin/category/store'])
 
 @endsection
