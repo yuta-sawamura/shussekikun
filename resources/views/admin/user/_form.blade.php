@@ -6,7 +6,6 @@
           <input type="file" name="img" id="input-file-max-fs" class="dropify" data-default-file="{{ isset($user->img) && $user->img ? Illuminate\Support\Facades\Storage::disk('s3')->url($user->img) : null }}" data-max-file-size="2M" accept="image/*" />
           <p class="mt-2"><i class="flaticon-cloud-upload mr-1"></i>画像アップロード</p>
           @include('components.validations.feedback', ['message' => 'img'])
-
         </div>
       </div>
       <div class="col-xl-10 col-lg-12 col-md-8 mt-md-0 mt-4">
@@ -69,7 +68,6 @@
               <label for="profession">パスワード(8文字以上)<span class="text-danger">*</span></label>
               <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" id="profession" placeholder="パスワード" value="{{ $errors->has('*') ? old('password'):($user->password ?? '') }}" required>
               @include('components.validations.feedback', ['message' => 'password'])
-
             </div>
             <div class="col-md-6" id="store">
               <div class="form-group">

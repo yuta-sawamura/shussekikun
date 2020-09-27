@@ -32,7 +32,6 @@ class ScheduleController extends Controller
             ->join('stores', 'stores.id', '=', 'schedules.store_id')
             ->where('stores.organization_id', Auth::user()->organization_id)
             ->serach($params)
-            ->orderBy('stores.id', 'desc')
             ->orderBy('schedules.day', 'asc')
             ->orderBy('schedules.start_at', 'asc')
             ->paginate(config('const.PAGINATION_PER_PAGE'));
@@ -43,10 +42,22 @@ class ScheduleController extends Controller
         ]);
     }
 
+    public function create(Request $request)
+    {
+        return view('admin.schedule.create');
+    }
+
     public function store(ScheduleRequest $request)
     {
         $this->schedule->fill($request->all())->save();
         return redirect('/admin/schedule')->with('success_message', 'スケジュールを追加しました。');
+    }
+
+    public function edit(Request $request)
+    {
+        return view('admin.schedule.edit')->with([
+            'schedule' => $this->schedule->findByIdOrFail(Auth::user()->organization_id, $request->id),
+        ]);
     }
 
     public function update(ScheduleRequest $request)

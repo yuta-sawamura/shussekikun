@@ -73,7 +73,9 @@ Route::group(['middleware' => ['auth', 'can:organization-admin-higher']], functi
         // 店舗
         Route::prefix('store')->group(function () {
             Route::get('/', 'Admin\StoreController@index');
+            Route::get('create', 'Admin\StoreController@create');
             Route::post('store', 'Admin\StoreController@store');
+            Route::get('edit/{id}', 'Admin\StoreController@edit');
             Route::post('update/{id}', 'Admin\StoreController@update');
             Route::get('delete/{id}', 'Admin\StoreController@delete');
         });
@@ -81,7 +83,9 @@ Route::group(['middleware' => ['auth', 'can:organization-admin-higher']], functi
         // カテゴリー
         Route::prefix('category')->group(function () {
             Route::get('/', 'Admin\CategoryController@index');
+            Route::get('create', 'Admin\CategoryController@create');
             Route::post('store', 'Admin\CategoryController@store');
+            Route::get('edit/{id}', 'Admin\CategoryController@edit');
             Route::post('update/{id}', 'Admin\CategoryController@update');
             Route::get('delete/{id}', 'Admin\CategoryController@delete');
         });
@@ -89,7 +93,9 @@ Route::group(['middleware' => ['auth', 'can:organization-admin-higher']], functi
         // クラス
         Route::prefix('class')->group(function () {
             Route::get('/', 'Admin\ClassworkController@index');
+            Route::get('create', 'Admin\ClassworkController@create');
             Route::post('store', 'Admin\ClassworkController@store');
+            Route::get('edit/{id}', 'Admin\ClassworkController@edit');
             Route::post('update/{id}', 'Admin\ClassworkController@update');
             Route::get('delete/{id}', 'Admin\ClassworkController@delete');
         });
@@ -97,7 +103,9 @@ Route::group(['middleware' => ['auth', 'can:organization-admin-higher']], functi
         // スケジュール
         Route::prefix('schedule')->group(function () {
             Route::get('/', 'Admin\ScheduleController@index');
+            Route::get('create', 'Admin\ScheduleController@create');
             Route::post('store', 'Admin\ScheduleController@store');
+            Route::get('edit/{id}', 'Admin\ScheduleController@edit');
             Route::post('update/{id}', 'Admin\ScheduleController@update');
             Route::get('delete/{id}', 'Admin\ScheduleController@delete');
         });

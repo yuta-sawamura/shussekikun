@@ -23,9 +23,7 @@
           </div>
           <div class="widget-content widget-content-area">
             <div class="col-md-12 text-right">
-              <button type="button" class="btn btn-outline-primary mb-2 mr-2" data-toggle="modal" data-target="#createModal">
-                追加
-              </button>
+            <a class="btn btn-outline-primary mb-2 mr-2" href="{{ url('admin/category/create') }}" role="button">追加</a>
             </div>
             <div class="table-responsive mb-4 style-1">
               <div id="style-1_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
@@ -35,7 +33,7 @@
                       <thead>
                         <tr role="row">
                           <th style="width: 110px;">カテゴリー名</th>
-                          <th style="width: 210px;"></th>
+                          <th style="width: 90px;"></th>
                         </tr>
                       </thead>
                       <tbody>
@@ -43,11 +41,9 @@
                           <tr role="row" class="odd">
                             <td>{{ $category->name }}</td>
                             <td>
-                              <button type="button" class="btn btn-outline-primary mb-2 mr-2" data-toggle="modal" data-target="#editModal{{ $category->id }}">編集</button>
-                              <a class="btn btn-outline-danger mb-2" href="{{ url('admin/category/delete/' . $category->id) }}" onclick="return confirm('関連データも全て削除されますが本当によろしいですか？')" role="button">削除</a>
+                              <a class="btn btn-outline-primary mb-2" href="{{ url('admin/category/edit/' . $category->id) }}" role="button">編集</a>
                             </td>
                           </tr>
-                          @include('components.modals.admin.edit', ['name' => 'カテゴリー名', 'path' => '/admin/category/update/' . $category->id, 'value' => $category->name, 'id' => $category->id])
                         @endforeach
                       </tbody>
                     </table>
@@ -68,7 +64,5 @@
     </div>
   </div>
 </div>
-
-@include('components.modals.admin.create', ['name' => 'カテゴリー名', 'path' => '/admin/category/store'])
 
 @endsection

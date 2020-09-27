@@ -26,12 +26,24 @@ class ClassworkController extends Controller
         ]);
     }
 
+    public function create(Request $request)
+    {
+        return view('admin.classwork.create');
+    }
+
     public function store(ClassworkRequest $request)
     {
         $request['organization_id'] = Auth::user()->organization_id;
         $this->classwork->fill($request->all())->save();
 
         return redirect('/admin/class')->with('success_message', 'クラスを追加しました。');
+    }
+
+    public function edit(Request $request)
+    {
+        return view('admin.classwork.edit')->with([
+            'class' => $this->classwork->findByIdOrFail($request->id, Auth::user()->organization_id),
+        ]);
     }
 
     public function update(ClassworkRequest $request)
