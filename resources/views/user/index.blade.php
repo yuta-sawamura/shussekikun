@@ -34,19 +34,18 @@
                 </div>
                 <div class="row">
                   <div class="col-sm-12">
-                    <table id="style-1" class="table style-1 table-hover non-hover dataTable no-footer" role="grid" aria-describedby="style-1_info" style="table-layout: fixed; width: 100%;">
+                    <table id="style-1" class="table no-footer" role="grid" aria-describedby="style-1_info" style="table-layout: fixed; width: 100%;">
                       <thead>
                         <tr role="row">
                           <th style="width: 60px;">画像</th>
                           <th style="width: 150px;">名前</th>
                           <th style="width: 100px;">カテゴリー</th>
                           <th style="width: 60px;">性別</th>
-                          <th style="width: 105px;"></th>
                         </tr>
                       </thead>
                       <tbody>
                         @foreach ($users as $user)
-                          <tr role="row" class="odd">
+                          <tr role="row" class="odd clickable-row" data-href="{{ url("/user/show/{$user->id}") }}">
                             <td>
                               <div class="avatar avatar-x">
                                 <img alt="avatar" src="{{ $user->S3_url }}" class="rounded-circle" />
@@ -55,9 +54,6 @@
                             <td>{{ $user->full_name }}<br>{{ $user->full_name_kana }}</td>
                             <td>{{ $user->category->name ?? null }}</td>
                             <td>{{ $user->gender_name }}</td>
-                            <td class="text-center">
-                              <a href="{{ url("/user/show/{$user->id}") }}" class="btn btn-outline-primary">詳細</a>
-                            </td>
                           </tr>
                         @endforeach
                       </tbody>
@@ -66,7 +62,6 @@
                 </div>
                 <div class="row">
                   @include('components.paginate', ['pagination' => $users])
-
                 </div>
               </div>
             </div>
@@ -77,4 +72,8 @@
   </div>
 </div>
 
-@endsection()
+@endsection
+
+@section('js')
+<script src="{{ asset('js/clickable.js') }}"></script>
+@endsection

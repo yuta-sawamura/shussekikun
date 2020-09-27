@@ -34,4 +34,4 @@
 @section('js')
 <script src="{{ asset('/plugins/editors/markdown/simplemde.min.js') }}"></script>
 <script src="{{ asset('/plugins/editors/markdown/custom-markdown.js') }}"></script>
-@endsection()
+@endsection

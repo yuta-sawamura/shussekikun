@@ -110,6 +110,6 @@
 
 @section('js')
 <script src="{{ asset('/js/attendance_multiple.js') }}"></script>
-@endsection()
+@endsection
 
-@endsection()
+@endsection
