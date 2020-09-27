@@ -7,7 +7,7 @@
             <div class="col-md-12">
               <div class="form-group">
                 <label for="">カテゴリー名<span class="text-danger">*</span></label>
-                <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" placeholder="渋谷店" value="{{ $errors->has('*') ? old('name'):($category->name ?? '') }}" required>
+                <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" placeholder="小学生" value="{{ $errors->has('*') ? old('name'):($category->name ?? '') }}" required>
                 @include('components.validations.feedback', ['message' => 'name'])
               </div>
             </div>
