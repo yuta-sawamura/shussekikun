@@ -11,6 +11,8 @@
 |
 */
 
+use App\Models\News;
+
 if (config('app.env') == 'production') {
     URL::forceScheme('https');
 }
@@ -37,7 +39,7 @@ Route::group(['middleware' => 'auth'], function () {
     // お知らせ
     Route::prefix('news')->group(function () {
         Route::get('/', 'NewsController@index');
-        Route::get('show/{id}', 'NewsController@show');
+        Route::get('show/{news}', 'NewsController@show')->middleware('can:view,news');
     });
 });
 
