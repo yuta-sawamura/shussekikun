@@ -1,4 +1,4 @@
-xtends('layouts.admin.app')
+@extends('layouts.admin.app')
 @section('content')
 
 <div id="content" class="main-content">
@@ -23,6 +23,7 @@ xtends('layouts.admin.app')
           </div>
           <div class="widget-content widget-content-area">
             <div class="col-md-12 text-right">
+
             </div>
             <div class="table-responsive mb-4 style-1">
               <div id="style-1_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
@@ -65,5 +66,5 @@ xtends('layouts.admin.app')
   </div>
 </div>
 
-@endsection
 
+@endsection
