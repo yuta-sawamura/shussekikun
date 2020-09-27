@@ -26,7 +26,7 @@
               <div class="avatar avatar-xxl">
                 <img alt="avatar" src="{{ $user->S3_url }}" class="rounded-circle" />
               </div>
-              <p>{{ $user->full_name }} ({{ $user->full_name_kana }})</p>
+              <p>{{ $user->full_name }}<br>{{ $user->full_name_kana }}</p>
             </div>
             <div class="user-info-list">
               <div class="">

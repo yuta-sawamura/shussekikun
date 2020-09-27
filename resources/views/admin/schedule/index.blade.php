@@ -47,7 +47,7 @@
                           <th style="width: 80px;">曜日</th>
                           <th style="width: 80px;">開始時間</th>
                           <th style="width: 80px;">終了時間</th>
-                          <th style="width: 90px;"></th>
+                          <th style="width: 100px;"></th>
                         </tr>
                       </thead>
                       <tbody>
