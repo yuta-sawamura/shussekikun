@@ -4,9 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
-use App\Models\Store;
-use App\Models\Category;
-use App\Models\Organization;
 use App\Models\Attendance;
 use Auth;
 use App\Enums\User\Role;
@@ -37,19 +34,15 @@ class UserController extends Controller
         ]);
     }
 
-    public function show(Request $request)
+    public function show(User $user, Request $request)
     {
-        $user = User::where('id', $request->id)
-            ->roleStoreStatusFilter([Role::Organization_admin, Role::Store_share, Role::Normal], Auth::user()->store_id, Status::Cancel)
-            ->firstOrFail();
-
         $params = $request->query();
         if (!$params) $params['year'] = $this->dt->year;
 
         // 月別
         for ($i = 1; $i <= 12; $i++) {
             $rank['months'][] = $i . '月';
-            $rank['counts'][] = Attendance::where('user_id', $request->id)
+            $rank['counts'][] = Attendance::where('user_id', $user->id)
                 ->whereYear('date', $params['year'])
                 ->whereMonth('date', $i)
                 ->count();

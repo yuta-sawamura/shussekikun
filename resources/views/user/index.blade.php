@@ -45,7 +45,7 @@
                       </thead>
                       <tbody>
                         @foreach ($users as $user)
-                          <tr role="row" class="odd clickable-row" data-href="{{ url("/user/show/{$user->id}") }}">
+                          <tr role="row" class="odd clickable-row" data-href="{{ url('user/show', $user) }}">
                             <td>
                               <div class="avatar avatar-x">
                                 <img alt="avatar" src="{{ $user->S3_url }}" class="rounded-circle" />

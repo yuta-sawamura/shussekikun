@@ -30,7 +30,7 @@ Route::group(['middleware' => 'auth'], function () {
     // 会員
     Route::prefix('user')->group(function () {
         Route::get('/', 'UserController@index');
-        Route::get('show/{id}', 'UserController@show');
+        Route::get('show/{user}', 'UserController@show')->middleware('can:view,user');
     });
 
     // ランキング
