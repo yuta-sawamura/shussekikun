@@ -31,7 +31,7 @@
                   <form action="{{url('/admin/news')}}">
                     <div class="form-row">
                       @include('components.search.store', ['params' => $params, 'stores' =>$stores])
-                      @include('components.search.keyword', ['params' => $params, 'name' => 'タイトトル・本文'])
+                      @include('components.search.keyword', ['params' => $params, 'name' => 'タイトル・本文'])
                     </div>
                     <button type="submit" class="btn btn-primary mt-3">検索する</button>
                   </form>
