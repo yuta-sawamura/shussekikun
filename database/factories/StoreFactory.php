@@ -18,7 +18,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Store::class, function (Faker $faker) {
     return [
-        'organization_id' => null,
+        'organization_id' => 1,
         'name' => '渋谷店',
     ];
 });
