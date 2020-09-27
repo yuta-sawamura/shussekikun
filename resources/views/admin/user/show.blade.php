@@ -19,9 +19,11 @@
             <div class="d-flex justify-content-between">
               <h3 class="">会員詳細</h3>
             </div>
+            @if ($user->role === App\Enums\User\Role::Normal)
             <div class="col-md-12 text-right">
               <a href="{{ url("/admin/user/edit/{$user->id}") }}" class="btn btn-outline-primary">編集</a>
             </div>
+            @endif
             <div class="text-center user-info">
               <div class="avatar avatar-xxl">
                 <img alt="avatar" src="{{ $user->S3_url }}" class="rounded-circle" />
