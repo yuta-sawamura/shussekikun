@@ -78,10 +78,10 @@ class UserControllerTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function test_別組織の会員詳細画面にアクセス時にステータスコード404を返す()
+    public function test_別組織の会員詳細画面にアクセス時にステータスコード403を返す()
     {
         $response = $this->actingAs($this->other_store_share_user)->get('user/show/' . $this->normal_user->id);
-        $response->assertStatus(404);
+        $response->assertStatus(403);
     }
 
     public function test_ランキング画面にアクセス時にステータスコード200を返す()
