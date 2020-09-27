@@ -57,12 +57,12 @@ Route::group(['middleware' => ['auth', 'can:organization-admin-higher']], functi
             Route::get('edit/{id}', 'Admin\UserController@edit');
             Route::post('update/{id}', 'Admin\UserController@update');
             Route::get('delete/{id}', 'Admin\UserController@delete');
-        });
-
-        // 出席
-        Route::prefix('attendance')->group(function () {
-            Route::post('update/{id}', 'Admin\AttendanceController@update');
-            Route::get('delete/{id}', 'Admin\AttendanceController@delete');
+            // 出席
+            Route::prefix('attendance')->group(function () {
+                Route::get('/{attendance}/edit/{user}', 'Admin\UserController@attendanceEdit');
+                Route::post('update/{id}', 'Admin\UserController@attendanceUpdate');
+                Route::get('delete/{id}', 'Admin\UserController@attendanceDelete');
+            });
         });
 
         // プレミアム

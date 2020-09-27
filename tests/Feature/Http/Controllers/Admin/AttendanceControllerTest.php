@@ -59,25 +59,6 @@ class AttendanceControllerTest extends TestCase
         ]);
     }
 
-    public function test_出席を編集できる()
-    {
-        $this->actingAs($this->organization_admin_user)->get('admin/attendance');
-        $this->assertDatabaseMissing('attendances', [
-            'user_id' => $this->normal_user->id,
-            'schedule_id' => $this->schedule2->id
-        ]);
-        $data = [
-            'user_id' => $this->normal_user->id,
-            'schedule_id' => $this->schedule2->id,
-        ];
-        $response = $this->post('/admin/attendance/update/' . $this->attendance->id, $data);
-        $response->assertSessionHas('success_message', '出席クラスを編集しました。');
-        $this->assertDatabaseHas('attendances', [
-            'user_id' => $this->normal_user->id,
-            'schedule_id' => $this->schedule2->id
-        ]);
-    }
-
     public function test_出席を削除できる()
     {
         $this->actingAs($this->organization_admin_user)->get('admin/attendance');
@@ -85,7 +66,7 @@ class AttendanceControllerTest extends TestCase
             'user_id' => $this->normal_user->id,
             'schedule_id' => $this->schedule1->id
         ]);
-        $response = $this->get('admin/attendance/delete/' . $this->attendance->id);
+        $response = $this->get('admin/user/attendance/delete/' . $this->attendance->id);
         $response->assertSessionHas('success_message', '出席クラスを削除しました。');
         $this->assertDatabaseMissing('attendances', [
             'user_id' => $this->normal_user->id,
