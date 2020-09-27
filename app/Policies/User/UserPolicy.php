@@ -14,11 +14,11 @@ class UserPolicy
     /**
      * ユーザーは会員を閲覧できるか判定
      *
-     * @param  \App\User  $user
-     * @param  \App\User  $model
-     * @return mixed
+     * @param  App\User  $user
+     * @param  App\User  $model
+     * @return bool
      */
-    public function view(User $user, User $model)
+    public function view(User $user, User $model): bool
     {
         return $model->role === Role::Normal && $user->store_id === $model->store_id && $model->status !== Status::Cancel;
     }
