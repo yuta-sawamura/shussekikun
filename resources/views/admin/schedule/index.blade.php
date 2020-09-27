@@ -33,11 +33,8 @@
                   <form action="{{url('/admin/schedule')}}">
                     <div class="form-row">
                       @include('components.search.store', ['params' => $params, 'stores' => $stores])
-
                       @include('components.search.classwork', ['params' => $params, 'classworks' => $classworks])
-
                       @include('components.search.day', ['params' => $params, 'days' => $days])
-
                     </div>
                     <button type="submit" class="btn btn-primary mt-3">検索する</button>
                   </form>
@@ -65,13 +62,10 @@
                             <td>{{ $schedule->end_at }}</td>
                             <td>
                               <button type="button" class="btn btn-outline-primary mb-2 mr-2" data-toggle="modal" data-target="#editModal{{ $schedule->id }}">編集</button>
-                              <button type="button" class="btn btn-outline-danger mb-2 mr-2" data-toggle="modal" data-target="#attentionModal{{ $schedule->id }}">削除</button>
+                              <a class="btn btn-outline-danger mb-2" href="{{ url('admin/schedule/delete/' . $schedule->id) }}" onclick="return confirm('関連データも全て削除されますが本当によろしいですか？')" role="button">削除</a>
                             </td>
                           </tr>
                           @include('components.modals.admin.schedule.edit', ['schedule' => $schedule, 'stores' => $stores, 'classworks' => $classworks, 'days' => $days])
-
-                          @include('components.modals.attention', ['title' => '関連データも全て削除されますが本当によろしいですか？', 'path' => '/admin/schedule/delete/' . $schedule->id, 'id' => $schedule->id])
-
                         @endforeach
                       </tbody>
                     </table>

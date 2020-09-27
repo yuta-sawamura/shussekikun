@@ -56,13 +56,13 @@ Route::group(['middleware' => ['auth', 'can:organization-admin-higher']], functi
             Route::get('show/{id}', 'Admin\UserController@show');
             Route::get('edit/{id}', 'Admin\UserController@edit');
             Route::post('update/{id}', 'Admin\UserController@update');
-            Route::post('delete/{id}', 'Admin\UserController@delete');
+            Route::get('delete/{id}', 'Admin\UserController@delete');
         });
 
         // 出席
         Route::prefix('attendance')->group(function () {
             Route::post('update/{id}', 'Admin\AttendanceController@update');
-            Route::post('delete/{id}', 'Admin\AttendanceController@delete');
+            Route::get('delete/{id}', 'Admin\AttendanceController@delete');
         });
 
         // プレミアム
@@ -75,7 +75,7 @@ Route::group(['middleware' => ['auth', 'can:organization-admin-higher']], functi
             Route::get('/', 'Admin\StoreController@index');
             Route::post('store', 'Admin\StoreController@store');
             Route::post('update/{id}', 'Admin\StoreController@update');
-            Route::post('delete/{id}', 'Admin\StoreController@delete');
+            Route::get('delete/{id}', 'Admin\StoreController@delete');
         });
 
         // カテゴリー
@@ -83,7 +83,7 @@ Route::group(['middleware' => ['auth', 'can:organization-admin-higher']], functi
             Route::get('/', 'Admin\CategoryController@index');
             Route::post('store', 'Admin\CategoryController@store');
             Route::post('update/{id}', 'Admin\CategoryController@update');
-            Route::post('delete/{id}', 'Admin\CategoryController@delete');
+            Route::get('delete/{id}', 'Admin\CategoryController@delete');
         });
 
         // クラス
@@ -91,7 +91,7 @@ Route::group(['middleware' => ['auth', 'can:organization-admin-higher']], functi
             Route::get('/', 'Admin\ClassworkController@index');
             Route::post('store', 'Admin\ClassworkController@store');
             Route::post('update/{id}', 'Admin\ClassworkController@update');
-            Route::post('delete/{id}', 'Admin\ClassworkController@delete');
+            Route::get('delete/{id}', 'Admin\ClassworkController@delete');
         });
 
         // スケジュール
@@ -99,7 +99,7 @@ Route::group(['middleware' => ['auth', 'can:organization-admin-higher']], functi
             Route::get('/', 'Admin\ScheduleController@index');
             Route::post('store', 'Admin\ScheduleController@store');
             Route::post('update/{id}', 'Admin\ScheduleController@update');
-            Route::post('delete/{id}', 'Admin\ScheduleController@delete');
+            Route::get('delete/{id}', 'Admin\ScheduleController@delete');
         });
 
         // お知らせ
@@ -110,7 +110,7 @@ Route::group(['middleware' => ['auth', 'can:organization-admin-higher']], functi
             Route::get('show/{id}', 'Admin\NewsController@show');
             Route::get('edit/{id}', 'Admin\NewsController@edit');
             Route::post('update/{id}', 'Admin\NewsController@update');
-            Route::post('delete/{id}', 'Admin\NewsController@delete');
+            Route::get('delete/{id}', 'Admin\NewsController@delete');
         });
     });
 });
