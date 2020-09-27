@@ -12,6 +12,7 @@ use App\Enums\User\Status;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\Admin\UserRequest;
+use App\Http\Requests\Admin\AttendanceRequest;
 use Carbon\Carbon;
 
 class UserController extends Controller
@@ -70,14 +71,11 @@ class UserController extends Controller
                 ->count();
         }
 
-        $schedules = $this->schedule->findByIdScheduleClass($user->store_id);
-
         return view('admin.user.show')->with([
             'user' => $user,
             'rank' => $rank,
             'params' => $params,
             'attendances' => $attendances,
-            'schedules' => $schedules
         ]);
     }
 
@@ -218,5 +216,32 @@ class UserController extends Controller
             'monthUsers' => $monthUsers ?? null,
             'params' => $params
         ]);
+    }
+
+    public function attendanceEdit(Attendance $attendance, User $user)
+    {
+        $schedules = $this->schedule->findByIdScheduleClass($user->store_id);
+        return view('admin.user.attendance_edit')->with([
+            'attendance' => $attendance,
+            'user' => $user,
+            'schedules' => $schedules
+        ]);
+    }
+
+    public function attendanceUpdate(AttendanceRequest $request)
+    {
+        $attendance = Attendance::where('id', $request->id)->firstOrFail();
+        $attendance->fill($request->all())->save();
+
+        return redirect('/admin/user/show/' . $request->user_id)->with('success_message', '出席クラスを編集しました。');
+    }
+
+    public function attendanceDelete(Request $request)
+    {
+        $attendance = Attendance::where('id', $request->id)->firstOrFail();
+        $user_id = $attendance->user_id;
+        $attendance->delete();
+
+        return redirect('/admin/user/show/' . $user_id)->with('success_message', '出席クラスを削除しました。');
     }
 }

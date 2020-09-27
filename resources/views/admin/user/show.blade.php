@@ -108,11 +108,9 @@
                             <td>{{ $attendance->schedule->classwork->classwork_name }}({{ $attendance->schedule->day_name }} {{ $attendance->schedule->time }})</td>
                             <td>{{ $attendance->created_at }}</td>
                             <td>
-                              <button type="button" class="btn btn-outline-primary mb-2 mr-2" data-toggle="modal" data-target="#attendanceModal{{ $user->id }}">編集</button>
-                              <a class="btn btn-outline-danger mb-2" href="{{ url('admin/attendance/delete/' . $attendance->id) }}" onclick="return confirm('本当によろしいですか？')" role="button">削除</a>
+                              <a class="btn btn-outline-primary" href="{{ url('admin/user/attendance/' . $attendance->id . '/edit' . '/' .$user->id) }}" role="button">編集</a>
                             </td>
                           </tr>
-                          @include('components.modals.attendance', ['user' => $user, 'url' => '/admin/attendance/update/' . $attendance->id, 'attendance' => $attendance])
                         @endforeach
                       </tbody>
                     </table>
