@@ -57,11 +57,8 @@ class LoginController extends Controller
      */
     protected function guestLogin()
     {
-        $email = env('ORGANIZATION_ADMIN_MAIL');
-        $password = env('ORGANIZATION_ADMIN_PASSWORD');
-
-        if (\Auth::attempt(['email' => $email, 'password' => $password])) {
-            return redirect('/')->with('success_message', 'ログインしました。');
+        if (\Auth::attempt(['email' => env('ORGANIZATION_ADMIN_MAIL'), 'password' => env('ORGANIZATION_ADMIN_PASSWORD')])) {
+            return redirect('admin')->with('success_message', 'ログインしました。');
         }
         return back();
     }
