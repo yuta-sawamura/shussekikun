@@ -31,10 +31,10 @@
               <div id="style-1_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
                 <div class="row">
                   <div class="col-sm-12">
-                    <table id="style-1" class="table style-1 table-hover non-hover dataTable no-footer" role="grid" aria-describedby="style-1_info" style="table-layout: fixed; width: 100%;">
+                    <table id="style-1" class="table no-footer" role="grid" aria-describedby="style-1_info" style="table-layout: fixed; width: 100%;">
                       <thead>
                         <tr role="row">
-                          <th style="width: 120px;">クラス</th>
+                          <th style="width: 110px;">クラス</th>
                           <th style="width: 210px;"></th>
                         </tr>
                       </thead>
@@ -48,9 +48,7 @@
                             </td>
                           </tr>
                           @include('components.modals.admin.edit', ['name' => 'クラス名', 'path' => '/admin/class/update/' . $classwork->id, 'value' => $classwork->name, 'id' => $classwork->id])
-
                           @include('components.modals.attention', ['title' => '関連データも全て削除されますが本当によろしいですか？', 'path' => '/admin/class/delete/' . $classwork->id, 'id' => $classwork->id])
-
                         @endforeach
                       </tbody>
                     </table>
@@ -75,4 +73,4 @@
 @include('components.modals.admin.create', ['name' => 'クラス名', 'path' => '/admin/class/store'])
 
 
-@endsection()
+@endsection

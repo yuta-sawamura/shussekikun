@@ -198,4 +198,4 @@
   chart.render();
 </script>
 
-@endsection()
+@endsection

@@ -102,6 +102,6 @@
     'step': 15,
   });
 </script>
-@endsection()
+@endsection
 
-@endsection()
+@endsection

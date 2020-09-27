@@ -93,4 +93,4 @@
 @include('components.js.chart', ['name' => '月間出席回数', 'data' => $monthlyCount, 'text' => '回数',  'categories' => $monthlyTitle, 'selector' => '#s-bar2'])
 
 
-@endsection()
+@endsection

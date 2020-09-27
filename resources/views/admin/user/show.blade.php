@@ -141,4 +141,4 @@
 
 <script src="{{ asset('/plugins/apex/apexcharts.min.js') }}"></script>
 
-@endsection()
+@endsection

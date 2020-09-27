@@ -38,24 +38,20 @@
                 </div>
                 <div class="row">
                   <div class="col-sm-12">
-                    <table id="style-1" class="table style-1 table-hover non-hover dataTable no-footer" role="grid" aria-describedby="style-1_info" style="table-layout: fixed; width: 100%;">
+                    <table id="style-1" class="table no-footer" role="grid" aria-describedby="style-1_info" style="table-layout: fixed; width: 100%;">
                       <thead>
                         <tr role="row">
-                          <th style="width: 150px;">店舗</th>
+                          <th style="width: 100px;">店舗</th>
                           <th style="width: 150px;">タイトル</th>
-                          <th style="width: 200px;">更新日</th>
-                          <th style="width: 110px;"></th>
+                          <th style="width: 120px;">更新日</th>
                         </tr>
                       </thead>
                       <tbody>
                         @foreach ($news as $k => $v)
-                          <tr role="row" class="odd">
+                          <tr role="row" class="odd clickable-row" data-href="{{ url('/admin/news/show/' . $v->id) }}">
                             <td>{{ $v->name }}</td>
                             <td>{{ $v->title }}</td>
                             <td>{{ $v->updated_at->format('Y-m-d') }}</td>
-                            <td>
-                              <a href="{{ url('/admin/news/show/' . $v->id) }}" class="btn btn-outline-primary mb-2 mr-2">詳細</a>
-                            </td>
                           </tr>
                         @endforeach
                       </tbody>
@@ -74,4 +70,8 @@
   </div>
 </div>
 
-@endsection()
+@endsection
+
+@section('js')
+<script src="{{ asset('js/clickable.js') }}"></script>
+@endsection

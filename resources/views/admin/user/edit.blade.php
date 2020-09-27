@@ -36,10 +36,10 @@
 @include('components.modals.attention', ['title' => '関連データも全て削除されますが本当によろしいですか？', 'path' => '/admin/user/delete/' . $user->id, 'id' => $user->id])
 
 
-@endsection()
+@endsection
 
 @section('js')
 @include('admin.user._form_js');
 <script src="{{ asset('/plugins/dropify/dropify.min.js') }}"></script>
 <script src="{{ asset('/js/users/account-settings.js') }}"></script>
-@endsection()
+@endsection

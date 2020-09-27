@@ -31,10 +31,10 @@
               <div id="style-1_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
                 <div class="row">
                   <div class="col-sm-12">
-                    <table id="style-1" class="table style-1 table-hover non-hover dataTable no-footer" role="grid" aria-describedby="style-1_info" style="table-layout: fixed; width: 100%;">
+                    <table id="style-1" class="table no-footer" role="grid" aria-describedby="style-1_info" style="table-layout: fixed; width: 100%;">
                       <thead>
                         <tr role="row">
-                          <th style="width: 120px;">カテゴリー名</th>
+                          <th style="width: 110px;">カテゴリー名</th>
                           <th style="width: 210px;"></th>
                         </tr>
                       </thead>
@@ -74,4 +74,4 @@
 
 @include('components.modals.admin.create', ['name' => 'カテゴリー名', 'path' => '/admin/category/store'])
 
-@endsection()
+@endsection
