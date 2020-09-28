@@ -21,6 +21,14 @@ class News extends Model
     ];
 
     /**
+     * このお知らせを所有する店舗を取得
+     */
+    public function store()
+    {
+        return $this->belongsTo('App\Models\Store');
+    }
+
+    /**
      * 検索・絞り込み
      * @param \Illuminate\Database\Eloquent\Builder
      * @param array
