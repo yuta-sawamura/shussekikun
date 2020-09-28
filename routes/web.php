@@ -30,7 +30,7 @@ Route::group(['middleware' => 'auth'], function () {
     // 会員
     Route::prefix('user')->group(function () {
         Route::get('/', 'UserController@index');
-        Route::get('show/{user}', 'UserController@show')->middleware('can:view,user');
+        Route::get('show/{user}', 'UserController@show')->middleware('can:viewNormal,user');
     });
 
     // ランキング
@@ -39,7 +39,7 @@ Route::group(['middleware' => 'auth'], function () {
     // お知らせ
     Route::prefix('news')->group(function () {
         Route::get('/', 'NewsController@index');
-        Route::get('show/{news}', 'NewsController@show')->middleware('can:view,news');
+        Route::get('show/{news}', 'NewsController@show')->middleware('can:viewNormal,news');
     });
 });
 
@@ -117,7 +117,7 @@ Route::group(['middleware' => ['auth', 'can:organization-admin-higher']], functi
             Route::get('/', 'Admin\NewsController@index');
             Route::get('create', 'Admin\NewsController@create');
             Route::post('store', 'Admin\NewsController@store');
-            Route::get('show/{id}', 'Admin\NewsController@show');
+            Route::get('show/{news}', 'Admin\NewsController@show')->middleware('can:view,news');
             Route::get('edit/{id}', 'Admin\NewsController@edit');
             Route::post('update/{id}', 'Admin\NewsController@update');
             Route::get('delete/{id}', 'Admin\NewsController@delete');

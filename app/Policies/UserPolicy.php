@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Policies\User;
+namespace App\Policies;
 
 use App\User;
 use App\Enums\User\Role;
@@ -12,13 +12,13 @@ class UserPolicy
     use HandlesAuthorization;
 
     /**
-     * ユーザーは会員を閲覧できるか判定
+     * 会員画面でユーザーは会員を閲覧できるか判定
      *
      * @param  App\User  $user
      * @param  App\User  $model
      * @return bool
      */
-    public function view(User $user, User $model): bool
+    public function viewNormal(User $user, User $model): bool
     {
         return $model->role === Role::Normal && $user->store_id === $model->store_id && $model->status !== Status::Cancel;
     }
