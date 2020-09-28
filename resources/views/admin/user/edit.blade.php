@@ -10,7 +10,7 @@
         <ul class="breadcrumb">
           <li class="mb-2"><a href="{{ url('/admin') }}">ホーム</a></li>
           <li class="mb-2"><a href="{{ url('/admin/user/') }}">会員一覧</a></li>
-          <li class="mb-2"><a href="{{ url('/admin/user/show/' . $user->id) }}">会員詳細</a></li>
+          <li class="mb-2"><a href="{{ url('/admin/user/show', $user) }}">会員詳細</a></li>
           <li class="active mb-2"><a href="">会員編集</a></li>
         </ul>
       </div>

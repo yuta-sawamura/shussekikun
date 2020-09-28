@@ -30,7 +30,7 @@ Route::group(['middleware' => 'auth'], function () {
     // 会員
     Route::prefix('user')->group(function () {
         Route::get('/', 'UserController@index');
-        Route::get('show/{user}', 'UserController@show')->middleware('can:viewNormal,user');
+        Route::get('show/{user}', 'UserController@show')->middleware('can:view,user');
     });
 
     // ランキング
@@ -55,10 +55,10 @@ Route::group(['middleware' => ['auth', 'can:organization-admin-higher']], functi
             Route::get('/', 'Admin\UserController@index');
             Route::get('create', 'Admin\UserController@create');
             Route::post('store', 'Admin\UserController@store');
-            Route::get('show/{id}', 'Admin\UserController@show');
-            Route::get('edit/{id}', 'Admin\UserController@edit');
-            Route::post('update/{id}', 'Admin\UserController@update');
-            Route::get('delete/{id}', 'Admin\UserController@delete');
+            Route::get('show/{user}', 'Admin\UserController@show')->middleware('can:anyAdmin,user');
+            Route::get('edit/{user}', 'Admin\UserController@edit')->middleware('can:anyAdmin,user');
+            Route::post('update/{user}', 'Admin\UserController@update')->middleware('can:anyAdmin,user');
+            Route::get('delete/{user}', 'Admin\UserController@delete')->middleware('can:anyAdmin,user');
             // 出席
             Route::prefix('attendance')->group(function () {
                 Route::get('/{attendance}/edit/{user}', 'Admin\UserController@attendanceEdit');

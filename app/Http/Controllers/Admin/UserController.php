@@ -51,11 +51,9 @@ class UserController extends Controller
         return redirect('/admin/user')->with('success_message', '会員を追加しました。');
     }
 
-    public function show(Request $request)
+    public function show(User $user, Request $request)
     {
-        $user = $this->user->findByIdOrFail(Auth::user()->organization_id, $request->id);
-
-        $attendances = Attendance::where('user_id', $request->id)
+        $attendances = Attendance::where('user_id', $user->id)
             ->orderBy('id', 'desc')
             ->paginate(config('const.PAGINATION_PER_PAGE'));
 
@@ -65,7 +63,7 @@ class UserController extends Controller
         // 月別
         for ($i = 1; $i <= 12; $i++) {
             $rank['months'][] = $i . '月';
-            $rank['counts'][] = Attendance::where('user_id', $request->id)
+            $rank['counts'][] = Attendance::where('user_id', $user->id)
                 ->whereYear('date', $params['year'])
                 ->whereMonth('date', $i)
                 ->count();
@@ -79,26 +77,22 @@ class UserController extends Controller
         ]);
     }
 
-    public function edit(Request $request)
+    public function edit(User $user)
     {
-        $user = $this->user->findByIdOrFail(Auth::user()->organization_id, $request->id);
-
         return view('admin.user.edit')->with([
             'user' => $user
         ]);
     }
 
-    public function update(UserRequest $request)
+    public function update(User $user, UserRequest $request)
     {
-        $user = $this->user->findByIdOrFail(Auth::user()->organization_id, $request->id);
         $user->fill($request->validated())->save();
 
-        return redirect('/admin/user/show/' . $request->id)->with('success_message', '会員情報を編集しました。');
+        return redirect('/admin/user/show/' . $user->id)->with('success_message', '会員情報を編集しました。');
     }
 
-    public function delete(Request $request)
+    public function delete(User $user)
     {
-        $user = $this->user->findByIdOrFail(Auth::user()->organization_id, $request->id);
         $user->delete();
 
         return redirect('/admin/user')->with('success_message', '会員を削除しました。');
