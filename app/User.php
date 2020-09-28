@@ -200,18 +200,4 @@ class User extends Authenticatable
             ->where('users.store_id', $storeId)
             ->where('status', '!=', $statusId);
     }
-
-    /**
-     * 会員取得関数
-     * @param int
-     * @param int
-     * @return App\User
-     */
-    public function findByIdOrFail(int $organizationId, int $userId): User
-    {
-        return $this->where('id', $userId)
-            ->where('role', '!=', Role::System)
-            ->where('organization_id', $organizationId)
-            ->firstOrFail();
-    }
 }
