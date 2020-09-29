@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use Auth;
 use App\Models\Store;
 use App\Http\Requests\Admin\StoreRequest;
@@ -26,7 +25,7 @@ class StoreController extends Controller
         ]);
     }
 
-    public function create(Request $request)
+    public function create()
     {
         return view('admin.store.create');
     }
@@ -39,24 +38,22 @@ class StoreController extends Controller
         return redirect('/admin/store')->with('success_message', '店舗を追加しました。');
     }
 
-    public function edit(Request $request)
+    public function edit(Store $store)
     {
         return view('admin.store.edit')->with([
-            'store' => $this->store->findByIdOrFail(Auth::user()->organization_id, $request->id),
+            'store' => $store
         ]);
     }
 
-    public function update(StoreRequest $request)
+    public function update(Store $store, StoreRequest $request)
     {
-        $store = $this->store->findByIdOrFail(Auth::user()->organization_id, $request->id);
         $store->fill($request->all())->save();
 
         return redirect('/admin/store')->with('success_message', '店舗を編集しました。');
     }
 
-    public function delete(Request $request)
+    public function delete(Store $store)
     {
-        $store = $this->store->findByIdOrFail(Auth::user()->organization_id, $request->id);
         $store->delete();
 
         return redirect('/admin/store')->with('success_message', '店舗を削除しました。');

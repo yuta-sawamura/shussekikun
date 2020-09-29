@@ -75,9 +75,9 @@ Route::group(['middleware' => ['auth', 'can:organization-admin-higher']], functi
             Route::get('/', 'Admin\StoreController@index');
             Route::get('create', 'Admin\StoreController@create');
             Route::post('store', 'Admin\StoreController@store');
-            Route::get('edit/{id}', 'Admin\StoreController@edit');
-            Route::post('update/{id}', 'Admin\StoreController@update');
-            Route::get('delete/{id}', 'Admin\StoreController@delete');
+            Route::get('edit/{store}', 'Admin\StoreController@edit')->middleware('can:anyAdmin,store');
+            Route::post('update/{store}', 'Admin\StoreController@update')->middleware('can:anyAdmin,store');
+            Route::get('delete/{store}', 'Admin\StoreController@delete')->middleware('can:anyAdmin,store');
         });
 
         // カテゴリー
