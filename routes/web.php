@@ -85,9 +85,9 @@ Route::group(['middleware' => ['auth', 'can:organization-admin-higher']], functi
             Route::get('/', 'Admin\CategoryController@index');
             Route::get('create', 'Admin\CategoryController@create');
             Route::post('store', 'Admin\CategoryController@store');
-            Route::get('edit/{id}', 'Admin\CategoryController@edit');
-            Route::post('update/{id}', 'Admin\CategoryController@update');
-            Route::get('delete/{id}', 'Admin\CategoryController@delete');
+            Route::get('edit/{category}', 'Admin\CategoryController@edit')->middleware('can:anyAdmin,category');
+            Route::post('update/{category}', 'Admin\CategoryController@update')->middleware('can:anyAdmin,category');
+            Route::get('delete/{category}', 'Admin\CategoryController@delete')->middleware('can:anyAdmin,category');
         });
 
         // クラス
