@@ -2,6 +2,7 @@
 @section('content')
 
 <div id="content" class="main-content">
+  @include('components.alerts.app')
   <div class="layout-px-spacing">
     <div id="basic" class="row layout-spacing  layout-top-spacing">
       <div class="col-lg-12">
