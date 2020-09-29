@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use Auth;
 use App\Models\Classwork;
 use App\Http\Requests\Admin\ClassworkRequest;
@@ -26,7 +25,7 @@ class ClassworkController extends Controller
         ]);
     }
 
-    public function create(Request $request)
+    public function create()
     {
         return view('admin.classwork.create');
     }
@@ -39,24 +38,22 @@ class ClassworkController extends Controller
         return redirect('/admin/class')->with('success_message', 'クラスを追加しました。');
     }
 
-    public function edit(Request $request)
+    public function edit(Classwork $classwork)
     {
         return view('admin.classwork.edit')->with([
-            'class' => $this->classwork->findByIdOrFail($request->id, Auth::user()->organization_id),
+            'classwork' => $classwork
         ]);
     }
 
-    public function update(ClassworkRequest $request)
+    public function update(Classwork $classwork, ClassworkRequest $request)
     {
-        $classwork = $this->classwork->findByIdOrFail($request->id, Auth::user()->organization_id);
         $classwork->fill($request->all())->save();
 
         return redirect('/admin/class')->with('success_message', 'クラスを編集しました。');
     }
 
-    public function delete(Request $request)
+    public function delete(Classwork $classwork)
     {
-        $classwork = $this->classwork->findByIdOrFail($request->id, Auth::user()->organization_id);
         $classwork->delete();
 
         return redirect('/admin/class')->with('success_message', 'クラスを削除しました。');

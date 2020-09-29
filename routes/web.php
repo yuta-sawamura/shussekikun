@@ -95,9 +95,9 @@ Route::group(['middleware' => ['auth', 'can:organization-admin-higher']], functi
             Route::get('/', 'Admin\ClassworkController@index');
             Route::get('create', 'Admin\ClassworkController@create');
             Route::post('store', 'Admin\ClassworkController@store');
-            Route::get('edit/{id}', 'Admin\ClassworkController@edit');
-            Route::post('update/{id}', 'Admin\ClassworkController@update');
-            Route::get('delete/{id}', 'Admin\ClassworkController@delete');
+            Route::get('edit/{classwork}', 'Admin\ClassworkController@edit')->middleware('can:anyAdmin,classwork');
+            Route::post('update/{classwork}', 'Admin\ClassworkController@update')->middleware('can:anyAdmin,classwork');
+            Route::get('delete/{classwork}', 'Admin\ClassworkController@delete')->middleware('can:anyAdmin,classwork');
         });
 
         // スケジュール

@@ -14,7 +14,7 @@
         <div class="scrollspy-example" data-spy="scroll" data-target="#account-settings-scroll" data-offset="-100">
           <div class="row">
             <div class="col-xl-12 col-lg-12 col-md-12 layout-spacing">
-              <form action="/admin/class/update/{{ $class->id }}" method="post" class="section general-info">
+              <form action="/admin/class/update/{{ $classwork->id }}" method="post" class="section general-info">
                 @csrf
                 <div class="info">
                   <h6>クラス編集</h6>
