@@ -18,7 +18,7 @@ class UserPolicy
      * @param  App\User  $model
      * @return bool
      */
-    public function anyAdmin(User $user, User $model)
+    public function anyAdmin(User $user, User $model): bool
     {
         return $model->role !== Role::System && $user->organization_id === $model->organization_id;
     }

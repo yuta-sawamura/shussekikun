@@ -17,7 +17,7 @@ class NewsPolicy
      * @param  App\Models\News $news
      * @return bool
      */
-    public function anyAdmin(User $user, News $news)
+    public function anyAdmin(User $user, News $news): bool
     {
         return $user->organization_id === $news->store->organization_id;
     }
@@ -29,7 +29,7 @@ class NewsPolicy
      * @param  App\Models\News $news
      * @return bool
      */
-    public function view(User $user, News $news)
+    public function view(User $user, News $news): bool
     {
         return $user->store_id === $news->store_id;
     }
