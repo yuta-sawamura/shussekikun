@@ -40,7 +40,7 @@ class UserController extends Controller
         ]);
     }
 
-    public function create(Request $request)
+    public function create()
     {
         return view('admin.user.create');
     }
@@ -212,30 +212,27 @@ class UserController extends Controller
         ]);
     }
 
-    public function attendanceEdit(Attendance $attendance, User $user)
+    public function attendanceEdit(Attendance $attendance)
     {
-        $schedules = $this->schedule->findByIdScheduleClass($user->store_id);
+        $schedules = $this->schedule->findByIdScheduleClass($attendance->user->store_id);
+
         return view('admin.user.attendance_edit')->with([
             'attendance' => $attendance,
-            'user' => $user,
             'schedules' => $schedules
         ]);
     }
 
-    public function attendanceUpdate(AttendanceRequest $request)
+    public function attendanceUpdate(Attendance $attendance, AttendanceRequest $request)
     {
-        $attendance = Attendance::where('id', $request->id)->firstOrFail();
         $attendance->fill($request->all())->save();
 
-        return redirect('/admin/user/show/' . $request->user_id)->with('success_message', '出席クラスを編集しました。');
+        return redirect('/admin/user/show/' . $attendance->user_id)->with('success_message', '出席クラスを編集しました。');
     }
 
-    public function attendanceDelete(Request $request)
+    public function attendanceDelete(Attendance $attendance)
     {
-        $attendance = Attendance::where('id', $request->id)->firstOrFail();
-        $user_id = $attendance->user_id;
         $attendance->delete();
 
-        return redirect('/admin/user/show/' . $user_id)->with('success_message', '出席クラスを削除しました。');
+        return redirect('/admin/user/show/' . $attendance->user_id)->with('success_message', '出席クラスを削除しました。');
     }
 }

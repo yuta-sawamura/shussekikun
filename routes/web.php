@@ -11,8 +11,6 @@
 |
 */
 
-use App\Models\News;
-
 if (config('app.env') == 'production') {
     URL::forceScheme('https');
 }
@@ -61,9 +59,9 @@ Route::group(['middleware' => ['auth', 'can:organization-admin-higher']], functi
             Route::get('delete/{user}', 'Admin\UserController@delete')->middleware('can:anyAdmin,user');
             // 出席
             Route::prefix('attendance')->group(function () {
-                Route::get('/{attendance}/edit/{user}', 'Admin\UserController@attendanceEdit');
-                Route::post('update/{id}', 'Admin\UserController@attendanceUpdate');
-                Route::get('delete/{id}', 'Admin\UserController@attendanceDelete');
+                Route::get('/{attendance}', 'Admin\UserController@attendanceEdit')->middleware('can:anyAdmin,attendance');
+                Route::post('update/{attendance}', 'Admin\UserController@attendanceUpdate')->middleware('can:anyAdmin,attendance');
+                Route::get('delete/{attendance}', 'Admin\UserController@attendanceDelete')->middleware('can:anyAdmin,attendance');
             });
         });
 

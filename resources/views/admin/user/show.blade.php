@@ -110,7 +110,7 @@
                             <td>{{ $attendance->schedule->classwork->classwork_name }}({{ $attendance->schedule->day_name }} {{ $attendance->schedule->time }})</td>
                             <td>{{ $attendance->created_at }}</td>
                             <td>
-                              <a class="btn btn-outline-primary" href="{{ url('admin/user/attendance/' . $attendance->id . '/edit' . '/' .$user->id) }}" role="button">編集</a>
+                              <a class="btn btn-outline-primary" href="{{ url('admin/user/attendance', $attendance) }}" role="button">編集</a>
                             </td>
                           </tr>
                         @endforeach
