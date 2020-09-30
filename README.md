@@ -88,7 +88,7 @@ SHUSSEKIKUN(しゅっせきくん)は、管理者が会員の出席を管理で�
 
 ■ER 図
 
-![ER図](https://user-images.githubusercontent.com/29622529/89781780-eee2e280-db4e-11ea-9640-c5ff0e73aee7.jpg)
+![ER図](https://user-images.githubusercontent.com/29622529/94750115-57687600-03c0-11eb-8ee8-37bf3cd5e862.jpg)
 
 ## Docker によるプロジェクト開始方法
 
