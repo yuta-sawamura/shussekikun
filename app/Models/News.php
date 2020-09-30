@@ -53,7 +53,7 @@ class News extends Model
     /**
      * パース
      */
-    public function parse()
+    private function parse()
     {
         $parser = new Markdown();
         return new HtmlString($parser->parse($this->content));
