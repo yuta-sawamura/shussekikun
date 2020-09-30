@@ -33,7 +33,7 @@ class Schedule extends Model
 
     public function classwork()
     {
-        return $this->belongsTo(Classwork::class)->select('classworks.name as classwork_name');
+        return $this->belongsTo(Classwork::class);
     }
 
     /**
@@ -90,30 +90,6 @@ class Schedule extends Model
         if (!empty($params['day'])) $query->where('schedules.day', $params['day']);
 
         return $query;
-    }
-
-    /**
-     * スケジュール取得関数
-     * @param int
-     * @param int
-     * @return App\Models\Schedule|\Illuminate\Database\Eloquent\ModelNotFoundException
-     */
-    public function findByIdOrFail(int $organizationId, int $scheduleId)
-    {
-        return $this->select(
-            'schedules.id',
-            'schedules.store_id',
-            'schedules.classwork_id',
-            'schedules.day',
-            'schedules.start_at',
-            'schedules.end_at',
-            'stores.organization_id',
-            'stores.name'
-        )
-            ->join('stores', 'stores.id', '=', 'schedules.store_id')
-            ->where('schedules.id', $scheduleId)
-            ->where('stores.organization_id', $organizationId)
-            ->firstOrFail();
     }
 
     /**

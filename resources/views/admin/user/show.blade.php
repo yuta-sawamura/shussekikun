@@ -107,7 +107,7 @@
                       <tbody>
                         @foreach($attendances as $attendance)
                           <tr>
-                            <td>{{ $attendance->schedule->classwork->classwork_name }}({{ $attendance->schedule->day_name }} {{ $attendance->schedule->time }})</td>
+                            <td>{{ $attendance->schedule->classwork->name }}({{ $attendance->schedule->day_name }} {{ $attendance->schedule->time }})</td>
                             <td>{{ $attendance->created_at }}</td>
                             <td>
                               <a class="btn btn-outline-primary" href="{{ url('admin/user/attendance', $attendance) }}" role="button">編集</a>

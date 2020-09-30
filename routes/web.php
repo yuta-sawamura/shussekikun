@@ -105,9 +105,9 @@ Route::group(['middleware' => ['auth', 'can:organization-admin-higher']], functi
             Route::get('/', 'Admin\ScheduleController@index');
             Route::get('create', 'Admin\ScheduleController@create');
             Route::post('store', 'Admin\ScheduleController@store');
-            Route::get('edit/{id}', 'Admin\ScheduleController@edit');
-            Route::post('update/{id}', 'Admin\ScheduleController@update');
-            Route::get('delete/{id}', 'Admin\ScheduleController@delete');
+            Route::get('edit/{schedule}', 'Admin\ScheduleController@edit')->middleware('can:anyAdmin,schedule');
+            Route::post('update/{schedule}', 'Admin\ScheduleController@update')->middleware('can:anyAdmin,schedule');
+            Route::get('delete/{schedule}', 'Admin\ScheduleController@delete')->middleware('can:anyAdmin,schedule');
         });
 
         // お知らせ
