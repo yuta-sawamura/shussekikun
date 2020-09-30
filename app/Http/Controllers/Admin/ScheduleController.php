@@ -42,7 +42,7 @@ class ScheduleController extends Controller
         ]);
     }
 
-    public function create(Request $request)
+    public function create()
     {
         return view('admin.schedule.create');
     }
@@ -53,24 +53,22 @@ class ScheduleController extends Controller
         return redirect('/admin/schedule')->with('success_message', 'スケジュールを追加しました。');
     }
 
-    public function edit(Request $request)
+    public function edit(Schedule $schedule)
     {
         return view('admin.schedule.edit')->with([
-            'schedule' => $this->schedule->findByIdOrFail(Auth::user()->organization_id, $request->id),
+            'schedule' => $schedule
         ]);
     }
 
-    public function update(ScheduleRequest $request)
+    public function update(Schedule $schedule, ScheduleRequest $request)
     {
-        $schedule = $this->schedule->findByIdOrFail(Auth::user()->organization_id, $request->id);
         $schedule->fill($request->all())->save();
 
         return redirect('/admin/schedule')->with('success_message', 'スケジュールを編集しました。');
     }
 
-    public function delete(Request $request)
+    public function delete(Schedule $schedule)
     {
-        $schedule = $this->schedule->findByIdOrFail(Auth::user()->organization_id, $request->id);
         $schedule->delete();
 
         return redirect('/admin/schedule')->with('success_message', 'スケジュールを削除しました。');

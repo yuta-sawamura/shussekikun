@@ -4,7 +4,6 @@
 <div id="content" class="main-content">
   <div class="layout-px-spacing">
     <div class="row layout-spacing">
-      <!-- Content -->
       <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 layout-top-spacing">
         <div class="breadcrumb-five">
           <ul class="breadcrumb">
@@ -79,6 +78,5 @@
 </div>
 
 @include('components.js.chart', ['name' => '年間出席回数', 'data' => $rank['counts'], 'text' => '回数',  'categories' => $rank['months'], 'selector' => '#s-bar'])
-
 
 @endsection

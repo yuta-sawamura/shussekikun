@@ -2,6 +2,7 @@
 @section('content')
 
 <div id="content" class="main-content">
+  @include('components.alerts.app')
   <div class="layout-px-spacing">
     <div id="basic" class="row layout-spacing  layout-top-spacing">
       <div class="col-lg-12">
@@ -9,7 +10,7 @@
           <ul class="breadcrumb">
             <li class="mb-2"><a href="{{ url('/admin') }}">ホーム</a></li>
             <li class="mb-2"><a href="{{ url('/admin/news/') }}">お知らせ一覧</a></li>
-            <li class="mb-2"><a href="{{ url('/admin/news/show/' . $news->id) }}">お知らせ詳細</a></li>
+            <li class="mb-2"><a href="{{ url('/admin/news/show', $news) }}">お知らせ詳細</a></li>
             <li class="active mb-2"><a href="">お知らせ編集</a></li>
           </ul>
         </div>

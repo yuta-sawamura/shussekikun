@@ -41,7 +41,7 @@
                           <tr role="row" class="odd">
                             <td>{{ $category->name }}</td>
                             <td>
-                              <a class="btn btn-outline-primary mb-2" href="{{ url('admin/category/edit/' . $category->id) }}" role="button">編集</a>
+                              <a class="btn btn-outline-primary mb-2" href="{{ url('admin/category/edit', $category) }}" role="button">編集</a>
                             </td>
                           </tr>
                         @endforeach

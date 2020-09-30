@@ -1,6 +1,7 @@
 @extends('layouts.admin.app')
 @section('content')
 <div id="content" class="main-content">
+  @include('components.alerts.app')
   <div class="layout-px-spacing">
     <div class="account-settings-container layout-top-spacing">
       <div class="breadcrumb-five">

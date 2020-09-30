@@ -54,12 +54,12 @@
                         @foreach ($schedules as $schedule)
                           <tr role="row" class="odd">
                             <td>{{ $schedule->name }}</td>
-                            <td>{{ $schedule->classwork->classwork_name }}</td>
+                            <td>{{ $schedule->classwork->name }}</td>
                             <td>{{ $schedule->day_name }}</td>
                             <td>{{ $schedule->start_at }}</td>
                             <td>{{ $schedule->end_at }}</td>
                             <td>
-                              <a class="btn btn-outline-primary" href="{{ url('admin/schedule/edit/' . $schedule->id) }}" role="button">編集</a>
+                              <a class="btn btn-outline-primary" href="{{ url('admin/schedule/edit', $schedule) }}" role="button">編集</a>
                             </td>
                           </tr>
                         @endforeach

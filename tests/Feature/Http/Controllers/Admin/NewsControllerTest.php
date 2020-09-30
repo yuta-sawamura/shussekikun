@@ -56,10 +56,10 @@ class NewsControllerTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function test_別組織管理者がお知らせ詳細画面にアクセス時にステータスコード404を返す()
+    public function test_別組織管理者がお知らせ詳細画面にアクセス時にステータスコード403を返す()
     {
         $response = $this->actingAs($this->other_organization_admin_user)->get('admin/news/show/' . $this->news->id);
-        $response->assertStatus(404);
+        $response->assertStatus(403);
     }
 
     public function test_お知らせを登録できる()

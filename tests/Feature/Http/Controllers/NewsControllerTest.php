@@ -58,9 +58,9 @@ class NewsControllerTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function test_別組織のお知らせ詳細画面にアクセス時にステータスコード404を返す()
+    public function test_別組織のお知らせ詳細画面にアクセス時にステータスコード403を返す()
     {
         $response = $this->actingAs($this->other_store_share_user)->get('news/show/' . $this->news->id);
-        $response->assertStatus(404);
+        $response->assertStatus(403);
     }
 }

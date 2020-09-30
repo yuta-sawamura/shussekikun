@@ -24,9 +24,9 @@
           </div>
           <div class="widget-content widget-content-area">
             <div class="col-md-12 text-right">
-              <a href="{{ url('/admin/news/edit/' . $news->id) }}" class="btn btn-outline-primary">編集</a>
+              <a href="{{ url('/admin/news/edit', $news) }}" class="btn btn-outline-primary">編集</a>
             </div>
-            <p>{{ $news->name }}</p>
+            <p>{{ $news->store->name }}</p>
             <p class="lead">{{ $news->title }}</p>
             <hr>
             <div class="table-responsive my-4 style-1">
