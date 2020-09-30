@@ -34,20 +34,8 @@ class NewsController extends Controller
         ]);
     }
 
-    public function show(Request $request)
+    public function show(News $news)
     {
-        $news = News::select(
-            'news.id',
-            'news.store_id',
-            'news.title',
-            'news.content',
-            'news.created_at'
-        )
-            ->join('stores', 'stores.id', '=', 'news.store_id')
-            ->where('news.id', $request->id)
-            ->where('stores.id', Auth::user()->store_id)
-            ->firstOrFail();
-
         return view('news.show')->with([
             'news' => $news
         ]);

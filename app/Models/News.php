@@ -21,6 +21,14 @@ class News extends Model
     ];
 
     /**
+     * このお知らせを所有する店舗を取得
+     */
+    public function store()
+    {
+        return $this->belongsTo('App\Models\Store');
+    }
+
+    /**
      * 検索・絞り込み
      * @param \Illuminate\Database\Eloquent\Builder
      * @param array
@@ -54,28 +62,5 @@ class News extends Model
     public function getMarkContentAttribute()
     {
         return $this->parse();
-    }
-
-    /**
-     * お知らせ取得関数
-     * @param int
-     * @param int
-     * @return App\Models\News|\Illuminate\Database\Eloquent\ModelNotFoundException
-     */
-    public function findByIdOrFail(int $organizationId, int $newsId)
-    {
-        return $this->select(
-            'news.id',
-            'news.store_id',
-            'news.title',
-            'news.content',
-            'news.updated_at',
-            'stores.organization_id',
-            'stores.name'
-        )
-            ->join('stores', 'stores.id', '=', 'news.store_id')
-            ->where('news.id', $newsId)
-            ->where('stores.organization_id', $organizationId)
-            ->firstOrFail();
     }
 }

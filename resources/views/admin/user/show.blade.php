@@ -10,7 +10,7 @@
         <div class="breadcrumb-five">
           <ul class="breadcrumb">
             <li class="mb-2"><a href="{{ url('/admin') }}">ホーム</a></li>
-            <li class="mb-2"><a href="{{ url('/admin/user/') }}">会員一覧</a></li>
+            <li class="mb-2"><a href="{{ url('/admin/user') }}">会員一覧</a></li>
             <li class="active mb-2"><a href="">会員詳細</a></li>
           </ul>
         </div>
@@ -19,11 +19,11 @@
             <div class="d-flex justify-content-between">
               <h3 class="">会員詳細</h3>
             </div>
-            @if ($user->role === App\Enums\User\Role::Normal)
+            @can ('anyAdmin', $user)
             <div class="col-md-12 text-right">
-              <a href="{{ url("/admin/user/edit/{$user->id}") }}" class="btn btn-outline-primary">編集</a>
+              <a href="{{ url('/admin/user/edit', $user) }}" class="btn btn-outline-primary">編集</a>
             </div>
-            @endif
+            @endcan
             <div class="text-center user-info">
               <div class="avatar avatar-xxl">
                 <img alt="avatar" src="{{ $user->S3_url }}" class="rounded-circle" />
@@ -36,14 +36,14 @@
                   <li class="contacts-block__item">
                     <p>権限： {{ $user->role_name }}</p>
                   </li>
-                  @if ($user->role === App\Enums\User\Role::Normal)
+                  @can ('anyAdmin', $user)
                   <li class="contacts-block__item">
                     <p>店舗： {{ $user->store->name ?? null }}</p>
                   </li>
                   <li class="contacts-block__item">
                     <p>カテゴリー： {{ $user->category->name ?? null }}</p>
                   </li>
-                  @endif
+                  @endcan
                   <li class="contacts-block__item">
                     <p>性別： {{ $user->gender_name }}</p>
                   </li>
@@ -107,10 +107,10 @@
                       <tbody>
                         @foreach($attendances as $attendance)
                           <tr>
-                            <td>{{ $attendance->schedule->classwork->classwork_name }}({{ $attendance->schedule->day_name }} {{ $attendance->schedule->time }})</td>
+                            <td>{{ $attendance->schedule->classwork->name }}({{ $attendance->schedule->day_name }} {{ $attendance->schedule->time }})</td>
                             <td>{{ $attendance->created_at }}</td>
                             <td>
-                              <a class="btn btn-outline-primary" href="{{ url('admin/user/attendance/' . $attendance->id . '/edit' . '/' .$user->id) }}" role="button">編集</a>
+                              <a class="btn btn-outline-primary" href="{{ url('admin/user/attendance', $attendance) }}" role="button">編集</a>
                             </td>
                           </tr>
                         @endforeach

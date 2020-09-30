@@ -30,7 +30,7 @@ class ClassworkRequest extends FormRequest
                 'required',
                 'string',
                 'max:50',
-                Rule::unique('classworks')->where(function ($query) {
+                Rule::unique('classworks')->ignore($this->classwork->id ?? null)->where(function ($query) {
                     return $query->where('organization_id', Auth::user()->organization_id)
                         ->where('name', $this->name);
                 }),

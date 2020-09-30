@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use Auth;
 use App\Models\Category;
 use App\Http\Requests\Admin\CategoryRequest;
@@ -26,7 +25,7 @@ class CategoryController extends Controller
         ]);
     }
 
-    public function create(Request $request)
+    public function create()
     {
         return view('admin.category.create');
     }
@@ -39,24 +38,22 @@ class CategoryController extends Controller
         return redirect('/admin/category')->with('success_message', 'カテゴリーを追加しました。');
     }
 
-    public function edit(Request $request)
+    public function edit(Category $category)
     {
         return view('admin.category.edit')->with([
-            'category' => $this->category->findByIdOrFail(Auth::user()->organization_id, $request->id),
+            'category' => $category
         ]);
     }
 
-    public function update(CategoryRequest $request)
+    public function update(Category $category, CategoryRequest $request)
     {
-        $category = $this->category->findByIdOrFail(Auth::user()->organization_id, $request->id);
         $category->fill($request->all())->save();
 
         return redirect('/admin/category')->with('success_message', 'カテゴリーを編集しました。');
     }
 
-    public function delete(Request $request)
+    public function delete(Category $category)
     {
-        $category = $this->category->findByIdOrFail(Auth::user()->organization_id, $request->id);
         $category->delete();
 
         return redirect('/admin/category')->with('success_message', 'カテゴリーを削除しました。');

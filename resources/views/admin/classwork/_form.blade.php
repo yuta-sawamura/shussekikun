@@ -7,14 +7,14 @@
             <div class="col-md-12">
               <div class="form-group">
                 <label for="">クラス名<span class="text-danger">*</span></label>
-                <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" placeholder="初級" value="{{ $errors->has('*') ? old('name'):($class->name ?? '') }}" required>
+                <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" placeholder="初級" value="{{ $errors->has('*') ? old('name'):($classwork->name ?? '') }}" required>
                 @include('components.validations.feedback', ['message' => 'name'])
               </div>
             </div>
           </div>
           <div class="col-lg-12 text-right">
             @isset ($isEdit)
-              <a class="btn btn-danger mb-2 mt-5" href="{{ url('admin/class/delete/' . $class->id) }}" onclick="return confirm('関連データも全て削除されますが本当によろしいですか？')" role="button">削除</a>
+              <a class="btn btn-danger mb-2 mt-5" href="{{ url('admin/class/delete', $classwork) }}" onclick="return confirm('関連データも全て削除されますが本当によろしいですか？')" role="button">削除</a>
             @endisset
             <button type="submit" class="btn btn-primary mb-2 mt-5">保存</button>
           </div>

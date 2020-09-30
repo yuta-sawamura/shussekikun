@@ -14,7 +14,7 @@
           </div>
           <div class="col-lg-12 text-right">
             @isset ($isEdit)
-              <a class="btn btn-danger mb-2 mt-5" href="{{ url('admin/category/delete/' . $category->id) }}" onclick="return confirm('関連データも全て削除されますが本当によろしいですか？')" role="button">削除</a>
+              <a class="btn btn-danger mb-2 mt-5" href="{{ url('admin/category/delete', $category) }}" onclick="return confirm('関連データも全て削除されますが本当によろしいですか？')" role="button">削除</a>
             @endisset
             <button type="submit" class="btn btn-primary mb-2 mt-5">保存</button>
           </div>

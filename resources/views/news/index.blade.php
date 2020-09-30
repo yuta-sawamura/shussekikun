@@ -41,7 +41,7 @@
                       </thead>
                       <tbody>
                         @foreach ($news as $k => $v)
-                          <tr role="row" class="odd clickable-row" data-href="{{ url('/news/show/' . $v->id) }}">
+                          <tr role="row" class="odd clickable-row" data-href="{{ url('news/show', $v) }}">
                             <td>{{ $v->title }}</td>
                             <td>{{ $v->updated_at->format('Y-m-d') }}</td>
                           </tr>

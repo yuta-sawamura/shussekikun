@@ -15,17 +15,4 @@ class Category extends Model
         'name',
         'organization_id'
     ];
-
-    /**
-     * カテゴリー取得関数
-     * @param int
-     * @param int
-     * @return App\Models\Category|\Illuminate\Database\Eloquent\ModelNotFoundException
-     */
-    public function findByIdOrFail(int $organizationId, int $categoryId)
-    {
-        return $this->where('organization_id', $organizationId)
-            ->where('id', $categoryId)
-            ->firstOrFail();
-    }
 }

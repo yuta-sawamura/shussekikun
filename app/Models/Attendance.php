@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Schedule;
+use App\User;
 
 class Attendance extends Model
 {
@@ -17,6 +17,11 @@ class Attendance extends Model
         'schedule_id',
         'date'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     public function schedule()
     {
