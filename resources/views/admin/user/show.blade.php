@@ -19,7 +19,7 @@
             <div class="d-flex justify-content-between">
               <h3 class="">会員詳細</h3>
             </div>
-            @can ('anyAdmin', $user)
+            @can ('editAdmin', $user)
             <div class="col-md-12 text-right">
               <a href="{{ url('/admin/user/edit', $user) }}" class="btn btn-outline-primary">編集</a>
             </div>
