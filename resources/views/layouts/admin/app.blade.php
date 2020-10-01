@@ -95,7 +95,8 @@
       });
 
       $('.timepicker').timepicker({
-        'step': 15,
+        step: 15,
+        minTime: '10',
       });
     </script>
     <!-- END SCRIPTS -->
