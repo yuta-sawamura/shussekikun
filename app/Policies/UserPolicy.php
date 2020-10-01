@@ -44,6 +44,6 @@ class UserPolicy
      */
     public function view(User $user, User $model): bool
     {
-        return $model->role === Role::Normal && $user->store_id === $model->store_id && $model->status !== Status::Cancel;
+        return $user->store_id === $model->store_id && $model->status !== Status::Cancel;
     }
 }
