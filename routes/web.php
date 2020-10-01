@@ -54,7 +54,7 @@ Route::group(['middleware' => ['auth', 'can:organization-admin-higher']], functi
             Route::get('create', 'Admin\UserController@create');
             Route::post('store', 'Admin\UserController@store');
             Route::get('show/{user}', 'Admin\UserController@show')->middleware('can:anyAdmin,user');
-            Route::get('edit/{user}', 'Admin\UserController@edit')->middleware('can:anyAdmin,user');
+            Route::get('edit/{user}', 'Admin\UserController@edit')->middleware('can:editAdmin,user');
             Route::post('update/{user}', 'Admin\UserController@update')->middleware('can:anyAdmin,user');
             Route::get('delete/{user}', 'Admin\UserController@delete')->middleware('can:anyAdmin,user');
             // 出席

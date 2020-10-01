@@ -75,25 +75,6 @@ class ScheduleControllerTest extends TestCase
         $this->assertDatabaseHas('schedules', $data);
     }
 
-    public function test_スケジュールを編集できる()
-    {
-        $this->actingAs($this->organization_admin_user)->get('admin/schedule');
-        $this->assertDatabaseHas('schedules', [
-            'id' => $this->schedule->id,
-        ]);
-        $new_data = [
-            'store_id' => $this->store->id,
-            'classwork_id' => $this->classwork->id,
-            'day' => Day::Tue,
-            'start_at' => '20:00',
-            'end_at' => '21:00',
-        ];
-        $this->assertDatabaseMissing('schedules', $new_data);
-        $response = $this->post('admin/schedule/update/' . $this->schedule->id, $new_data);
-        $response->assertSessionHas('success_message', 'スケジュールを編集しました。');
-        $this->assertDatabaseHas('schedules', $new_data);
-    }
-
     public function test_スケジュールを削除できる()
     {
         $this->actingAs($this->organization_admin_user)->get('admin/schedule');
