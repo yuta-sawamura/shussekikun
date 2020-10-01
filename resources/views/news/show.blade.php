@@ -26,7 +26,7 @@
             <div class="table-responsive my-4 style-1">
               <div id="style-1_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
                 <div class="row">
-                  <div class="ql-editor" data-gramm="false" contenteditable="true" data-placeholder="Compose an epic...">
+                  <div class="ql-editor" data-gramm="false" contenteditable="false" data-placeholder="Compose an epic...">
                     {!! $news->mark_content !!}
                   </div>
                 </div>
