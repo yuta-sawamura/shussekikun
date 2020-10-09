@@ -24,7 +24,7 @@ class UserController extends Controller
         $params = $request->query();
 
         $users = User::roleStoreStatusFilter([Role::Normal], Auth::user()->store_id, Status::Cancel)
-            ->serach($params)
+            ->search($params)
             ->orderBy('id', 'desc')
             ->paginate(config('const.PAGINATION_PER_PAGE'));
 
@@ -63,7 +63,7 @@ class UserController extends Controller
         $yearUsers = User::select(DB::raw('count(*) as attendance_count, users.id as userid, users.sei, users.mei'))
             ->leftJoin('attendances', 'attendances.user_id', '=', 'users.id')
             ->roleStoreStatusFilter([Role::Normal], Auth::user()->store_id, Status::Cancel)
-            ->serach($params)
+            ->search($params)
             ->whereYear('attendances.date', $params['year'] ?? $dt->year)
             ->groupBy('userid')
             ->orderBy('attendance_count', 'desc')
@@ -79,7 +79,7 @@ class UserController extends Controller
         $monthlyUsers = User::select(DB::raw('count(*) as attendance_count, users.id as userid, users.sei, users.mei'))
             ->leftJoin('attendances', 'attendances.user_id', '=', 'users.id')
             ->roleStoreStatusFilter([Role::Normal], Auth::user()->store_id, Status::Cancel)
-            ->serach($params)
+            ->search($params)
             ->whereYear('attendances.date', $params['year'] ?? $dt->year)
             ->whereMonth('attendances.date', $params['month'] ?? $dt->month)
             ->groupBy('userid')
