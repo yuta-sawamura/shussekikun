@@ -27,7 +27,7 @@ class NewsController extends Controller
         )
             ->join('stores', 'stores.id', '=', 'news.store_id')
             ->where('stores.organization_id', Auth::user()->organization_id)
-            ->serach($params)
+            ->search($params)
             ->orderBy('news.updated_at', 'desc')
             ->paginate(config('const.PAGINATION_PER_PAGE'));
 
