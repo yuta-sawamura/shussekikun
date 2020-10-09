@@ -31,7 +31,7 @@ class ScheduleController extends Controller
         )
             ->join('stores', 'stores.id', '=', 'schedules.store_id')
             ->where('stores.organization_id', Auth::user()->organization_id)
-            ->serach($params)
+            ->search($params)
             ->orderBy('schedules.day', 'asc')
             ->orderBy('schedules.start_at', 'asc')
             ->paginate(config('const.PAGINATION_PER_PAGE'));

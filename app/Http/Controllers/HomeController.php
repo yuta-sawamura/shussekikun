@@ -29,7 +29,7 @@ class HomeController extends Controller
         $users = User::where('store_id', Auth::user()->store_id)
             ->where('role', Role::Normal)
             ->where('status', '!=', Status::Cancel)
-            ->serach($params)
+            ->search($params)
             ->orderBy('id', 'desc')
             ->paginate(config('const.PAGINATION_PER_PAGE'));
 

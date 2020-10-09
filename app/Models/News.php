@@ -34,7 +34,7 @@ class News extends Model
      * @param array
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeSerach(Builder $query, array $params): Builder
+    public function scopesearch(Builder $query, array $params): Builder
     {
         // 店舗絞り込み
         if (!empty($params['store'])) $query->where('store_id', $params['store']);
