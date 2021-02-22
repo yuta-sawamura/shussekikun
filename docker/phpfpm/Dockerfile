@@ -3,7 +3,7 @@ FROM php:7.3.20-fpm-alpine
 ENV COMPOSER_ALLOW_SUPERUSER 1
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 RUN set -eux \
-    && composer global require hirak/prestissimo
+    && composer global require "laravel/installer"
 
 RUN set -eux \
     && apk add --update --no-cache libzip-dev \
